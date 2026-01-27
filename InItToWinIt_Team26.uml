@@ -3,7 +3,36 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_7KhVAPsiEfCgs_O4J5cQsA">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_9pOMEPsiEfCgs_O4J5cQsA" name="BuildSettlement"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9pOMEPsiEfCgs_O4J5cQsA" name="BuildSettlement">
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_IwmzYPsnEfCgs_O4J5cQsA" name=""/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_tdyF8PsnEfCgs_O4J5cQsA" name="PrimitiveType2"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_tsEZkPsnEfCgs_O4J5cQsA" name="PrimitiveType3"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_tyfxsPsnEfCgs_O4J5cQsA" name="PrimitiveType4"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_t4lLkPsnEfCgs_O4J5cQsA" name="PrimitiveType5"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_t6srcPsnEfCgs_O4J5cQsA" name="PrimitiveType6"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_uZHs0PsnEfCgs_O4J5cQsA" name="PrimitiveType7"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_vB0EgPsnEfCgs_O4J5cQsA" name="PrimitiveType8"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_yHcYsPsnEfCgs_O4J5cQsA" name="PrimitiveType9"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_y6GksPsnEfCgs_O4J5cQsA" name="PrimitiveType10"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_zJgSoPsnEfCgs_O4J5cQsA" name="PrimitiveType11"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_zLmkYPsnEfCgs_O4J5cQsA" name="PrimitiveType12"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_BhcokPsoEfCgs_O4J5cQsA" name="PrimitiveType13"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_BydgEPsoEfCgs_O4J5cQsA" name="PrimitiveType14"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_B0kY4PsoEfCgs_O4J5cQsA" name="PrimitiveType15"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_CrhPAPsoEfCgs_O4J5cQsA" name="PrimitiveType16"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_CzoCIPsoEfCgs_O4J5cQsA" name="PrimitiveType17"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Dgvm0PsoEfCgs_O4J5cQsA" name="PrimitiveType18"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Dqv3YPsoEfCgs_O4J5cQsA" name="PrimitiveType19"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HDIIcPsoEfCgs_O4J5cQsA" name="PrimitiveType20"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HKCowPsoEfCgs_O4J5cQsA" name="PrimitiveType21"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HP9qkPsoEfCgs_O4J5cQsA" name="PrimitiveType22"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HR8nkPsoEfCgs_O4J5cQsA" name="PrimitiveType23"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HlsC8PsoEfCgs_O4J5cQsA" name="PrimitiveType24"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HnmugPsoEfCgs_O4J5cQsA" name="PrimitiveType25"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HpCR4PsoEfCgs_O4J5cQsA" name="PrimitiveType26"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Hq56IPsoEfCgs_O4J5cQsA" name="PrimitiveType27"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Hs3B8PsoEfCgs_O4J5cQsA" name="PrimitiveType28"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_X_wTkPsmEfCgs_O4J5cQsA" name="BuildCity"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_dvMioPsmEfCgs_O4J5cQsA" name="WinConditions"/>
 </uml:Model>
