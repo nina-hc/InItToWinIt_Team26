@@ -24,7 +24,59 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9pRPafsiEfCgs_O4J5cQsA"/>
     </children>
     <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_9pOMEPsiEfCgs_O4J5cQsA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9pQoUfsiEfCgs_O4J5cQsA" x="100" y="100"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9pQoUfsiEfCgs_O4J5cQsA" x="100" y="100" width="201" height="120"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_X_0lAPsmEfCgs_O4J5cQsA" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_X_0lAvsmEfCgs_O4J5cQsA" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_X_0lA_smEfCgs_O4J5cQsA" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_X_0lBPsmEfCgs_O4J5cQsA" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_X_0lBfsmEfCgs_O4J5cQsA" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_X_0lBvsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_X_0lB_smEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_X_0lCPsmEfCgs_O4J5cQsA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X_0lCfsmEfCgs_O4J5cQsA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_X_0lCvsmEfCgs_O4J5cQsA" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_X_0lC_smEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_X_0lDPsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_X_0lDfsmEfCgs_O4J5cQsA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X_0lDvsmEfCgs_O4J5cQsA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_X_0lD_smEfCgs_O4J5cQsA" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_X_0lEPsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_X_0lEfsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_X_0lEvsmEfCgs_O4J5cQsA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X_0lE_smEfCgs_O4J5cQsA"/>
+    </children>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_X_wTkPsmEfCgs_O4J5cQsA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X_0lAfsmEfCgs_O4J5cQsA" x="360" y="100" width="140" height="140"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_dvNwwPsmEfCgs_O4J5cQsA" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_dvOX0PsmEfCgs_O4J5cQsA" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_dvOX0fsmEfCgs_O4J5cQsA" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_dvOX0vsmEfCgs_O4J5cQsA" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_dvOX0_smEfCgs_O4J5cQsA" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_dvOX1PsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_dvOX1fsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_dvOX1vsmEfCgs_O4J5cQsA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dvOX1_smEfCgs_O4J5cQsA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_dvOX2PsmEfCgs_O4J5cQsA" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_dvOX2fsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_dvOX2vsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_dvOX2_smEfCgs_O4J5cQsA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dvOX3PsmEfCgs_O4J5cQsA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_dvOX3fsmEfCgs_O4J5cQsA" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_dvOX3vsmEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_dvOX3_smEfCgs_O4J5cQsA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_dvOX4PsmEfCgs_O4J5cQsA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dvOX4fsmEfCgs_O4J5cQsA"/>
+    </children>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_dvMioPsmEfCgs_O4J5cQsA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dvNwwfsmEfCgs_O4J5cQsA" x="140" y="260"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_7KQPQfsiEfCgs_O4J5cQsA" name="diagram_compatibility_version" stringValue="1.4.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_7KQPQvsiEfCgs_O4J5cQsA"/>

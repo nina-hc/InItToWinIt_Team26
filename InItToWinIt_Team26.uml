@@ -4,4 +4,6 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_9pOMEPsiEfCgs_O4J5cQsA" name="BuildSettlement"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_X_wTkPsmEfCgs_O4J5cQsA" name="BuildCity"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_dvMioPsmEfCgs_O4J5cQsA" name="WinConditions"/>
 </uml:Model>
