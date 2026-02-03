@@ -100,6 +100,37 @@
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RGoVYAEVEfGMYMLwD7yMZw" name="Board">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_YUJE8AEVEfGMYMLwD7yMZw" name="tiles: Tile" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_iAdZQAEVEfGMYMLwD7yMZw" name="nodes: Node" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_vrDhAAEVEfGMYMLwD7yMZw" name="orignalMap" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="__7he0AEVEfGMYMLwD7yMZw" name="updateMap" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ESOZUAEWEfGMYMLwD7yMZw" name="getTile(tileID : int) : Tile" visibility="public"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_K7LqUAEWEfGMYMLwD7yMZw" name="getNode(nodeID : int) : Node"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_P3lS4AEWEfGMYMLwD7yMZw" name="isOccupied(nodeID : int) : boolean" visibility="public"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_X0bNoAEWEfGMYMLwD7yMZw" name="isAdjacent(nodeID : int) : boolean"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gPhxsAEWEfGMYMLwD7yMZw" name="Tile">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_t3h4cAEWEfGMYMLwD7yMZw" name="tileID : int" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_yruAMAEWEfGMYMLwD7yMZw" name="tileRollNum : int" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4dOr0AEWEfGMYMLwD7yMZw" name="resourceType : ResourceType" visibility="private"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Acav8AEXEfGMYMLwD7yMZw" name="Node">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_EmpUsAEXEfGMYMLwD7yMZw" name="nodeID : int" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Lgao4AEXEfGMYMLwD7yMZw" name="adjacentMat [] : int" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_W65IIAEXEfGMYMLwD7yMZw" name="occupencyMat [] : int" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_diWkUAEXEfGMYMLwD7yMZw" name="isAdjacent(adjacentMat : int) : boolean"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_hasu4AEXEfGMYMLwD7yMZw" name="isOccupied">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_us0FMAEXEfGMYMLwD7yMZw" name="occupencyMat">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7ac1cAEXEfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_D5Z-wAEYEfGMYMLwD7yMZw" name="placeBuilding(player : Player, building : Building)" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_NCqpUAEYEfGMYMLwD7yMZw" name="getBuilding : Building"/>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_lDpMgAEMEfGMYMLwD7yMZw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lDuFAAEMEfGMYMLwD7yMZw" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
