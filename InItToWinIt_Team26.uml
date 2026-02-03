@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_7IGTIPsiEfCgs_O4J5cQsA" name="InItToWinIt_Team26">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_7IGTIPsiEfCgs_O4J5cQsA" name="InItToWinIt_Team26">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_7KhVAPsiEfCgs_O4J5cQsA">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_9pOMEPsiEfCgs_O4J5cQsA" name="BuildSettlement">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4ioEQPunEfCbX-afN_OtuQ" name="placementNode : Node " visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ucuLQPunEfCbX-afN_OtuQ" name="execute"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_8OT8UAEMEfGMYMLwD7yMZw" name="generatePlacement : Node" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_t5oD0AEOEfGMYMLwD7yMZw" name="isVaildPlacement (node : Node)" visibility="private">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_2HDYQAEOEfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_QWVIkAEPEfGMYMLwD7yMZw" name="followsDistanceRule (node : Node)" visibility="private">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_U3dKYAEPEfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_YuGr0AEPEfGMYMLwD7yMZw" name="updatePlayerBuildInventory" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_cE2lMAEPEfGMYMLwD7yMZw" name="printAction" visibility="private"/>
     <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_IwmzYPsnEfCgs_O4J5cQsA" name=""/>
     <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_tdyF8PsnEfCgs_O4J5cQsA" name="PrimitiveType2"/>
     <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_tsEZkPsnEfCgs_O4J5cQsA" name="PrimitiveType3"/>
@@ -32,7 +47,63 @@
     <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_HpCR4PsoEfCgs_O4J5cQsA" name="PrimitiveType26"/>
     <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Hq56IPsoEfCgs_O4J5cQsA" name="PrimitiveType27"/>
     <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_Hs3B8PsoEfCgs_O4J5cQsA" name="PrimitiveType28"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_lyTY0PunEfCbX-afN_OtuQ" name="PrimitiveType29"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_oKle0PunEfCbX-afN_OtuQ" name="PrimitiveType30"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_oYew4PunEfCbX-afN_OtuQ" name="PrimitiveType31"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_oda7QPunEfCbX-afN_OtuQ" name="PrimitiveType32"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_ofFvMPunEfCbX-afN_OtuQ" name="PrimitiveType33"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_rNU3EPunEfCbX-afN_OtuQ" name="PrimitiveType34"/>
+    <nestedClassifier xmi:type="uml:Interface" xmi:id="_sjdjkPunEfCbX-afN_OtuQ" name="Interface35"/>
+    <nestedClassifier xmi:type="uml:PrimitiveType" xmi:id="_s1jZIPunEfCbX-afN_OtuQ" name="PrimitiveType36"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_X_wTkPsmEfCgs_O4J5cQsA" name="BuildCity"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_dvMioPsmEfCgs_O4J5cQsA" name="WinConditions"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_X_wTkPsmEfCgs_O4J5cQsA" name="BuildCity">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_fnjP4AEPEfGMYMLwD7yMZw" name="targetNode : Node" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_k1_DoAEPEfGMYMLwD7yMZw" name="originalBuildingType : BuildingType" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_s0cvAAEPEfGMYMLwD7yMZw" name="execute"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_uRO2EAEPEfGMYMLwD7yMZw" name="generatePlacement() : Node" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_yLTe8AEPEfGMYMLwD7yMZw" name="isValidUpgrade(node : Node)" visibility="private">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_2xbVgAEPEfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_5O-9EAEPEfGMYMLwD7yMZw" name="updatePlayerBuildInventory" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_EcqWcAEQEfGMYMLwD7yMZw" name="storeBuildLocation( node : Node) " visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_TYhRwAEQEfGMYMLwD7yMZw" name="printAction" visibility="private"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_dvMioPsmEfCgs_O4J5cQsA" name="VictoryPointConditions">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_eMix0AEMEfGMYMLwD7yMZw" name="player : Player" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_eaGv4AEQEfGMYMLwD7yMZw" name="board : Board" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_hXwMwAEQEfGMYMLwD7yMZw" name="VictoryPointCheck (player : Player, board : Board)"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_pfZpUAEQEfGMYMLwD7yMZw" name="didPlayerBuildSettlement">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_vxG38AEQEfGMYMLwD7yMZw" name="Parameter1">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="__MeZwAEQEfGMYMLwD7yMZw" name="didPlayerBuildCity">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_TaMQQAEREfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_cQ0SsAEREfGMYMLwD7yMZw" name="checkLongestRoad">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_j9iGwAEREfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_mU4YoAEREfGMYMLwD7yMZw" name="calculateVictoryPoints">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_quNwYAEREfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_wDsAQAEREfGMYMLwD7yMZw" name="checkWinConditions">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_zyIA4AEREfGMYMLwD7yMZw" name="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_lDpMgAEMEfGMYMLwD7yMZw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lDuFAAEMEfGMYMLwD7yMZw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
 </uml:Model>
