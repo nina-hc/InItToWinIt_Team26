@@ -192,6 +192,46 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
     </ownedAttribute>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rkr4AAFWEfGXydzhxrJcUA" name="Build" isAbstract="true">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_wDNRwAFWEfGXydzhxrJcUA" name="checkPlayer">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7AwkcAFWEfGXydzhxrJcUA" name="playerResources" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_dnGtYAFXEfGXydzhxrJcUA" name="playerRoads" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_77JToAFXEfGXydzhxrJcUA" name="playerSettlements" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ADWfIAFYEfGXydzhxrJcUA" name="playerCities" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_OtXR8AFXEfGXydzhxrJcUA" name="generatePlacement">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_IHc4cAFYEfGXydzhxrJcUA" name="random" type="_nw_sIAEjEfGDRfzUXda5Jg" effect="update"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_M2k6AAFYEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" effect="read"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_XY9JEAFXEfGXydzhxrJcUA" name="checkPlacement"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_YMQOQAFXEfGXydzhxrJcUA" name="updatePlayerInventory">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_eNlCEAFYEfGXydzhxrJcUA" name="buildMaterials" type="_Tbp38AFVEfGXydzhxrJcUA" direction="inout" effect="update"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Zn0NUAFXEfGXydzhxrJcUA" name="printAction"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_nRQpEAFYEfGXydzhxrJcUA" name="storeBuildLocation">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_vzjaQAFYEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" direction="inout" effect="update"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_BhZ8EAFZEfGXydzhxrJcUA" name="BuildRoad" isAbstract="true">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8EQFZEfGXydzhxrJcUA" name="checkPlayer">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8EgFZEfGXydzhxrJcUA" name="playerResources" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8EwFZEfGXydzhxrJcUA" name="playerRoads" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8FAFZEfGXydzhxrJcUA" name="playerSettlements" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8FQFZEfGXydzhxrJcUA" name="playerCities" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8FgFZEfGXydzhxrJcUA" name="generatePlacement">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8FwFZEfGXydzhxrJcUA" name="random" type="_nw_sIAEjEfGDRfzUXda5Jg" effect="update"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8GAFZEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" effect="read"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8GQFZEfGXydzhxrJcUA" name="checkPlacement"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8GgFZEfGXydzhxrJcUA" name="updatePlayerInventory">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8GwFZEfGXydzhxrJcUA" name="buildMaterials" type="_Tbp38AFVEfGXydzhxrJcUA" direction="inout" effect="update"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8HAFZEfGXydzhxrJcUA" name="printAction"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8HQFZEfGXydzhxrJcUA" name="storeBuildLocation">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8HgFZEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" direction="inout" effect="update"/>
+    </ownedOperation>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_lDpMgAEMEfGMYMLwD7yMZw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lDuFAAEMEfGMYMLwD7yMZw" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
