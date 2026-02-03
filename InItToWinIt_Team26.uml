@@ -212,7 +212,8 @@
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_vzjaQAFYEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" direction="inout" effect="update"/>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_BhZ8EAFZEfGXydzhxrJcUA" name="BuildRoad" isAbstract="true">
+  <packagedElement xmi:type="uml:Class" xmi:id="_BhZ8EAFZEfGXydzhxrJcUA" name="BuildRoad">
+    <generalization xmi:type="uml:Generalization" xmi:id="_hEKiwAFaEfGXydzhxrJcUA" general="_rkr4AAFWEfGXydzhxrJcUA"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8EQFZEfGXydzhxrJcUA" name="checkPlayer">
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8EgFZEfGXydzhxrJcUA" name="playerResources" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8EwFZEfGXydzhxrJcUA" name="playerRoads" visibility="private" type="_Tbp38AFVEfGXydzhxrJcUA" effect="read"/>
@@ -223,7 +224,9 @@
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8FwFZEfGXydzhxrJcUA" name="random" type="_nw_sIAEjEfGDRfzUXda5Jg" effect="update"/>
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8GAFZEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" effect="read"/>
     </ownedOperation>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8GQFZEfGXydzhxrJcUA" name="checkPlacement"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8GQFZEfGXydzhxrJcUA" name="checkPlacement">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rIIiEAFaEfGXydzhxrJcUA" name="nodeID" visibility="private" type="_Acav8AEXEfGMYMLwD7yMZw" effect="read"/>
+    </ownedOperation>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_BhZ8GgFZEfGXydzhxrJcUA" name="updatePlayerInventory">
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_BhZ8GwFZEfGXydzhxrJcUA" name="buildMaterials" type="_Tbp38AFVEfGXydzhxrJcUA" direction="inout" effect="update"/>
     </ownedOperation>
