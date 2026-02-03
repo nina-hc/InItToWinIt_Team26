@@ -169,6 +169,29 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_Agg14AFQEfGDRfzUXda5Jg" name="transferToPlayer(player : Player, lumber : int, wool : int, grain : int, brick : int, ore : int) : boolean"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_QEResAFQEfGDRfzUXda5Jg" name="ReceiveFromPlayer(player : Player, lumber : int, wool : int, grain : int, brick : int, ore : int) : boolean"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Tbp38AFVEfGXydzhxrJcUA" name="Player">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XmKJgAFVEfGXydzhxrJcUA" name="playerID" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_gR-qIAFVEfGXydzhxrJcUA" name="victoryPoints" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_lO-IkAFVEfGXydzhxrJcUA" name="buildMaterials" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EMap"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_pbcwEAFVEfGXydzhxrJcUA" name="playerResources" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tb-mQAFVEfGXydzhxrJcUA" name="playerRoads" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_xolJkAFVEfGXydzhxrJcUA" name="playerSettlements" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__r3eIAFVEfGXydzhxrJcUA" name="playerCities" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+    </ownedAttribute>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_lDpMgAEMEfGMYMLwD7yMZw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lDuFAAEMEfGMYMLwD7yMZw" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
