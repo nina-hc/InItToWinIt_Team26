@@ -13,31 +13,31 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_9pRPYPsiEfCgs_O4J5cQsA" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_uc3VMPunEfCbX-afN_OtuQ" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_ucuLQPunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/execute"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_uc3VMfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_0PQDQAI5EfGfFfYnB07gXA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_0OtQsAI5EfGfFfYnB07gXA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/checkPlayer"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_0PQDQQI5EfGfFfYnB07gXA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_8OgJkAEMEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_8OT8UAEMEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/generatePlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_8OgJkQEMEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_t5yb4AEOEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_t5oD0AEOEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/checkPlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_t5yb4QEOEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_QWcdUAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_QWVIkAEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/storeBuildLocation"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_QWcdUQEPEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_YuP1wAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_YuGr0AEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/updatePlayerInventory"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_YuP1wQEPEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_cE_vIAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_cE2lMAEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildSettlement/printAction"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_cE_vIQEPEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_9pRPYfsiEfCgs_O4J5cQsA"/>
@@ -47,147 +47,147 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_9pRPZfsiEfCgs_O4J5cQsA" type="Class_NestedClassifierCompartment" collapsed="true">
       <children xmi:type="notation:Shape" xmi:id="_Iws6APsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_IwmzYPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/@nestedClassifier.0"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Iws6AfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_td4MkPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_tdyF8PsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType2"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_td4MkfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_tsJ5IPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_tsEZkPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType3"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_tsJ5IfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_tylRQPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_tyfxsPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType4"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_tylRQfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_t4qrIPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_t4lLkPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType5"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_t4qrIfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_t6yLAPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_t6srcPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType6"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_t6yLAfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_uZOagPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_uZHs0PsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType7"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_uZOagfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_vB6LIPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_vB0EgPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType8"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_vB6LIfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_yHh4QPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_yHcYsPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType9"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_yHh4QfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_y6PHkPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_y6GksPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType10"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_y6PHkfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_zJlLIPsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_zJgSoPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType11"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_zJlLIfsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_zLsD8PsnEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_zLmkYPsnEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType12"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_zLsD8fsnEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_BhjWQPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_BhcokPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType13"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_BhjWQfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_ByhxgPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_BydgEPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType14"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ByhxgfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_B0pRYPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_B0kY4PsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType15"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_B0pRYfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_CrmukPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_CrhPAPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType16"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_CrmukfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_CzthsPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_CzoCIPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType17"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_CzthsfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_Dg2UgPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_Dgvm0PsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType18"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Dg2UgfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_Dq3MIPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_Dqv3YPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType19"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Dq3MIfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HDPdMPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HDIIcPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType20"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HDPdMfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HKKkkPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HKCowPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType21"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HKKkkfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HQCjEPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HP9qkPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType22"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HQDKIPsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HSCHIPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HR8nkPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType23"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HSCHIfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HlywoPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HlsC8PsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType24"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HlywofsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HntcMPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HnmugPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType25"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HntcMfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HpHxcPsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_HpCR4PsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType26"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HpHxcfsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HrAn0PsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_Hq56IPsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType27"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HrAn0fsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_HtJ84PsoEfCgs_O4J5cQsA" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_Hs3B8PsoEfCgs_O4J5cQsA"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType28"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_HtJ84fsoEfCgs_O4J5cQsA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_ly7q8PunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_lyTY0PunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType29"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ly7q8funEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_oK4ZwPunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_oKle0PunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType30"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_oK4ZwfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_oYuBcPunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_oYew4PunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType31"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_oYuBcfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_odo9sPunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_oda7QPunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType32"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_odo9sfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_ofQHQPunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_ofFvMPunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType33"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ofQHQfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_rNi5gPunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_rNU3EPunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType34"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_rNi5gfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_sjsNEPunEfCbX-afN_OtuQ" type="Interface_ClassNestedClassifierLabel">
-        <element xmi:type="uml:Interface" href="InItToWinIt_Team26.uml#_sjdjkPunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:Interface" href="InItToWinIt_Team26.uml#/0/BuildSettlement/Interface35"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_sjsNEfunEfCbX-afN_OtuQ"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_s1txMPunEfCbX-afN_OtuQ" type="PrimitiveType_ClassNestedClassifierLabel">
-        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#_s1jZIPunEfCbX-afN_OtuQ"/>
+        <element xmi:type="uml:PrimitiveType" href="InItToWinIt_Team26.uml#/0/BuildSettlement/PrimitiveType36"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_s1txMfunEfCbX-afN_OtuQ"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_9pRPZvsiEfCgs_O4J5cQsA"/>
@@ -199,7 +199,7 @@
       <styles xmi:type="notation:TitleStyle" xmi:id="_9pbAYfsiEfCgs_O4J5cQsA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9pbAYvsiEfCgs_O4J5cQsA"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_9pOMEPsiEfCgs_O4J5cQsA"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/BuildSettlement"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9pQoUfsiEfCgs_O4J5cQsA" x="1340" y="380" width="301" height="180"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_X_0lAPsmEfCgs_O4J5cQsA" type="Class_Shape">
@@ -215,31 +215,31 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_X_0lCvsmEfCgs_O4J5cQsA" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_s0jcsAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_s0cvAAEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/execute"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_s0jcsQEPEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_rcqW0AI6EfGfFfYnB07gXA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_rcc7cAI6EfGfFfYnB07gXA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/checkPlayer"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_rcqW0QI6EfGfFfYnB07gXA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_uRVjwAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_uRO2EAEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/generatePlacement()%20:%20Node"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_uRVjwQEPEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_yLZlkAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_yLTe8AEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/checkPlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_yLZlkQEPEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_5PKjQAEPEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_5O-9EAEPEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/updatePlayerInventory"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_5PLKUAEPEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EcySQAEQEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_EcqWcAEQEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/storeBuildLocation"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EcySQQEQEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_TYqbsAEQEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_TYhRwAEQEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildCity/printAction"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_TYqbsQEQEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_X_0lC_smEfCgs_O4J5cQsA"/>
@@ -253,7 +253,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_X_0lEvsmEfCgs_O4J5cQsA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X_0lE_smEfCgs_O4J5cQsA"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_X_wTkPsmEfCgs_O4J5cQsA"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/BuildCity"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X_0lAfsmEfCgs_O4J5cQsA" x="2060" y="380" width="240" height="180"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_dvNwwPsmEfCgs_O4J5cQsA" type="Class_Shape">
@@ -263,11 +263,11 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_dvOX0_smEfCgs_O4J5cQsA" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_eM-PoAEMEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_eMix0AEMEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/player%20:%20Player"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_eM-PoQEMEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_eaNdkAEQEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_eaGv4AEQEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/board%20:%20Board"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_eaNdkQEQEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_dvOX1PsmEfCgs_O4J5cQsA"/>
@@ -277,27 +277,27 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_dvOX2PsmEfCgs_O4J5cQsA" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_hX1sUAEQEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_hXwMwAEQEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/VictoryPointCheck"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_hX1sUQEQEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_pffv8AEQEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_pfZpUAEQEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/didPlayerBuildSettlement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_pffv8QEQEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="__MlHcAEQEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#__MeZwAEQEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/didPlayerBuildCity"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="__MlHcQEQEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_cQ5yQAEREfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_cQ0SsAEREfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/checkLongestRoad"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_cQ5yQQEREfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_mVBikAEREfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_mU4YoAEREfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/calculateVictoryPoints"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_mVBikQEREfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_wDyG4AEREfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_wDsAQAEREfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions/checkWinConditions"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_wDyG4QEREfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_dvOX2fsmEfCgs_O4J5cQsA"/>
@@ -311,7 +311,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_dvOX4PsmEfCgs_O4J5cQsA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dvOX4fsmEfCgs_O4J5cQsA"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_dvMioPsmEfCgs_O4J5cQsA"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/VictoryPointConditions"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dvNwwfsmEfCgs_O4J5cQsA" x="780" y="500" width="340" height="180"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_RGqKkAEVEfGMYMLwD7yMZw" type="Class_Shape">
@@ -321,11 +321,11 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_RGqxowEVEfGMYMLwD7yMZw" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_YUOkgAEVEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_YUJE8AEVEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Board/tiles"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_YUOkgQEVEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_iAjf4AEVEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_iAdZQAEVEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Board/nodes"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_iAjf4QEVEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_RGqxpAEVEfGMYMLwD7yMZw"/>
@@ -335,27 +335,27 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_RGqxqAEVEfGMYMLwD7yMZw" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_vrKOsAEVEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_vrDhAAEVEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Board/orignalMap"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_vrKOsQEVEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="__7mXUAEVEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#__7he0AEVEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Board/updateMap"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="__7mXUQEVEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_EST44AEWEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_ESOZUAEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Board/getTile"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EST44QEWEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_K7RJ4AEWEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_K7LqUAEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Board/getNode"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_K7RJ4QEWEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_P3qLYAEWEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_P3lS4AEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Board/isOccupied"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_P3qLYQEWEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_X0gGIAEWEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_X0bNoAEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Board/isAdjacent(nodeID%20:%20int)%20:%20boolean"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_X0gGIQEWEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_RGqxqQEVEfGMYMLwD7yMZw"/>
@@ -369,7 +369,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_RGqxsAEVEfGMYMLwD7yMZw"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RGqxsQEVEfGMYMLwD7yMZw"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_RGoVYAEVEfGMYMLwD7yMZw"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Board"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RGqKkQEVEfGMYMLwD7yMZw" x="-140" y="240" width="301" height="221"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_gPi_0AEWEfGMYMLwD7yMZw" type="Class_Shape">
@@ -379,15 +379,15 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_gPjm4gEWEfGMYMLwD7yMZw" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_t3n_EAEWEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_t3h4cAEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Tile/tileID"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_t3n_EQEWEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_yr18AAEWEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_yruAMAEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Tile/tileRollNum"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_yr18AQEWEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_4dX1wAEWEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_4dOr0AEWEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Tile/resourceType"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_4dX1wQEWEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_gPjm4wEWEfGMYMLwD7yMZw"/>
@@ -407,7 +407,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_gPjm7wEWEfGMYMLwD7yMZw"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gPjm8AEWEfGMYMLwD7yMZw"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_gPhxsAEWEfGMYMLwD7yMZw"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Tile"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gPi_0QEWEfGMYMLwD7yMZw" x="-240" y="600" width="260" height="160"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Acb-EAEXEfGMYMLwD7yMZw" type="Class_Shape">
@@ -417,15 +417,15 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Acb-FQEXEfGMYMLwD7yMZw" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_EmvbUAEXEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_EmpUsAEXEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Node/nodeID"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EmvbUQEXEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_LggvgAEXEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_Lgao4AEXEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Node/adjacentMat%20%5B%5D"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_LggvgQEXEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_W6_OwAEXEfGMYMLwD7yMZw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_W65IIAEXEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Node/occupencyMat%20%5B%5D"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_W6_OwQEXEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_Acb-FgEXEfGMYMLwD7yMZw"/>
@@ -435,19 +435,19 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Acb-GgEXEfGMYMLwD7yMZw" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_dicD4AEXEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_diWkUAEXEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Node/isAdjacent"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_dicD4QEXEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_hay1gAEXEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_hasu4AEXEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Node/isOccupied"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_hay1gQEXEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_D5gscAEYEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_D5Z-wAEYEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Node/placeBuilding"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_D5gscQEYEfGMYMLwD7yMZw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_NCwv8AEYEfGMYMLwD7yMZw" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_NCqpUAEYEfGMYMLwD7yMZw"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Node/getBuilding"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_NCwv8QEYEfGMYMLwD7yMZw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_Acb-GwEXEfGMYMLwD7yMZw"/>
@@ -461,7 +461,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Acb-IgEXEfGMYMLwD7yMZw"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Acb-IwEXEfGMYMLwD7yMZw"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_Acav8AEXEfGMYMLwD7yMZw"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Node"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Acb-EQEXEfGMYMLwD7yMZw" x="100" y="580" width="261" height="202"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_2NbdUAEfEfGDRfzUXda5Jg" type="Class_Shape">
@@ -474,27 +474,27 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DZ6swAEgEfGDRfzUXda5Jg" key="collapsed" value="true"/>
       </eAnnotations>
       <children xmi:type="notation:Shape" xmi:id="_WZgt0AEhEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_WZDa0AEhEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Game/maxTurns"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_WZgt0QEhEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_m5stMAEiEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_m5aZUAEiEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Game/board"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_m5stMQEiEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_wg3bwAEiEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_wgav0AEiEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Game/players"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_wg3bwQEiEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_52p_QAFKEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_52N6YAFKEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Game/currentTurn"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_52p_QQFKEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_QWrvQAFOEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_QV5FEAFOEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Game/bank"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_QWrvQQFOEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_S1G5gAFOEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_S0sCwAFOEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Game/random"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_S1G5gQFOEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_2Nd5kgEfEfGDRfzUXda5Jg"/>
@@ -504,19 +504,19 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_2NegoAEfEfGDRfzUXda5Jg" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_C_kHsAFPEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_C_AuEAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Game/Game"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_C_kHsQFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_JB4TcAEjEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_JBn0wAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Game/startGame"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_JB4TcQEjEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_jS0CEAFOEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_jScOoAFOEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Game/takeTurn"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_jS0CEQFOEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_KhRpoAEjEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_KhBK8AEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Game/checkTermination"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_KhRpoQEjEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_2NegoQEfEfGDRfzUXda5Jg"/>
@@ -530,7 +530,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_2NegqAEfEfGDRfzUXda5Jg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2NegqQEfEfGDRfzUXda5Jg"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_2NSTYAEfEfGDRfzUXda5Jg"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Game"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2NbdUQEfEfGDRfzUXda5Jg" x="420" y="-40" width="281" height="221"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_N6KRAAEjEfGDRfzUXda5Jg" type="Class_Shape">
@@ -540,7 +540,7 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_N6KRBQEjEfGDRfzUXda5Jg" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_fN8F8AEjEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_fNhPMAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/PlayerAction/player"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_fN8F8QEjEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_N6KRBgEjEfGDRfzUXda5Jg"/>
@@ -550,15 +550,15 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_N6KRCgEjEfGDRfzUXda5Jg" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_W9ujQAEjEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_W9aaMAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/PlayerAction/chooseAction"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_W9ujQQEjEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_YjSL0AEjEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_YjBGEAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/PlayerAction/executeAction"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_YjSL0QEjEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_aHnFUAEjEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_aHODwAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/PlayerAction/updateVictoryPoints"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_aHnFUQEjEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_N6KRCwEjEfGDRfzUXda5Jg"/>
@@ -572,7 +572,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_N6KREgEjEfGDRfzUXda5Jg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N6KREwEjEfGDRfzUXda5Jg"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_N6Ib0AEjEfGDRfzUXda5Jg"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/PlayerAction"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N6KRAQEjEfGDRfzUXda5Jg" x="980" y="260" width="241" height="161"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_j3YWQAEjEfGDRfzUXda5Jg" type="Class_Shape">
@@ -582,7 +582,7 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_j3Y9UQEjEfGDRfzUXda5Jg" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_PiMdcAExEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_PhONEAExEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/DistributeResources/tiles"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_PiMdcQExEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_j3Y9UgEjEfGDRfzUXda5Jg"/>
@@ -592,7 +592,7 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_j3Y9VgEjEfGDRfzUXda5Jg" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_QOCPwAExEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_QNQzsAExEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/DistributeResources/distributeResources"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_QOCPwQExEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_j3Y9VwEjEfGDRfzUXda5Jg"/>
@@ -606,7 +606,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_j3Y9XgEjEfGDRfzUXda5Jg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_j3Y9XwEjEfGDRfzUXda5Jg"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_j3XIIAEjEfGDRfzUXda5Jg"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/DistributeResources"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_j3YWQQEjEfGDRfzUXda5Jg" x="1140" y="620" width="201" height="120"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_nxBhUAEjEfGDRfzUXda5Jg" type="Class_Shape">
@@ -616,7 +616,7 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_nxCIYQEjEfGDRfzUXda5Jg" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_0mk3cAEjEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_0mILgAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Randomizer/random"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_0mk3cQEjEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_nxCIYgEjEfGDRfzUXda5Jg"/>
@@ -626,11 +626,11 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_nxCIZgEjEfGDRfzUXda5Jg" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_2MDngAEjEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_2LrNAAEjEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Randomizer/rollDice"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_2MDngQEjEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_BqMewAEkEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BpvLwAEkEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Randomizer/randomSelection"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_BqMewQEkEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_nxCIZwEjEfGDRfzUXda5Jg"/>
@@ -644,7 +644,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_nxCIbgEjEfGDRfzUXda5Jg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nxCIbwEjEfGDRfzUXda5Jg"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_nw_sIAEjEfGDRfzUXda5Jg"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Randomizer"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nxBhUQEjEfGDRfzUXda5Jg" x="-60" y="20" width="300" height="119"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_J2AbEAFPEfGDRfzUXda5Jg" type="Class_Shape">
@@ -654,23 +654,23 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_J2BCIgFPEfGDRfzUXda5Jg" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_PIZhwAFPEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_PH0S8AFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Bank/grain"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_PIZhwQFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_OND64AFPEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_OMbowAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Bank/lumber"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_OND64QFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_OsHOYAFPEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_OrgxcAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Bank/wool"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_OsHOYQFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_PlRD8AFPEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_Pk1mIAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Bank/brick"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_PlRD8QFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_P3ZVwAFPEfGDRfzUXda5Jg" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_P3D-kAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Bank/ore"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_P3ZVwQFPEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_J2BCIwFPEfGDRfzUXda5Jg"/>
@@ -680,19 +680,19 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_J2BCJwFPEfGDRfzUXda5Jg" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_sMm30AFPEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_sMHIkAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Bank/Bank"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_sMm30QFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_5hLsQAFPEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_5gcFYAFPEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Bank/hasResources"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_5hLsQQFPEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_AhMyYAFQEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_Agg14AFQEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Bank/transferToPlayer"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AhMyYQFQEfGDRfzUXda5Jg"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_QE1fYAFQEfGDRfzUXda5Jg" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_QEResAFQEfGDRfzUXda5Jg"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Bank/ReceiveFromPlayer"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_QE1fYQFQEfGDRfzUXda5Jg"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_J2BCKAFPEfGDRfzUXda5Jg"/>
@@ -706,7 +706,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_J2BCLwFPEfGDRfzUXda5Jg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J2BCMAFPEfGDRfzUXda5Jg"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_J19XwAFPEfGDRfzUXda5Jg"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Bank"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J2AbEQFPEfGDRfzUXda5Jg" x="820" y="-40" width="381"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_TbxMsAFVEfGXydzhxrJcUA" type="Class_Shape">
@@ -716,31 +716,31 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Tbya0AFVEfGXydzhxrJcUA" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_XmoDkAFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_XmKJgAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/playerID"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_XmoDkQFVEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_gSTaQAFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_gR-qIAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/victoryPoints"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_gSTaQQFVEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_lPcpsAFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_lO-IkAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/buildMaterials"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_lPcpsQFVEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_pbvrAAFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_pbcwEAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/playerResources"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_pbvrAQFVEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_tcNPwAFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_tb-mQAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/playerRoads"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_tcNPwQFVEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_xo2PUAFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_xolJkAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/playerSettlements"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_xo2PUQFVEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="__sH80AFVEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#__r3eIAFVEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Player/playerCities"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="__sH80QFVEfGXydzhxrJcUA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_Tbya0QFVEfGXydzhxrJcUA"/>
@@ -760,7 +760,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Tbya3QFVEfGXydzhxrJcUA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Tbya3gFVEfGXydzhxrJcUA"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_Tbp38AFVEfGXydzhxrJcUA"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Player"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TbxMsQFVEfGXydzhxrJcUA" x="460" y="240" width="241" height="181"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_rku7UAFWEfGXydzhxrJcUA" type="Class_Shape">
@@ -770,7 +770,7 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_rkviYwFWEfGXydzhxrJcUA" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_DXSO0AI5EfGfFfYnB07gXA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_DXCXMAI5EfGfFfYnB07gXA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/Build/player"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_DXSO0QI5EfGfFfYnB07gXA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_rkviZAFWEfGXydzhxrJcUA"/>
@@ -780,31 +780,31 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_rkwJcAFWEfGXydzhxrJcUA" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_DBCBEAIwEfGfFfYnB07gXA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_DAi44AIwEfGfFfYnB07gXA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/execute"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_DBCBEQIwEfGfFfYnB07gXA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_wDbUMAFWEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_wDNRwAFWEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/checkPlayer"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_wDbUMQFWEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_OtnJkAFXEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_OtXR8AFXEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/generatePlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_OtnJkQFXEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_XZO14AFXEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_XY9JEAFXEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/checkPlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_XZO14QFXEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_nRhu0AFYEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_nRQpEAFYEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/storeBuildLocation"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_nRhu0QFYEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_YMfe0AFXEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_YMQOQAFXEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/updatePlayerInventory"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_YMfe0QFXEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_ZoEE8AFXEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_Zn0NUAFXEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/Build/printAction"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_ZoEE8QFXEfGXydzhxrJcUA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_rkwJcQFWEfGXydzhxrJcUA"/>
@@ -818,7 +818,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_rkwJeAFWEfGXydzhxrJcUA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rkwJeQFWEfGXydzhxrJcUA"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_rkr4AAFWEfGXydzhxrJcUA"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/Build"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rku7UQFWEfGXydzhxrJcUA" x="1520" y="80"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Bhc_YAFZEfGXydzhxrJcUA" type="Class_Shape">
@@ -842,47 +842,55 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhLsAFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhLsQFaEfGXydzhxrJcUA" key="mutable" value="true"/>
       </eAnnotations>
+      <children xmi:type="notation:Shape" xmi:id="_xHZ9oARfEfGt1YTJa10Hmw" type="Operation_ClassOperationLabel"/>
       <children xmi:type="notation:Shape" xmi:id="_AlIroAFaEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhywAFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhywQFaEfGXydzhxrJcUA" key="mutable" value="true"/>
         </eAnnotations>
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BhZ8EQFZEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/checkPlayer"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AlIroQFaEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_AlJSsAFaEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhywgFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhywwFaEfGXydzhxrJcUA" key="mutable" value="true"/>
         </eAnnotations>
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BhZ8FgFZEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/generatePlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AlJSsQFaEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_AlJ5wAFaEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhyxAFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhyxQFaEfGXydzhxrJcUA" key="mutable" value="true"/>
         </eAnnotations>
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BhZ8GQFZEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/checkPlacement"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AlJ5wQFaEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_AlJ5wgFaEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhyxgFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhyxwFaEfGXydzhxrJcUA" key="mutable" value="true"/>
         </eAnnotations>
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BhZ8GgFZEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/updatePlayerInventory"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AlJ5wwFaEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_AlJ5xAFaEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhyyAFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhyyQFaEfGXydzhxrJcUA" key="mutable" value="true"/>
         </eAnnotations>
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BhZ8HAFZEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/printAction"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AlJ5xQFaEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_AlJ5xgFaEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AmhyygFaEfGXydzhxrJcUA" source="PapyrusCSSForceValue">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AmhyywFaEfGXydzhxrJcUA" key="mutable" value="true"/>
         </eAnnotations>
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BhZ8HQFZEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/storeBuildLocation"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AlJ5xwFaEfGXydzhxrJcUA"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_MifH0ARiEfGt1YTJa10Hmw" type="Operation_ClassOperationLabel">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MlkRAARiEfGt1YTJa10Hmw" source="PapyrusCSSForceValue">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Mlk4EARiEfGt1YTJa10Hmw" key="mutable" value="true"/>
+        </eAnnotations>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/BuildRoad/execute"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_MifH0QRiEfGt1YTJa10Hmw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_BheNiQFZEfGXydzhxrJcUA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_BheNigFZEfGXydzhxrJcUA"/>
@@ -903,8 +911,8 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BhpMogFZEfGXydzhxrJcUA"/>
     </children>
     <styles xmi:type="notation:CanonicalStyle" xmi:id="_Ak-TkAFaEfGXydzhxrJcUA"/>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_BhZ8EAFZEfGXydzhxrJcUA"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Bhc_YQFZEfGXydzhxrJcUA" x="1700" y="360" width="301" height="241"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/BuildRoad"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Bhc_YQFZEfGXydzhxrJcUA" x="1700" y="380" width="301" height="199"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_7qjykAFaEfGXydzhxrJcUA" type="Class_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_7qjykgFaEfGXydzhxrJcUA" type="Class_NameLabel"/>
@@ -913,35 +921,35 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_7qkZoAFaEfGXydzhxrJcUA" type="Class_AttributeCompartment">
       <children xmi:type="notation:Shape" xmi:id="_9J6FcAFaEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_9JoYoAFaEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/lumber"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_9J6FcQFaEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_FWAkMAFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_FVyhwAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/wool"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_FWAkMQFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_GFk_8AFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_GFXkkAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/grain"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_GFk_8QFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_Gq9k8AFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_GqsfMAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/brick"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Gq9k8QFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_RC_vwAFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_RCqYkAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/ore"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_RC_vwQFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_RtOYgAFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_Rs-g4AFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/roads"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_RtOYgQFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_TN4S8AFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_TNq3kAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/settlements"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_TN4S8QFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_UF8jYAFbEfGXydzhxrJcUA" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_UFsEsAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#/0/resourceHand/cities"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_UF8jYQFbEfGXydzhxrJcUA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_7qkZoQFaEfGXydzhxrJcUA"/>
@@ -951,15 +959,15 @@
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_7qkZpQFaEfGXydzhxrJcUA" type="Class_OperationCompartment">
       <children xmi:type="notation:Shape" xmi:id="_NYWqAAFbEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_NYHZcAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/resourceHand/addResource"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_NYWqAQFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_7Xmk4AFbEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_7XVfIAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/resourceHand/removeResource"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_7Xmk4QFbEfGXydzhxrJcUA"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_-exKIAFbEfGXydzhxrJcUA" type="Operation_ClassOperationLabel">
-        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_-edBEAFbEfGXydzhxrJcUA"/>
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#/0/resourceHand/getResources"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_-exKIQFbEfGXydzhxrJcUA"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_7qkZpgFaEfGXydzhxrJcUA"/>
@@ -973,7 +981,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_7qkZrQFaEfGXydzhxrJcUA"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qkZrgFaEfGXydzhxrJcUA"/>
     </children>
-    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_7qeTAAFaEfGXydzhxrJcUA"/>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#/0/resourceHand"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7qjykQFaEfGXydzhxrJcUA" x="440" y="520" width="281" height="261"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_7KQPQfsiEfCgs_O4J5cQsA" name="diagram_compatibility_version" stringValue="1.4.0"/>
@@ -988,10 +996,10 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_hEiWMQFaEfGXydzhxrJcUA" y="40"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_hEhvIQFaEfGXydzhxrJcUA"/>
-    <element xmi:type="uml:Generalization" href="InItToWinIt_Team26.uml#_hEKiwAFaEfGXydzhxrJcUA"/>
+    <element xmi:type="uml:Generalization" href="InItToWinIt_Team26.uml#/0/BuildRoad/@generalization.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hEhvIgFaEfGXydzhxrJcUA" points="[610, 76, -643984, -643984]$[610, 12, -643984, -643984]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hFnUQAFaEfGXydzhxrJcUA" id="(0.132890365448505,0.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hFn7UAFaEfGXydzhxrJcUA" id="(0.475482912332838,1.0)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hFnUQAFaEfGXydzhxrJcUA" id="(0.1320044296788483,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hFn7UAFaEfGXydzhxrJcUA" id="(0.47770334928229663,1.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_e7hHEAIREfGrMpfj9X4Y_g" type="Generalization_Edge" source="_9pQoUPsiEfCgs_O4J5cQsA" target="_rku7UAFWEfGXydzhxrJcUA">
     <children xmi:type="notation:DecorationNode" xmi:id="_e7kKYAIREfGrMpfj9X4Y_g" type="Generalization_StereotypeLabel">
@@ -999,7 +1007,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_e7kKYQIREfGrMpfj9X4Y_g" x="229" y="83"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_e7hHEQIREfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Generalization" href="InItToWinIt_Team26.uml#_e7QBUAIREfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Generalization" href="InItToWinIt_Team26.uml#/0/BuildSettlement/@generalization.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_e7hHEgIREfGrMpfj9X4Y_g" points="[1380, 340, -643984, -643984]$[1460, 276, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_e9wiwAIREfGrMpfj9X4Y_g" id="(0.33222591362126247,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_e9xJ0AIREfGrMpfj9X4Y_g" id="(0.17830609212481427,1.0)"/>
@@ -1010,7 +1018,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_miOZwQIREfGrMpfj9X4Y_g" x="-1" y="37"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_miNysQIREfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Generalization" href="InItToWinIt_Team26.uml#_miI6MAIREfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Generalization" href="InItToWinIt_Team26.uml#/0/BuildCity/@generalization.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_miNysgIREfGrMpfj9X4Y_g" points="[2160, 380, -643984, -643984]$[1960, 136, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mjPGYAIREfGrMpfj9X4Y_g" id="(0.4166666666666667,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mjPtcAIREfGrMpfj9X4Y_g" id="(0.8320950965824666,1.0)"/>
@@ -1041,7 +1049,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_WJpMWgISEfGrMpfj9X4Y_g" x="-29" y="-18"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_WJn-MQISEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_WJeNMAISEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.15"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WJn-MgISEfGrMpfj9X4Y_g" points="[220, 332, -643984, -643984]$[400, 391, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WLQV4AISEfGrMpfj9X4Y_g" id="(0.6644518272425249,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WLQ88AISEfGrMpfj9X4Y_g" id="(0.1532567049808429,0.0)"/>
@@ -1072,7 +1080,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_YUXXewISEfGrMpfj9X4Y_g" x="-15" y="-20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_YUWwYQISEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_YUO0kAISEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.16"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YUWwYgISEfGrMpfj9X4Y_g" points="[20, 231, -643984, -643984]$[140, 431, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YVsNIAISEfGrMpfj9X4Y_g" id="(0.39867109634551495,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YVsNIQISEfGrMpfj9X4Y_g" id="(0.3076923076923077,0.0)"/>
@@ -1103,7 +1111,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_dYuCKwISEfGrMpfj9X4Y_g" x="-26" y="-17"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_dYtbEQISEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_dYmtYAISEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.17"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dYtbEgISEfGrMpfj9X4Y_g" points="[380, 87, -643984, -643984]$[180, 127, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dZ2qkAISEfGrMpfj9X4Y_g" id="(0.0,0.36199095022624433)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dZ2qkQISEfGrMpfj9X4Y_g" id="(0.53156146179402,0.0)"/>
@@ -1128,7 +1136,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_DbsC-wITEfGrMpfj9X4Y_g" y="-20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_Dbrb4QITEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_DbmjYAITEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.18"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Dbrb4gITEfGrMpfj9X4Y_g" points="[560, 221, -643984, -643984]$[560, 280, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Dcmo8AITEfGrMpfj9X4Y_g" id="(0.498220640569395,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Dcmo8QITEfGrMpfj9X4Y_g" id="(0.4149377593360996,0.0)"/>
@@ -1153,7 +1161,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_HS3I3gITEfGrMpfj9X4Y_g" y="-20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_HS3I0QITEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_HSyQUAITEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.19"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_HS3I0gITEfGrMpfj9X4Y_g" points="[519, 0, -643984, -643984]$[739, 80, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_HTpL8AITEfGrMpfj9X4Y_g" id="(1.0,0.36199095022624433)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_HTpL8QITEfGrMpfj9X4Y_g" id="(0.0,0.37209302325581395)"/>
@@ -1184,7 +1192,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_X5JlqQITEfGrMpfj9X4Y_g" x="-42" y="-18"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_X5I-kQITEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_X5Bp0AITEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.20"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_X5I-kgITEfGrMpfj9X4Y_g" points="[838, 340, -643984, -643984]$[1118, 320, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_X5-sEAITEfGrMpfj9X4Y_g" id="(0.6639004149377593,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_X5-sEQITEfGrMpfj9X4Y_g" id="(0.0,0.6818181818181818)"/>
@@ -1197,7 +1205,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_zVlQIwIUEfGrMpfj9X4Y_g" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_zVkpEQIUEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#_zVfwkAIUEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#/0/@packagedElement.21"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zVkpEgIUEfGrMpfj9X4Y_g" points="[1095, 300, -643984, -643984]$[756, 340, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zWeA8AIUEfGrMpfj9X4Y_g" id="(0.0,0.2484472049689441)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zWeA8QIUEfGrMpfj9X4Y_g" id="(1.0,0.3314917127071823)"/>
@@ -1222,7 +1230,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_4CMJOwIUEfGrMpfj9X4Y_g" y="-20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_4CLiIQIUEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_4CFbgAIUEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.22"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4CLiIgIUEfGrMpfj9X4Y_g" points="[300, 326, -643984, -643984]$[300, 426, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4C5T0AIUEfGrMpfj9X4Y_g" id="(0.4149377593360996,0.9981583793738488)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4C5T0QIUEfGrMpfj9X4Y_g" id="(0.42704626334519574,0.0)"/>
@@ -1235,7 +1243,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_8rGOBgIUEfGrMpfj9X4Y_g" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_8rGOAQIUEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#_8rB8kAIUEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#/0/@packagedElement.23"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_8rGOAgIUEfGrMpfj9X4Y_g" points="[1118, 140, -643984, -643984]$[299, 300, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8rwVUAIUEfGrMpfj9X4Y_g" id="(0.0,0.11363636363636363)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8rwVUQIUEfGrMpfj9X4Y_g" id="(1.0,0.11049723756906077)"/>
@@ -1248,7 +1256,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_ZqIwNgIVEfGrMpfj9X4Y_g" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_ZqIwMQIVEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#_ZqGT8AIVEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#/0/@packagedElement.24"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZqIwMgIVEfGrMpfj9X4Y_g" points="[238, 221, -643984, -643984]$[578, 300, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZqxpYAIVEfGrMpfj9X4Y_g" id="(0.7829181494661922,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZqxpYQIVEfGrMpfj9X4Y_g" id="(0.0,0.0)"/>
@@ -1273,7 +1281,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_meB5ewIVEfGrMpfj9X4Y_g" y="-20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_meBSYQIVEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_md9A8AIVEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.25"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_meBSYgIVEfGrMpfj9X4Y_g" points="[778, 0, -643984, -643984]$[478, 100, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_meqyoAIVEfGrMpfj9X4Y_g" id="(0.0,0.36199095022624433)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_meqyoQIVEfGrMpfj9X4Y_g" id="(1.0,0.33613445378151263)"/>
@@ -1298,7 +1306,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_1vrengIVEfGrMpfj9X4Y_g" y="-20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_1vrekQIVEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#_1vnNIAIVEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Association" href="InItToWinIt_Team26.uml#/0/@packagedElement.26"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1vrekgIVEfGrMpfj9X4Y_g" points="[258, 700, -643984, -643984]$[338, 700, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1wQtYAIVEfGrMpfj9X4Y_g" id="(1.0,0.375)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1wQtYQIVEfGrMpfj9X4Y_g" id="(0.0,0.39603960396039606)"/>
@@ -1311,7 +1319,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_YlEwIwIWEfGrMpfj9X4Y_g" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_YlEJEQIWEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#_YlBFwAIWEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#/0/@packagedElement.27"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YlEJEgIWEfGrMpfj9X4Y_g" points="[696, 202, -643984, -643984]$[576, 282, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Yl3aUAIWEfGrMpfj9X4Y_g" id="(0.4149377593360996,0.9979296066252585)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Yl3aUQIWEfGrMpfj9X4Y_g" id="(0.528169014084507,0.0)"/>
@@ -1324,7 +1332,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_bgAQNgIWEfGrMpfj9X4Y_g" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_bgAQMQIWEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#_bf9M4AIWEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#/0/@packagedElement.28"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_bgAQMgIWEfGrMpfj9X4Y_g" points="[756, 202, -643984, -643984]$[856, 402, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bgqXgAIWEfGrMpfj9X4Y_g" id="(0.6639004149377593,0.9979296066252585)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bgqXgQIWEfGrMpfj9X4Y_g" id="(0.4975124378109453,0.0)"/>
@@ -1337,7 +1345,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_lPLOxQIXEfGrMpfj9X4Y_g" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_lPLOwAIXEfGrMpfj9X4Y_g"/>
-    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#_lPILcAIXEfGrMpfj9X4Y_g"/>
+    <element xmi:type="uml:Dependency" href="InItToWinIt_Team26.uml#/0/@packagedElement.29"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_lPLOwQIXEfGrMpfj9X4Y_g" points="[1380, 720, -643984, -643984]$[420, 178, -643984, -643984]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_lPh0EAIXEfGrMpfj9X4Y_g" id="(0.0,0.5)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_lPh0EQIXEfGrMpfj9X4Y_g" id="(0.8,0.9915966386554622)"/>
