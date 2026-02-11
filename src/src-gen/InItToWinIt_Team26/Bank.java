@@ -77,20 +77,23 @@
 
 public class Bank {
 
+    //*************************************************************************************
     //the bank begins with 19 cards of each resource
-    //the bank will be an array with each index representing a resource:
+    //the bank will be stored in an array with each index representing a resource:
     //---------------------------------------------------------------
     // ---> 0 = lumber, 1 = wool, 2 = grain, 3 = brick, 4 = ore <---
     //---------------------------------------------------------------
+    //*************************************************************************************
 
+    //instance variable:
     private int[] bankResources;
 
-    //constructor
+    //constructor:
     public Bank() {
-
         bankResources = new int[]{19, 19, 19, 19, 19};
 
     }
+
 
     //name the resources so they can be referenced by name and not index
     private String resourceName(int resourceType) {
@@ -105,7 +108,7 @@ public class Bank {
             return "Grain";
 
         } else if (resourceType == 3) {
-            return "Brick ";
+            return "Brick";
 
         } else if (resourceType == 4) {
             return "Ore";
@@ -121,8 +124,7 @@ public class Bank {
     //also update the amount of cards left after distributing
     public boolean hasResources(int resourceType, int amountWithdrawal) {
 
-       //check how many cards of THIS resource is in the bank
-        int amountOfResource = bankResources[resourceType];
+        int amountOfResource = bankResources[resourceType]; //check how many cards of THIS resource is in the bank
 
         String name = resourceName(resourceType);  //get the name of the resource
 
@@ -130,14 +132,13 @@ public class Bank {
             System.out.println("The bank no longer contains " + name);
             return false;
 
-        //*******************
         } else if (amountWithdrawal > amountOfResource) {
             System.out.println("The bank doesn't have " + amountWithdrawal + "cards, so you can only receive " + amountOfResource);
-            return true;    //allows distib to happen
+            return true;    //allows distrib to happen
 
         } else {    //if amountWithdrawal <= amountOfResource
             System.out.println("You have received " + amountWithdrawal + " " + name + " cards");
-            return true;    //allows distib to happen
+            return true;    //allows distrib to happen
         }
 
 
@@ -147,26 +148,23 @@ public class Bank {
     //this if the amount of card in the bank after they're distributed to players
     public void transferToPlayer(int resourceType, int amountWithdrawal) {
 
-        //check how many cards of THIS resource is in the bank
-        int amountOfResource = bankResources[resourceType];
+        int amountOfResource = bankResources[resourceType]; //check how many cards of THIS resource is in the bank
 
-        //check that theres enough in bank currently
-        if (hasResources(resourceType, amountWithdrawal)) {
+
+        if (hasResources(resourceType, amountWithdrawal)) {  //check that theres enough in bank currently
 
             if (amountWithdrawal > amountOfResource) {
-                amountOfResource = 0;
+                bankResources[resourceType] = 0;
 
+            } else  {
+
+                //if yes.. update amount of cards
+                bankResources[resourceType] -= amountWithdrawal;
             }
-            //if yes.. update amount of cards
-            bankResources[resourceType] -= amountWithdrawal;
-            String resourceName = resourceName(resourceType);
-            System.out.println("Player received " + amountWithdrawal + " " + resourceName);
 
 
         } else {
-            //if not tell player
-            String resourceName = resourceName(resourceType);
-            System.out.println("The bank is out of " + resourceName);
+            System.out.println("i think an arror has occured");
         }
 
     }
@@ -182,7 +180,7 @@ public class Bank {
 
     }
 
-    //getter **********
+    //getter, only if something outside the bank needs to know how much of a resource is in the bank
     public int getResourceAmount(int resourceType) {
         return bankResources[resourceType];
     }
@@ -197,7 +195,5 @@ public class Bank {
 
         }
     }
-
-
 
 }
