@@ -1,0 +1,404 @@
+Generative AI Tool Used: ChatGPT
+Promt Used: generate program code based off of this UML diagram
+Results:
+
+Suggested Package Structure:
+
+model/
+ ├── Game.java
+ ├── Board.java
+ ├── Tile.java
+ ├── Node.java
+ ├── Player.java
+ ├── ResourceHand.java
+ ├── Bank.java
+ ├── Randomizer.java
+ ├── PlayerAction.java
+ ├── Build.java
+ ├── BuildSettlement.java
+ ├── BuildRoad.java
+ ├── BuildCity.java
+ ├── VictoryPointConditions.java
+ ├── DistributeResources.java
+
+------------------------------------------
+Randomizer.java
+------------------------------------------
+import java.util.Random;
+
+public class Randomizer {
+
+    private Random random = new Random();
+
+    public int rollDice() {
+        return random.nextInt(6) + 1 + random.nextInt(6) + 1;
+    }
+
+    public int randomSelection(int min, int max) {
+        return random.nextInt(max - min + 1) + min;
+    }
+}
+
+
+
+------------------------------------------
+Bank.java
+------------------------------------------
+public class Bank {
+
+    private int grain;
+    private int lumber;
+    private int wool;
+    private int brick;
+    private int ore;
+
+    public Bank(int grain, int lumber, int wool, int brick, int ore) {
+        this.grain = grain;
+        this.lumber = lumber;
+        this.wool = wool;
+        this.brick = brick;
+        this.ore = ore;
+    }
+
+    public boolean hasResources(int lumber, int wool, int grain, int brick, int ore) {
+        return this.lumber >= lumber &&
+               this.wool >= wool &&
+               this.grain >= grain &&
+               this.brick >= brick &&
+               this.ore >= ore;
+    }
+
+    public void transferToPlayer(Player player, int lumber, int wool, int grain, int brick, int ore) {
+        if (hasResources(lumber, wool, grain, brick, ore)) {
+            this.lumber -= lumber;
+            this.wool -= wool;
+            this.grain -= grain;
+            this.brick -= brick;
+            this.ore -= ore;
+            player.getResourceHand().addResources(lumber, wool, grain, brick, ore);
+        }
+    }
+
+    public void receiveFromPlayer(Player player, int lumber, int wool, int grain, int brick, int ore) {
+        player.getResourceHand().removeResource(lumber, wool, grain, brick, ore);
+        this.lumber += lumber;
+        this.wool += wool;
+        this.grain += grain;
+        this.brick += brick;
+        this.ore += ore;
+    }
+}
+
+
+
+------------------------------------------
+ResourceHand.java
+------------------------------------------
+public class ResourceHand {
+
+    private int lumber;
+    private int wool;
+    private int grain;
+    private int brick;
+    private int ore;
+    private int roads;
+    private int settlements;
+    private int cities;
+
+    public void addResources(int lumber, int wool, int grain, int brick, int ore) {
+        this.lumber += lumber;
+        this.wool += wool;
+        this.grain += grain;
+        this.brick += brick;
+        this.ore += ore;
+    }
+
+    public void removeResource(int lumber, int wool, int grain, int brick, int ore) {
+        this.lumber -= lumber;
+        this.wool -= wool;
+        this.grain -= grain;
+        this.brick -= brick;
+        this.ore -= ore;
+    }
+
+    public int getTotalResources() {
+        return lumber + wool + grain + brick + ore;
+    }
+}
+
+
+
+------------------------------------------
+Player.java
+------------------------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class Player {
+
+    private int playerID;
+    private int victoryPoints;
+    private ResourceHand resourceHand;
+    private List<Node> playerSettlements;
+    private List<Node> playerCities;
+
+    public Player(int id) {
+        this.playerID = id;
+        this.victoryPoints = 0;
+        this.resourceHand = new ResourceHand();
+        this.playerSettlements = new ArrayList<>();
+        this.playerCities = new ArrayList<>();
+    }
+
+    public ResourceHand getResourceHand() {
+        return resourceHand;
+    }
+
+    public void addVictoryPoints(int points) {
+        victoryPoints += points;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+}
+
+
+
+------------------------------------------
+Node.java
+------------------------------------------
+public class Node {
+
+    private int nodeID;
+    private int occupantID = -1;
+
+    public Node(int id) {
+        this.nodeID = id;
+    }
+
+    public boolean isOccupied() {
+        return occupantID != -1;
+    }
+
+    public void placeBuilding(Player player) {
+        this.occupantID = player.hashCode();
+    }
+}
+
+
+
+
+------------------------------------------
+Tile.java
+------------------------------------------
+public class Tile {
+
+    private int tileID;
+    private int tileRollNum;
+    private String resourceType;
+
+    public Tile(int id, int roll, String resource) {
+        this.tileID = id;
+        this.tileRollNum = roll;
+        this.resourceType = resource;
+    }
+
+    public int getTileRollNum() {
+        return tileRollNum;
+    }
+
+    public String getResourceType() {
+        return resourceType;
+    }
+}
+
+
+------------------------------------------
+Board.java
+------------------------------------------
+import java.util.List;
+
+public class Board {
+
+    private List<Tile> tiles;
+    private List<Node> nodes;
+
+    public Board(List<Tile> tiles, List<Node> nodes) {
+        this.tiles = tiles;
+        this.nodes = nodes;
+    }
+
+    public Tile getTile(int id) {
+        return tiles.get(id);
+    }
+
+    public Node getNode(int id) {
+        return nodes.get(id);
+    }
+}
+
+
+
+------------------------------------------
+PlayerAction.java
+------------------------------------------
+public class PlayerAction {
+
+    protected Player player;
+
+    public PlayerAction(Player player) {
+        this.player = player;
+    }
+
+    public void chooseAction() {}
+
+    public void executeAction() {}
+
+    public void updateVictoryPoints() {}
+}
+
+
+
+------------------------------------------
+Build.java (Abstract)
+------------------------------------------
+public abstract class Build extends PlayerAction {
+
+    public Build(Player player) {
+        super(player);
+    }
+
+    public abstract void execute(Player player);
+}
+
+
+
+------------------------------------------
+BuildSettlement.java
+------------------------------------------
+public class BuildSettlement extends Build {
+
+    public BuildSettlement(Player player) {
+        super(player);
+    }
+
+    @Override
+    public void execute(Player player) {
+        player.addVictoryPoints(1);
+    }
+}
+
+
+
+------------------------------------------
+BuildRoad.java
+------------------------------------------
+public class BuildRoad extends Build {
+
+    public BuildRoad(Player player) {
+        super(player);
+    }
+
+    @Override
+    public void execute(Player player) {
+        // implement road placement logic
+    }
+}
+
+
+
+------------------------------------------
+BuildCity.java
+------------------------------------------
+public class BuildCity extends Build {
+
+    public BuildCity(Player player) {
+        super(player);
+    }
+
+    @Override
+    public void execute(Player player) {
+        player.addVictoryPoints(2);
+    }
+}
+
+
+------------------------------------------
+VictoryPointConditions.java
+------------------------------------------
+public class VictoryPointConditions {
+
+    private int winCondition = 10;
+
+    public boolean checkWin(Player player) {
+        return player.getVictoryPoints() >= winCondition;
+    }
+}
+
+
+
+------------------------------------------
+DistributeResources.java
+------------------------------------------
+import java.util.List;
+
+public class DistributeResources {
+
+    public void distributeResources(List<Player> players, Board board, int diceRoll) {
+        for (Tile tile : board.getTile(0).getClass() != null ? board.tiles : null) {
+            if (tile.getTileRollNum() == diceRoll) {
+                // logic to distribute based on adjacent settlements
+            }
+        }
+    }
+}
+
+
+------------------------------------------
+Game.java
+------------------------------------------
+import java.util.List;
+
+public class Game {
+
+    private int maxTurns;
+    private Board board;
+    private List<Player> players;
+    private int currentTurn;
+    private Bank bank;
+    private Randomizer random;
+
+    public Game(int maxTurns, Board board, List<Player> players, Bank bank) {
+        this.maxTurns = maxTurns;
+        this.board = board;
+        this.players = players;
+        this.bank = bank;
+        this.random = new Randomizer();
+        this.currentTurn = 0;
+    }
+
+    public void startGame() {
+        while (!checkTermination()) {
+            Player currentPlayer = players.get(currentTurn % players.size());
+            takeTurn(currentPlayer);
+            currentTurn++;
+        }
+    }
+
+    public void takeTurn(Player player) {
+        int roll = random.rollDice();
+        System.out.println("Rolled: " + roll);
+    }
+
+    public boolean checkTermination() {
+        for (Player player : players) {
+            if (player.getVictoryPoints() >= 10)
+                return true;
+        }
+        return currentTurn >= maxTurns;
+    }
+}
+
+
+
