@@ -9,6 +9,7 @@ package InItToWinIt_Team26;
  * 
  */
 public class ResourceHand {
+	/*Initializing Resource Variables*/
 	private int lumber;
 	private int wool;
 	private int grain;
@@ -16,7 +17,7 @@ public class ResourceHand {
 	private int ore;
 
 	
-	//constructor
+	/*------Constructor-----*/
 	public ResourceHand(){
 		this.brick=0;
 		this.grain=0;
@@ -26,7 +27,7 @@ public class ResourceHand {
 	}
 	
 
-	/*GETTERS */
+	/*-----GETTERS-----*/
 	public int getLumber() {
 		return lumber;
 	}
@@ -41,6 +42,10 @@ public class ResourceHand {
 
 	public int getOre() {
 		return ore;
+	}
+	
+	public int getWool(){
+		return wool;
 	}
 
 	/*Checking if the player can buy the different build types, admittedly in an ineffective way.*/
@@ -83,8 +88,9 @@ public class ResourceHand {
 		grain -=2;
 	}
 
-	/*Add resources */
-	//currently inefficent and potentially could make a helper for at least the error but return if time 
+	/*-----Adding Resource----*/
+	//for distribute resource 
+	//currently inefficient and potentially could make a helper for at least the error but return if time 
 	public void addLumber(int amount){
 		if(amount<0){
 			throw new IllegalArgumentException("Error: Negative values cannot be added");
@@ -120,7 +126,10 @@ public class ResourceHand {
 		ore += amount;
 	}
 
-	/*Remove Resources */
-	//when brain think more about this check if I actually need this
+
+	/*For the 7 cards check */
+	public int totalPlayerCard(){
+		return lumber + wool + brick+grain+ore;
+	}
 
 }
