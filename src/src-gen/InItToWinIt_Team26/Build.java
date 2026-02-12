@@ -9,60 +9,76 @@ package InItToWinIt_Team26;
  * 
  */
 public abstract class Build {
-	/**
+	protected Player player;
+	protected Board board;
+	protected Randomizer randomizer;
+
+	
+	/*General structure, final so it can't be overridden */
+	public final boolean execute(){
+		/*Check if the player has the resources to build */
+		if(!canPlayerBuy()){
+			return false;
+		}
+
+		/*Generate the placements */
+		//Object reference for any class 
+		Object placement = generatePlacement();
+		/*No valid placement */
+		if(placement == null){
+			return false;
+		}
+
+		/*Validate Placement using Board Rules */
+		if(!validatePlacement(placement)){
+			return false;//if no good
+		}
+
+		/*Buildddd */
+		doBuild(placement);//okay I think this name reflects how tired I am, doBuild in retrospect doesn't sound right
+
+		/*Print statement */
+		printAction(placement);
+
+		/*If we got here, then all good */
+		return true;
+
+	}
+
+
+	/** To check if the player has the resources and if the still have the build inventory left
+	 * 
 	 * 
 	 */
-	private Player player;
+	protected abstract boolean canPlayerBuy();
 
 	/**
 	 * 
-	 * @param player 
-	 * @return 
-	 */
-	protected boolean checkPlayer(Player player) {
-	}
-
-	/**
-	 * 
-	 * @param random 
-	 * @param nodeID 
-	 * @return 
-	 */
-	protected Node generatePlacement(Randomizer random, Node nodeID) {
-	}
-
-	/**
-	 * 
-	 * @param node 
-	 * @return 
-	 */
-	protected boolean checkPlacement(Node node) {
-	}
-
-	/**
-	 * 
-	 * @param buildMaterials 
-	 */
-	protected void updatePlayerInventory(Player buildMaterials) {
-	}
-
-	/**
+	 * Changed it to object because I realized roads use two nodes so maybe this is better. Top top level instead of node
 	 * 
 	 */
-	public void printAction() {
-	}
+	protected abstract Object generatePlacement();
+
+	/*So if I changed check to validated, I think it sounds better but sorry! */
+	/**
+	 * Validate that the placement works with the game rules
+	 * I was thinking of board validating but I think thats too much on Synthia
+	 * @param placement
+	 * @return
+	 */
+	protected abstract boolean validatePlacement(Object placement);
+
+	/**Do the build operation, this includes:
+	 * 	- paying for the build
+	 * 	- updating the board
+	 * 	- updating player info
+	 * 
+	 * @param placement
+	 */
+	protected abstract void doBuild(Object placement);
 
 	/**
-	 * 
-	 * @param nodeID 
+	 * Print statement
 	 */
-	protected void storeBuildLocation(Node nodeID) {
-	}
-
-	/**
-	 * 
-	 * @param player 
-	 */
-	public void execute(Player player) {
-	}
+	public abstract void printAction(Object placement);
 }

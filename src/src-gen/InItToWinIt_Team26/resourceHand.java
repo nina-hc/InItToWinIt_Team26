@@ -8,55 +8,119 @@ package InItToWinIt_Team26;
 /**
  * 
  */
-public class resourceHand {
-	/**
-	 * 
-	 */
+public class ResourceHand {
 	private int lumber;
-	/**
-	 * 
-	 */
 	private int wool;
-	/**
-	 * 
-	 */
 	private int grain;
-	/**
-	 * 
-	 */
 	private int brick;
-	/**
-	 * 
-	 */
 	private int ore;
-	/**
-	 * 
-	 */
-	private int roads = 15;
-	/**
-	 * 
-	 */
-	private int settlements = 5;
-	/**
-	 * 
-	 */
-	private int cities = 4;
 
-	/**
-	 * 
-	 */
-	public void addResource() {
+	
+	//constructor
+	public ResourceHand(){
+		this.brick=0;
+		this.grain=0;
+		this.lumber=0;
+		this.ore=0;
+		this.wool=0;
+	}
+	
+
+	/*GETTERS */
+	public int getLumber() {
+		return lumber;
 	}
 
-	/**
-	 * 
-	 */
-	public void removeResource() {
+	public int getBrick() {
+		return brick;
 	}
 
-	/**
-	 * 
-	 */
-	public void getResources() {
+	public int getGrain() {
+		return grain;
 	}
+
+	public int getOre() {
+		return ore;
+	}
+
+	/*Checking if the player can buy the different build types, admittedly in an ineffective way.*/
+	public boolean canBuyRoad() {
+		return lumber >= 1 && brick >=1;
+	}
+	
+	public boolean canBuySettlement(){
+		return lumber >= 1 && brick >= 1 && wool >= 1 && grain >= 1;
+	}
+
+	public boolean canBuyCity(){
+		return ore >= 3 && grain >= 2;
+	}
+
+	/*Pay for the builds by subtracting the building costs*/
+	public void payForRoad(){
+		if (!canBuyRoad()){
+			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a road");
+		}
+		lumber -=1;
+		brick -=1;
+	}
+
+	public void payForSettlement(){
+		if(!canBuySettlement()){
+			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a settlement");
+		}
+		lumber -=1;
+		brick -=1;
+		wool -=1;
+		grain -=1;
+	}
+
+	public void payForCity(){
+		if(!canBuyCity()){
+			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a city");
+		}
+		ore -=3;
+		grain -=2;
+	}
+
+	/*Add resources */
+	//currently inefficent and potentially could make a helper for at least the error but return if time 
+	public void addLumber(int amount){
+		if(amount<0){
+			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		lumber += amount;
+	}
+
+	public void addWool(int amount){
+		if(amount<0){
+			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		wool += amount;
+	}
+
+	public void addBrick(int amount){
+		if(amount<0){
+			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		brick +=amount;
+	}
+
+	public void addGrain(int amount){
+		if(amount<0){
+			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		grain +=amount;
+	}
+
+	public void addOre(int amount){
+		if(amount<0){
+			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		ore += amount;
+	}
+
+	/*Remove Resources */
+	//when brain think more about this check if I actually need this
+
 }
