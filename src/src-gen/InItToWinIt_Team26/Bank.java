@@ -1,4 +1,4 @@
-//package InItToWinIt_Team26;
+package InItToWinIt_Team26;
 
 /**
  * The following is the Bank class in Catan
