@@ -9,45 +9,80 @@
     <artifactId>Catan</artifactId>
     <version>1.0.0</version>
 
+    
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <!-- I'm not certain about the version -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.java.source>21</sonar.java.source>
+        <sonar.java.source>17</sonar.java.source>
+
+        <sonar.organization>nina-hc</sonar.organization>
+        <sonar.projectName>2AA4-Catan</sonar.projectName>
+        <sonar.coverage.jacoco.xmlReportPaths>
+            target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+
+        <!-- Exclude Papyrus folder and models -->
+        <sonar.exclusions>
+            org.eclipse.papyrus.javagen/**,
+            **/*.uml,
+            **/*.notation,
+            **/*.di
+        </sonar.exclusions>
+
+        
+        
     </properties>
+
+    <dependencies>
+        <!-- JUnit 5, this was standard from what I was but not sure if needed -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <sourceDirectory>${basedir}/src/src-gen</sourceDirectory>
         <plugins>
             <plugin>
+                <!-- compiler -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
             </plugin>
+            <!-- JaCoCo code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.11</version>
+                <version>0.8.10</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>test</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+            <!-- Sonar -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.11.0.3922</version>
             </plugin>
+
         </plugins>
     </build>
+    
 </project>
