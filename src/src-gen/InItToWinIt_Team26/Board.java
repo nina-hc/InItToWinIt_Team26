@@ -239,21 +239,23 @@ public class Board {
     //**************************************
     //ROADS
 
-    public boolean placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
+    //**FOR NINA: VOID NOT BOOL
+    public void placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
 
         //roadMatrix[i][j] = 0 : no road
         //roadMatrix[i][j] = playerID : player that owns road
 
-        //check is nodes are adjacent
-        if(!isAdjacent(nodeOneID, nodeTwoID)) {
-            System.out.println("ERROR: Nodes are not adjacent");
-            return false;
-        }
-
-        if (hasRoad(nodeOneID, nodeTwoID)) {
-            System.out.println("ERROR: Road already exsists");
-            return false;
-        }
+        //**FOR NINA: SHE ALR CHECKS THIS
+//        //check is nodes are adjacent
+//        if(!isAdjacent(nodeOneID, nodeTwoID)) {
+//            System.out.println("ERROR: Nodes are not adjacent");
+//            return false;
+//        }
+//
+//        if (hasRoad(nodeOneID, nodeTwoID)) {
+//            System.out.println("ERROR: Road already exsists");
+//            return false;
+//        }
 
         //retrieve node objects
         Node nodeOne = nodes[nodeOneID];
@@ -264,8 +266,6 @@ public class Board {
 
         roadMatrix[nodeOneID][nodeTwoID] = road;
         roadMatrix[nodeTwoID][nodeOneID] = road;
-
-        return true;
 
 
     }
