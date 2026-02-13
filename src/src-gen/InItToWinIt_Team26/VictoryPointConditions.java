@@ -51,6 +51,17 @@ public class VictoryPointConditions {
 
 //       
     }
+    
+
+    //Total VP from settlements (1 VP each)
+    public int getSettlementVP() {
+        return player.getPlayerSettlements().size(); //1 VP per settlement
+    }
+
+    //Total VP from cities, 2 VP each */
+    public int getCityVP() {
+        return player.getPlayerCities().size() * 2; //2 VP per city
+    }
 
     // Count total victory points
     public int calculateVictoryPoints() {
@@ -71,6 +82,11 @@ public class VictoryPointConditions {
                 vp += 2;
             }
         }
+        
+//        vp += calculateLongestRoadVP();   //2 VP if player has longest road
+//        vp += calculateLargestArmyVP();   //2 VP if player has largest army
+//        vp += calculateVictoryPointCards(); //Add special VP cards
+//        
         
 //        
 

@@ -14,6 +14,7 @@ public abstract class Build {
 	protected Randomizer randomizer;
 
 	public Build(Player player, Board board, Randomizer randomizer){
+		
 		this.player=player;
 		this.board=board;
 		this.randomizer=randomizer;

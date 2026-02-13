@@ -12,9 +12,7 @@ public class BuildCity extends Build {
 	
 	
 	 public BuildCity(Player player, Board board, Randomizer randomizer) {
-	        this.player = player;
-	        this.board = board;
-	        this.randomizer = randomizer;
+	        super(player, board, randomizer);
 	    }
 
 
@@ -84,6 +82,13 @@ public class BuildCity extends Build {
 	        System.out.println("Player " + player.getPlayerID() + " upgraded node " + s.getNode().getNodeID() + " to a city");
 	        
 	    }
+
+
+		@Override
+		public boolean execute() {
+			
+			return false;
+		}
 	    
 //	
 //	public BuildCity(Player player, Board board, Randomizer randomizer) {
