@@ -4,62 +4,238 @@
 
 package InItToWinIt_Team26;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /************************************************************/
 /**
  * 
  */
 public class BuildRoad extends Build {
-	/**
-	 * 
-	 * @param playerResources 
-	 * @param playerRoads 
-	 * @param playerSettlements 
-	 * @param playerCities 
-	 */
-	protected void checkPlayer(Player playerResources, Player playerRoads, Player playerSettlements,
-			Player playerCities) {
+	
+	/*Constructor */
+	public BuildRoad(Player player,Board board, Randomizer randomizer){
+		super(player, board, randomizer);
 	}
 
-	/**
-	 * 
-	 * @param random 
-	 * @param nodeID 
-	 */
-	protected void generatePlacement(Randomizer random, Node nodeID) {
+	/*Helper class to track the edges of the nodes*/
+	private static class Edge{
+		//still not great naming but potentially better than A and B or 1 and 2
+		private int nodeFromID;//starting node
+		private int nodeToID;//ending node
+		//I dont think I like this anymore, the naming
+
+		public Edge(int nodeFromID, int nodeToID){
+			this.nodeFromID=nodeFromID;
+			this.nodeToID=nodeToID;
+
+		}
+		
+		public int getNodeFromID(){
+			return nodeFromID;
+		}
+		public int getNodeToID(){
+			return nodeToID;
+		}
 	}
 
-	/**
-	 * 
-	 * @param nodeID 
-	 * @return 
-	 */
-	protected boolean checkPlacement(Node nodeID) {
+	/*Execute the sequence of actions */
+	@Override
+	public boolean execute() {
+		/*Check if the player has the resources to build */
+		if(!canPlayerBuy()){
+			return false;
+		}
+
+		/*Generate the placements */
+		//Object reference for any class 
+		Object placement = generatePlacement();
+		/*No valid placement */
+		if(placement == null){
+			return false;
+		}
+
+		/*Validate Placement using Board Rules */
+		if(!validatePlacement(placement)){
+			return false;//if no good
+		}
+
+		/*Buildddd */
+		doBuild(placement);//okay I think this name reflects how tired I am, doBuild in retrospect doesn't sound right
+
+		/*Print statement */
+		printAction(placement);
+
+		/*If we got here, then all good */
+		return true;
+
 	}
 
-	/**
+	/** Checking that the player has the resources to buy the road and has roads left 
 	 * 
-	 * @param buildMaterials 
 	 */
-	protected void updatePlayerInventory(Player buildMaterials) {
+	@Override
+	protected boolean canPlayerBuy(){
+		boolean hasResources = player.getResourceHand().canBuyRoad();
+		boolean hasRoadsLeft = player.getPlayerRoadsLeft() > 0;
+
+		return hasResources && hasRoadsLeft;
 	}
 
-	/**
-	 * 
-	 */
-	public void printAction() {
+	
+	@Override
+	protected Object generatePlacement() {
+		//To hold all the possible valid placements of the road
+		List<Edge> validPlacements=new ArrayList<>();
+
+		//want to store all the nodes that are connected but not double coount
+		Set<Integer> connectedPlayerNodeIDs=new HashSet<>();
+
+		//looping through player roads
+		for(Road road : player.getPlayerRoads()){
+			//adding both nodes from the player's roads to the set
+			connectedPlayerNodeIDs.add(road.getNodeA().getNodeID());
+			connectedPlayerNodeIDs.add(road.getNodeB().getNodeID());
+		}
+
+		//Add node IDs from settlements
+		for(Settlement settlement: player.getPlayerSettlements()){
+			connectedPlayerNodeIDs.add(settlement.getNode().getNodeID());
+		}
+		
+		for(City city: player.getPlayerCities()){
+			connectedPlayerNodeIDs.add(city.getNode().getNodeID());
+		}
+
+		//put the connected nodes to valid placements 
+		for(Integer nodeID: connectedPlayerNodeIDs){
+			List<Integer> adjacentNodeIDs = board.getNeighbors(nodeID);
+			
+			//for each loop using the singular id
+			for(Integer adjacentID : adjacentNodeIDs){
+				//check that the board doesn't have a road between there
+				if(!(board.hasRoad(nodeID, adjacentID))){
+					//to the node id 
+					validPlacements.add(new Edge(nodeID, adjacentID));//this is now a valid placement
+				}
+
+			}
+
+		}
+
+		//no valid placements
+		if(validPlacements.isEmpty()){
+			return null;
+		}
+		return randomizer.randomSelection(0,validPlacements.size());
+
+
 	}
 
-	/**
-	 * 
-	 * @param nodeID 
-	 */
-	protected void storeBuildLocation(Node nodeID) {
+	//placement needs to be a pair of nodes
+	@Override
+	protected boolean validatePlacement(Object placement){
+		//casting the node to the 
+		Edge edges = (Edge) placement;
+		int nodeToID = edges.getNodeToID();
+		int nodeFromID = edges.getNodeFromID();
+
+		//check if they're adjacent 
+		if(!board.isAdjacent(nodeToID,nodeFromID)){
+			return false;//not adjacent
+
+		}
+
+		if(board.hasRoad(nodeFromID, nodeToID)){
+			return false;//road already there
+		}
+
+		//check if connected 
+		boolean nodeToConnected = isNodeConnectedToPlayer(nodeToID);
+		boolean nodeFromConnected = isNodeConnectedToPlayer(nodeFromID);
+
+		//true based on if either node is connected
+		return (nodeToConnected||nodeFromConnected);
+
 	}
 
-	/**
+	/**Check if the node connect
 	 * 
-	 * @param player 
+	 * @param nodeID
+	 * @return
 	 */
-	public void execute(Player player) {
+	private boolean isNodeConnectedToPlayer(int nodeID){
+		/*For each loop to check all their roads */
+		for (Road road : player.getPlayerRoads()){
+			/*Checking either node of the road for a match */
+			if(road.getNodeA().getNodeID()==nodeID || road.getNodeB().getNodeID()==nodeID){
+				return true;
+			}
+		}
+
+		//Check if it connects to a settlement as it can build from there too
+		for(Settlement settlement : player.getPlayerSettlements()){
+			if(settlement.getNode().getNodeID()==nodeID){
+				return true;
+			}
+		}
+
+		//check for city 
+		for (City city : player.getPlayerCities()) {
+            if (city.getNode().getNodeID() == nodeID) {
+                return true;
+            }
+        }
+
+		//otherwise false
+		return false;
 	}
+
+	/**Do the build operation, this includes:
+	 * 	- paying for the build
+	 * 	- updating the board
+	 * 	- updating player info
+	 * 
+	 * 
+	 */
+	@Override
+	protected void doBuild(Object placement){
+		Edge edges = (Edge) placement;
+
+		//didn't like the naming of to and from but now it's inconsistent
+		int nodeToID = edges.getNodeToID();
+		int nodeFromID = edges.getNodeFromID();
+
+		/*Pay for the build */
+		player.getResourceHand().payForRoad();
+
+		/*Create road */
+		//I NEED to get the node objects from board
+		Node nodeTo = board.getNode(nodeToID);
+		Node nodeFrom = board.getNode(nodeFromID);
+		Road newRoad = new Road(nodeTo, nodeFrom, player.getPlayerID());
+
+		//placing it on board
+		board.placeRoad(nodeFromID, nodeToID, player.getPlayerID());
+
+		//adding it to the player
+		player.playerAddRoad(newRoad);
+
+	}
+
+	/**Print Statement
+	 * 
+	 */
+	@Override
+	public void printAction(Object placement){
+		Edge edges = (Edge) placement;
+		int node1ID = edges.getNodeToID();
+		int node2ID = edges.getNodeFromID();
+
+		System.out.printf("["+player.getPlayerID()+"] : [Built a Road between %d and %d]\n",node1ID,node2ID);
+	}
+
+	
 }

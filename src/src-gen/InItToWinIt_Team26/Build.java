@@ -13,37 +13,14 @@ public abstract class Build {
 	protected Board board;
 	protected Randomizer randomizer;
 
-	
-	/*General structure, final so it can't be overridden */
-	public final boolean execute(){
-		/*Check if the player has the resources to build */
-		if(!canPlayerBuy()){
-			return false;
-		}
-
-		/*Generate the placements */
-		//Object reference for any class 
-		Object placement = generatePlacement();
-		/*No valid placement */
-		if(placement == null){
-			return false;
-		}
-
-		/*Validate Placement using Board Rules */
-		if(!validatePlacement(placement)){
-			return false;//if no good
-		}
-
-		/*Buildddd */
-		doBuild(placement);//okay I think this name reflects how tired I am, doBuild in retrospect doesn't sound right
-
-		/*Print statement */
-		printAction(placement);
-
-		/*If we got here, then all good */
-		return true;
-
+	public Build(Player player, Board board, Randomizer randomizer){
+		this.player=player;
+		this.board=board;
+		this.randomizer=randomizer;
 	}
+
+	/*General structure, final so it can't be overridden */
+	public abstract boolean execute();
 
 
 	/** To check if the player has the resources and if the still have the build inventory left
@@ -81,9 +58,5 @@ public abstract class Build {
 	 * Print statement
 	 */
 	public abstract void printAction(Object placement);
-	
-	
-	public Player getPlayer() {
-        return player;
-    }
+
 }
