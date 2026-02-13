@@ -41,38 +41,6 @@ public class BuildRoad extends Build {
 		}
 	}
 
-	/*Execute the sequence of actions */
-	@Override
-	public boolean execute() {
-		/*Check if the player has the resources to build */
-		if(!canPlayerBuy()){
-			return false;
-		}
-
-		/*Generate the placements */
-		//Object reference for any class 
-		Object placement = generatePlacement();
-		/*No valid placement */
-		if(placement == null){
-			return false;
-		}
-
-		/*Validate Placement using Board Rules */
-		if(!validatePlacement(placement)){
-			return false;//if no good
-		}
-
-		/*Buildddd */
-		doBuild(placement);//okay I think this name reflects how tired I am, doBuild in retrospect doesn't sound right
-
-		/*Print statement */
-		printAction(placement);
-
-		/*If we got here, then all good */
-		return true;
-
-	}
-
 	/** Checking that the player has the resources to buy the road and has roads left 
 	 * 
 	 */

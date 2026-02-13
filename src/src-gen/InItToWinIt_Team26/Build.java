@@ -21,7 +21,35 @@ public abstract class Build {
 	}
 
 	/*General structure, final so it can't be overridden */
-	public abstract boolean execute();
+	public boolean execute(){
+		/*Check if the player has the resources to build */
+		if(!canPlayerBuy()){
+			return false;
+		}
+
+		/*Generate the placements */
+		//Object reference for any class 
+		Object placement = generatePlacement();
+		/*No valid placement */
+		if(placement == null){
+			return false;
+		}
+
+		/*Validate Placement using Board Rules */
+		if(!validatePlacement(placement)){
+			return false;//if no good
+		}
+
+		/*Buildddd */
+		doBuild(placement);//okay I think this name reflects how tired I am, doBuild in retrospect doesn't sound right
+
+		/*Print statement */
+		printAction(placement);
+
+		/*If we got here, then all good */
+		return true;
+
+	}
 
 
 	/** To check if the player has the resources and if the still have the build inventory left
