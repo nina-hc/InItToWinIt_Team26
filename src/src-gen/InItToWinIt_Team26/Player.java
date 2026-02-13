@@ -8,37 +8,107 @@ package InItToWinIt_Team26;
 /**
  * 
  */
+
 public class Player {
-	/**
-	 * 
-	 */
+	
+	
 	private int playerID;
-	/**
-	 * 
-	 */
-	private int victoryPoints;
-	/**
-	 * 
-	 */
-	private EMap buildMaterials;
-	/**
-	 * 
-	 */
-	private EEList playerResources;
-	/**
-	 * 
-	 */
-	private EEList playerRoads;
-	/**
-	 * 
-	 */
-	private EEList playerSettlements;
-	/**
-	 * 
-	 */
-	private EEList playerCities;
-	/**
-	 * 
-	 */
-	public resourceHand resourcehand;
+    private int victoryPoints;
+
+    private ResourceHand resourceHand;
+
+    //Remaining pieces
+    private int settlementsLeft = 5;
+    private int citiesLeft = 4;
+    private int roadsLeft = 15;
+
+
+
+    public Player(int id) {
+        this.playerID = id;
+        this.resourceHand = new ResourceHand();
+        this.victoryPoints = 0;
+    }
+
+
+
+    //getter
+    public int getID() {
+        return playerID;
+    }
+
+    //getter
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+
+
+    //settlement methods
+    public boolean hasResourcesForSettlement() {
+        
+        return resourceHand.has(ResourceType.WOOD,1) && resourceHand.has(ResourceType.BRICK,1) && resourceHand.has(ResourceType.WHEAT,1) && resourceHand.has(ResourceType.SHEEP,1) && settlementsLeft > 0;
+    }
+
+    public void payForSettlement() {
+        resourceHand.remove(ResourceType.WOOD,1);
+        resourceHand.remove(ResourceType.BRICK,1);
+        resourceHand.remove(ResourceType.WHEAT,1);
+        resourceHand.remove(ResourceType.SHEEP,1);
+    }
+
+    public void useSettlementPiece() {
+        settlementsLeft--;
+        victoryPoints += 1;
+    }
+
+
+
+    public boolean hasResourcesForCity() {
+        return resourceHand.has(ResourceType.WHEAT,2) && resourceHand.has(ResourceType.ORE,3) && citiesLeft > 0;
+    }
+
+    public void payForCity() {
+        resourceHand.remove(ResourceType.WHEAT,2);
+        resourceHand.remove(ResourceType.ORE,3);
+    }
+
+    public void useCityPiece() {
+        citiesLeft--;
+        victoryPoints += 1; //extra victory points for upgrade
+    }
+    
+    
+//	/**
+//	 * 
+//	 */
+//	private int playerID;
+//	/**
+//	 * 
+//	 */
+//	private int victoryPoints;
+//	/**
+//	 * 
+//	 */
+//	private EMap buildMaterials;
+//	/**
+//	 * 
+//	 */
+//	private EEList playerResources;
+//	/**
+//	 * 
+//	 */
+//	private EEList playerRoads;
+//	/**
+//	 * 
+//	 */
+//	private EEList playerSettlements;
+//	/**
+//	 * 
+//	 */
+//	private EEList playerCities;
+//	/**
+//	 * 
+//	 */
+//	public resourceHand resourcehand;
 }

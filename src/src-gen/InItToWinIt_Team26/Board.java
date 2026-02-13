@@ -1,6 +1,7 @@
 
 package InItToWinIt_Team26;
 
+import java.util.*;
 
 public class Board {
 
@@ -267,6 +268,19 @@ public class Board {
     public Tile getTile(int tileID) {
         return tiles[tileID];
     }
+    
+    public List<Integer> getNeighbors(int nodeID) {
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < 54; i++) {
+            if (adjacentMatrix[nodeID][i] == 1) {
+                list.add(i);
+            }
+        }
+
+        return list;
+    }
+    
 
 
     //********************************************************

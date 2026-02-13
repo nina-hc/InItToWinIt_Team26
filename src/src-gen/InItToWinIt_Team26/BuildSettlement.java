@@ -9,60 +9,73 @@ package InItToWinIt_Team26;
  * 
  */
 public class BuildSettlement extends Build {
-	/**
-	 * 
-	 */
-	public interface Interface35 {
-	};
+	
+	
+	
+	
+	 public BuildSettlement(Player player, Board board, Randomizer randomizer) {
+	        this.player = player;
+	        this.board = board;
+	        this.randomizer = randomizer;
+	    }
 
-	/**
-	 * 
-	 * @param player 
-	 */
-	public void execute(Player player) {
-	}
 
-	/**
-	 * 
-	 * @param random 
-	 * @param nodeID 
-	 * @return 
-	 */
-	protected Node generatePlacement(Randomizer random, Node nodeID) {
-	}
 
-	/**
-	 * 
-	 * @param nodeID 
-	 * @return 
-	 */
-	protected boolean checkPlacement(Node nodeID) {
-	}
+	    @Override
+	    protected boolean canPlayerBuy() {
+	        return player.hasResourcesForSettlement();
+	    }
 
-	/**
-	 * 
-	 * @param nodeID 
-	 */
-	protected void storeBuildLocation(Node nodeID) {
-	}
 
-	/**
-	 * 
-	 */
-	protected void updatePlayerInventory() {
-	}
 
-	/**
-	 * 
-	 */
-	public void printAction() {
-	}
+	    //generate a placement
+	    @Override
+	    protected Object generatePlacement() {
+	        // generates a random place
+	        return randomizer.randomSelection(0, 53);
+	    }
 
-	/**
-	 * 
-	 * @param player 
-	 * @return 
-	 */
-	protected boolean checkPlayer(Player player) {
-	}
+
+
+	    @Override
+	    protected boolean validatePlacement(Object placement) {
+
+	        int nodeID = (Integer) placement;
+
+	        //check if the node empty
+	        if (board.getNode(nodeID).isOccupied()) {
+	            return false;
+	        }
+
+	        //the distance rule
+	        for (int neighbor : board.getNeighbors(nodeID)) {
+	            if (board.getNode(neighbor).isOccupied()) {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
+
+
+
+	    @Override
+	    protected void doBuild(Object placement) {
+
+	        int nodeID = (Integer) placement;
+
+	        player.payForSettlement();
+	        player.useSettlementPiece();
+
+	        board.getNode(nodeID).placeBuilding(this);
+	    }
+
+
+
+	    @Override
+	    public void printAction(Object placement) {
+	        int nodeID = (Integer) placement;
+
+	        System.out.println("Player " + player.getID() + " built a settlement at node " + nodeID);
+	    }
 }
