@@ -129,7 +129,11 @@ public class BuildRoad extends Build {
 		if(validPlacements.isEmpty()){
 			return null;
 		}
-		return randomizer.randomSelection(0,validPlacements.size());
+		//randomize is inclusive so I need to subtract 1
+		int randomizedIndex = randomizer.randomSelection(0,validPlacements.size()-1);// random index 
+
+		return validPlacements.get(randomizedIndex);
+		
 
 
 	}
@@ -213,12 +217,8 @@ public class BuildRoad extends Build {
 
 		/*Create road */
 		//I NEED to get the node objects from board
-		Node nodeTo = board.getNode(nodeToID);
-		Node nodeFrom = board.getNode(nodeFromID);
-		Road newRoad = new Road(nodeTo, nodeFrom, player.getPlayerID());
-
-		//placing it on board
-		board.placeRoad(nodeFromID, nodeToID, player.getPlayerID());
+		Road newRoad = board.placeRoad(nodeFromID, nodeToID, player.getPlayerID());
+		
 
 		//adding it to the player
 		player.playerAddRoad(newRoad);
@@ -236,6 +236,8 @@ public class BuildRoad extends Build {
 
 		System.out.printf("["+player.getPlayerID()+"] : [Built a Road between %d and %d]\n",node1ID,node2ID);
 	}
+
+	
 
 	
 }

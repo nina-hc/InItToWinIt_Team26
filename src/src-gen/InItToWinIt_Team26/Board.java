@@ -240,7 +240,7 @@ public class Board {
     //ROADS
 
     //**FOR NINA: VOID NOT BOOL
-    public void placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
+    public Road placeRoad(int nodeOneID, int nodeTwoID, int playerID) {//NINA changed it to road
 
         //roadMatrix[i][j] = 0 : no road
         //roadMatrix[i][j] = playerID : player that owns road
@@ -266,6 +266,8 @@ public class Board {
 
         roadMatrix[nodeOneID][nodeTwoID] = road;
         roadMatrix[nodeTwoID][nodeOneID] = road;
+        
+        return road;
 
 
     }
