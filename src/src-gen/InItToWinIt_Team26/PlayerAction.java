@@ -2,84 +2,92 @@ package InItToWinIt_Team26;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
+/**
+ * Handles AI decisions for a player in one full turn.
+ */
 public class PlayerAction {
 
     private Player player;
     private Board board;
     private Randomizer randomizer;
-    private Random random;
 
-    public PlayerAction(Player player, Board board, Randomizer randomizer) {
+    public PlayerAction(Player player, Board board) {
         this.player = player;
         this.board = board;
-        this.randomizer = randomizer;
-        this.random = new Random();
     }
 
-    /*
-     * Executes one full AI turn decision
+    /**
+     * Executes one full AI turn, building as much as possible.
      */
     public void executeTurn() {
 
-        boolean turnOver = false;
+        boolean canBuild = true;
 
-        while (!turnOver) {
-
-            int totalCards = player.getResourceHand().totalPlayerCard();
-
-            boolean mustBuild = false;
-
-            if (totalCards > 7) {
-                mustBuild = true;
-            }
-
+        while (canBuild) {
             List<Build> possibleActions = chooseActions();
 
             if (possibleActions.isEmpty()) {
-                // If player must build but cannot, turn still ends
-                return;
+                // Nothing affordable or placeable left
+                canBuild = false;
+                break;
             }
 
-            // Randomly select action
-            int choice = random.nextInt(possibleActions.size());
-            Build selected = possibleActions.get(choice);
-
-            boolean built = selected.execute(player, board);
-
-            if (!built) {
-                return;
+            // Prioritize builds: City > Settlement > Road
+            Build selected = null;
+            for (Build b : possibleActions) {
+                if (b instanceof BuildCity) {
+                    selected = b;
+                    break;
+                }
+            }
+            if (selected == null) {
+                for (Build b : possibleActions) {
+                    if (b instanceof BuildSettlement) {
+                        selected = b;
+                        break;
+                    }
+                }
+            }
+            if (selected == null) {
+                for (Build b : possibleActions) {
+                    if (b instanceof BuildRoad) {
+                        selected = b;
+                        break;
+                    }
+                }
             }
 
-            // If player was NOT forced to build, end after one action
-            if (!mustBuild) {
-                turnOver = true;
+            if (selected != null) {
+                boolean built = selected.execute();
+                if (!built) {
+                    //could not place the building (eg no valid location)
+                    canBuild = false;
+                }
+            } else {
+                //no valid action left
+                canBuild = false;
             }
-
         }
     }
 
-
-    /*
-     * Determine what player can afford
+    /**
+     * Determines what the player can afford and place on the board.
+     * Returns a list of Build actions.
      */
     private List<Build> chooseActions() {
-
         List<Build> actions = new ArrayList<>();
-
         ResourceHand hand = player.getResourceHand();
 
-        if (hand.canBuyRoad()) {
-            actions.add(new BuildRoad());
+        // Check build limits and resource availability
+        if (hand.canBuyCity() && player.getPlayerCitiesLeft() > 0 && player.getPlayerSettlements().size() > 0) {
+            actions.add(new BuildCity(player, board, randomizer));
         }
-
-        if (hand.canBuySettlement()) {
-            actions.add(new BuildSettlement());
+        if (hand.canBuySettlement() && player.getPlayerSettlementsLeft() > 0) {
+            actions.add(new BuildSettlement(player, board, randomizer));
         }
-
-        if (hand.canBuyCity()) {
-            actions.add(new BuildCity());
+        if (hand.canBuyRoad() && player.getPlayerRoadsLeft() > 0) {
+            actions.add(new BuildRoad(player, board, randomizer));
         }
 
         return actions;

@@ -22,9 +22,6 @@ public class Game {
     //used for random decision-making
     private Random random;
 
-    //maximum rounds to simulate
-    private int maxRounds = 100; //this could be read from config file
-
     //victory points required to win
     private static final int WINNING_VP = 10;
 
@@ -64,7 +61,7 @@ public class Game {
      * first round: p1 to p4
      * second round: p4 to p1
      */
-    private void initialPlacement() {
+    public void initialPlacement() {
         int round = 0;
         while (round < 2) {
 
@@ -100,28 +97,25 @@ public class Game {
      * main simulation loop
      * stops when:
      *   - a player reaches 10 vp
-     *   - or round limit reached
      */
     public void startSimulation() {
 
-        int round = 1;
         boolean gameOver = false;
 
-        while (round <= maxRounds && !gameOver) {
+        while (!gameOver) {
 
-            System.out.println("round " + round);
 
-            int pIndex = 0;
-            while (pIndex < players.length) {
+            int playerIndex = 0;
+            while (playerIndex < players.length) {
 
-                Player player = players[pIndex];
+                Player player = players[playerIndex];
 
                 //roll dice and distribute resources
                 int roll = distributor.executeDistribution();
                 System.out.println("player " + player.getPlayerID() + " roll " + roll);
 
                 //create a player action handler
-                PlayerAction action = new PlayerAction(player, board, randomizer);
+                PlayerAction action = new PlayerAction(player, board);
 
                 //execute one full turn for this player
                 action.executeTurn();
@@ -132,13 +126,12 @@ public class Game {
                     break;
                 }
 
-                pIndex = pIndex + 1;
+                playerIndex = playerIndex + 1;
             }
 
             //print vp summary at end of round
             printScoreBoard();
 
-            round = round + 1;
         }
 
         System.out.println("simulation ended");
@@ -147,11 +140,11 @@ public class Game {
     /*
      * print current victory points for all players
      */
-    private void printScoreBoard() {
+    public void printScoreBoard() {
         System.out.print("score ");
         int i = 0;
         while (i < players.length) {
-            System.out.print("p" + players[i].getPlayerID() + "=" + players[i].getVictoryPoints() + " ");
+            System.out.print("player" + players[i].getPlayerID() + "=" + players[i].getVictoryPoints() + " ");
             i = i + 1;
         }
         System.out.println();
@@ -160,7 +153,7 @@ public class Game {
     /*
      * attempt to place a settlement randomly
      */
-    private void randomSettlementPlacement(Player player) {
+    public void randomSettlementPlacement(Player player) {
 
         BuildSettlement settlement = new BuildSettlement(player, board, randomizer);
 
@@ -171,7 +164,7 @@ public class Game {
     /*
      * attempt to place road randomly
      */
-    private void randomRoadPlacement(Player player) {
+    public void randomRoadPlacement(Player player) {
 
         BuildRoad road = new BuildRoad(player, board, randomizer);
 
@@ -179,14 +172,5 @@ public class Game {
         road.execute();
     }
 
-    /*
-     * attempt to upgrade a settlement to a city
-     */
-    private void randomCityUpgrade(Player player) {
 
-        BuildCity city = new BuildCity(player, board, randomizer);
-
-        //execute the upgrade
-        city.execute();
-    }
 }
