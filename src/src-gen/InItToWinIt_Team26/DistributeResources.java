@@ -49,15 +49,13 @@ public class DistributeResources {
         }
 
         //Loop through all tiles on the board
-        for (Tile tile : board.getTile(roll)) {
-
-            // If tile number matches roll AND it's not desert
-            if (tile.getTileRollNum() == roll
-                    && tile.getResourceType() != ResourceType.DESERT) {
-
+        for (int i = 0; i < 19; i++) { //19 tiles
+            Tile tile = board.getTile(i); // get tile by tileID
+            if (tile.getTileRollNum() == roll && tile.getResourceType() != ResourceType.DESERT) {
                 distributeFromTile(tile);
             }
         }
+
 
         return roll;
     }
@@ -71,46 +69,35 @@ public class DistributeResources {
      * If a node has a building, the building's owner
      * receives resources from the bank.
      */
-    private void distributeFromTile(Tile tile) {
+    public void distributeFromTile(Tile tile) {
 
-        //get the type of resource this tile produces
         ResourceType resource = tile.getResourceType();
-
-        // Get all node IDs connected to this tile
         int[] nodeIDs = tile.getNodeIDs();
 
-        // Check each node
         for (int nodeID : nodeIDs) {
-
             Node node = board.getNode(nodeID);
 
-            //if a building exists on the node
-            if (node.isOccupied()) {
+            //settlement gives 1 resource
+            if (node.getSettlement() != null) {
+                int ownerID = node.getSettlement().getOwner();
+                Player owner = players[ownerID - 1]; //IDs are 1-4, array is 0-3
 
-                Build building = node.getBuilding();
-                Player owner = building.getPlayer();
-
-                //Settlement = 1 resource
-                //City = 2 resources
-                int amount;
-                if (building instanceof BuildCity){
-                    amount = 2;
-                }
-
-                else {
-                    amount = 1;
-                }
-
-                //ask the bank for the resources
-                int receivedFromBank = bank.transferToPlayer(resource, amount);
-
-                //add resources to the players hand
-                //Only add if bank had resources available
+                int receivedFromBank = bank.transferToPlayer(resource, 1);
                 if (receivedFromBank > 0) {
-                    owner.getResourcehand().addResource(resource, receivedFromBank);
+                    owner.getResourceHand().addResource(resource, receivedFromBank);
                 }
             }
 
+            //city gives 2 resources
+            if (node.getCity() != null) {
+                int ownerID = node.getCity().getOwner();
+                Player owner = players[ownerID - 1];
+
+                int receivedFromBank = bank.transferToPlayer(resource, 2);
+                if (receivedFromBank > 0) {
+                    owner.getResourceHand().addResource(resource, receivedFromBank);
+                }
+            }
         }
     }
 

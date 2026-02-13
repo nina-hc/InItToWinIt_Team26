@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Handles AI decisions for a player in one full turn.
+ * handles one full ai turn for a player
  */
 public class PlayerAction {
 
@@ -12,28 +12,28 @@ public class PlayerAction {
     private Board board;
     private Randomizer randomizer;
 
-    public PlayerAction(Player player, Board board) {
+    public PlayerAction(Player player, Board board, Randomizer randomizer) {
         this.player = player;
         this.board = board;
+        this.randomizer = randomizer;
     }
 
     /**
-     * Executes one full AI turn, building as much as possible.
+     * execute one full turn trying to build as much as possible
      */
     public void executeTurn() {
-
         boolean canBuild = true;
 
         while (canBuild) {
             List<Build> possibleActions = chooseActions();
 
+            // nothing can be built
             if (possibleActions.isEmpty()) {
-                // Nothing affordable or placeable left
                 canBuild = false;
                 break;
             }
 
-            // Prioritize builds: City > Settlement > Road
+            // prioritize builds city > settlement > road
             Build selected = null;
             for (Build b : possibleActions) {
                 if (b instanceof BuildCity) {
@@ -58,34 +58,38 @@ public class PlayerAction {
                 }
             }
 
+            // execute selected build
             if (selected != null) {
                 boolean built = selected.execute();
                 if (!built) {
-                    //could not place the building (eg no valid location)
+                    // could not place the building
                     canBuild = false;
                 }
             } else {
-                //no valid action left
                 canBuild = false;
             }
         }
     }
 
     /**
-     * Determines what the player can afford and place on the board.
-     * Returns a list of Build actions.
+     * determine builds player can afford and place
+     * @return list of build actions
      */
     private List<Build> chooseActions() {
         List<Build> actions = new ArrayList<>();
         ResourceHand hand = player.getResourceHand();
 
-        // Check build limits and resource availability
+        // city only if player has settlements to upgrade
         if (hand.canBuyCity() && player.getPlayerCitiesLeft() > 0 && player.getPlayerSettlements().size() > 0) {
             actions.add(new BuildCity(player, board, randomizer));
         }
+
+        // settlement if affordable
         if (hand.canBuySettlement() && player.getPlayerSettlementsLeft() > 0) {
             actions.add(new BuildSettlement(player, board, randomizer));
         }
+
+        // road if affordable
         if (hand.canBuyRoad() && player.getPlayerRoadsLeft() > 0) {
             actions.add(new BuildRoad(player, board, randomizer));
         }

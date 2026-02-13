@@ -2,175 +2,135 @@ package InItToWinIt_Team26;
 
 import java.util.Random;
 
+/**
+ * Manages the overall Catan game simulation
+ * Fulfills Assignment 1 requirements (R1.1–R1.9)
+ */
 public class Game {
 
-    //the fixed catan board (contains tiles, nodes, roads)
-    private Board board;
-
-    //bank stores remaining resource cards
-    private Bank bank;
-
-    //the 4 players
-    private Player[] players;
-
-    //responsible for rolling dice
-    private Randomizer randomizer;
-
-    //handles resource production after dice rolls
-    private DistributeResources distributor;
-
-    //used for random decision-making
-    private Random random;
-
-    //victory points required to win
     private static final int WINNING_VP = 10;
 
-    /*
-     * constructor initializes entire game state
+    private Board board;
+    private Bank bank;
+    private Player[] players;
+    private Randomizer randomizer;
+    private DistributeResources distributor;
+    private int maxRounds;
+
+    /**
+     * Initialize game with 4 players and default maxRounds
      */
-    public Game() {
+    public Game(int maxRounds) {
+        if (maxRounds < 1 || maxRounds > 8192) {
+            throw new IllegalArgumentException("maxRounds must be 1–8192");
+        }
+        this.maxRounds = maxRounds;
 
-        //create fixed map
-        board = new Board();
-
-        //create bank (starts with 19 of each resource)
+        // Initialize board and bank
+        board = new Board(); // Should use fixed map setup per R1.1
         bank = new Bank();
-
-        //dice roll object
         randomizer = new Randomizer();
 
-        //create 4 agents
+        // Create 4 players
         players = new Player[4];
-        for (int i = 0; i < 4; i = i + 1) {
-            players[i] = new Player(i + 1); //playerID 1-4
+        for (int i = 0; i < 4; i++) {
+            players[i] = new Player(i + 1);
         }
 
-        //connect distributor to board, bank, players
+        // Connect resource distributor
         distributor = new DistributeResources(bank, players, randomizer, board);
-
-        //random object for generating random choices
-        random = new Random();
-
-        //perform initial placement phase
-        initialPlacement();
     }
 
-    /*
-     * initial placement phase:
-     * each player places 2 settlements and 2 roads
-     * first round: p1 to p4
-     * second round: p4 to p1
+    /**
+     * Initial placement phase: each player places 2 settlements and 2 roads
      */
     public void initialPlacement() {
-        int round = 0;
-        while (round < 2) {
+        for (int round = 0; round < 2; round++) {
+            // Forward for first round, backward for second round
+            int start = (round == 0) ? 0 : players.length - 1;
+            int end = (round == 0) ? players.length : -1;
+            int step = (round == 0) ? 1 : -1;
 
-            int start = 0;
-            int end = players.length;
-            int step = 1;
-
-            //second round goes in reverse
-            if (round == 1) {
-                start = players.length - 1;
-                end = -1;
-                step = -1;
-            }
-
-            int i = start;
-            while (i != end) {
+            for (int i = start; i != end; i += step) {
                 Player player = players[i];
-
-                //place settlement randomly
                 randomSettlementPlacement(player);
-
-                //place road randomly
                 randomRoadPlacement(player);
-
-                i = i + step;
             }
-
-            round = round + 1;
         }
     }
 
-    /*
-     * main simulation loop
-     * stops when:
-     *   - a player reaches 10 vp
+    /**
+     * Main simulation loop until a player wins or maxRounds reached
      */
     public void startSimulation() {
-
         boolean gameOver = false;
+        int roundNumber = 0;
 
-        while (!gameOver) {
+        while (!gameOver && roundNumber < maxRounds) {
+            roundNumber++;
 
+            System.out.println("=== Round " + roundNumber + " ===");
 
-            int playerIndex = 0;
-            while (playerIndex < players.length) {
+            for (Player player : players) {
 
-                Player player = players[playerIndex];
-
-                //roll dice and distribute resources
+                // Roll dice
                 int roll = distributor.executeDistribution();
-                System.out.println("player " + player.getPlayerID() + " roll " + roll);
+                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": Rolled " + roll);
 
-                //create a player action handler
-                PlayerAction action = new PlayerAction(player, board);
-
-                //execute one full turn for this player
+                // AI builds (tries to spend cards if >7)
+                PlayerAction action = new PlayerAction(player, board, randomizer);
                 action.executeTurn();
 
-                //check if player reached winning points
-                if (player.getVictoryPoints() >= WINNING_VP) {
+                // Print player action summary
+                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": Completed turn");
+
+                // Check win conditions
+                VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+                if (vpCheck.checkWinConditions()) {
                     gameOver = true;
+                    System.out.println("Player " + player.getPlayerID() + " wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
                     break;
                 }
 
-                playerIndex = playerIndex + 1;
+                System.out.println("Player " + player.getPlayerID() + " hand: "
+                        + player.getResourceHand().toString());
+
+
             }
 
-            //print vp summary at end of round
-            printScoreBoard();
-
+            // Print current score board after each round
+            printScoreBoard(roundNumber);
         }
 
-        System.out.println("simulation ended");
+
+        System.out.println("Simulation ended after " + roundNumber + " rounds.");
     }
 
-    /*
-     * print current victory points for all players
+    /**
+     * Print current victory points for all players
      */
-    public void printScoreBoard() {
-        System.out.print("score ");
-        int i = 0;
-        while (i < players.length) {
-            System.out.print("player" + players[i].getPlayerID() + "=" + players[i].getVictoryPoints() + " ");
-            i = i + 1;
+    public void printScoreBoard(int roundNumber) {
+        System.out.print("[" + roundNumber + "] Scoreboard: ");
+        for (Player player : players) {
+            VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+            System.out.print("Player" + player.getPlayerID() + "=" + vpCheck.calculateVictoryPoints() + " ");
         }
         System.out.println();
     }
 
-    /*
-     * attempt to place a settlement randomly
+    /**
+     * Attempt to place a settlement randomly (used in initial placement)
      */
     public void randomSettlementPlacement(Player player) {
-
         BuildSettlement settlement = new BuildSettlement(player, board, randomizer);
-
-        //execute the build (placement and resource deduction handled internally)
         settlement.execute();
     }
 
-    /*
-     * attempt to place road randomly
+    /**
+     * Attempt to place a road randomly (used in initial placement)
      */
     public void randomRoadPlacement(Player player) {
-
         BuildRoad road = new BuildRoad(player, board, randomizer);
-
-        //execute the build
         road.execute();
     }
-
-
 }
