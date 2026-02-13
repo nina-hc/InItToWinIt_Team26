@@ -54,7 +54,7 @@ public class Player {
 	 */
 
 	public int getPlayerRoadsLeft(){
-		//Need to verify size edge cases for when theres nothing in there 
+		//Need to verify size edge cases for when there's nothing in there 
 		return maxRoads-playerRoads.size();//size is the number of elements
 	}
 
@@ -93,7 +93,7 @@ public class Player {
 			throw new IllegalStateException("Error: The player has no cities left");
 		}
 
-		//check if settlment is valid and also remove it, could do it more explicitly 
+		//check if settlement is valid and also remove it, could do it more explicitly 
 		if(!playerSettlements.remove(settlementBeingUpgraded)){//if there was no settlement to remove
 			throw new IllegalArgumentException("Error: No settlement to be upgraded there");
 		}//since the max is size based this also puts it back in store
@@ -101,7 +101,7 @@ public class Player {
 		/*add city for player */
 		playerCities.add(cityPlaced);
 
-		//not adding victory points here 
+		//
 
 	}
 
