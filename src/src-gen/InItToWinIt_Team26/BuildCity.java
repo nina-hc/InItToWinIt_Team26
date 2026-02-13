@@ -11,81 +11,155 @@ package InItToWinIt_Team26;
 public class BuildCity extends Build {
 	
 	
-	
-	public BuildCity(Player player, Board board, Randomizer randomizer) {
-        this.player = player;
-        this.board = board;
-        this.randomizer = randomizer;
-    }
+	 public BuildCity(Player player, Board board, Randomizer randomizer) {
+	        this.player = player;
+	        this.board = board;
+	        this.randomizer = randomizer;
+	    }
 
 
-    //check if they can buy
-    @Override
-    protected boolean canPlayerBuy() {
-        return player.hasResourcesForCity();
-    }
-
-
-
-    @Override
-    protected Object generatePlacement() {
-        return randomizer.randomSelection(0, 53);
-    }
+	    //check if they can buy
+	    @Override
+	    protected boolean canPlayerBuy() {
+	        return player.getResourceHand().canBuyCity() && player.getPlayerCitiesLeft() > 0;
+	    }
 
 
 
-    @Override
-    protected boolean validatePlacement(Object placement) {
-        int nodeID = (Integer) placement;
+	    @Override
+	    protected Object generatePlacement() {
+	        //return randomizer.randomSelection(0, 53);
 
-        Node node = board.getNode(nodeID);
+	        if(player.getPlayerSettlements().isEmpty())
+	            return null;
 
-        //check if there is a building on node
-        if (!node.isOccupied()){
+	        int i = randomizer.randomSelection(
+	                0,
+	                player.getPlayerSettlements().size()-1
+	        );
 
-            return false; //if there is no settlement on the building, cannot build a city
-
-        }
-
-        //makes sure that the building is a settlement and not a city
-        if (!(node.getBuilding() instanceof BuildSettlement)){
-
-            return false; //if it's not a settlement, can't upgrade
-        }
-
-        BuildSettlement settlement = (BuildSettlement) node.getBuilding(); //check to see which player owns the settlement
-
-        //checks if the settlement belongs to the current player
-        if (settlement.player != this.player){
-
-            return false; //if the settlement belongs to another player, can't build a city
-
-        }
-
-        return true; //if all checks pass, the placement is valid
-    }
+	        return player.getPlayerSettlements().get(i);
+	    }
 
 
 
-    @Override
-    protected void doBuild(Object placement) {
-        int nodeID = (Integer) placement;
-        Node node = board.getNode(nodeID);
-
-        //pay for resources used
-        player.payForCity();
-        player.useCityPiece();
-
-        //upgrade building
-        node.placeBuilding(this);
-    }
+	    @Override
+	    protected boolean validatePlacement(Object placement) {
 
 
-    @Override
-    public void printAction(Object placement) {
-        int nodeID = (Integer) placement;
-        System.out.println("Player " + player.getID() + " upgraded settlement to city at node " + nodeID);
-    }
+	        Settlement s = (Settlement) placement;
+	        return s.getOwner() == player.getPlayerID();
+
+
+	    }
+
+
+
+	    @Override
+	    protected void doBuild(Object placement) {
+
+
+	        Settlement oldS = (Settlement) placement;
+	        Node node = oldS.getNode();
+
+	        player.getResourceHand().payForCity();
+
+	        City c = new City(node, player.getPlayerID());
+
+	        node.placeCity(c); // replaces settlement
+
+	        player.playerUpgradeToCity(oldS, c);
+
+
+	    }
+
+
+
+
+	    @Override
+	    public void printAction(Object placement) {
+
+	        Settlement s = (Settlement) placement;
+
+	        System.out.println("Player " + player.getPlayerID() + " upgraded node " + s.getNode().getNodeID() + " to a city");
+	        
+	    }
+	    
+//	
+//	public BuildCity(Player player, Board board, Randomizer randomizer) {
+//        this.player = player;
+//        this.board = board;
+//        this.randomizer = randomizer;
+//    }
+//
+//
+//    //check if they can buy
+//    @Override
+//    protected boolean canPlayerBuy() {
+//        return player.hasResourcesForCity();
+//    }
+//
+//
+//
+//    @Override
+//    protected Object generatePlacement() {
+//        return randomizer.randomSelection(0, 53);
+//    }
+//
+//
+//
+//    @Override
+//    protected boolean validatePlacement(Object placement) {
+//        int nodeID = (Integer) placement;
+//
+//        Node node = board.getNode(nodeID);
+//
+//        //check if there is a building on node
+//        if (!node.isOccupied()){
+//
+//            return false; //if there is no settlement on the building, cannot build a city
+//
+//        }
+//
+//        //makes sure that the building is a settlement and not a city
+//        if (!(node.getBuilding() instanceof BuildSettlement)){
+//
+//            return false; //if it's not a settlement, can't upgrade
+//        }
+//
+//        BuildSettlement settlement = (BuildSettlement) node.getBuilding(); //check to see which player owns the settlement
+//
+//        //checks if the settlement belongs to the current player
+//        if (settlement.player != this.player){
+//
+//            return false; //if the settlement belongs to another player, can't build a city
+//
+//        }
+//
+//        return true; //if all checks pass, the placement is valid
+//    }
+//
+//
+//
+//    @Override
+//    protected void doBuild(Object placement) {
+//        int nodeID = (Integer) placement;
+//        Node node = board.getNode(nodeID);
+//
+//        //pay for resources used
+//        player.payForCity();
+//        player.useCityPiece();
+//
+//        //upgrade building
+//        node.placeBuilding(this);
+//    }
+//
+//
+//    @Override
+//    public void printAction(Object placement) {
+//        int nodeID = (Integer) placement;
+//        System.out.println("Player " + player.getID() + " upgraded settlement to city at node " + nodeID);
+//    }
     
     
 //	/**

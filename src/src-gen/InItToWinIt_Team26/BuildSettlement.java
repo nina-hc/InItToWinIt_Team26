@@ -11,71 +11,160 @@ package InItToWinIt_Team26;
 public class BuildSettlement extends Build {
 	
 	
-	
-	
-	 public BuildSettlement(Player player, Board board, Randomizer randomizer) {
-	        this.player = player;
-	        this.board = board;
-	        this.randomizer = randomizer;
-	    }
+	public BuildSettlement(Player player, Board board, Randomizer randomizer) {
+        this.player = player;
+        this.board = board;
+        this.randomizer = randomizer;
+    }
 
 
 
-	    @Override
-	    protected boolean canPlayerBuy() {
-	        return player.hasResourcesForSettlement();
-	    }
+    @Override
+    protected boolean canPlayerBuy() {
+
+        return player.getResourceHand().canBuySettlement() && player.getPlayerSettlementsLeft() > 0;
+
+        
+    }
 
 
 
-	    //generate a placement
-	    @Override
-	    protected Object generatePlacement() {
-	        // generates a random place
-	        return randomizer.randomSelection(0, 53);
-	    }
+    //generate a placement
+    @Override
+    protected Object generatePlacement() {
+        // generates a random place
+        int nodeID = randomizer.randomSelection(0,53);
+        return board.getNode(nodeID);
+
+        //return randomizer.randomSelection(0, 53);
+
+    }
 
 
 
-	    @Override
-	    protected boolean validatePlacement(Object placement) {
-
-	        int nodeID = (Integer) placement;
-
-	        //check if the node empty
-	        if (board.getNode(nodeID).isOccupied()) {
-	            return false;
-	        }
-
-	        //the distance rule
-	        for (int neighbor : board.getNeighbors(nodeID)) {
-	            if (board.getNode(neighbor).isOccupied()) {
-	                return false;
-	            }
-	        }
-
-	        return true;
-	    }
 
 
+    @Override
+    protected boolean validatePlacement(Object placement) {
 
-	    @Override
-	    protected void doBuild(Object placement) {
+        Node node = (Node) placement;
 
-	        int nodeID = (Integer) placement;
+        //must be empty
+        if(node.isOccupied())
+            return false;
 
-	        player.payForSettlement();
-	        player.useSettlementPiece();
+        //distance rule, check for no adjacent buildings
+        for(int i=0;i<54;i++){
+            if(board.isAdjacent(node.getNodeID(), i)){
+                Node neighbor = board.getNode(i);
+                if(neighbor.isOccupied())
+                    return false;
+            }
+        }
 
-	        board.getNode(nodeID).placeBuilding(this);
-	    }
+        return true;
+
+    }
 
 
 
-	    @Override
-	    public void printAction(Object placement) {
-	        int nodeID = (Integer) placement;
+    @Override
+    protected void doBuild(Object placement) {
 
-	        System.out.println("Player " + player.getID() + " built a settlement at node " + nodeID);
-	    }
+        Node node = (Node) placement;
+
+        player.getResourceHand().payForSettlement();
+
+        Settlement s = new Settlement(node, player.getPlayerID());
+
+        node.placeSettlement(s);
+        player.playerAddSettlement(s);
+
+
+    }
+
+    
+
+
+
+    @Override
+    public void printAction(Object placement) {
+        Node node = (Node) placement;
+      
+
+        System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + node.getNodeID());
+    }
+    
+//	
+//	/**
+//	 * @param player : 
+//	 * @param board :
+//	 * @param randomizer : 
+//	 * */
+//	 public BuildSettlement(Player player, Board board, Randomizer randomizer) {
+//	        this.player = player;
+//	        this.board = board;
+//	        this.randomizer = randomizer;
+//	    }
+//
+//
+//
+//	 
+//	    @Override
+//	    protected boolean canPlayerBuy() {
+//	        return player.hasResourcesForSettlement();
+//	    }
+//
+//
+//
+//	    //generate a placement
+//	    @Override
+//	    protected Object generatePlacement() {
+//	        // generates a random place
+//	        return randomizer.randomSelection(0, 53);
+//	    }
+//
+//
+//
+//	    @Override
+//	    protected boolean validatePlacement(Object placement) {
+//
+//	        int nodeID = (Integer) placement;
+//
+//	        //check if the node empty
+//	        if (board.getNode(nodeID).isOccupied()) {
+//	            return false;
+//	        }
+//
+//	        //the distance rule
+//	        for (int neighbor : board.getNeighbors(nodeID)) {
+//	            if (board.getNode(neighbor).isOccupied()) {
+//	                return false;
+//	            }
+//	        }
+//
+//	        return true;
+//	    }
+//
+//
+//
+//	    @Override
+//	    protected void doBuild(Object placement) {
+//
+//	        int nodeID = (Integer) placement;
+//
+//	        player.payForSettlement();
+//	        player.useSettlementPiece();
+//
+//	        board.getNode(nodeID).placeBuilding(this);
+//	    }
+//
+//
+//
+//	    @Override
+//	    public void printAction(Object placement) {
+//	        int nodeID = (Integer) placement;
+//
+//	        System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + nodeID);
+//	    }
 }

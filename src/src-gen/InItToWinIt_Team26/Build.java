@@ -82,6 +82,7 @@ public abstract class Build {
 	 */
 	public abstract void printAction(Object placement);
 	
+	
 	public Player getPlayer() {
         return player;
     }

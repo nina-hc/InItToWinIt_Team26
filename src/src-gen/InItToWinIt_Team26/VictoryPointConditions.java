@@ -9,77 +9,70 @@ package InItToWinIt_Team26;
  * 
  */
 public class VictoryPointConditions {
-
+	
+	
 	private Player player;
     private Board board;
 
     public VictoryPointConditions(Player player, Board board) {
-        
-    	this.player = player;
+        this.player = player;
         this.board = board;
     }
 
     // Check if the player has any settlements
     public boolean didPlayerBuildSettlement() {
-        
-    	for (int i = 0; i < 54; i++) {
-            
-    		Node node = board.getNode(i);
-            
-    		if (node.isOccupied() && node.getBuilding() instanceof BuildSettlement) {
-                
-    			BuildSettlement settlement = (BuildSettlement) node.getBuilding();
-                
-    			if (settlement.getPlayer() == player) {
-                    
-    				return true;
-                }
+
+        for (int i = 0; i < 54; i++) {
+            Node node = board.getNode(i);
+
+            Settlement settlement = node.getSettlement();
+
+            if (settlement != null && settlement.getOwner() == player.getPlayerID()) {
+                return true;
             }
         }
-    	
         return false;
+
     }
 
-    //check if the player has any cities
+    // Check if the player has any cities
     public boolean didPlayerBuildCity() {
-        
-    	for (int i = 0; i < 54; i++) {
-            
-    		Node node = board.getNode(i);
-            
-            if (node.isOccupied() && node.getBuilding() instanceof BuildCity) {
-                
-            	BuildCity city = (BuildCity) node.getBuilding();
-                
-                if (city.getPlayer() == player) {
-                    return true;
-                }
+
+        for (int i = 0; i < 54; i++) {
+            Node node = board.getNode(i);
+
+            City city = node.getCity();
+
+            if (city != null && city.getOwner() == player.getPlayerID()) {
+                return true;
             }
         }
         return false;
+
+//       
     }
 
-    //Count total victory points
+    // Count total victory points
     public int calculateVictoryPoints() {
         int vp = 0;
 
         for (int i = 0; i < 54; i++) {
             Node node = board.getNode(i);
-            if (node.isOccupied()) {
-                Build building = node.getBuilding();
 
-                //Settlements = 1 VP
-                if (building instanceof BuildSettlement && building.getPlayer() == player) {
-                    vp += 1;
-                }
-                //Cities = 2 VP
-                else if (building instanceof BuildCity && building.getPlayer() == player) {
-                    vp += 2;
-                }
+            // Settlement = 1 VP
+            Settlement settlement = node.getSettlement();
+            if (settlement != null && settlement.getOwner() == player.getPlayerID()) {
+                vp += 1;
+            }
+
+            // City = 2 VP
+            City city = node.getCity();
+            if (city != null && city.getOwner() == player.getPlayerID()) {
+                vp += 2;
             }
         }
         
-        //THIS STUFF IS FOR AFTER BUILD ROAD IS COMPLETE
+//        
 
 //        //Longest Road
 //        if(longestRoadForPlayer(player.getID()) >= 5) {
@@ -102,6 +95,99 @@ public class VictoryPointConditions {
     public boolean checkWinConditions() {
         return calculateVictoryPoints() >= 10;
     }
+
+//	private Player player;
+//    private Board board;
+//
+//    public VictoryPointConditions(Player player, Board board) {
+//        
+//    	this.player = player;
+//        this.board = board;
+//    }
+//
+//    // Check if the player has any settlements
+//    public boolean didPlayerBuildSettlement() {
+//        
+//    	for (int i = 0; i < 54; i++) {
+//            
+//    		Node node = board.getNode(i);
+//            
+//    		if (node.isOccupied() && node.getBuilding() instanceof BuildSettlement) {
+//                
+//    			BuildSettlement settlement = (BuildSettlement) node.getBuilding();
+//                
+//    			if (settlement.getPlayer() == player) {
+//                    
+//    				return true;
+//                }
+//            }
+//        }
+//    	
+//        return false;
+//    }
+//
+//    //check if the player has any cities
+//    public boolean didPlayerBuildCity() {
+//        
+//    	for (int i = 0; i < 54; i++) {
+//            
+//    		Node node = board.getNode(i);
+//            
+//            if (node.isOccupied() && node.getBuilding() instanceof BuildCity) {
+//                
+//            	BuildCity city = (BuildCity) node.getBuilding();
+//                
+//                if (city.getPlayer() == player) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
+//
+//    //Count total victory points
+//    public int calculateVictoryPoints() {
+//        int vp = 0;
+//
+//        for (int i = 0; i < 54; i++) {
+//            Node node = board.getNode(i);
+//            if (node.isOccupied()) {
+//                Build building = node.getBuilding();
+//
+//                //Settlements = 1 VP
+//                if (building instanceof BuildSettlement && building.getPlayer() == player) {
+//                    vp += 1;
+//                }
+//                //Cities = 2 VP
+//                else if (building instanceof BuildCity && building.getPlayer() == player) {
+//                    vp += 2;
+//                }
+//            }
+//        }
+//        
+//        //THIS STUFF IS FOR AFTER BUILD ROAD IS COMPLETE
+//
+////        //Longest Road
+////        if(longestRoadForPlayer(player.getID()) >= 5) {
+////            vp += 2;
+////        }
+////
+////        //Largest Army
+////        if(hasLargestArmy(player, game.getMostKnightsPlayed())) {
+////            vp += 2;
+////        }
+////
+////        //Victory Point cards
+////        vp += player.getVictoryPointCards();
+//
+//
+//        return vp;
+//    }
+//
+//    //Check if player has won by have 10 or more Victory Points
+//    public boolean checkWinConditions() {
+//        return calculateVictoryPoints() >= 10;
+//    }
 	
 	
 	
