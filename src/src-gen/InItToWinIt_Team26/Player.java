@@ -4,111 +4,117 @@
 
 package InItToWinIt_Team26;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /************************************************************/
 /**
  * 
  */
-
 public class Player {
-	
-	
 	private int playerID;
-    private int victoryPoints;
+	private int victoryPoints;
+	private ResourceHand resourceHand;
 
-    private ResourceHand resourceHand;
+	/*Player Build Capacities */
+	//
+	private static final int maxRoads = 15;
+	private static final int maxSettlements = 5;
+	private static final int maxCities = 4;
+	
+	/*Track the Players Builds */
+	private List<Road> playerRoads;
+	private List<Settlement> playerSettlements;
+	private List<City> playerCities;
 
-    //Remaining pieces
-    private int settlementsLeft = 5;
-    private int citiesLeft = 4;
-    private int roadsLeft = 15;
+	/*Constructor */
+	public Player(int playerID){
+		this.playerID=playerID;
+		this.victoryPoints=2;
+		this.resourceHand= new ResourceHand();
+		this.playerRoads= new ArrayList<>();
+		this.playerSettlements= new ArrayList<>();
+		this.playerCities= new ArrayList<>();
+	}
 
+	/*Getters for player board buildings */
+	public List<Road> getPlayerRoads(){
+		return playerRoads;
+	}
+	public List<Settlement> getPlayerSettlements(){
+		return playerSettlements;
+	}
 
+	public List<City> getPlayerCities(){
+		return playerCities;
+	}
 
-    public Player(int id) {
-        this.playerID = id;
-        this.resourceHand = new ResourceHand();
-        this.victoryPoints = 0;
-    }
+	/**Get the build supplies, buildings not used yet 
+	 * The max - their current number
+	 */
 
+	public int getPlayerRoadsLeft(){
+		//Need to verify size edge cases for when theres nothing in there 
+		return maxRoads-playerRoads.size();//size is the number of elements
+	}
 
+	public int getPlayerSettlementsLeft(){
+		return maxSettlements-playerSettlements.size();
+	}
 
-    //getter
-    public int getID() {
-        return playerID;
-    }
+	public int getPlayerCitiesLeft(){
+		return maxCities-playerCities.size();
+	}
+	
+	/*---Adding the build to the player, not to the board---*/
+	public void playerAddRoad(Road road){
+		if(getPlayerRoadsLeft()<=0){
+			throw new IllegalStateException("Error: The player has no roads left");
+		}
+		playerRoads.add(road);
+		//not including victory points
+	}
 
-    //getter
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
+	public void playerAddSettlement(Settlement settlement){
+		if(getPlayerSettlementsLeft()<=0){
+			throw new IllegalStateException("Error: The player has no settlements left");
+		}
+		playerSettlements.add(settlement);
+		//not including victory points
+	}
+	
+	//
 
+	/** Dealing with adding a city and removing the settlement
+	 * nodeID of the settlement being removed
+	 */
+	public void playerUpgradeToCity(Settlement settlementBeingUpgraded, City cityPlaced){//maybe just an int rather than settlement
+		if(getPlayerCitiesLeft()<=0){
+			throw new IllegalStateException("Error: The player has no cities left");
+		}
 
+		//check if settlment is valid and also remove it, could do it more explicitly 
+		if(!playerSettlements.remove(settlementBeingUpgraded)){//if there was no settlement to remove
+			throw new IllegalArgumentException("Error: No settlement to be upgraded there");
+		}//since the max is size based this also puts it back in store
 
-    //settlement methods
-    public boolean hasResourcesForSettlement() {
-        
-        return resourceHand.has(ResourceType.WOOD,1) && resourceHand.has(ResourceType.BRICK,1) && resourceHand.has(ResourceType.WHEAT,1) && resourceHand.has(ResourceType.SHEEP,1) && settlementsLeft > 0;
-    }
+		/*add city for player */
+		playerCities.add(cityPlaced);
 
-    public void payForSettlement() {
-        resourceHand.remove(ResourceType.WOOD,1);
-        resourceHand.remove(ResourceType.BRICK,1);
-        resourceHand.remove(ResourceType.WHEAT,1);
-        resourceHand.remove(ResourceType.SHEEP,1);
-    }
+		//not adding victory points here 
 
-    public void useSettlementPiece() {
-        settlementsLeft--;
-        victoryPoints += 1;
-    }
+	}
 
+	/*Msc Getters I need to check if we need */
+	public int getPlayerID(){
+		return playerID;
+	}
 
-
-    public boolean hasResourcesForCity() {
-        return resourceHand.has(ResourceType.WHEAT,2) && resourceHand.has(ResourceType.ORE,3) && citiesLeft > 0;
-    }
-
-    public void payForCity() {
-        resourceHand.remove(ResourceType.WHEAT,2);
-        resourceHand.remove(ResourceType.ORE,3);
-    }
-
-    public void useCityPiece() {
-        citiesLeft--;
-        victoryPoints += 1; //extra victory points for upgrade
-    }
-    
-    
-//	/**
-//	 * 
-//	 */
-//	private int playerID;
-//	/**
-//	 * 
-//	 */
-//	private int victoryPoints;
-//	/**
-//	 * 
-//	 */
-//	private EMap buildMaterials;
-//	/**
-//	 * 
-//	 */
-//	private EEList playerResources;
-//	/**
-//	 * 
-//	 */
-//	private EEList playerRoads;
-//	/**
-//	 * 
-//	 */
-//	private EEList playerSettlements;
-//	/**
-//	 * 
-//	 */
-//	private EEList playerCities;
-//	/**
-//	 * 
-//	 */
-//	public resourceHand resourcehand;
+	public int getVictoryPoints(){
+		return victoryPoints;
+	}
+	public ResourceHand getResourceHand(){
+		return resourceHand;
+	}
+	
 }

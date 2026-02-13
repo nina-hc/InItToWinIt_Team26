@@ -12,8 +12,17 @@ public class Road {
         this.ownerID=ownerID;
     }
 
+    /*Getters */
     public Node getNodeA(){
-        
+        return nodeA;
+    }
+
+    public Node getNodeB(){
+        return nodeB;
+    }
+
+    public int getOwner(){
+        return ownerID;
     }
     
     

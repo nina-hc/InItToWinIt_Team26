@@ -1,13 +1,6 @@
 package InItToWinIt_Team26;
 
 public enum ResourceType {
-<<<<<<< HEAD
-	WOOD,
-    BRICK,
-    WHEAT,
-    SHEEP,
-    ORE
-=======
 	LUMBER("Lumber"),
     BRICK("Brick"),
     WOOL("Wool"),
@@ -24,6 +17,5 @@ public enum ResourceType {
     public String getResourceName(){
         return resourceName;
     }
->>>>>>> branch 'main' of https://github.com/nina-hc/InItToWinIt_Team26.git
 
 }
