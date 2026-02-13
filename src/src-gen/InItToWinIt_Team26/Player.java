@@ -80,7 +80,8 @@ public class Player {
 			throw new IllegalStateException("Error: The player has no settlements left");
 		}
 		playerSettlements.add(settlement);
-		//not including victory points
+		
+		victoryPoints += 1;
 	}
 	
 	//
@@ -101,7 +102,7 @@ public class Player {
 		/*add city for player */
 		playerCities.add(cityPlaced);
 
-		//
+		victoryPoints += 2;
 
 	}
 
