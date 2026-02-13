@@ -9,14 +9,18 @@ public class Node {         //node object
 
     //instance variables
     private int nodeID;
-    private Build building;     //what type of building (settlement/city) is on this node
 
+    //private Build building;     //what type of building (settlement/city) is on this node
+    private Settlement settlement;
+    private City city;
 
 
     //constructor:
     public Node(int nodeID) {   //allowing you to assign nodeIDs to the node object
         this.nodeID = nodeID;
-        this.building = null;       //node begins empty
+        //this.building = null;       //node begins empty
+        this.settlement = null;
+        this.city = null;
     }
 
     //nodeID getter:
@@ -26,7 +30,7 @@ public class Node {         //node object
 
     //is there something built on the node
     public boolean isOccupied() {
-        if (building != null) {
+        if (settlement != null || city != null) {
             return true;
         } else {
             return false;
@@ -35,9 +39,22 @@ public class Node {         //node object
 
     //im thinking this can return true/false for build
     //update occupied status when a building is placed
-    public void placeBuilding(Build building) {
+
+
+    //SETTLEMENT
+    public void placeSettlement(Settlement settlement) {
         if (!isOccupied()) {    //placing a building on node
-            this.building  = building;
+            this.settlement  = settlement;
+        } else {
+            System.out.println("Node is occupied");
+        }
+
+    }
+
+    //CITY
+    public void placeCity(City city) {
+        if (!isOccupied()) {    //placing a building on node
+            this.city  = city;
         } else {
             System.out.println("Node is occupied");
         }
@@ -45,8 +62,12 @@ public class Node {         //node object
     }
 
     //building getter
-    public Build getBuilding() {
-        return building;            //if empty... returns null... if its full it will return the Build object
+    public Settlement getSettlement() {
+        return settlement;            //if empty... returns null... if its full it will return the Build object
+    }
+
+    public City getCity() {
+        return city;            //if empty... returns null... if its full it will return the Build object
     }
 
 }

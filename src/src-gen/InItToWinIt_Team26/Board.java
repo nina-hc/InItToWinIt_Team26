@@ -13,7 +13,7 @@ public class Board {
 
     //dynamic (changing) arrays to keep track of occupied nodes
     //private int[] settlementMatrix;   //for settlements and cities... index = nodeID, value = playerID same for roads GETTING RID OF THIS CUZ WANT NODE TO STORE ITS OWN STUFF
-    private int[][] roadMatrix;     //for roads
+    private Road[][] roadMatrix;     //for roads
 
 
     //-----------------------------------------------------
@@ -26,7 +26,7 @@ public class Board {
 
         adjacentMatrix = new int[54][54];   //fill all ints with 0s
         //settlementMatrix = new int[54];   //NODES WILL SELF CARE
-        roadMatrix = new int[54][54];
+        roadMatrix = new Road[54][54];
 
         originalMap();  //build map bro
     }
@@ -44,25 +44,25 @@ public class Board {
 
         //create tile objects:
         //tiles[INDEX/ID] = new Tile(ID, ROLLNUM, RESOURCE)
-        tiles[0] = new Tile(0, 10, "wood");
-        tiles[1] = new Tile(1, 11, "wheat");
-        tiles[2] = new Tile(2, 8, "brick");
-        tiles[3] = new Tile(3, 3, "ore");
-        tiles[4] = new Tile(4, 11, "sheep");
-        tiles[5] = new Tile(5, 5, "sheep");
-        tiles[6] = new Tile(6, 12, "sheep");
-        tiles[7] = new Tile(7, 3, "wheat");
-        tiles[8] = new Tile(8, 6, "ore");
-        tiles[9] = new Tile(9, 4, "wood");
-        tiles[10] = new Tile(10, 6, "ore");
-        tiles[11] = new Tile(11, 9, "wheat");
-        tiles[12] = new Tile(12, 5, "wood");
-        tiles[13] = new Tile(13, 9, "brick");
-        tiles[14] = new Tile(14, 8, "brick");
-        tiles[15] = new Tile(15, 4, "wheat");
-        tiles[16] = new Tile(16, 7, "desert");
-        tiles[17] = new Tile(17, 2, "wood");
-        tiles[18] = new Tile(18, 10, "sheep");
+        tiles[0] = new Tile(0, 10, ResourceType.LUMBER);
+        tiles[1] = new Tile(1, 11, ResourceType.GRAIN);
+        tiles[2] = new Tile(2, 8, ResourceType.BRICK);
+        tiles[3] = new Tile(3, 3, ResourceType.ORE);
+        tiles[4] = new Tile(4, 11, ResourceType.WOOL);
+        tiles[5] = new Tile(5, 5, ResourceType.WOOL);
+        tiles[6] = new Tile(6, 12, ResourceType.WOOL);
+        tiles[7] = new Tile(7, 3, ResourceType.GRAIN);
+        tiles[8] = new Tile(8, 6, ResourceType.ORE);
+        tiles[9] = new Tile(9, 4, ResourceType.LUMBER);
+        tiles[10] = new Tile(10, 6, ResourceType.ORE);
+        tiles[11] = new Tile(11, 9, ResourceType.GRAIN);
+        tiles[12] = new Tile(12, 5, ResourceType.LUMBER);
+        tiles[13] = new Tile(13, 9, ResourceType.BRICK);
+        tiles[14] = new Tile(14, 8, ResourceType.BRICK);
+        tiles[15] = new Tile(15, 4, ResourceType.GRAIN);
+        tiles[16] = new Tile(16, 7, ResourceType.DESERT);
+        tiles[17] = new Tile(17, 2, ResourceType.LUMBER);
+        tiles[18] = new Tile(18, 10, ResourceType.WOOL);
 
         //more tile stuff...
         //tiles[INDEX/ID].setNodes(new int[] {6 NODES ON TILE});
@@ -205,12 +205,29 @@ public class Board {
     //BUILDINGS
 
     //this is to update the occupancy matrix
-    public boolean placeSettlementOnMat(int nodeID, Build building) {
+    //SETTLEMENT
+    public boolean placeSettlementOnMat(int nodeID, int playerID) {
         //settlementMatrix[nodeID] = playerID;    //this will be marked with player id so its known whos settlement is on the node
         Node node = nodes[nodeID];
 
         if (!node.isOccupied()) {   //check node object if it's occupied
-            node.placeBuilding(building);
+            Settlement settlement = new Settlement(node, playerID); //make object
+            node.placeSettlement(settlement);   //place object (NOTE TO SELF, I DO THIS FOR ALL THE BUILDINGS)
+            return true;
+        }
+
+        return false;
+    }
+
+    //this is to update the occupancy matrix
+    //CITY
+    public boolean placeCityOnMat(int nodeID, int playerID) {
+        //settlementMatrix[nodeID] = playerID;    //this will be marked with player id so its known whos settlement is on the node
+        Node node = nodes[nodeID];
+
+        if (!node.isOccupied()) {   //check node object if it's occupied
+            City city = new City(node, playerID); //make object
+            node.placeCity(city);   //place object (NOTE TO SELF, I DO THIS FOR ALL THE BUILDINGS)
             return true;
         }
 
@@ -222,25 +239,31 @@ public class Board {
     //**************************************
     //ROADS
 
-    public boolean placeRoad(int nodeOne, int nodeTwo, int playerID) {
+    public boolean placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
 
         //roadMatrix[i][j] = 0 : no road
         //roadMatrix[i][j] = playerID : player that owns road
 
         //check is nodes are adjacent
-        if(!isAdjacent(nodeOne, nodeTwo)) {
+        if(!isAdjacent(nodeOneID, nodeTwoID)) {
             System.out.println("ERROR: Nodes are not adjacent");
             return false;
         }
 
-        if (hasRoad(nodeOne, nodeTwo)) {
+        if (hasRoad(nodeOneID, nodeTwoID)) {
             System.out.println("ERROR: Road already exsists");
             return false;
         }
 
-        //assign road to player
-        roadMatrix[nodeOne][nodeTwo] = playerID;
-        roadMatrix[nodeTwo][nodeOne] = playerID;
+        //retrieve node objects
+        Node nodeOne = nodes[nodeOneID];
+        Node nodeTwo = nodes[nodeTwoID];
+
+        //making road object
+        Road road = new Road(nodeOne, nodeTwo, playerID);
+
+        roadMatrix[nodeOneID][nodeTwoID] = road;
+        roadMatrix[nodeTwoID][nodeOneID] = road;
 
         return true;
 
@@ -249,7 +272,7 @@ public class Board {
 
     //method to check if a road exists
     public boolean hasRoad(int nodeOne, int nodeTwo) {
-        if (roadMatrix[nodeOne][nodeTwo] != 0) {
+        if (roadMatrix[nodeOne][nodeTwo] != null) {
             return true;
         } else {
             return false;

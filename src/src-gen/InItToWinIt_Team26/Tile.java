@@ -7,13 +7,13 @@ public class Tile {
     //instance variables:
     private int tileID;
     private int tileRollNum;
-    private String resourceType;
+    private ResourceType resourceType;
     private int[] nodeIDs;  //to know associated nodes with each tile
 
 
 
     //constructor:
-    public Tile(int tileID, int tileRollNum, String resourceType) {
+    public Tile(int tileID, int tileRollNum, ResourceType resourceType) {
         this.tileID = tileID;
         this.tileRollNum = tileRollNum;
         this.resourceType = resourceType;
@@ -37,7 +37,7 @@ public class Tile {
     }
 
     //resourceType getter
-    public String getResourceType() {
+    public ResourceType getResourceType() {
         return resourceType;
     }
 
