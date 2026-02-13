@@ -59,8 +59,7 @@ public class Game {
                 // Place road (free during setup)
                 initialRoadPlacement(player);
                 
-                // On second settlement, give starting resources
-                if (round == 1 && settlement != null) {
+                if (settlement != null) {
                     giveStartingResources(player, settlement);
                 }
             }
@@ -159,7 +158,7 @@ public class Game {
                 Settlement s = new Settlement(node, player.getPlayerID());
                 node.placeSettlement(s);
                 player.playerAddSettlement(s);
-                System.out.println("Player " + player.getPlayerID() + " placed initial settlement at node " + nodeID);
+                System.out.println("[Player " + player.getPlayerID() + "]: placed initial settlement at " + nodeID);
                 return s;
             }
             
@@ -196,7 +195,7 @@ public class Game {
                 if (!board.hasRoad(settlementNodeID, neighborID)) {
                     Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
                     player.playerAddRoad(road);
-                    System.out.println("Player " + player.getPlayerID() + " placed initial road between " + settlementNodeID + " and " + neighborID);
+                    System.out.println("[Player " + player.getPlayerID() + "]: placed initial road between " + settlementNodeID + " and " + neighborID);
                     return;
                 }
             }

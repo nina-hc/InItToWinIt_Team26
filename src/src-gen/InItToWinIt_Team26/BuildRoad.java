@@ -203,7 +203,7 @@ public class BuildRoad extends Build {
 		int node1ID = edges.getNodeToID();
 		int node2ID = edges.getNodeFromID();
 
-		System.out.printf("["+player.getPlayerID()+"] : [Built a Road between %d and %d]\n",node1ID,node2ID);
+		System.out.printf("[Player "+player.getPlayerID()+"] : [Built a Road between %d and %d]\n",node1ID,node2ID);
 	}
 
 	
