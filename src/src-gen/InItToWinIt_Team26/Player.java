@@ -30,7 +30,7 @@ public class Player {
 	/*Constructor */
 	public Player(int playerID){
 		this.playerID=playerID;
-		this.victoryPoints=2;
+		this.victoryPoints=0;
 		this.resourceHand= new ResourceHand();
 		this.playerRoads= new ArrayList<>();
 		this.playerSettlements= new ArrayList<>();

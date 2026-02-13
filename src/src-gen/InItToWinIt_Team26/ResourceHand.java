@@ -60,7 +60,7 @@ public class ResourceHand {
 
 	//can they afford a city
 	public boolean canBuyCity(){
-		return(hasResource(ResourceType.GRAIN, 2)&&hasResource(ResourceType.ORE, 1));
+		return(hasResource(ResourceType.GRAIN, 2)&&hasResource(ResourceType.ORE, 3));
 	}
 
 	/** Pay for the build
@@ -106,4 +106,13 @@ public class ResourceHand {
 		return total;
 	}
 	
+	//debuging to string 
+	public String toString() {
+		return String.format("Lumber:%d Brick:%d Wool:%d Grain:%d Ore:%d",
+			resources.get(ResourceType.LUMBER),
+			resources.get(ResourceType.BRICK),
+			resources.get(ResourceType.WOOL),
+			resources.get(ResourceType.GRAIN),
+			resources.get(ResourceType.ORE));
+	}
 }

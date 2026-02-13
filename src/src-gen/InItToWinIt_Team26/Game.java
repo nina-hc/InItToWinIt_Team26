@@ -53,8 +53,16 @@ public class Game {
 
             for (int i = start; i != end; i += step) {
                 Player player = players[i];
-                randomSettlementPlacement(player);
-                randomRoadPlacement(player);
+                // Place settlement (free during setup)
+                Settlement settlement = initialSettlementPlacement(player);
+                
+                // Place road (free during setup)
+                initialRoadPlacement(player);
+                
+                // On second settlement, give starting resources
+                if (round == 1 && settlement != null) {
+                    giveStartingResources(player, settlement);
+                }
             }
         }
     }
@@ -93,7 +101,7 @@ public class Game {
                 }
 
                 System.out.println("Player " + player.getPlayerID() + " hand: "
-                        + player.getResourceHand().toString());
+                        + player.getResourceHand());
 
 
             }
@@ -112,8 +120,8 @@ public class Game {
     public void printScoreBoard(int roundNumber) {
         System.out.print("[" + roundNumber + "] Scoreboard: ");
         for (Player player : players) {
-            VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
-            System.out.print("Player" + player.getPlayerID() + "=" + vpCheck.calculateVictoryPoints() + " ");
+            //VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+            System.out.print("Player" + player.getPlayerID() + "=" + player.getVictoryPoints() + " ");
         }
         System.out.println();
     }
@@ -121,16 +129,108 @@ public class Game {
     /**
      * Attempt to place a settlement randomly (used in initial placement)
      */
-    public void randomSettlementPlacement(Player player) {
-        BuildSettlement settlement = new BuildSettlement(player, board, randomizer);
-        settlement.execute();
+    public Settlement initialSettlementPlacement(Player player) {
+        int attempts = 0;
+        int maxAttempts = 1000;
+        
+        while (attempts < maxAttempts) {
+            int nodeID = randomizer.randomSelection(0, 53);
+            Node node = board.getNode(nodeID);
+            
+            // Check if node is empty
+            if (node.isOccupied()) {
+                attempts++;
+                continue;
+            }
+            
+            // Check distance rule (no adjacent buildings)
+            boolean validDistance = true;
+            for (int i = 0; i < 54; i++) {
+                if (board.isAdjacent(nodeID, i)) {
+                    Node neighbor = board.getNode(i);
+                    if (neighbor.isOccupied()) {
+                        validDistance = false;
+                        break;
+                    }
+                }
+            }
+            
+            if (validDistance) {
+                Settlement s = new Settlement(node, player.getPlayerID());
+                node.placeSettlement(s);
+                player.playerAddSettlement(s);
+                System.out.println("Player " + player.getPlayerID() + " placed initial settlement at node " + nodeID);
+                return s;
+            }
+            
+            attempts++;
+        }
+        
+        System.out.println("ERROR: Could not place settlement for Player " + player.getPlayerID());
+        return null;
     }
 
     /**
      * Attempt to place a road randomly (used in initial placement)
      */
-    public void randomRoadPlacement(Player player) {
-        BuildRoad road = new BuildRoad(player, board, randomizer);
-        road.execute();
+    public void initialRoadPlacement(Player player) {
+        int attempts = 0;
+        int maxAttempts = 1000;
+        
+        while (attempts < maxAttempts) {
+            // Find a settlement belonging to this player
+            Settlement playerSettlement = null;
+            for (Settlement s : player.getPlayerSettlements()) {
+                playerSettlement = s;
+                break; // Use first (most recent) settlement
+            }
+            
+            if (playerSettlement == null) {
+                return;
+            }
+            
+            int settlementNodeID = playerSettlement.getNode().getNodeID();
+            
+            // Try to place road adjacent to settlement
+            for (int neighborID : board.getNeighbors(settlementNodeID)) {
+                if (!board.hasRoad(settlementNodeID, neighborID)) {
+                    Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
+                    player.playerAddRoad(road);
+                    System.out.println("Player " + player.getPlayerID() + " placed initial road between " + settlementNodeID + " and " + neighborID);
+                    return;
+                }
+            }
+            
+            attempts++;
+        }
+        
+        System.out.println("ERROR: Could not place road for Player " + player.getPlayerID());
     }
+
+    private void giveStartingResources(Player player, Settlement settlement) {
+        Node node = settlement.getNode();
+        
+        // Find tiles adjacent to this node
+        for (int tileID = 0; tileID < 19; tileID++) {
+            Tile tile = board.getTile(tileID);
+            int[] nodeIDs = tile.getNodeIDs();
+            
+            // Check if this tile is adjacent to the settlement
+            for (int id : nodeIDs) {
+                if (id == node.getNodeID()) {
+                    ResourceType resource = tile.getResourceType();
+                    if (resource != ResourceType.DESERT) {
+                        int received = bank.transferToPlayer(resource, 1);
+                        if (received > 0) {
+                            player.getResourceHand().addResource(resource, received);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        
+        System.out.println("Player " + player.getPlayerID() + " received starting resources: " + player.getResourceHand().toString());
+    }
+    
 }

@@ -53,11 +53,14 @@ public class Node {         //node object
 
     //CITY
     public void placeCity(City city) {
-        if (!isOccupied()) {    //placing a building on node
-            this.city  = city;
-        } else {
-            System.out.println("Node is occupied");
+        if(this.settlement==null){
+            throw new IllegalArgumentException("Error: No settlement here to replace");
         }
+        this.settlement=null;
+        this.city  = city;
+        
+        
+        
 
     }
 
