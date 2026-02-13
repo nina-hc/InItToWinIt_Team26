@@ -3,133 +3,106 @@
 // --------------------------------------------------------
 
 package InItToWinIt_Team26;
+import java.util.EnumMap;
+import java.util.Map;
 
 /************************************************************/
 /**
  * 
  */
 public class ResourceHand {
-	/*Initializing Resource Variables*/
-	private int lumber;
-	private int wool;
-	private int grain;
-	private int brick;
-	private int ore;
-
-	
+	/**Map to store resources
+	 * Key is the resource type and value is the amount they have of the resource
+	*/
+	private Map<ResourceType,Integer> resources;	
 	/*------Constructor-----*/
 	public ResourceHand(){
-		this.brick=0;
-		this.grain=0;
-		this.lumber=0;
-		this.ore=0;
-		this.wool=0;
+		/*A map for enums, the enum being resource type */
+		resources = new EnumMap<>(ResourceType.class);
+		/*Using a for each loop to set up resources to be 0 at the start */
+		for(ResourceType type: ResourceType.values()){
+			resources.put(type,0);//value of 0 in each key
+		}
 	}
 	
+	/*-----Adding a Resource----*/
+	//for distribute resource 
+	public void addResource(ResourceType type, int amount){//type isn't a great name but I didn't want to call it resource type again
+		if(amount<0){
+			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		//map method to add value to the value in map
+		resources.put(type, (resources.get(type) + amount));//getting the current amount in there and adding the amount and that's whats going in there.  
 
-	/*-----GETTERS-----*/
-	public int getLumber() {
-		return lumber;
-	}
-
-	public int getBrick() {
-		return brick;
-	}
-
-	public int getGrain() {
-		return grain;
 	}
 
-	public int getOre() {
-		return ore;
-	}
-	
-	public int getWool(){
-		return wool;
+	/*Getter, get the amount for a specific resource */
+	public int getResource(ResourceType type){
+		return resources.get(type);
 	}
 
-	/*Checking if the player can buy the different build types, admittedly in an ineffective way.*/
-	public boolean canBuyRoad() {
-		return lumber >= 1 && brick >=1;
+	/*Checking if the player has enough of a one specific resource*/
+	public boolean hasResource(ResourceType type, int amount){
+		return resources.get(type)>=amount;
 	}
-	
+	/*--Checking if the player can build something--*/
+
+	//can they afford a road
+	public boolean canBuyRoad(){
+		return (hasResource(ResourceType.LUMBER, 1)&&hasResource(ResourceType.BRICK, 1));
+	}
+
+	//can they afford a settlement
 	public boolean canBuySettlement(){
-		return lumber >= 1 && brick >= 1 && wool >= 1 && grain >= 1;
+		return (hasResource(ResourceType.BRICK, 1)&&hasResource(ResourceType.LUMBER, 1)&&hasResource(ResourceType.WOOL, 1)&&hasResource(ResourceType.GRAIN, 1));
 	}
 
+	//can they afford a city
 	public boolean canBuyCity(){
-		return ore >= 3 && grain >= 2;
+		return(hasResource(ResourceType.GRAIN, 2)&&hasResource(ResourceType.ORE, 1));
 	}
 
-	/*Pay for the builds by subtracting the building costs*/
+	/** Pay for the build
+	 * Pays for the builds by subtracting the building costs
+	 * 
+	*/
 	public void payForRoad(){
 		if (!canBuyRoad()){
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a road");
 		}
-		lumber -=1;
-		brick -=1;
+		resources.put(ResourceType.LUMBER, (resources.get(ResourceType.LUMBER)-1));
+		resources.put(ResourceType.BRICK, (resources.get(ResourceType.BRICK)-1));
 	}
 
 	public void payForSettlement(){
 		if(!canBuySettlement()){
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a settlement");
 		}
-		lumber -=1;
-		brick -=1;
-		wool -=1;
-		grain -=1;
+		resources.put(ResourceType.LUMBER, (resources.get(ResourceType.LUMBER)-1));
+		resources.put(ResourceType.BRICK, (resources.get(ResourceType.BRICK)-1));
+		resources.put(ResourceType.WOOL, (resources.get(ResourceType.WOOL)-1));
+		resources.put(ResourceType.GRAIN, (resources.get(ResourceType.GRAIN)-1));
 	}
 
 	public void payForCity(){
 		if(!canBuyCity()){
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a city");
 		}
-		ore -=3;
-		grain -=2;
+		resources.put(ResourceType.ORE, (resources.get(ResourceType.ORE)-3));
+		resources.put(ResourceType.GRAIN, (resources.get(ResourceType.GRAIN)-2));
 	}
 
-	/*-----Adding Resource----*/
-	//for distribute resource 
-	//currently inefficient and potentially could make a helper for at least the error but return if time 
-	public void addLumber(int amount){
-		if(amount<0){
-			throw new IllegalArgumentException("Error: Negative values cannot be added");
-		}
-		lumber += amount;
-	}
-
-	public void addWool(int amount){
-		if(amount<0){
-			throw new IllegalArgumentException("Error: Negative values cannot be added");
-		}
-		wool += amount;
-	}
-
-	public void addBrick(int amount){
-		if(amount<0){
-			throw new IllegalArgumentException("Error: Negative values cannot be added");
-		}
-		brick +=amount;
-	}
-
-	public void addGrain(int amount){
-		if(amount<0){
-			throw new IllegalArgumentException("Error: Negative values cannot be added");
-		}
-		grain +=amount;
-	}
-
-	public void addOre(int amount){
-		if(amount<0){
-			throw new IllegalArgumentException("Error: Negative values cannot be added");
-		}
-		ore += amount;
-	}
-
-
-	/*For the 7 cards check */
+	/** get the player's total amount of resources 
+	 * For the 7 cards check
+	 * @return
+	 */
 	public int totalPlayerCard(){
-		return lumber + wool + brick+grain+ore;
+		int total = 0;
+		//looping through values to add up
+		for (int amount : resources.values()){
+			total += amount;
+		}
+		return total;
 	}
 
 }
