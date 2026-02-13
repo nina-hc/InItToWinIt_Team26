@@ -84,11 +84,7 @@ public class BuildCity extends Build {
 	    }
 
 
-		@Override
-		public boolean execute() {
-			
-			return false;
-		}
+		
 	    
 //	
 //	public BuildCity(Player player, Board board, Randomizer randomizer) {

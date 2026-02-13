@@ -95,11 +95,7 @@ public class BuildSettlement extends Build {
 
 
 
-	@Override
-	public boolean execute() {
-		
-		return false;
-	}
+	
 
 
 
