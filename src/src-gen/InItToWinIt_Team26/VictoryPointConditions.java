@@ -53,16 +53,39 @@ public class VictoryPointConditions {
     }
     
 
-    //Total VP from settlements (1 VP each)
-    public int getSettlementVP() {
-        return player.getPlayerSettlements().size(); //1 VP per settlement
+  //Returns VP for a single settlement
+    public int getVictoryPoints(Settlement settlement) {
+        if (settlement == null){
+
+            return 0;
+        }
+        //only count if it belongs to this player
+        if (settlement.getOwner() != player.getPlayerID()){
+
+            return 0;
+        }
+
+        return 1; //Settlement is always 1 VP
     }
 
-    //Total VP from cities, 2 VP each */
-    public int getCityVP() {
-        return player.getPlayerCities().size() * 2; //2 VP per city
-    }
 
+    //Returns VP for a single city
+    public int getVictoryPoints(City city) {
+        if (city == null){
+            return 0;
+        }
+
+
+        if (city.getOwner() != player.getPlayerID()){
+            return 0;
+        }
+
+
+        return 2; //city is always 2 VP
+    }
+    
+    
+    
     // Count total victory points
     public int calculateVictoryPoints() {
         int vp = 0;
