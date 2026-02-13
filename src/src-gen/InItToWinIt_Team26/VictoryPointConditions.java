@@ -4,276 +4,205 @@
 
 package InItToWinIt_Team26;
 
-/************************************************************/
+import java.util.*;
+
 /**
- * 
- */
+ * This class handles all the calculations and checks how many victory points
+ * each player accumulated. This class calculates the total victory points
+ * gained from settlements, cities and longest road.
+ *
+ * @author Serene Abou Sharaf
+ * February 13, 2026
+ *
+ * */
 public class VictoryPointConditions {
 	
-	
-	private Player player;
-    private Board board;
+	private Player player; //the current player that is getting their victory points calculated
+    private Board board; //the game board
 
+    /**
+     * Constructor
+     *
+     * @param player : the player whose victory points are being tracked
+     * @param board : the game board
+     * */
     public VictoryPointConditions(Player player, Board board) {
         this.player = player;
         this.board = board;
     }
 
-    // Check if the player has any settlements
+    /**
+     * Check if the player has any settlements
+     *
+     * @return true if the player has 1 or more settlements, false otherwise
+     *
+     * */
     public boolean didPlayerBuildSettlement() {
-
-        for (int i = 0; i < 54; i++) {
-            Node node = board.getNode(i);
-
-            Settlement settlement = node.getSettlement();
-
-            if (settlement != null && settlement.getOwner() == player.getPlayerID()) {
-                return true;
-            }
-        }
-        return false;
-
+        return !player.getPlayerSettlements().isEmpty();
     }
 
-    // Check if the player has any cities
+    /**
+     * Check if the player has any cities
+     *
+     * @return true of the player has 1 or more settlements, false otherwise
+     * */
     public boolean didPlayerBuildCity() {
+        return !player.getPlayerCities().isEmpty();
+    }
 
-        for (int i = 0; i < 54; i++) {
-            Node node = board.getNode(i);
 
-            City city = node.getCity();
 
-            if (city != null && city.getOwner() == player.getPlayerID()) {
-                return true;
+    /**
+     * Calculate the total victory points from settlements from a player
+     *
+     * @return total victory points from settlements
+     *
+     * */
+    public int calculateSettlementVP() {
+        int vp = 0;
+        for (Settlement settlement : player.getPlayerSettlements()){
+
+            if (settlement.getOwner() == player.getPlayerID()) {
+                vp += 1; //each settlement = 1 VP
             }
         }
-        return false;
-
-//       
-    }
-    
-
-  //Returns VP for a single settlement
-    public int getVictoryPoints(Settlement settlement) {
-        if (settlement == null){
-
-            return 0;
-        }
-        //only count if it belongs to this player
-        if (settlement.getOwner() != player.getPlayerID()){
-
-            return 0;
-        }
-
-        return 1; //Settlement is always 1 VP
+        return vp;
     }
 
+    /**
+     * Total VP from cities
+     *
+     * @return total victory points from cities
+     * */
+    public int calculateCityVP() {
+        int vp = 0;
 
-    //Returns VP for a single city
-    public int getVictoryPoints(City city) {
-        if (city == null){
-            return 0;
+        for (City city : player.getPlayerCities()) {
+            if (city.getOwner() == player.getPlayerID()) {
+                vp += 2; //each city = 2 VP
+            }
         }
-
-
-        if (city.getOwner() != player.getPlayerID()){
-            return 0;
-        }
-
-
-        return 2; //city is always 2 VP
+        return vp;
     }
-    
-    
-    
-    // Count total victory points
+
+    /**
+     *
+     * Calculates the victory points for the player's longest road.
+     * A player will earn 2 victory points if the longest road has at least 5 connected roads
+     *
+     * @return 2 victory points if the longest road >= 5 segments
+     * */
+    public int calculateLongestRoadVP() {
+        int longestRoad = findLongestRoad();
+
+        if (longestRoad >= 5) {
+            return 2;
+        } else {
+            return 0;
+        }
+
+    }
+
+    /**
+     * Finds the longest road calculation for a player
+     *
+     * @return the number of road segments are in the player's longest road
+     *
+     * */
+    private int findLongestRoad() {
+
+        //get all the roads that belong to the player
+        List<Road> roads = player.getPlayerRoads();
+
+        //if the player has no roads, their longest road is 0
+        if (roads.isEmpty()) {
+            return 0;
+        }
+
+        //Build adjacency map of player's roads
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
+
+        for (Road road : roads) {
+
+            int head = road.getNodeA().getNodeID(); //top of road path
+            int tail = road.getNodeB().getNodeID(); //end of road path
+
+            //Makes sure each node has a set to store their neighbors
+            graph.putIfAbsent(head, new HashSet<>());
+            graph.putIfAbsent(tail, new HashSet<>());
+
+            //connects nodes
+            graph.get(head).add(tail);
+            graph.get(tail).add(head);
+        }
+
+        int maxLength = 0; //find the longest path
+
+        for (int startNode : graph.keySet()) {
+            maxLength = Math.max(maxLength, longestPath(graph, startNode, new HashSet<>()));
+        }
+        return maxLength; //returns the number of connected road segments in the longest road
+    }
+
+    /**
+     * Helper for longest road, it searches each path to find the longest road
+     *
+     * @param graph : is the adjacent map of nodes connected by the player's road
+     * @param current : the node that is currently being examined
+     * @param visitedEdges: set of edges already used in the current path to prevent double counting
+     *
+     * @return the length of the longest path from the current node
+     * */
+    private int longestPath(Map<Integer, Set<Integer>> graph, int current, Set<String> visitedEdges) {
+
+        int max = 0;
+
+        //explores all the neighbors of the current node
+        for (int neighbor : graph.get(current)) {
+
+
+            String edgeKey = Math.min(current, neighbor) + "-" + Math.max(current, neighbor);
+
+            //check to see if this edge hasn't been used in the current path
+            if (!visitedEdges.contains(edgeKey)) {
+
+                visitedEdges.add(edgeKey); //marks edge as used
+
+                max = Math.max(max, 1 + longestPath(graph, neighbor, visitedEdges)); //check neighbors
+
+                visitedEdges.remove(edgeKey); //unmark edges from different paths
+            }
+        }
+        return max; //return longest path length
+    }
+
+
+
+
+
+    /**
+     * Calculate total victory points for this player
+     *
+     * @return total victory points
+     * */
     public int calculateVictoryPoints() {
         int vp = 0;
 
-        for (int i = 0; i < 54; i++) {
-            Node node = board.getNode(i);
-
-            // Settlement = 1 VP
-            Settlement settlement = node.getSettlement();
-            if (settlement != null && settlement.getOwner() == player.getPlayerID()) {
-                vp += 1;
-            }
-
-            // City = 2 VP
-            City city = node.getCity();
-            if (city != null && city.getOwner() == player.getPlayerID()) {
-                vp += 2;
-            }
-        }
-        
-//        vp += calculateLongestRoadVP();   //2 VP if player has longest road
-//        vp += calculateLargestArmyVP();   //2 VP if player has largest army
-//        vp += calculateVictoryPointCards(); //Add special VP cards
-//        
-        
-//        
-
-//        //Longest Road
-//        if(longestRoadForPlayer(player.getID()) >= 5) {
-//            vp += 2;
-//        }
-//
-//        //Largest Army
-//        if(hasLargestArmy(player, game.getMostKnightsPlayed())) {
-//            vp += 2;
-//        }
-//
-//        //Victory Point cards
-//        vp += player.getVictoryPointCards();
-
+        vp += calculateSettlementVP();
+        vp += calculateCityVP();
+        vp += calculateLongestRoadVP();
 
         return vp;
     }
 
-    //Check if player has won by have 10 or more Victory Points
+    /**
+     * Check if player has won by have 10 or more Victory Points
+     *
+     * @return true if the player has 10 or more victory points
+     * */
     public boolean checkWinConditions() {
         return calculateVictoryPoints() >= 10;
     }
-
-//	private Player player;
-//    private Board board;
-//
-//    public VictoryPointConditions(Player player, Board board) {
-//        
-//    	this.player = player;
-//        this.board = board;
-//    }
-//
-//    // Check if the player has any settlements
-//    public boolean didPlayerBuildSettlement() {
-//        
-//    	for (int i = 0; i < 54; i++) {
-//            
-//    		Node node = board.getNode(i);
-//            
-//    		if (node.isOccupied() && node.getBuilding() instanceof BuildSettlement) {
-//                
-//    			BuildSettlement settlement = (BuildSettlement) node.getBuilding();
-//                
-//    			if (settlement.getPlayer() == player) {
-//                    
-//    				return true;
-//                }
-//            }
-//        }
-//    	
-//        return false;
-//    }
-//
-//    //check if the player has any cities
-//    public boolean didPlayerBuildCity() {
-//        
-//    	for (int i = 0; i < 54; i++) {
-//            
-//    		Node node = board.getNode(i);
-//            
-//            if (node.isOccupied() && node.getBuilding() instanceof BuildCity) {
-//                
-//            	BuildCity city = (BuildCity) node.getBuilding();
-//                
-//                if (city.getPlayer() == player) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-//
-//    //Count total victory points
-//    public int calculateVictoryPoints() {
-//        int vp = 0;
-//
-//        for (int i = 0; i < 54; i++) {
-//            Node node = board.getNode(i);
-//            if (node.isOccupied()) {
-//                Build building = node.getBuilding();
-//
-//                //Settlements = 1 VP
-//                if (building instanceof BuildSettlement && building.getPlayer() == player) {
-//                    vp += 1;
-//                }
-//                //Cities = 2 VP
-//                else if (building instanceof BuildCity && building.getPlayer() == player) {
-//                    vp += 2;
-//                }
-//            }
-//        }
-//        
-//        //THIS STUFF IS FOR AFTER BUILD ROAD IS COMPLETE
-//
-////        //Longest Road
-////        if(longestRoadForPlayer(player.getID()) >= 5) {
-////            vp += 2;
-////        }
-////
-////        //Largest Army
-////        if(hasLargestArmy(player, game.getMostKnightsPlayed())) {
-////            vp += 2;
-////        }
-////
-////        //Victory Point cards
-////        vp += player.getVictoryPointCards();
-//
-//
-//        return vp;
-//    }
-//
-//    //Check if player has won by have 10 or more Victory Points
-//    public boolean checkWinConditions() {
-//        return calculateVictoryPoints() >= 10;
-//    }
 	
 	
-	
-	
-	//				/**
-//				 * 
-//				 */
-//				private undef player : Player;
-//				/**
-//				 * 
-//				 */
-//				private undef board : Board;
-//	/**
-//	 * 
-//	 * @param player 
-//	 * @param board 
-//	 */
-//	public void VictoryPointCheck(Player player, Board board) {
-//	}
-//	/**
-//	 * 
-//	 * @return 
-//	 */
-//	public boolean didPlayerBuildSettlement() {
-//	}
-//	/**
-//	 * 
-//	 * @return 
-//	 */
-//	public boolean didPlayerBuildCity() {
-//	}
-//	/**
-//	 * 
-//	 * @return 
-//	 */
-//	public boolean checkLongestRoad() {
-//	}
-//	/**
-//	 * 
-//	 * @return 
-//	 */
-//	public int calculateVictoryPoints() {
-//	}
-//	/**
-//	 * 
-//	 * @return 
-//	 */
-//	public boolean checkWinConditions() {
-//	}
 }
