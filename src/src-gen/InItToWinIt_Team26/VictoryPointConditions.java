@@ -12,7 +12,7 @@ import java.util.*;
  * gained from settlements, cities and longest road.
  *
  * @author Serene Abou Sharaf
- * February 13, 2026
+ * February 10, 2026
  *
  * */
 public class VictoryPointConditions {

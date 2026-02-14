@@ -7,19 +7,39 @@ package InItToWinIt_Team26;
 /************************************************************/
 /**
  * 
+ * BuildSettlements extends off of the Build abstract and represents 
+ * the action of building a settlement in the game. 
+ * BuildSettlements checks resources, generates placement, validates placement, 
+ * performs the build and prints the action that was completed.
+ * 
+ * @author Serene Abou Sharaf 
+ * 
+ * February 10, 2026
  */
 public class BuildSettlement extends Build {
 	
-	
+	/**
+	 * Constructor for BuildSettlement
+	 * 
+	 * @param player
+	 * @param board
+	 * @param randomizer
+	 */
 	public BuildSettlement(Player player, Board board, Randomizer randomizer) {
         super(player,board, randomizer);
     }
 
 
-
+	/**
+	 * Check if the player has enough resources and available settlement supply 
+	 * to build a settlement
+	 * 
+	 * @return true if the player can afford and has settlements left
+	 */
     @Override
     protected boolean canPlayerBuy() {
 
+    	//the player must have enough resources and have settlements left to play 
         return player.getResourceHand().canBuySettlement() && player.getPlayerSettlementsLeft() > 0;
 
         
@@ -27,149 +47,106 @@ public class BuildSettlement extends Build {
 
 
 
+    
+    /**
+     * Generate a potential placement for the settlement 
+     * 
+     * @return a Node object representing the chosen node for placement 
+     */
     //generate a placement
     @Override
     protected Object generatePlacement() {
-        // generates a random place
+        
+    	// generates a random place
         int nodeID = randomizer.randomSelection(0,53);
-        return board.getNode(nodeID);
+        
+        return board.getNode(nodeID); 
 
-        //return randomizer.randomSelection(0, 53);
+      
 
     }
 
 
 
 
-
+    /**
+     * Validates that the chosen placement is allowed by the game rules
+     * 
+     * @param placement : The node where the player wants to place the settlement 
+     * 
+     * @return true if the placement is valid 
+     */
     @Override
     protected boolean validatePlacement(Object placement) {
 
         Node node = (Node) placement;
 
-        //must be empty
-        if(node.isOccupied())
+        //the node must be empty for the settlement to be placed
+        if(node.isOccupied()) {
             return false;
+        }
 
         //distance rule, check for no adjacent buildings
         for(int i=0;i<54;i++){
+        	
             if(board.isAdjacent(node.getNodeID(), i)){
+            	
                 Node neighbor = board.getNode(i);
-                if(neighbor.isOccupied())
+                
+                if(neighbor.isOccupied()) {
+                	
                     return false;
+                    
+                 }
+                
             }
         }
 
-        return true;
+        return true; //If all the checks pass then the placement is valid
 
     }
 
 
 
+    /**
+     * Executes the build operation .
+     * 1. It pays for the required resources
+     * 2. Places a new settlement on the node
+     * 3. Adds the settlement to the player's list of buildings
+     * 
+     * @param placement : The node where the settlement will be placed 
+     */
     @Override
     protected void doBuild(Object placement) {
 
         Node node = (Node) placement;
 
-        player.getResourceHand().payForSettlement();
+        player.getResourceHand().payForSettlement(); //Deducts resources from the player
 
-        Settlement s = new Settlement(node, player.getPlayerID());
+        Settlement settlement = new Settlement(node, player.getPlayerID()); //creates a new settlement object 
 
-        node.placeSettlement(s);
-        player.playerAddSettlement(s);
+        //places the settlement on the board and adds it to the player's inventory
+        node.placeSettlement(settlement);
+        player.playerAddSettlement(settlement);
 
 
     }
 
-    
+   
 
-
-
+    /**
+     * Prints a message describing the build action
+     * 
+     * @param placement : The node where the settlement was placed 
+     */
     @Override
     public void printAction(Object placement) {
-        Node node = (Node) placement;
-      
-
+       
+    	Node node = (Node) placement;
+     
         System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + node.getNodeID());
     }
 
 
 
-	
-
-
-
-    
-//	
-//	/**
-//	 * @param player : 
-//	 * @param board :
-//	 * @param randomizer : 
-//	 * */
-//	 public BuildSettlement(Player player, Board board, Randomizer randomizer) {
-//	        this.player = player;
-//	        this.board = board;
-//	        this.randomizer = randomizer;
-//	    }
-//
-//
-//
-//	 
-//	    @Override
-//	    protected boolean canPlayerBuy() {
-//	        return player.hasResourcesForSettlement();
-//	    }
-//
-//
-//
-//	    //generate a placement
-//	    @Override
-//	    protected Object generatePlacement() {
-//	        // generates a random place
-//	        return randomizer.randomSelection(0, 53);
-//	    }
-//
-//
-//
-//	    @Override
-//	    protected boolean validatePlacement(Object placement) {
-//
-//	        int nodeID = (Integer) placement;
-//
-//	        //check if the node empty
-//	        if (board.getNode(nodeID).isOccupied()) {
-//	            return false;
-//	        }
-//
-//	        //the distance rule
-//	        for (int neighbor : board.getNeighbors(nodeID)) {
-//	            if (board.getNode(neighbor).isOccupied()) {
-//	                return false;
-//	            }
-//	        }
-//
-//	        return true;
-//	    }
-//
-//
-//
-//	    @Override
-//	    protected void doBuild(Object placement) {
-//
-//	        int nodeID = (Integer) placement;
-//
-//	        player.payForSettlement();
-//	        player.useSettlementPiece();
-//
-//	        board.getNode(nodeID).placeBuilding(this);
-//	    }
-//
-//
-//
-//	    @Override
-//	    public void printAction(Object placement) {
-//	        int nodeID = (Integer) placement;
-//
-//	        System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + nodeID);
-//	    }
 }
