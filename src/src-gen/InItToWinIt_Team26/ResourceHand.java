@@ -8,8 +8,9 @@ import java.util.EnumMap;
 import java.util.Map;
 
 /************************************************************/
-/**
- * 
+/** Class to manage a players resources
+ * @author Nina Hay Cooper
+ * February 13th 2026
  */
 public class ResourceHand {
 	/**Map to store resources
@@ -26,9 +27,13 @@ public class ResourceHand {
 		}
 	}
 	
-	/*-----Adding a Resource----*/
-	//for distribute resource 
-	public void addResource(ResourceType type, int amount){//type isn't a great name but I didn't want to call it resource type again
+	/** Add resources of a specific type
+	 * 
+	 * @param type type of resource to add
+	 * @param amount amount of resources to add
+	 */
+	
+	public void addResource(ResourceType type, int amount){
 		if(amount<0){
 			throw new IllegalArgumentException("Error: Negative values cannot be added");
 		}
@@ -37,36 +42,55 @@ public class ResourceHand {
 
 	}
 
-	/*Getter, get the amount for a specific resource */
+	/**Getter for a specific resource type
+	 * 
+	 * @param type resource type to get
+	 * @return the number of resources
+	*/
 	public int getResource(ResourceType type){
 		return resources.get(type);
 	}
 
-	/*Checking if the player has enough of a one specific resource*/
+	/**Checking if the player has enough of a one specific resource
+	 * 
+	 * @param type type of resources
+	 * @param amount amount needed 
+	 * @return true if they have the amount needed, false otherwise
+	 */
 	public boolean hasResource(ResourceType type, int amount){
 		return resources.get(type)>=amount;
 	}
+	
 	/*--Checking if the player can build something--*/
 
-	//can they afford a road
+	/**
+	 * can they afford a road
+	 * @return true if they can afford a road
+	 */
 	public boolean canBuyRoad(){
 		return (hasResource(ResourceType.LUMBER, 1)&&hasResource(ResourceType.BRICK, 1));
 	}
 
-	//can they afford a settlement
+	/**
+	 * can they afford a settlement
+	 * @return true if they can
+	 */
 	public boolean canBuySettlement(){
 		return (hasResource(ResourceType.BRICK, 1)&&hasResource(ResourceType.LUMBER, 1)&&hasResource(ResourceType.WOOL, 1)&&hasResource(ResourceType.GRAIN, 1));
 	}
 
-	//can they afford a city
+	/**
+	 * can they afford a city
+	 * @return true if they can
+	 */
 	public boolean canBuyCity(){
 		return(hasResource(ResourceType.GRAIN, 2)&&hasResource(ResourceType.ORE, 3));
 	}
 
-	/** Pay for the build
-	 * Pays for the builds by subtracting the building costs
-	 * 
-	*/
+	/**
+	 * Pay for the build
+	* Pays for the builds by subtracting the building costs
+	 */
 	public void payForRoad(){
 		if (!canBuyRoad()){
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a road");
@@ -106,7 +130,9 @@ public class ResourceHand {
 		return total;
 	}
 	
-	//to string 
+	/**TO String Method
+	 * 
+	 */
 	public String toString() {
 		return String.format("Lumber:%d Brick:%d Wool:%d Grain:%d Ore:%d",
 			resources.get(ResourceType.LUMBER),

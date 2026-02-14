@@ -1,11 +1,20 @@
 package InItToWinIt_Team26;
 
+/**Class to represent a road
+ * @author Nina Hay Cooper
+ */
 public class Road {
-    //bad names but the nodes its between, ik synthia is dealing with this and might be able to store them so maybe I'll wait
+    /*Attributes for Road */
     private Node nodeA;
     private Node nodeB;
     private int ownerID;
 
+    /**Constructor
+     * 
+     * @param nodeA one node the road is between
+     * @param nodeB second node the road is between
+     * @param ownerID playerID of the owner
+     */
     public Road(Node nodeA, Node nodeB, int ownerID){
         this.nodeA=nodeA;
         this.nodeB=nodeB;

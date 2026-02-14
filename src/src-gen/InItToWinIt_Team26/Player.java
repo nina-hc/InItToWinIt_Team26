@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /************************************************************/
-/**
+/** Class for the player object
+ * @author Nina Hay Cooper
+ * 
+ * February 13th 2026 
  * 
  */
 public class Player {
@@ -17,7 +20,6 @@ public class Player {
 	private ResourceHand resourceHand;
 
 	/*Player Build Capacities */
-	//
 	private static final int maxRoads = 15;
 	private static final int maxSettlements = 5;
 	private static final int maxCities = 4;
@@ -27,7 +29,10 @@ public class Player {
 	private List<Settlement> playerSettlements;
 	private List<City> playerCities;
 
-	/*Constructor */
+	/**
+	 * Constructor
+	 * @param playerID player ID from game
+	 */
 	public Player(int playerID){
 		this.playerID=playerID;
 		this.victoryPoints=0;
@@ -66,7 +71,11 @@ public class Player {
 		return maxCities-playerCities.size();
 	}
 	
-	/*---Adding the build to the player, not to the board---*/
+	/*---Adding the builds to the player, not to the board--- */
+	/**Add road to player
+	 * 
+	 * @param road road being added 
+	 */
 	public void playerAddRoad(Road road){
 		if(getPlayerRoadsLeft()<=0){
 			throw new IllegalStateException("Error: The player has no roads left");
@@ -75,6 +84,10 @@ public class Player {
 		//not including victory points
 	}
 
+	/**Add settlement to player
+	 * 
+	 * @param settlement settlement being added
+	 */
 	public void playerAddSettlement(Settlement settlement){
 		if(getPlayerSettlementsLeft()<=0){
 			throw new IllegalStateException("Error: The player has no settlements left");
@@ -86,10 +99,12 @@ public class Player {
 	
 	//
 
-	/** Dealing with adding a city and removing the settlement
-	 * nodeID of the settlement being removed
+	/**Upgrading a settlement
+	 * 
+	 * @param settlementBeingUpgraded the settlement that is being removed
+	 * @param cityPlaced the city being placed
 	 */
-	public void playerUpgradeToCity(Settlement settlementBeingUpgraded, City cityPlaced){//maybe just an int rather than settlement
+	public void playerUpgradeToCity(Settlement settlementBeingUpgraded, City cityPlaced){
 		if(getPlayerCitiesLeft()<=0){
 			throw new IllegalStateException("Error: The player has no cities left");
 		}
