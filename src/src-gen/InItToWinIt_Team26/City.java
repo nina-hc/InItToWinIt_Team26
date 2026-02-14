@@ -10,7 +10,6 @@ public class City {
     }
 
     /*getters */
-
     public Node getNode(){
         return node;
     }
