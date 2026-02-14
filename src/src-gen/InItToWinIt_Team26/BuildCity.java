@@ -6,214 +6,133 @@ package InItToWinIt_Team26;
 
 /************************************************************/
 /**
- * 
+ *BuildCity handles the logic for upgrading an existing
+ * settlement into a city.
+ * BuildCity is responsible to check if the player can afford a city,
+ * choose a valid settlement place to upgrade,
+ * validate that the settlement belongs to the player, and
+ * deduct resources and replace settlement with a city
+ *
+ * @author Serene Abou Sharaf
+ *
+ * February 10, 2026
+ *
  */
 public class BuildCity extends Build {
-	
-	
-	 public BuildCity(Player player, Board board, Randomizer randomizer) {
-	        super(player, board, randomizer);
-	    }
 
 
-	    //check if they can buy
-	    @Override
-	    protected boolean canPlayerBuy() {
-	        return player.getResourceHand().canBuyCity() && player.getPlayerCitiesLeft() > 0;
-	    }
+    /**
+     * Constructor for BuildCity
+     *
+     * @param player     : the player performing the build
+     * @param board      : the game board where build happens
+     * @param randomizer : is used to randomly select placements
+     */
+    public BuildCity(Player player, Board board, Randomizer randomizer) {
+
+        super(player, board, randomizer);
+    }
 
 
+    /**
+     * Checks whether the player is allowed to buy a city
+     * The conditions are that the player must have enough resources and
+     * the player must still have cities left in inventory
+     *
+     * @return true if the player can buy a city
+     */
+    @Override
+    protected boolean canPlayerBuy() {
 
-	    @Override
-	    protected Object generatePlacement() {
-	        //return randomizer.randomSelection(0, 53);
-
-	        if(player.getPlayerSettlements().isEmpty())
-	            return null;
-
-	        int i = randomizer.randomSelection(
-	                0,
-	                player.getPlayerSettlements().size()-1
-	        );
-
-	        return player.getPlayerSettlements().get(i);
-	    }
+        return player.getResourceHand().canBuyCity() && player.getPlayerCitiesLeft() > 0;
+    }
 
 
+    /**
+     * Selects which settlement will be upgraded
+     * If the player has no settlements, they can't upgrade
+     * Otherwise, the program will randomly pick one of the player's settlements
+     *
+     * @return a settlement chosen for upgrade, or null if none exist
+     */
+    @Override
+    protected Object generatePlacement() {
 
-	    @Override
-	    protected boolean validatePlacement(Object placement) {
+        //No settlements means that the player can't buy a city
+        if (player.getPlayerSettlements().isEmpty()) {
+            return null;
+        }
 
+        //randomly selects one settlement
+        int i = randomizer.randomSelection(0, player.getPlayerSettlements().size() - 1);
 
-	        Settlement s = (Settlement) placement;
-	        return s.getOwner() == player.getPlayerID();
-
-
-	    }
-
-
-
-	    @Override
-	    protected void doBuild(Object placement) {
-
-
-	        Settlement oldS = (Settlement) placement;
-	        Node node = oldS.getNode();
-
-	        player.getResourceHand().payForCity();
-
-	        City c = new City(node, player.getPlayerID());
-
-	        node.placeCity(c); // replaces settlement
-
-	        player.playerUpgradeToCity(oldS, c);
+        //return the chosen settlement
+        return player.getPlayerSettlements().get(i);
+    }
 
 
-	    }
+    /**
+     * Validates that the chosen settlement can be upgraded
+     * To do this validatePlacement must check that the settlement belongs
+     * to the player.
+     *
+     * @param placement : the chosen settlement
+     * @return true if valid
+     */
+    @Override
+    protected boolean validatePlacement(Object placement) {
 
 
+        Settlement settlement = (Settlement) placement;
+
+        return settlement.getOwner() == player.getPlayerID(); //ensure that the player own this settlement
 
 
-	    @Override
-	    public void printAction(Object placement) {
-
-	        Settlement s = (Settlement) placement;
-
-	        System.out.println("Player " + player.getPlayerID() + " upgraded node " + s.getNode().getNodeID() + " to a city");
-	        
-	    }
+    }
 
 
-		
-	    
-//	
-//	public BuildCity(Player player, Board board, Randomizer randomizer) {
-//        this.player = player;
-//        this.board = board;
-//        this.randomizer = randomizer;
-//    }
-//
-//
-//    //check if they can buy
-//    @Override
-//    protected boolean canPlayerBuy() {
-//        return player.hasResourcesForCity();
-//    }
-//
-//
-//
-//    @Override
-//    protected Object generatePlacement() {
-//        return randomizer.randomSelection(0, 53);
-//    }
-//
-//
-//
-//    @Override
-//    protected boolean validatePlacement(Object placement) {
-//        int nodeID = (Integer) placement;
-//
-//        Node node = board.getNode(nodeID);
-//
-//        //check if there is a building on node
-//        if (!node.isOccupied()){
-//
-//            return false; //if there is no settlement on the building, cannot build a city
-//
-//        }
-//
-//        //makes sure that the building is a settlement and not a city
-//        if (!(node.getBuilding() instanceof BuildSettlement)){
-//
-//            return false; //if it's not a settlement, can't upgrade
-//        }
-//
-//        BuildSettlement settlement = (BuildSettlement) node.getBuilding(); //check to see which player owns the settlement
-//
-//        //checks if the settlement belongs to the current player
-//        if (settlement.player != this.player){
-//
-//            return false; //if the settlement belongs to another player, can't build a city
-//
-//        }
-//
-//        return true; //if all checks pass, the placement is valid
-//    }
-//
-//
-//
-//    @Override
-//    protected void doBuild(Object placement) {
-//        int nodeID = (Integer) placement;
-//        Node node = board.getNode(nodeID);
-//
-//        //pay for resources used
-//        player.payForCity();
-//        player.useCityPiece();
-//
-//        //upgrade building
-//        node.placeBuilding(this);
-//    }
-//
-//
-//    @Override
-//    public void printAction(Object placement) {
-//        int nodeID = (Integer) placement;
-//        System.out.println("Player " + player.getID() + " upgraded settlement to city at node " + nodeID);
-//    }
-    
-    
-//	/**
-//	 * 
-//	 * @param player 
-//	 */
-//	public void execute(Player player) {
-//	}
-//
-//	/**
-//	 * 
-//	 * @param random 
-//	 * @param nodeID 
-//	 * @return 
-//	 */
-//	protected Node generatePlacement() :
-//
-//	Node(Randomizer random, Node nodeID) {
-//	}
-//
-//	/**
-//	 * 
-//	 * @param nodeID 
-//	 * @return 
-//	 */
-//	protected boolean checkPlacement(Node nodeID) {
-//	}
-//
-//	/**
-//	 * 
-//	 * @param player 
-//	 */
-//	protected void updatePlayerInventory(Player player) {
-//	}
-//
-//	/**
-//	 * 
-//	 * @param node 
-//	 */
-//	protected void storeBuildLocation(Node node) {
-//	}
-//
-//	/**
-//	 * 
-//	 */
-//	public void printAction() {
-//	}
-//
-//	/**
-//	 * 
-//	 * @param player 
-//	 * @return 
-//	 */
-//	protected boolean checkPlayer(Player player) {
-//	}
+    /**
+     * Performs the actual upgrade from settlement to city
+     * To do this doBuild:
+     * 1. Deducts city resources
+     * 2. Creates a new city
+     * 3. Places a city on the node
+     * 4. Updates the player's inventory
+     *
+     * @param placement : the settlement being upgraded
+     */
+    @Override
+    protected void doBuild(Object placement) {
+
+
+        Settlement oldSettlement = (Settlement) placement;
+        Node node = oldSettlement.getNode();
+
+        player.getResourceHand().payForCity(); //pays required resources
+
+        City city = new City(node, player.getPlayerID()); //creates a city on the same node
+
+        node.placeCity(city); //replaces settlement with city
+
+        player.playerUpgradeToCity(oldSettlement, city); //updates the players resources (removes settlement, adds a city)
+
+
+    }
+
+
+    /**
+     * Prints a message describing the build action
+     *
+     * @param placement : the settlement was upgraded
+     */
+    @Override
+    public void printAction(Object placement) {
+
+        Settlement settlement = (Settlement) placement;
+
+        System.out.println("Player " + player.getPlayerID() + " upgraded node " + settlement.getNode().getNodeID() + " to a city");
+
+    }
+
+
 }
