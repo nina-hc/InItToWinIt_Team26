@@ -1,5 +1,5 @@
 # Team 26 Catan
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=nina-hc_InItToWinIt_Team26)](https://sonarcloud.io/summary/new_code?id=nina-hc_InItToWinIt_Team26)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nina-hc_InItToWinIt_Team26&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=nina-hc_InItToWinIt_Team26)
 
 # Assignment checklist
 
