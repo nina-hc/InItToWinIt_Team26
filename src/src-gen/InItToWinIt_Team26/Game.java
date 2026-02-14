@@ -8,8 +8,6 @@ import java.util.Random;
  */
 public class Game {
 
-    private static final int WINNING_VP = 10;
-
     private Board board;
     private Bank bank;
     private Player[] players;
@@ -42,7 +40,7 @@ public class Game {
     }
 
     /**
-     * Initial placement phase: each player places 2 settlements and 2 roads
+     * Start of game has builds place for free
      */
     public void initialPlacement() {
         for (int round = 0; round < 2; round++) {
@@ -53,14 +51,13 @@ public class Game {
 
             for (int i = start; i != end; i += step) {
                 Player player = players[i];
-                // Place settlement (free during setup)
+                // settlement for set up
                 Settlement settlement = initialSettlementPlacement(player);
                 
-                // Place road (free during setup)
+                // The roads for set up
                 initialRoadPlacement(player);
                 
-                // On second settlement, give starting resources
-                if (round == 1 && settlement != null) {
+                if (settlement != null) {
                     giveStartingResources(player, settlement);
                 }
             }
@@ -68,7 +65,7 @@ public class Game {
     }
 
     /**
-     * Main simulation loop until a player wins or maxRounds reached
+     * Run the simulation for the number of defined rounds
      */
     public void startSimulation() {
         boolean gameOver = false;
@@ -77,31 +74,26 @@ public class Game {
         while (!gameOver && roundNumber < maxRounds) {
             roundNumber++;
 
-            System.out.println("=== Round " + roundNumber + " ===");
-
             for (Player player : players) {
 
-                // Roll dice
+                /*Dice roll */
                 int roll = distributor.executeDistribution();
-                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": Rolled " + roll);
+                System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
 
-                // AI builds (tries to spend cards if >7)
+                /*Call player actions */
                 PlayerAction action = new PlayerAction(player, board, randomizer);
                 action.executeTurn();
 
-                // Print player action summary
-                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": Completed turn");
+                // Print Statement of Actions
+                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");
 
                 // Check win conditions
                 VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
                 if (vpCheck.checkWinConditions()) {
                     gameOver = true;
-                    System.out.println("Player " + player.getPlayerID() + " wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
+                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
                     break;
                 }
-
-                System.out.println("Player " + player.getPlayerID() + " hand: "
-                        + player.getResourceHand());
 
 
             }
@@ -127,7 +119,7 @@ public class Game {
     }
 
     /**
-     * Attempt to place a settlement randomly (used in initial placement)
+     * Place Settlements for start of game.
      */
     public Settlement initialSettlementPlacement(Player player) {
         int attempts = 0;
@@ -159,7 +151,7 @@ public class Game {
                 Settlement s = new Settlement(node, player.getPlayerID());
                 node.placeSettlement(s);
                 player.playerAddSettlement(s);
-                System.out.println("Player " + player.getPlayerID() + " placed initial settlement at node " + nodeID);
+                System.out.println("[Player " + player.getPlayerID() + "]: placed initial settlement at " + nodeID);
                 return s;
             }
             
@@ -171,7 +163,7 @@ public class Game {
     }
 
     /**
-     * Attempt to place a road randomly (used in initial placement)
+     * Place roads for start of game
      */
     public void initialRoadPlacement(Player player) {
         int attempts = 0;
@@ -196,7 +188,7 @@ public class Game {
                 if (!board.hasRoad(settlementNodeID, neighborID)) {
                     Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
                     player.playerAddRoad(road);
-                    System.out.println("Player " + player.getPlayerID() + " placed initial road between " + settlementNodeID + " and " + neighborID);
+                    System.out.println("[Player " + player.getPlayerID() + "]: placed initial road between " + settlementNodeID + " and " + neighborID);
                     return;
                 }
             }

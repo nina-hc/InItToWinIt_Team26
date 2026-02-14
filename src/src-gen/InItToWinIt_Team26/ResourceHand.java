@@ -95,7 +95,7 @@ public class ResourceHand {
 
 	/** get the player's total amount of resources 
 	 * For the 7 cards check
-	 * @return
+	 * @return total number of cards 
 	 */
 	public int totalPlayerCard(){
 		int total = 0;
@@ -106,7 +106,7 @@ public class ResourceHand {
 		return total;
 	}
 	
-	//debuging to string 
+	//to string 
 	public String toString() {
 		return String.format("Lumber:%d Brick:%d Wool:%d Grain:%d Ore:%d",
 			resources.get(ResourceType.LUMBER),

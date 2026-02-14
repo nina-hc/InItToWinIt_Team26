@@ -106,14 +106,16 @@ public class Player {
 
 	}
 
-	/*Msc Getters I need to check if we need */
+	/*get playerID */
 	public int getPlayerID(){
 		return playerID;
 	}
 
+	/*Get player victory pointer */
 	public int getVictoryPoints(){
 		return victoryPoints;
 	}
+	/*get player resource hand */
 	public ResourceHand getResourceHand(){
 		return resourceHand;
 	}
