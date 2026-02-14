@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * handles one full ai turn for a player
+ * playerAction handles one full simulated turn for a player
+ * tries to build as much as possible in a single turn
+ * @author Marva Hassan
  */
 public class PlayerAction {
 
@@ -12,6 +14,13 @@ public class PlayerAction {
     private Board board;
     private Randomizer randomizer;
 
+
+    /**
+     * constructor initializes the player, board, and randomizer
+     * @param player player taking the turn
+     * @param board catan board
+     * @param randomizer randomizer for dice or random choices
+     */
     public PlayerAction(Player player, Board board, Randomizer randomizer) {
         this.player = player;
         this.board = board;
@@ -19,7 +28,8 @@ public class PlayerAction {
     }
 
     /**
-     * execute one full turn trying to build as much as possible
+     * execute one full turn for the player
+     * attempts to build as much as possible each turn
      */
     public void executeTurn() {
         boolean canBuild = true;
@@ -35,14 +45,14 @@ public class PlayerAction {
 
             // prioritize builds city > settlement > road
             Build selected = null;
-            for (Build b : possibleActions) {
+            for (Build b : possibleActions) { //pick city first
                 if (b instanceof BuildCity) {
                     selected = b;
                     break;
                 }
             }
             if (selected == null) {
-                for (Build b : possibleActions) {
+                for (Build b : possibleActions) { //pick settlement
                     if (b instanceof BuildSettlement) {
                         selected = b;
                         break;
@@ -50,7 +60,7 @@ public class PlayerAction {
                 }
             }
             if (selected == null) {
-                for (Build b : possibleActions) {
+                for (Build b : possibleActions) { //pick road last
                     if (b instanceof BuildRoad) {
                         selected = b;
                         break;
@@ -58,9 +68,9 @@ public class PlayerAction {
                 }
             }
 
-            // execute selected build
+            //execute selected build
             if (selected != null) {
-                boolean built = selected.execute();
+                boolean built = selected.execute(); //attempt to build
                 if (!built) {
                     // could not place the building
                     canBuild = false;

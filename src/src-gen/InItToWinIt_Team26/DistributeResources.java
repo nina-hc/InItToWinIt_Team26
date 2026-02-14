@@ -7,6 +7,7 @@ package InItToWinIt_Team26;
  * It checks which tiles match the dice roll,
  * then gives resources to players who have buildings
  * on the nodes of those tiles.
+ * @author Marva Hassan
  */
 public class DistributeResources {
 
@@ -74,17 +75,18 @@ public class DistributeResources {
         ResourceType resource = tile.getResourceType();
         int[] nodeIDs = tile.getNodeIDs();
 
+        //loop through each node
         for (int nodeID : nodeIDs) {
             Node node = board.getNode(nodeID);
 
             //settlement gives 1 resource
             if (node.getSettlement() != null) {
                 int ownerID = node.getSettlement().getOwner();
-                Player owner = players[ownerID - 1]; //IDs are 1-4, array is 0-3
+                Player owner = players[ownerID - 1]; //convert IDs 1-4 to array (0-3)
 
-                int receivedFromBank = bank.transferToPlayer(resource, 1);
+                int receivedFromBank = bank.transferToPlayer(resource, 1); //transfer resource from bank
                 if (receivedFromBank > 0) {
-                    owner.getResourceHand().addResource(resource, receivedFromBank);
+                    owner.getResourceHand().addResource(resource, receivedFromBank); //add to player
                 }
             }
 
@@ -92,6 +94,7 @@ public class DistributeResources {
             if (node.getCity() != null) {
                 int ownerID = node.getCity().getOwner();
                 Player owner = players[ownerID - 1];
+
 
                 int receivedFromBank = bank.transferToPlayer(resource, 2);
                 if (receivedFromBank > 0) {

@@ -4,59 +4,78 @@ import java.util.Random;
 
 /**
  * Manages the overall Catan game simulation
- * Fulfills Assignment 1 requirements (R1.1–R1.9)
+ *  * Core responsibilities:
+ *  - Setup game objects and players
+ *  - Handle initial settlement and road placement
+ *  - Distribute resources at the start and during the game
+ *  - Execute player turns in order
+ *  - Check for victory conditions
+ * @author Marva Hassan (Revisions done by Nina)
  */
 public class Game {
 
-    private Board board;
-    private Bank bank;
-    private Player[] players;
-    private Randomizer randomizer;
-    private DistributeResources distributor;
-    private int maxRounds;
+    private Board board; //The Catan board containing nodes, tiles, and roads
+    private Bank bank; //Bank managing remaining resource cards
+    private Player[] players;  // Array holding all 4 AI players
+    private Randomizer randomizer; //handles random choices
+    private DistributeResources distributor; //handles resource distribution after dice rolls
+    private int maxRounds; //maximum number of simulation rounds
 
     /**
      * Initialize game with 4 players and default maxRounds
      */
     public Game(int maxRounds) {
+        //R1.4
         if (maxRounds < 1 || maxRounds > 8192) {
             throw new IllegalArgumentException("maxRounds must be 1–8192");
         }
         this.maxRounds = maxRounds;
 
         // Initialize board and bank
-        board = new Board(); // Should use fixed map setup per R1.1
+        board = new Board(); //
         bank = new Bank();
         randomizer = new Randomizer();
 
-        // Create 4 players
+        //create 4 players
         players = new Player[4];
         for (int i = 0; i < 4; i++) {
             players[i] = new Player(i + 1);
         }
 
-        // Connect resource distributor
+        //connect resource distributor
         distributor = new DistributeResources(bank, players, randomizer, board);
     }
 
     /**
-     * Start of game has builds place for free
+     * Start of game has builds place for free per player
      */
     public void initialPlacement() {
         for (int round = 0; round < 2; round++) {
-            // Forward for first round, backward for second round
-            int start = (round == 0) ? 0 : players.length - 1;
-            int end = (round == 0) ? players.length : -1;
-            int step = (round == 0) ? 1 : -1;
+            int start;
+            int end;
+            int step;
+
+            //determine loop direction based on round
+            if (round == 0) {
+                start = 0;               // Player 1 to 4
+                end = players.length;
+                step = 1;
+            } else {
+                start = players.length - 1; // Player 4 to 1
+                end = -1;
+                step = -1;
+            }
 
             for (int i = start; i != end; i += step) {
                 Player player = players[i];
-                // settlement for set up
+
+                //settlement placement
                 Settlement settlement = initialSettlementPlacement(player);
-                
-                // The roads for set up
+
+                //road placement
                 initialRoadPlacement(player);
-                
+
+                // Give starting resources if settlement exists
                 if (settlement != null) {
                     giveStartingResources(player, settlement);
                 }
@@ -106,6 +125,8 @@ public class Game {
         System.out.println("Simulation ended after " + roundNumber + " rounds.");
     }
 
+
+
     /**
      * Print current victory points for all players
      */
@@ -119,7 +140,12 @@ public class Game {
     }
 
     /**
-     * Place Settlements for start of game.
+     * Place a starting settlement for a player.
+     *
+     * Ensures settlement placement respects adjacency rules.
+     *
+     * @param player the player placing a settlement
+     * @return the placed Settlement, or null if placement fails
      */
     public Settlement initialSettlementPlacement(Player player) {
         int attempts = 0;
@@ -163,18 +189,19 @@ public class Game {
     }
 
     /**
-     * Place roads for start of game
+     * Place a starting road connected to the player's settlement.
+     * Tries each adjacent node until a valid road is placed.
      */
     public void initialRoadPlacement(Player player) {
         int attempts = 0;
         int maxAttempts = 1000;
         
         while (attempts < maxAttempts) {
-            // Find a settlement belonging to this player
+            //find a settlement belonging to this player
             Settlement playerSettlement = null;
             for (Settlement s : player.getPlayerSettlements()) {
                 playerSettlement = s;
-                break; // Use first (most recent) settlement
+                break; //use first (most recent) settlement
             }
             
             if (playerSettlement == null) {
@@ -186,8 +213,9 @@ public class Game {
             // Try to place road adjacent to settlement
             for (int neighborID : board.getNeighbors(settlementNodeID)) {
                 if (!board.hasRoad(settlementNodeID, neighborID)) {
+                    //place road between settlement and neighbor node
                     Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
-                    player.playerAddRoad(road);
+                    player.playerAddRoad(road); //track road for player
                     System.out.println("[Player " + player.getPlayerID() + "]: placed initial road between " + settlementNodeID + " and " + neighborID);
                     return;
                 }
@@ -199,7 +227,14 @@ public class Game {
         System.out.println("ERROR: Could not place road for Player " + player.getPlayerID());
     }
 
-    private void giveStartingResources(Player player, Settlement settlement) {
+
+    /**
+     * Give starting resources to a player based on settlement location.
+     *
+     * @param player the player receiving resources
+     * @param settlement the settlement to check adjacent tiles
+     */
+    public void giveStartingResources(Player player, Settlement settlement) {
         Node node = settlement.getNode();
         
         // Find tiles adjacent to this node
@@ -211,13 +246,14 @@ public class Game {
             for (int id : nodeIDs) {
                 if (id == node.getNodeID()) {
                     ResourceType resource = tile.getResourceType();
+                    //All tiles produce resources except desert
                     if (resource != ResourceType.DESERT) {
-                        int received = bank.transferToPlayer(resource, 1);
+                        int received = bank.transferToPlayer(resource, 1); // Take resource from bank
                         if (received > 0) {
-                            player.getResourceHand().addResource(resource, received);
+                            player.getResourceHand().addResource(resource, received); // add to player's hand
                         }
                     }
-                    break;
+                    break; //stop checking nodes for this tile
                 }
             }
         }
