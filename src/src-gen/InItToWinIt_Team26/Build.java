@@ -5,21 +5,37 @@
 package InItToWinIt_Team26;
 
 /************************************************************/
-/**
- * 
+/** Build Abstract Class to Implement the different build types
+ * @author Nina Hay Cooper
+ * February 13th 2026
  */
 public abstract class Build {
+	//
 	protected Player player;
 	protected Board board;
 	protected Randomizer randomizer;
 
+	/**Constructor for Build
+	 * 
+	 * @param player player that is building 
+	 * @param board the board where the build is happening 
+	 * @param randomizer that randomizes that placements
+	 */
 	public Build(Player player, Board board, Randomizer randomizer){
 		this.player=player;
 		this.board=board;
 		this.randomizer=randomizer;
 	}
 
-	/*General structure, final so it can't be overridden */
+	/**General structure for build 
+	 * First: check if the player can buy the building type
+	 * Second: generate a build placement 
+	 * Third: validate the build placement 
+	 * Fourth: do the actual build action 
+	 * Fifth: Print Action 
+	 * 
+	 * @return
+	 */
 	public boolean execute(){
 		/*Check if the player has the resources to build */
 		if(!canPlayerBuy()){
@@ -51,9 +67,9 @@ public abstract class Build {
 	}
 
 
-	/** To check if the player has the resources and if the still have the build inventory left
+	/**To check if the player has the resources and if the still have the build inventory left
 	 * 
-	 * 
+	 * @return true if the player is able to buy the building
 	 */
 	protected abstract boolean canPlayerBuy();
 
@@ -64,12 +80,12 @@ public abstract class Build {
 	 */
 	protected abstract Object generatePlacement();
 
-	/*So if I changed check to validated, I think it sounds better but sorry! */
+	
 	/**
 	 * Validate that the placement works with the game rules
-	 * I was thinking of board validating but I think thats too much on Synthia
-	 * @param placement
-	 * @return
+	 * 
+	 * @param placement the target location for the placement 
+	 * @return true if the placement is valid, false otherwise
 	 */
 	protected abstract boolean validatePlacement(Object placement);
 

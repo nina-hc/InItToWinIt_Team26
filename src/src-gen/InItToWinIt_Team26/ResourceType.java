@@ -1,5 +1,7 @@
 package InItToWinIt_Team26;
-
+/**enum to represent the resource types
+ * 
+ */
 public enum ResourceType {
 	LUMBER("Lumber"),
     BRICK("Brick"),
