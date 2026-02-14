@@ -4,22 +4,22 @@
 # Assignment checklist
 
 ## Technical content
-- [ ] Every task in the assignment addressed
+- [X] Every task in the assignment addressed
 
 ## Delivery
 
 ### Software
-- [ ] Requirements addressed
-- [ ] Software properly tested
-- [ ] Demonstrator implemented and documented
+- [X] Requirements addressed
+- [X] Software properly tested
+- [X] Demonstrator implemented and documented
 
 ### Management
-- [ ] SonarQube analysis linked in the README file
-- [ ] Kanban board maintained and publicly available
-- [ ] Commits linked to work items
-- [ ] Deliverable tagged
+- [X] SonarQube analysis linked in the README file
+- [X] Kanban board maintained and publicly available
+- [X] Commits linked to work items
+- [X] Deliverable tagged
 
 ### Report
-- [ ] Reflection points elaborated
-- [ ] Report written
-- [ ] Report submitted
+- [X] Reflection points elaborated
+- [X] Report written
+- [X] Report submitted
