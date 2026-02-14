@@ -14,31 +14,32 @@ import java.util.Map;
 public class Bank {
 
     //*************************************************************************************
+    // ~ Welcome to the Bank! ~
     //the bank begins with 19 cards of each resource
-    //the bank will be stored in an array with each index representing a resource:
+    //the bank will be stored in an EnumMap to keep track of the banks inventory:
     //---------------------------------------------------------------
     // ---> 0 = lumber, 1 = wool, 2 = grain, 3 = brick, 4 = ore <---
     //---------------------------------------------------------------
     //*************************************************************************************
 
     /**
-     *
+     * Variable to store map
+     * Map to store the current resources available in the Bank
      */
-    private Map<ResourceType, Integer> bankResources;   //following one of those principless
+    private Map<ResourceType, Integer> bankResources;
 
     /**
-     * Bank constructor, creates an array with 5 resources x 19 cards each
+     * Bank constructor, constructs a Bank and stores 19 cards in each resource
      */
     public Bank() {
-        bankResources = new EnumMap<>(ResourceType.class);
+        bankResources = new EnumMap<>(ResourceType.class);  //create a map object
 
-        //make each resource 19,, cuz theres 19 cards
+        //initialize each resource type with 19 cards:
         for(ResourceType type : ResourceType.values()) {
             bankResources.put(type, 19);
         }
     }
 
-    //  -======= I HAVE NO SECURITY ON AMOUNT WITHDRAWN,,,, MAKE SURE TO ADD THAT=====
 
     /**
      * Checks if there are enough resources in the bank to be distributed
@@ -49,7 +50,7 @@ public class Bank {
      */
     public boolean hasResources(ResourceType resourceType, int amountWithdrawal) {
 
-        if(!bankResources.containsKey(resourceType)) {      //check if requested resource exsistes
+        if(!bankResources.containsKey(resourceType)) {      //check if requested resource exists
             return false;
         }
 
@@ -108,7 +109,7 @@ public class Bank {
     public void resourceDeposit(ResourceType resourceType, int amountDeposit) {
 
         int amountOfResource = bankResources.get(resourceType);
-        int amountGiven = amountOfResource + amountDeposit;
+        int amountGiven = amountOfResource + amountDeposit;     //increase amount of the resource available in the bank
         bankResources.put(resourceType, amountGiven);
 
     }

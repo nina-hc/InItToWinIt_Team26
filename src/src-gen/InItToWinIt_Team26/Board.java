@@ -1,46 +1,80 @@
-
 package InItToWinIt_Team26;
 
 import java.util.*;
 
+/**
+ * The following is the Board class
+ * It's in charge of creating the starting Board. This includes all the Tiles, their information along with all the Nodes and their information
+ * It is also the Boards job to update the map whenever a new Settlement/City/Road is placed
+ *
+ * @author Synthia Rosenberger
+ * @version February 2026, McMaster University
+ */
 public class Board {
 
-    private Tile[] tiles;       //tiles array holds Tile objects
-    private Node[] nodes;       //nodes array holds Node objects
+    //================================================================================
+    //INSTANCE VARIABLES
+    //================================================================================
 
-    //static 2D array, for our map layout
-    private int[][] adjacentMatrix; //never changes
+    /**
+     * Tiles array holds Tile objects
+     */
+    private Tile[] tiles;
 
-    //dynamic (changing) arrays to keep track of occupied nodes
-    //private int[] settlementMatrix;   //for settlements and cities... index = nodeID, value = playerID same for roads GETTING RID OF THIS CUZ WANT NODE TO STORE ITS OWN STUFF
-    private Road[][] roadMatrix;     //for roads
+    /**
+     * Nodes array holds Node objects
+     */
+    private Node[] nodes;
+
+    /**
+     * Static 2D array, for the board layout
+     * Keeps track of all the Nodes and their neighbors, this never changes
+     */
+    private int[][] adjacentMatrix;
+
+    /**
+     * Dynamic 2D array, to keep track of Roads and the Nodes they connect to
+     */
+    private Road[][] roadMatrix;
 
 
-    //-----------------------------------------------------
+    //================================================================================
+    //METHODS
+    //================================================================================
 
-
-    //constructor
+    /**
+     * Board constructor, creates a Board object
+     */
     public Board() {
         nodes = new Node[54];   //array size of 54 for 54 node objects
         tiles = new Tile[19];   //array size of 19 for 19 tiles
 
         adjacentMatrix = new int[54][54];   //fill all ints with 0s
-        //settlementMatrix = new int[54];   //NODES WILL SELF CARE
         roadMatrix = new Road[54][54];
 
-        originalMap();  //build map bro
+        originalMap();  //to construct the map
     }
 
 
-    //method that creates and stores the original map
+    /**
+     * Method in charge of generating the starting map
+     * This includes assigning the Node's neighbors, and assigning Nodes to Tiles
+     */
     private void originalMap() {
+
+        //**************************************
+        // FOR NODES
+        //**************************************
 
         //create node objects and storing it in nodes array
         for (int i = 0; i < 54; i++) {
             nodes[i] = new Node(i);
-
         }
 
+
+        //**************************************
+        // FOR TILES
+        //**************************************
 
         //create tile objects:
         //tiles[INDEX/ID] = new Tile(ID, ROLLNUM, RESOURCE)
@@ -64,7 +98,8 @@ public class Board {
         tiles[17] = new Tile(17, 2, ResourceType.LUMBER);
         tiles[18] = new Tile(18, 10, ResourceType.WOOL);
 
-        //more tile stuff...
+
+        //add vertices to the tile objects:
         //tiles[INDEX/ID].setNodes(new int[] {6 NODES ON TILE});
         tiles[0].setNodes(new int[] {0, 1, 2, 3, 4, 5});
         tiles[1].setNodes(new int[] {1, 6, 7, 8, 9, 2});
@@ -87,13 +122,14 @@ public class Board {
         tiles[18].setNodes(new int[] {23, 52, 53, 24, 7, 6});
 
 
+        //**************************************
+        // NODE NEIGHBORS
+        //**************************************
 
-
-        //=========================================
-        //make an array of node neighbors to help build the map:
+        //an array of node neighbors to help build the map:
         int[][] neighbors = {
 
-                {1, 5, 20},     //0
+                {1, 5, 20},     //0 : node number
                 {0, 2, 6},     //1
                 {1, 3, 9},     //2
                 {2, 4, 12},     //3
@@ -150,31 +186,45 @@ public class Board {
         };
 
 
-        //connect loop
+        //connecting node to each neighbor
         for (int i = 0; i < neighbors.length; i++) {
 
             for (int neighbor : neighbors[i]) {
-                connect(i, neighbor);       //connecting node to each neighbor
+                connect(i, neighbor);
             }
         }
 
     }
 
-    //connect method to help in creating the map
+
+    /**
+     * Connect method to help connect neighboring Nodes when generating the Board
+     * Sets both directions, for an undirected graph
+     * Same both ways is 1 connects to 2, then 2 connects to 1
+     *
+     * @param i first node
+     * @param j second node
+     */
     private void connect(int i, int j) {
-        adjacentMatrix[i][j] = 1;   //sets both directions, for an undirected graph (same both ways... is 1 connects to 2, then 2 connects to 1)
+        adjacentMatrix[i][j] = 1;
         adjacentMatrix[j][i] = 1;
     }
 
 
     //**************************************
     //ADJACENCY
+    //**************************************
 
-    //adjacency matrix!!
-    //adjacent[i][j] = 1 : i is connected to j
-    //adjacent[i][j] = 0 : they are not connected
-    //for an undirected board... adj[i][j] == adj[j][i]
-    //never changes, static 2D array, represents the map
+    /**
+     * Node adjacency matrix
+     * adjacent[i][j] = 1 : i is connected to j
+     * adjacent[i][j] = 0 : they are not connected
+     * Never changes, this is a static 2D array used to represent the Board
+     *
+     * @param i first node
+     * @param j second node
+     * @return true if nodes are adjacent, false if they are not
+     */
     public boolean isAdjacent(int i, int j) {
         if (adjacentMatrix[i][j] == 1) {    //are adjacent
             return true;
@@ -185,77 +235,64 @@ public class Board {
 
     }
 
-    //**************************************
-
-
-
-
-//    public boolean isOccupied(int nodeID) {
-//        if (settlementMatrix[nodeID] == 0) {    //not occupied
-//            return false;
-//
-//        } else {
-//            return true;
-//        }
-//    }
-
-
 
     //**************************************
     //BUILDINGS
+    //**************************************
 
-    //this is to update the occupancy matrix
-    //SETTLEMENT
+    /**
+     * Method used to update the occupancy matrix when a Settlement is placed
+     *
+     * @param nodeID ID number ot reference Node objects
+     * @param playerID  ID number used to represent Player objects
+     * @return true if the place is successful
+     */
     public boolean placeSettlementOnMat(int nodeID, int playerID) {
-        //settlementMatrix[nodeID] = playerID;    //this will be marked with player id so its known whos settlement is on the node
         Node node = nodes[nodeID];
 
         if (!node.isOccupied()) {   //check node object if it's occupied
             Settlement settlement = new Settlement(node, playerID); //make object
-            node.placeSettlement(settlement);   //place object (NOTE TO SELF, I DO THIS FOR ALL THE BUILDINGS)
+            node.placeSettlement(settlement);   //place object
             return true;
         }
 
         return false;
     }
 
-    //this is to update the occupancy matrix
-    //CITY
+    /**
+     * Method used to update the occupancy matrix when a City is placed
+     * Cities can only be placed on top of Settlements owned by the player
+     *
+     * @param nodeID ID number to reference Node object
+     * @param playerID ID number to reference player object
+     * @return true if the place is successful
+     */
     public boolean placeCityOnMat(int nodeID, int playerID) {
-        //settlementMatrix[nodeID] = playerID;    //this will be marked with player id so its known whos settlement is on the node
         Node node = nodes[nodeID];
 
         if (!node.isOccupied()) {   //check node object if it's occupied
             City city = new City(node, playerID); //make object
-            node.placeCity(city);   //place object (NOTE TO SELF, I DO THIS FOR ALL THE BUILDINGS)
+            node.placeCity(city);   //place object
             return true;
         }
 
         return false;
     }
-    //**************************************
 
 
     //**************************************
     //ROADS
+    //**************************************
 
-    //**FOR NINA: VOID NOT BOOL
+    /**
+     * Method used to update the occupancy matrix when a Road is placed
+     *
+     * @param nodeOneID
+     * @param nodeTwoID ID number to reference second Node object
+     * @param playerID ID number to reference player object
+     * @return road object that is placed
+     */
     public Road placeRoad(int nodeOneID, int nodeTwoID, int playerID) {//NINA changed it to road
-
-        //roadMatrix[i][j] = 0 : no road
-        //roadMatrix[i][j] = playerID : player that owns road
-
-        //**FOR NINA: SHE ALR CHECKS THIS
-//        //check is nodes are adjacent
-//        if(!isAdjacent(nodeOneID, nodeTwoID)) {
-//            System.out.println("ERROR: Nodes are not adjacent");
-//            return false;
-//        }
-//
-//        if (hasRoad(nodeOneID, nodeTwoID)) {
-//            System.out.println("ERROR: Road already exsists");
-//            return false;
-//        }
 
         //retrieve node objects
         Node nodeOne = nodes[nodeOneID];
@@ -264,36 +301,59 @@ public class Board {
         //making road object
         Road road = new Road(nodeOne, nodeTwo, playerID);
 
-        roadMatrix[nodeOneID][nodeTwoID] = road;
+        roadMatrix[nodeOneID][nodeTwoID] = road;    //mark road in both directions
         roadMatrix[nodeTwoID][nodeOneID] = road;
         
         return road;
-
-
     }
 
-    //method to check if a road exists
+
+    /**
+     * Method to check if Road exists
+     *
+     * @param nodeOne first node checking
+     * @param nodeTwo second node checking
+     * @return true if the edge contains a road, false if not
+     */
     public boolean hasRoad(int nodeOne, int nodeTwo) {
-        if (roadMatrix[nodeOne][nodeTwo] != null) {
+        if (roadMatrix[nodeOne][nodeTwo] != null) { //edge is not empty
             return true;
         } else {
-            return false;
+            return false;   //edge is empty
         }
     }
+
+
+    //**************************************
+    //OTHERS
     //**************************************
 
-
-    //********************************************************
-
-    //GETTERS:
+    /**
+     * Getter for Node objects
+     *
+     * @param nodeID ID number to reference Node objects
+     * @return nodeID
+     */
     public Node getNode(int nodeID) {
         return nodes[nodeID];
     }
 
+    /**
+     * To retrieve a Tile object
+     *
+     * @param tileID ID number used to reference Tile objects
+     * @return tile
+     */
     public Tile getTile(int tileID) {
         return tiles[tileID];
     }
-    
+
+    /**
+     * To retrieve Node neighbors
+     * 
+     * @param nodeID ID number used to reference Node objects
+     * @return Node neighbors
+     */
     public List<Integer> getNeighbors(int nodeID) {
         List<Integer> list = new ArrayList<>();
 
@@ -305,9 +365,5 @@ public class Board {
 
         return list;
     }
-    
-
-
-    //********************************************************
 
 }
