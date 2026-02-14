@@ -10,24 +10,34 @@ import java.util.List;
 import java.util.Set;
 
 /************************************************************/
-/**
+/** Extends Build to implement process for building roads 
+ * @author Nina Hay Cooper
  * 
+ * February 13th 2026
  */
 public class BuildRoad extends Build {
 	
-	/*Constructor */
+	/**Constructor
+	 * 
+	 * @param player Player who is building the road
+	 * @param board the board game
+	 * @param randomizer randomizer object
+	 */
 	public BuildRoad(Player player,Board board, Randomizer randomizer){
 		super(player, board, randomizer);
 	}
 
 	/*Helper class to track the edges of the nodes*/
 	private static class Edge{
-		
-		//still not great naming but potentially better than A and B or 1 and 2
+		/*Pair of nodes */
 		private int nodeFromID;//starting node
 		private int nodeToID;//ending node
-		//I don't think I like this anymore, the naming
-
+		
+		/**
+		 * 
+		 * @param nodeFromID the nodeID that is being 
+		 * @param nodeToID
+		 */
 		public Edge(int nodeFromID, int nodeToID){
 			this.nodeFromID=nodeFromID;
 			this.nodeToID=nodeToID;
