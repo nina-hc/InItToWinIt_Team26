@@ -8,8 +8,6 @@ import java.util.Random;
  */
 public class Game {
 
-    private static final int WINNING_VP = 10;
-
     private Board board;
     private Bank bank;
     private Player[] players;
@@ -42,7 +40,7 @@ public class Game {
     }
 
     /**
-     * Initial placement phase: each player places 2 settlements and 2 roads
+     * Start of game has builds place for free
      */
     public void initialPlacement() {
         for (int round = 0; round < 2; round++) {
@@ -53,10 +51,10 @@ public class Game {
 
             for (int i = start; i != end; i += step) {
                 Player player = players[i];
-                // Place settlement (free during setup)
+                // settlement for set up
                 Settlement settlement = initialSettlementPlacement(player);
                 
-                // Place road (free during setup)
+                // The roads for set up
                 initialRoadPlacement(player);
                 
                 if (settlement != null) {
@@ -67,7 +65,7 @@ public class Game {
     }
 
     /**
-     * Main simulation loop until a player wins or maxRounds reached
+     * Run the simulation for the number of defined rounds
      */
     public void startSimulation() {
         boolean gameOver = false;
@@ -121,7 +119,7 @@ public class Game {
     }
 
     /**
-     * Attempt to place a settlement randomly (used in initial placement)
+     * Place Settlements for start of game.
      */
     public Settlement initialSettlementPlacement(Player player) {
         int attempts = 0;
@@ -165,7 +163,7 @@ public class Game {
     }
 
     /**
-     * Attempt to place a road randomly (used in initial placement)
+     * Place roads for start of game
      */
     public void initialRoadPlacement(Player player) {
         int attempts = 0;
