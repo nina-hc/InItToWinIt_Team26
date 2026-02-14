@@ -2,7 +2,9 @@ package InItToWinIt_Team26;
 
 import java.util.Random;
 
-
+/**
+ * Randomizes a roll of two six-sided dice
+ */
 public class Randomizer {
 
     // random object used for generating numbers
