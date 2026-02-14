@@ -76,31 +76,26 @@ public class Game {
         while (!gameOver && roundNumber < maxRounds) {
             roundNumber++;
 
-            System.out.println("=== Round " + roundNumber + " ===");
-
             for (Player player : players) {
 
-                // Roll dice
+                /*Dice roll */
                 int roll = distributor.executeDistribution();
-                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": Rolled " + roll);
+                System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
 
-                // AI builds (tries to spend cards if >7)
+                /*Call player actions */
                 PlayerAction action = new PlayerAction(player, board, randomizer);
                 action.executeTurn();
 
-                // Print player action summary
-                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": Completed turn");
+                // Print Statement of Actions
+                System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");
 
                 // Check win conditions
                 VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
                 if (vpCheck.checkWinConditions()) {
                     gameOver = true;
-                    System.out.println("Player " + player.getPlayerID() + " wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
+                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
                     break;
                 }
-
-                System.out.println("Player " + player.getPlayerID() + " hand: "
-                        + player.getResourceHand());
 
 
             }
