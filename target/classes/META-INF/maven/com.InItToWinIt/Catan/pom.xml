@@ -12,10 +12,10 @@
     
     <properties>
         <!-- I'm not certain about the version -->
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.java.source>25</sonar.java.source>
+        <sonar.java.source>21</sonar.java.source>
 
         <sonar.organization>nina-hc</sonar.organization>
         <sonar.projectName>2AA4-Catan</sonar.projectName>
