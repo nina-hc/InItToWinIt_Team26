@@ -5,7 +5,7 @@ package main.java;
  * 
  * @author Nina Hay Cooper, February 13th 2026
  */
-public class City {
+public class City implements Building {
 	private Node node;// where its located
 	private int ownerID;// playerID that owns it
 
@@ -19,14 +19,27 @@ public class City {
 		this.node = node;
 		this.ownerID = ownerID;
 	}
-
 	/* getters */
+	@Override
+	public int getOwnerID() {
+		return ownerID;
+	}
+
+	@Override
+	public int getResourceMultiplier() {
+		return 2;//double the resources for
+	}
+
+	@Override
+	public int getVictoryPointValue() {
+		return 2;
+	}
+
+	@Override
 	public Node getNode() {
 		return node;
 	}
 
-	public int getOwner() {
-		return ownerID;
-	}
+
 
 }
