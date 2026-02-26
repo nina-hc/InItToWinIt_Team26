@@ -2,5 +2,6 @@
 .vscode/
 .idea/
 InItToWinIt_Team26_en_CA.properties/
-.iml/
+*.iml/
+/out/
 /Catan.iml
