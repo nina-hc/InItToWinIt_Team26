@@ -5,7 +5,7 @@ package main.java;
  * 
  * @author Nina Hay Cooper, February 13th 2026
  */
-public class Settlement {
+public class Settlement implements Building{
 	private Node node;// where its located
 	private int ownerID;// playerID that owns it
 
@@ -19,14 +19,26 @@ public class Settlement {
 		this.node = node;
 		this.ownerID = ownerID;
 	}
-
 	/* getters */
-	public Node getNode() {
-		return node;
+	@Override
+	public int getOwnerID() {
+		return ownerID;
 	}
 
-	public int getOwner() {
-		return ownerID;
+	@Override
+	public int getResourceMultiplier() {
+		return 1;
+	}
+
+	@Override
+	public int getVictoryPointValue() {
+		return 1;
+	}
+
+
+	@Override
+	public Node getNode() {
+		return node;
 	}
 
 }
