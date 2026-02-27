@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class Player {
 	private final int playerID;//player ID doesn't change
-	private int victoryPoints;
 	private final ResourceHand resourceHand;//their resource hand doesn't change
 
 	/* Player Build Capacities */
@@ -36,7 +35,6 @@ public class Player {
 	 */
 	public Player(int playerID) {
 		this.playerID = playerID;
-		this.victoryPoints = 0;
 		this.resourceHand = new ResourceHand();
 		this.playerRoads = new ArrayList<>();
 		this.playerSettlements = new ArrayList<>();
@@ -111,7 +109,7 @@ public class Player {
 	/**
 	 * Records upgrading to a city for a player
 	 * 
-	 * @param settlementBeingUpgraded the settlement that is being removed
+	 * @param targetNodeId the nodID where the city would like to be placed
 	 * @param cityPlaced              the city being placed
 	 */
 	public void playerUpgradeToCity(Node targetNodeId, City cityPlaced) {

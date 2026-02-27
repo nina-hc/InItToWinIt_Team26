@@ -6,8 +6,8 @@ package main.java;
  * @author Nina Hay Cooper, February 13th 2026
  */
 public class Settlement implements Building{
-	private Node node;// where its located
-	private int ownerID;// playerID that owns it
+	private final Node node;// where its located
+	private final int ownerID;// playerID that owns it
 
 	/**
 	 * Constructor

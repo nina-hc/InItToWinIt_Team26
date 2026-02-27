@@ -68,26 +68,16 @@ public class DistributeResources {
 		// loop through each node
 		for (int nodeID : nodeIDs) {
 			Node node = board.getNode(nodeID);
+			Building building = node.getBuilding();
 
-			// settlement gives 1 resource
-			if (node.getSettlement() != null) {
-				int ownerID = node.getSettlement().getOwner();
+			if (building != null) {
+				int ownerID = building.getOwnerID();
 				Player owner = players[ownerID - 1]; // convert IDs 1-4 to array (0-3)
 
-				int receivedFromBank = bank.transferToPlayer(resource, 1); // transfer resource from bank
-				if (receivedFromBank > 0) {
-					owner.getResourceHand().addResource(resource, receivedFromBank); // add to player
-				}
-			}
-
-			// city gives 2 resources
-			if (node.getCity() != null) {
-				int ownerID = node.getCity().getOwner();
-				Player owner = players[ownerID - 1];
-
-				int receivedFromBank = bank.transferToPlayer(resource, 2);
-				if (receivedFromBank > 0) {
+				int receivedFromBank = building.getResourceMultiplier();
+				if(receivedFromBank >0){
 					owner.getResourceHand().addResource(resource, receivedFromBank);
+
 				}
 			}
 		}

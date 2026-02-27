@@ -72,6 +72,6 @@ public class Edge {
 	 * @return true if they are adjacent, false otherwise.
 	 */
 	public boolean isAdjacentTo(Edge otherEdge){
-		return (sharesNode(otherEdge.getNodeA()) && sharesNode(otherEdge.getNodeB()));
+		return (sharesNode(otherEdge.getNodeA()) || sharesNode(otherEdge.getNodeB()));
 	}
 }
