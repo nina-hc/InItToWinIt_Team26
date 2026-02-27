@@ -223,7 +223,7 @@ public class Board {
 		}
 
 		// making road object
-		Road road = new Road(nodeOneID, nodeTwoID, playerID);
+		Road road = new Road(playerID,edge);
 		//store the road in the edge
 		edge.placeRoad(road);
 		return road;

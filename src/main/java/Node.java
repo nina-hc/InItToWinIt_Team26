@@ -21,17 +21,6 @@ public class Node {
 
 	private Building building;
 
-	/**
-	 * Settlement object that's placed on a Node Null if no Settlement has been
-	 * placed
-	 */
-	private Settlement settlement;
-
-	/**
-	 * City object that's place on a Node Null if no City has been placed
-	 */
-	private City city;
-
 	// ================================================================================
 	// METHODS
 	// ================================================================================

@@ -145,14 +145,24 @@ public class ResourceHand {
 		resources.put(ResourceType.BRICK, (resources.get(ResourceType.BRICK) - 1));
 		resources.put(ResourceType.WOOL, (resources.get(ResourceType.WOOL) - 1));
 		resources.put(ResourceType.GRAIN, (resources.get(ResourceType.GRAIN) - 1));
+
+		//deposit resources back into the bank
+		bank.resourceDeposit(ResourceType.LUMBER,1);
+		bank.resourceDeposit(ResourceType.BRICK,1);
+		bank.resourceDeposit(ResourceType.WOOL,1);
+		bank.resourceDeposit(ResourceType.GRAIN,1);
 	}
 
-	public void payForCity() {
+	public void payForCity(Bank bank) {
 		if (!canBuyCity()) {
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a city");
 		}
 		resources.put(ResourceType.ORE, (resources.get(ResourceType.ORE) - 3));
 		resources.put(ResourceType.GRAIN, (resources.get(ResourceType.GRAIN) - 2));
+
+		//deposit resource back to bank
+		bank.resourceDeposit(ResourceType.ORE,3);
+		bank.resourceDeposit(ResourceType.GRAIN,2);
 	}
 
 	/**

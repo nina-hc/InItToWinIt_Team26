@@ -82,10 +82,6 @@ public class BuildRoad extends Build {
 		/* Pay for the build */
 		player.getResourceHand().payForRoad(bank);
 
-		/*give money back to the bank*/
-		bank.resourceDeposit(ResourceType.BRICK,1);
-		bank.resourceDeposit(ResourceType.LUMBER,1);
-
 		/* Create road, add it to the player and the edge */
 		Road road = new Road (player.getPlayerID(),edges);
 		edges.placeRoad(road);
