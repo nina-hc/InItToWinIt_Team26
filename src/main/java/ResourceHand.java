@@ -5,6 +5,7 @@ package main.java;// --------------------------------------------------------
 import java.util.EnumMap;
 import java.util.Map;
 
+
 /************************************************************/
 /**
  * Class to manage a players resources
@@ -16,7 +17,7 @@ public class ResourceHand {
 	 * Map to store resources Key is the resource type and value is the amount they
 	 * have of the resource
 	 */
-	private Map<ResourceType, Integer> resources;
+	private final Map<ResourceType, Integer> resources;
 
 	/*------Constructor-----*/
 	public ResourceHand() {
@@ -24,7 +25,10 @@ public class ResourceHand {
 		resources = new EnumMap<>(ResourceType.class);
 		/* Using a for each loop to set up resources to be 0 at the start */
 		for (ResourceType type : ResourceType.values()) {
-			resources.put(type, 0);// value of 0 in each key
+			//excluding the desert
+			if(type != ResourceType.DESERT) {
+				resources.put(type, 0);// value of 0 in each key
+			}
 		}
 	}
 
@@ -36,13 +40,35 @@ public class ResourceHand {
 	 */
 
 	public void addResource(ResourceType type, int amount) {
-		if (amount < 0) {
+		if (amount <= 0) {
 			throw new IllegalArgumentException("Error: Negative values cannot be added");
+		}
+		//ignoring the desert as you don't get a resource
+		if(type == ResourceType.DESERT) {
+			throw new IllegalArgumentException("Error: Resources are not gained from the desert.");
 		}
 		// map method to add value to the value in map
 		resources.put(type, (resources.get(type) + amount));// getting the current amount in there and adding the amount
-															// and that's whats going in there.
+															// and that's what's going in there.
 
+	}
+
+	/*for the robber*/
+	public void removeResource(ResourceType type, int amount) {
+		if (amount <= 0) {
+			throw new IllegalArgumentException("Error: Negative values cannot be removed");
+		}
+		if(type == ResourceType.DESERT) {
+			throw new IllegalArgumentException("Error: There are no resources from the desert.");
+		}
+		//otherwise remove the amount
+		int currentAmount = resources.get(type);
+		if(currentAmount < amount) {
+			throw new IllegalArgumentException("Error: you cannot remove more resources than the player has.");
+			//alternatively this could be implemented to remove the max rather than be an error
+		}
+		//subtract the current amount by the amount removed and place that as the new value
+		resources.put(type,(currentAmount - amount));
 	}
 
 	/**
@@ -99,15 +125,19 @@ public class ResourceHand {
 	/**
 	 * Pay for the build Pays for the builds by subtracting the building costs
 	 */
-	public void payForRoad() {
+	public void payForRoad(Bank bank) {
 		if (!canBuyRoad()) {
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a road");
 		}
+		/*take from the player*/
 		resources.put(ResourceType.LUMBER, (resources.get(ResourceType.LUMBER) - 1));
 		resources.put(ResourceType.BRICK, (resources.get(ResourceType.BRICK) - 1));
+		/*give it back to the bank*/
+		bank.resourceDeposit(ResourceType.LUMBER,1);
+		bank.resourceDeposit(ResourceType.BRICK,1);
 	}
 
-	public void payForSettlement() {
+	public void payForSettlement(Bank bank) {
 		if (!canBuySettlement()) {
 			throw new IllegalArgumentException("Error: Player does not have enough resources to buy a settlement");
 		}

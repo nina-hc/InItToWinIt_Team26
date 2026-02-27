@@ -17,7 +17,9 @@ public class Node {
 	 * Node identification number from 0-53, that will be used to build settlements,
 	 * cities and roads Allows for reference to specific Node objects
 	 */
-	private int nodeID;
+	private final int nodeID; //the nodeID shouldn't change
+
+	private Building building;
 
 	/**
 	 * Settlement object that's placed on a Node Null if no Settlement has been
@@ -41,8 +43,7 @@ public class Node {
 	 */
 	public Node(int nodeID) {
 		this.nodeID = nodeID;
-		this.settlement = null; // node begins empty
-		this.city = null;
+		this.building = null;//initializes as empty
 	}
 
 	/**
@@ -55,16 +56,20 @@ public class Node {
 	}
 
 	/**
-	 * Method to check if a Node currently has a Settlement or City built on it
+	 * Method to check if a Node currently has a building
 	 *
 	 * @return true if Node is occupied, false if not
 	 */
 	public boolean isOccupied() {
-		if (settlement != null || city != null) {
-			return true;
-		} else {
-			return false;
-		}
+		return (building != null);
+	}
+
+	/**
+	 * Gets the building currently on the node
+	 * @return the building on the node or null if there is no building
+	 */
+	public Building getBuilding() {
+		return building;
 	}
 
 	/**
@@ -73,11 +78,11 @@ public class Node {
 	 * @param settlement object that's being placed on the Node
 	 */
 	public void placeSettlement(Settlement settlement) {
-		if (!isOccupied()) { // proceed if Node is not occupied
-			this.settlement = settlement;
-		} else {
-			System.out.println("Node is occupied");
+		if (isOccupied()) {
+			throw new IllegalStateException("Error: Node "+nodeID+" is already occupied.");
 		}
+		//Otherwise place settlement in node
+		this.building = settlement;
 
 	}
 
@@ -87,26 +92,14 @@ public class Node {
 	 *
 	 * @param city object that's being placed on the Node
 	 */
-	public void placeCity(City city) {
-		if (this.settlement == null) {
-			throw new IllegalArgumentException("Error: No settlement here to replace");
+	public void upgradeToCity(City city) {
+		if (!(building instanceof Settlement)) {
+			throw new IllegalStateException("Error: Node "+ nodeID+ " does contain a settlement. Cities must " +
+					"upgrade settlements.");
 		}
-		this.settlement = null; // remove settlement
-		this.city = city; // place city
+		this.building = city;
 
 	}
 
-	/**
-	 * Settlement getter
-	 *
-	 * @return returns empty if null, returns settlement if full
-	 */
-	public Settlement getSettlement() {
-		return settlement;
-	}
-
-	public City getCity() {
-		return city; // if empty... returns null... if its full it will return the Build object
-	}
 
 }

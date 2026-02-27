@@ -29,6 +29,9 @@ public class Bank {
 	 */
 	private Map<ResourceType, Integer> bankResources;
 
+	/* the starting pre-defined max amount of cards per resource type*/
+	private static final int RESOURCE_CARD_MAX = 19; //don't love this name but for now
+
 	/**
 	 * Bank constructor, constructs a Bank and stores 19 cards in each resource
 	 */
@@ -37,7 +40,11 @@ public class Bank {
 
 		// initialize each resource type with 19 cards:
 		for (ResourceType type : ResourceType.values()) {
-			bankResources.put(type, 19);
+			/*excluding the robber cards, and setting up the bank to have the starting max for each type*/
+			if(type != ResourceType.DESERT){
+				bankResources.put(type, RESOURCE_CARD_MAX);
+			}
+
 		}
 	}
 

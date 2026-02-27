@@ -263,7 +263,7 @@ public class Board {
 
 		if (!node.isOccupied()) { // check node object if it's occupied
 			City city = new City(node, playerID); // make object
-			node.placeCity(city); // place object
+			node.upgradeToCity(city); // place object
 			return true;
 		}
 

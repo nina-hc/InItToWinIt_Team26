@@ -15,9 +15,9 @@ import java.util.List;
  * 
  */
 public class Player {
-	private int playerID;
+	private final int playerID;//player ID doesn't change
 	private int victoryPoints;
-	private ResourceHand resourceHand;
+	private final ResourceHand resourceHand;//their resource hand doesn't change
 
 	/* Player Build Capacities */
 	private static final int maxRoads = 15;
@@ -25,9 +25,9 @@ public class Player {
 	private static final int maxCities = 4;
 
 	/* Track the Players Builds */
-	private List<Road> playerRoads;
-	private List<Settlement> playerSettlements;
-	private List<City> playerCities;
+	private final List<Road> playerRoads;
+	private final List<Settlement> playerSettlements;
+	private final List<City> playerCities;
 
 	/**
 	 * Constructor
@@ -73,7 +73,16 @@ public class Player {
 		return maxCities - playerCities.size();
 	}
 
-	/*---Adding the builds to the player, not to the board--- */
+	/* get playerID */
+	public int getPlayerID() {
+		return playerID;
+	}
+	/* get player resource hand */
+	public ResourceHand getResourceHand() {
+		return resourceHand;
+	}
+
+	/*---Adding the builds to the player, not to the board---*/
 	/**
 	 * Add road to player
 	 * 
@@ -81,10 +90,10 @@ public class Player {
 	 */
 	public void playerAddRoad(Road road) {
 		if (getPlayerRoadsLeft() <= 0) {
-			throw new IllegalStateException("Error: The player has no roads left");
+			throw new IllegalStateException("Error: The player "+playerID+ " has no roads left");
 		}
 		playerRoads.add(road);
-		// not including victory points
+
 	}
 
 	/**
@@ -94,51 +103,44 @@ public class Player {
 	 */
 	public void playerAddSettlement(Settlement settlement) {
 		if (getPlayerSettlementsLeft() <= 0) {
-			throw new IllegalStateException("Error: The player has no settlements left");
+			throw new IllegalStateException("Error: The player "+ playerID+ " has no settlements left");
 		}
 		playerSettlements.add(settlement);
-
-		victoryPoints += 1;
 	}
 
-	//
-
 	/**
-	 * Upgrading a settlement
+	 * Records upgrading to a city for a player
 	 * 
 	 * @param settlementBeingUpgraded the settlement that is being removed
 	 * @param cityPlaced              the city being placed
 	 */
-	public void playerUpgradeToCity(Settlement settlementBeingUpgraded, City cityPlaced) {
+	public void playerUpgradeToCity(Node targetNodeId, City cityPlaced) {
+		//if the player has no cities left to place
 		if (getPlayerCitiesLeft() <= 0) {
-			throw new IllegalStateException("Error: The player has no cities left");
+			throw new IllegalStateException("Error: The player "+playerID+ " has no cities left");
 		}
-
-		// check if settlement is valid and also remove it, could do it more explicitly
-		if (!playerSettlements.remove(settlementBeingUpgraded)) {// if there was no settlement to remove
-			throw new IllegalArgumentException("Error: No settlement to be upgraded there");
-		} // since the max is size based this also puts it back in store
-
-		/* add city for player */
+		/*initialize variable to store the settlement we want to remove, if it exists. Using the nodeID prevents the
+		weaker object comparing*/
+		Settlement settlementToRemove = null;
+		/*search for the settlement on the target nodeID (again, if it exists)*/
+		for (Settlement s : playerSettlements) {
+			//if we get a match, break out of the loop
+			if(s.getNode()==targetNodeId){
+				settlementToRemove = s;
+				break;
+			}
+		}
+		/*if after looking it's still null*/
+		if (settlementToRemove == null) {
+			throw new IllegalArgumentException("Error: player "+playerID+" has no settlement at Node "+targetNodeId+
+					"to upgrade");
+		}
+		/* Otherwise, remove settlement and add city for player */
+		playerSettlements.remove(settlementToRemove);
 		playerCities.add(cityPlaced);
 
-		victoryPoints += 2;
-
 	}
 
-	/* get playerID */
-	public int getPlayerID() {
-		return playerID;
-	}
 
-	/* Get player victory pointer */
-	public int getVictoryPoints() {
-		return victoryPoints;
-	}
-
-	/* get player resource hand */
-	public ResourceHand getResourceHand() {
-		return resourceHand;
-	}
 
 }

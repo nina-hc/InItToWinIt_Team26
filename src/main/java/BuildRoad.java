@@ -16,7 +16,6 @@ import java.util.Set;
  *         February 13th 2026
  */
 public class BuildRoad extends Build {
-
 	/**
 	 * Constructor
 	 * 
@@ -24,8 +23,8 @@ public class BuildRoad extends Build {
 	 * @param board      the board game
 	 * @param randomizer randomizer object
 	 */
-	public BuildRoad(Player player, Board board, Randomizer randomizer) {
-		super(player, board, randomizer);
+	public BuildRoad(Player player, Board board, Randomizer randomizer,Bank bank) {
+		super(player, board, randomizer, bank);
 	}
 
 	/* Helper class to track the edges of the nodes */
@@ -192,7 +191,7 @@ public class BuildRoad extends Build {
 		int nodeFromID = edges.getNodeFromID();
 
 		/* Pay for the build */
-		player.getResourceHand().payForRoad();
+		player.getResourceHand().payForRoad(bank);
 
 		/* Create road */
 		// I NEED to get the node objects from board
