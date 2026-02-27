@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 public interface Building {
 	public int getOwnerID();

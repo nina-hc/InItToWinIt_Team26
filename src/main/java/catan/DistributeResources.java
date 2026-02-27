@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 /**
  * This class is responsible for distributing resources to players after a dice

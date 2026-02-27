@@ -1,21 +1,21 @@
-package main.java;
+package catan;
 
 /**
- * Class for settlements
+ * Class to represent cities in Catan
  * 
  * @author Nina Hay Cooper, February 13th 2026
  */
-public class Settlement implements Building{
+public class City implements Building {
 	private Node node;// where its located
 	private int ownerID;// playerID that owns it
 
 	/**
 	 * Constructor
 	 * 
-	 * @param node    nodeID for the settlement
-	 * @param ownerID playerID who owns the settlement
+	 * @param node    nodeID for the city
+	 * @param ownerID playerID who owns the city
 	 */
-	public Settlement(Node node, int ownerID) {
+	public City(Node node, int ownerID) {
 		this.node = node;
 		this.ownerID = ownerID;
 	}
@@ -27,18 +27,19 @@ public class Settlement implements Building{
 
 	@Override
 	public int getResourceMultiplier() {
-		return 1;
+		return 2;//double the resources for
 	}
 
 	@Override
 	public int getVictoryPointValue() {
-		return 1;
+		return 2;
 	}
-
 
 	@Override
 	public Node getNode() {
 		return node;
 	}
+
+
 
 }

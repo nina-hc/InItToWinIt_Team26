@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 /**
  * The Demonstrator class serves as the main entry point of the Catan simulation

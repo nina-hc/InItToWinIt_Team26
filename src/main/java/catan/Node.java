@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 /**
  * This is the Node class It's in charge of creating Node objects that will be

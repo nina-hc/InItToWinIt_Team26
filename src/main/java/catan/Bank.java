@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 import java.util.EnumMap;
 import java.util.Map;

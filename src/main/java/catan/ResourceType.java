@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 /**
  * enum to represent the resource types

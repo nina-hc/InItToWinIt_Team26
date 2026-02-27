@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 public class GameSetupManager {
 

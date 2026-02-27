@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 /**
  * Manages the overall Catan game simulation

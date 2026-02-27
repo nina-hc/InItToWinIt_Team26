@@ -1,4 +1,4 @@
-package main.java;
+package catan;
 
 /**
  * This is the Tile class It's in charge of creating Tile objects that will be
