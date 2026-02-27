@@ -12,6 +12,9 @@ import java.util.*;
  * @version February 2026, McMaster University
  */
 public class Board {
+	/*board constants that are slightly more stable than magic numbers*/
+	private static final int NUMBER_OF_NODES = 54;
+	private static final int NUMBER_OF_TILES = 19;
 
 	// ================================================================================
 	// INSTANCE VARIABLES
@@ -20,23 +23,15 @@ public class Board {
 	/**
 	 * Tiles array holds Tile objects
 	 */
-	private Tile[] tiles;
+	private final Tile[] tiles;
 
 	/**
 	 * Nodes array holds Node objects
 	 */
-	private Node[] nodes;
+	private final Node[] nodes;
 
-	/**
-	 * Static 2D array, for the board layout Keeps track of all the Nodes and their
-	 * neighbors, this never changes
-	 */
-	private int[][] adjacentMatrix;
+	private final Edge[] edges;
 
-	/**
-	 * Dynamic 2D array, to keep track of Roads and the Nodes they connect to
-	 */
-	private Road[][] roadMatrix;
 
 	// ================================================================================
 	// METHODS
@@ -46,29 +41,28 @@ public class Board {
 	 * Board constructor, creates a Board object
 	 */
 	public Board() {
-		nodes = new Node[54]; // array size of 54 for 54 node objects
-		tiles = new Tile[19]; // array size of 19 for 19 tiles
+		nodes = new Node[NUMBER_OF_NODES]; // array size of 54 for 54 node objects
+		tiles = new Tile[NUMBER_OF_TILES]; // array size of 19 for 19 tiles
 
-		adjacentMatrix = new int[54][54]; // fill all ints with 0s
-		roadMatrix = new Road[54][54];
+		// create node objects and storing it in nodes array
+		for (int i = 0; i < NUMBER_OF_NODES; i++) {
+			nodes[i] = new Node(i);
+		}
 
-		originalMap(); // to construct the map
+		constructTiles();
+
+		//make the edges
+		edges = constructEdges();
+
 	}
 
 	/**
 	 * Method in charge of generating the starting map This includes assigning the
 	 * Node's neighbors, and assigning Nodes to Tiles
 	 */
-	private void originalMap() {
+	private void constructTiles() {
 
-		// **************************************
-		// FOR NODES
-		// **************************************
 
-		// create node objects and storing it in nodes array
-		for (int i = 0; i < 54; i++) {
-			nodes[i] = new Node(i);
-		}
 
 		// **************************************
 		// FOR TILES
@@ -118,6 +112,9 @@ public class Board {
 		tiles[17].setNodes(new int[] { 49, 50, 51, 52, 23, 22 });
 		tiles[18].setNodes(new int[] { 23, 52, 53, 24, 7, 6 });
 
+	}
+
+	private Edge[] constructEdges(){
 		// **************************************
 		// NODE NEIGHBORS
 		// **************************************
@@ -181,94 +178,28 @@ public class Board {
 				{ 53, 24 }, // 53
 		};
 
+		List<Edge> edgeList = new ArrayList<>();
+		/*create custom ID for edges (essential is chosen only from the order they go in so not super meaningful)*/
+		int edgeID=0;//again still could cut
+
 		// connecting node to each neighbor
 		for (int i = 0; i < neighbors.length; i++) {
 
 			for (int neighbor : neighbors[i]) {
-				connect(i, neighbor);
+				if(i<neighbor){
+					edgeList.add(new Edge(edgeID++,nodes[i],nodes[neighbor]));//maybe pull increment out so its not
+					// doing too much
+				}
 			}
 		}
-
-	}
-
-	/**
-	 * Connect method to help connect neighboring Nodes when generating the Board
-	 * Sets both directions, for an undirected graph Same both ways is 1 connects to
-	 * 2, then 2 connects to 1
-	 *
-	 * @param i first node
-	 * @param j second node
-	 */
-	private void connect(int i, int j) {
-		adjacentMatrix[i][j] = 1;
-		adjacentMatrix[j][i] = 1;
-	}
-
-	// **************************************
-	// ADJACENCY
-	// **************************************
-
-	/**
-	 * Node adjacency matrix adjacent[i][j] = 1 : i is connected to j adjacent[i][j]
-	 * = 0 : they are not connected Never changes, this is a static 2D array used to
-	 * represent the Board
-	 *
-	 * @param i first node
-	 * @param j second node
-	 * @return true if nodes are adjacent, false if they are not
-	 */
-	public boolean isAdjacent(int i, int j) {
-		if (adjacentMatrix[i][j] == 1) { // are adjacent
-			return true;
-
-		} else {
-			return false;
-		}
-
+		return edgeList.toArray(new Edge[0]);
 	}
 
 	// **************************************
 	// BUILDINGS
 	// **************************************
 
-	/**
-	 * Method used to update the occupancy matrix when a Settlement is placed
-	 *
-	 * @param nodeID   ID number ot reference Node objects
-	 * @param playerID ID number used to represent Player objects
-	 * @return true if the place is successful
-	 */
-	public boolean placeSettlementOnMat(int nodeID, int playerID) {
-		Node node = nodes[nodeID];
-
-		if (!node.isOccupied()) { // check node object if it's occupied
-			Settlement settlement = new Settlement(node, playerID); // make object
-			node.placeSettlement(settlement); // place object
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Method used to update the occupancy matrix when a City is placed Cities can
-	 * only be placed on top of Settlements owned by the player
-	 *
-	 * @param nodeID   ID number to reference Node object
-	 * @param playerID ID number to reference player object
-	 * @return true if the place is successful
-	 */
-	public boolean placeCityOnMat(int nodeID, int playerID) {
-		Node node = nodes[nodeID];
-
-		if (!node.isOccupied()) { // check node object if it's occupied
-			City city = new City(node, playerID); // make object
-			node.upgradeToCity(city); // place object
-			return true;
-		}
-
-		return false;
-	}
+	//nodes know where the buildings are and the nodes are on the board
 
 	// **************************************
 	// ROADS
@@ -282,36 +213,21 @@ public class Board {
 	 * @param playerID  ID number to reference player object
 	 * @return road object that is placed
 	 */
-	public Road placeRoad(int nodeOneID, int nodeTwoID, int playerID) {// NINA changed it to road
+	public Road placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
+		/*get the edge that the road will be placed on*/
+		Edge edge = getEdgeBetweenNodes(nodeOneID, nodeTwoID);
 
-		// retrieve node objects
-		Node nodeOne = nodes[nodeOneID];
-		Node nodeTwo = nodes[nodeTwoID];
+		//if it's not a valid edge
+		if(edge==null){
+			throw new IllegalArgumentException("Error: A road cannot be placed between node "+nodeOneID+" and node "+nodeTwoID);
+		}
 
 		// making road object
-		Road road = new Road(nodeOne, nodeTwo, playerID);
-
-		roadMatrix[nodeOneID][nodeTwoID] = road; // mark road in both directions
-		roadMatrix[nodeTwoID][nodeOneID] = road;
-
+		Road road = new Road(nodeOneID, nodeTwoID, playerID);
+		//store the road in the edge
+		edge.placeRoad(road);
 		return road;
 	}
-
-	/**
-	 * Method to check if Road exists
-	 *
-	 * @param nodeOne first node checking
-	 * @param nodeTwo second node checking
-	 * @return true if the edge contains a road, false if not
-	 */
-	public boolean hasRoad(int nodeOne, int nodeTwo) {
-		if (roadMatrix[nodeOne][nodeTwo] != null) { // edge is not empty
-			return true;
-		} else {
-			return false; // edge is empty
-		}
-	}
-
 	// **************************************
 	// OTHERS
 	// **************************************
@@ -336,22 +252,72 @@ public class Board {
 		return tiles[tileID];
 	}
 
-	/**
-	 * To retrieve Node neighbors
-	 * 
-	 * @param nodeID ID number used to reference Node objects
-	 * @return Node neighbors
-	 */
-	public List<Integer> getNeighbors(int nodeID) {
-		List<Integer> list = new ArrayList<>();
+	public Edge[] getAllEdges(){
+		return edges;
+	}
 
-		for (int i = 0; i < 54; i++) {
-			if (adjacentMatrix[nodeID][i] == 1) {
-				list.add(i);
+	public Tile[] getAllTiles(){
+		return tiles;
+	}
+
+	public Node[] getAllNodes(){
+		return nodes;
+	}
+	/**
+	 * Gets the adjacent edges, utilizes the edge class to essentially check the shared end points which is what the
+	 * matrix did
+	 * @param node the node you are checking adjacency for
+	 * @return the edges that are adjacent
+	 */
+	public List<Edge> getAdjacentEdges(Node node) {
+		List<Edge> adjacentEdges = new ArrayList<>();
+		for(Edge edge : edges){
+			//if the edge shares a node its adjacent
+			if(edge.sharesNode(node)){
+				adjacentEdges.add(edge);
 			}
 		}
+		return adjacentEdges;
+	}
 
-		return list;
+
+	/**
+	 * Gets the edge between two nodes
+	 * @param nodeAID the first node
+	 * @param nodeBID the second node
+	 * @return the edge if there is one, or null if there is not
+	 */
+	public Edge getEdgeBetweenNodes(int nodeAID, int nodeBID) {
+		/*going through the edges to check for a match*/
+		for (Edge edge : edges) {
+			/*getting the two IDs stored in the actual edges*/
+			int nodeOneID = edge.getNodeA().getNodeID();
+			int nodeTwoID = edge.getNodeB().getNodeID();
+
+			/*if the nodeIDs match up to an edge, return the edge*/
+			//one way to match
+			if((nodeOneID == nodeAID)&&(nodeTwoID == nodeBID)){
+				return edge;
+
+			}
+			//second way
+			if((nodeOneID == nodeBID)&&(nodeTwoID == nodeAID)){
+				return edge;
+			}
+		}
+		//otherwise return null
+		return null;
+
+	}
+
+	/**
+	 * Check if two nodes are adjacent. This is the same functionality as the adjacency matrix
+	 * @param nodeAID one of the nodes being checked
+	 * @param nodeBID the second node being checked
+	 * @return true if they are adjacent, false otherwise
+	 */
+	public boolean isAdjacent(int nodeAID,int nodeBID) {
+		return getEdgeBetweenNodes(nodeAID,nodeBID) != null;
 	}
 
 }

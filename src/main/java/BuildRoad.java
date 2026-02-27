@@ -18,39 +18,15 @@ import java.util.Set;
 public class BuildRoad extends Build {
 	/**
 	 * Constructor
-	 * 
-	 * @param player     Player who is building the road
-	 * @param board      the board game
-	 * @param randomizer randomizer object
+	 *
+	 * @param player             Player who is building the road
+	 * @param board              the board game
+	 * @param randomizer         randomizer object
+	 * @param placementValidator placement generator
 	 */
-	public BuildRoad(Player player, Board board, Randomizer randomizer,Bank bank) {
-		super(player, board, randomizer, bank);
-	}
+	public BuildRoad(Player player, Board board, Randomizer randomizer,Bank bank, PlacementValidator placementValidator) {
+		super(player, board, randomizer, bank, placementValidator);
 
-	/* Helper class to track the edges of the nodes */
-	private static class Edge {
-		/* Pair of nodes */
-		private int nodeFromID;// starting node
-		private int nodeToID;// ending node
-
-		/**
-		 * 
-		 * @param nodeFromID the nodeID that is being
-		 * @param nodeToID
-		 */
-		public Edge(int nodeFromID, int nodeToID) {
-			this.nodeFromID = nodeFromID;
-			this.nodeToID = nodeToID;
-
-		}
-
-		public int getNodeFromID() {
-			return nodeFromID;
-		}
-
-		public int getNodeToID() {
-			return nodeToID;
-		}
 	}
 
 	/**
@@ -65,6 +41,8 @@ public class BuildRoad extends Build {
 		return hasResources && hasRoadsLeft;
 	}
 
+	protected boolean hasValidPlacements(){
+	}
 	@Override
 	protected Object generatePlacement() {
 		// To hold all the possible valid placements of the road
@@ -91,7 +69,7 @@ public class BuildRoad extends Build {
 
 		// put the connected nodes to valid placements
 		for (Integer nodeID : connectedPlayerNodeIDs) {
-			List<Integer> adjacentNodeIDs = board.getNeighbors(nodeID);
+			List<Integer> adjacentNodeIDs = board.getAdjacentEdges(nodeID);
 
 			// for each loop using the singular id
 			for (Integer adjacentID : adjacentNodeIDs) {
@@ -143,38 +121,6 @@ public class BuildRoad extends Build {
 
 	}
 
-	/**
-	 * Check if the node connect
-	 * 
-	 * @param nodeID
-	 * @return
-	 */
-	private boolean isNodeConnectedToPlayer(int nodeID) {
-		/* For each loop to check all their roads */
-		for (Road road : player.getPlayerRoads()) {
-			/* Checking either node of the road for a match */
-			if (road.getNodeA().getNodeID() == nodeID || road.getNodeB().getNodeID() == nodeID) {
-				return true;
-			}
-		}
-
-		// Check if it connects to a settlement as it can build from there too
-		for (Settlement settlement : player.getPlayerSettlements()) {
-			if (settlement.getNode().getNodeID() == nodeID) {
-				return true;
-			}
-		}
-
-		// check for city
-		for (City city : player.getPlayerCities()) {
-			if (city.getNode().getNodeID() == nodeID) {
-				return true;
-			}
-		}
-
-		// otherwise false
-		return false;
-	}
 
 	/**
 	 * Do the build operation, this includes: - paying for the build - updating the

@@ -10,6 +10,7 @@ public abstract class Build {
 	protected final Board board;
 	protected final Randomizer randomizer;
 	protected final Bank bank;
+	protected final PlacementValidator placementValidator;
 
 	/**
 	 * Constructor for Build
@@ -18,11 +19,13 @@ public abstract class Build {
 	 * @param board      the board where the build is happening
 	 * @param randomizer that randomizes that placements
 	 */
-	public Build(Player player, Board board, Randomizer randomizer, Bank bank) {
+	public Build(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 		this.player = player;
 		this.board = board;
 		this.randomizer = randomizer;
 		this.bank=bank;
+		this.placementValidator = placementValidator;
+
 	}
 
 	/**

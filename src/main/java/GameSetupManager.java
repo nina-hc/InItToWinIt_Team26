@@ -124,7 +124,7 @@ public class GameSetupManager {
             int settlementNodeID = playerSettlement.getNode().getNodeID();
 
             // Try to place road adjacent to settlement
-            for (int neighborID : board.getNeighbors(settlementNodeID)) {
+            for (int neighborID : board.getAdjacentEdges(settlementNodeID)) {
                 if (!board.hasRoad(settlementNodeID, neighborID)) {
                     //place road between settlement and neighbor node
                     Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
