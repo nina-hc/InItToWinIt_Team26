@@ -6,12 +6,14 @@ public class GameSetupManager {
     private final Bank bank;
     private final Player[] players;
     private final Randomizer randomizer;
+	private final PlacementValidator placementValidator;
 
-    public GameSetupManager(Board board, Bank bank, Player[] players, Randomizer randomizer) {
+    public GameSetupManager(Board board, Bank bank, Player[] players, Randomizer randomizer,PlacementValidator placementValidator) {
         this.board = board;
         this.bank = bank;
         this.players = players;
         this.randomizer = randomizer;
+		this.placementValidator = placementValidator;
     }
 
     /**
@@ -68,31 +70,9 @@ public class GameSetupManager {
             int nodeID = randomizer.randomSelection(0, 53);
             Node node = board.getNode(nodeID);
 
-            // Check if node is empty
-            if (node.isOccupied()) {
-                attempts++;
-                continue;
-            }
-
-            // Check distance rule (no adjacent buildings)
-            boolean validDistance = true;
-            for (int i = 0; i < 54; i++) {
-                if (board.isAdjacent(nodeID, i)) {
-                    Node neighbor = board.getNode(i);
-                    if (neighbor.isOccupied()) {
-                        validDistance = false;
-                        break;
-                    }
-                }
-            }
-
-            if (validDistance) {
-                Settlement s = new Settlement(node, player.getPlayerID());
-                node.placeSettlement(s);
-                player.playerAddSettlement(s);
-                System.out.println("[Player " + player.getPlayerID() + "]: placed initial settlement at " + nodeID);
-                return s;
-            }
+			if(!placementValidator.canPlaceSettlement(node,player,true)){
+				break;
+			}
 
             attempts++;
         }
