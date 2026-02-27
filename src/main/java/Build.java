@@ -55,8 +55,7 @@ public abstract class Build {
 		}
 
 		/* The actual build*/
-		doBuild(placement);// okay I think this name reflects how tired I am, doBuild in retrospect doesn't
-							// sound right
+		doBuild(placement);
 
 		/* Print statement */
 		printAction(placement);
@@ -74,6 +73,7 @@ public abstract class Build {
 	 */
 	protected abstract boolean canPlayerBuy();
 
+	protected abstract boolean hasValidPlacement();
 	/**
 	 * 
 	 * Changed it to object because I realized roads use two nodes so maybe this is

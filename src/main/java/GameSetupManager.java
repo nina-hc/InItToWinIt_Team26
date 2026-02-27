@@ -2,10 +2,10 @@ package main.java;
 
 public class GameSetupManager {
 
-    private Board board;
-    private Bank bank;
-    private Player[] players;
-    private Randomizer randomizer;
+    private final Board board;
+    private final Bank bank;
+    private final Player[] players;
+    private final Randomizer randomizer;
 
     public GameSetupManager(Board board, Bank bank, Player[] players, Randomizer randomizer) {
         this.board = board;

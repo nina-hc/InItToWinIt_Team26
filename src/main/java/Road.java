@@ -7,34 +7,29 @@ package main.java;
  */
 public class Road {
 	/* Attributes for Road */
-	private Node nodeA;
-	private Node nodeB;
-	private int ownerID;
+	private final int ownerID;
+	private final Edge edge;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param nodeA   one node the road is between
-	 * @param nodeB   second node the road is between
-	 * @param ownerID playerID of the owner
-	 */
-	public Road(Node nodeA, Node nodeB, int ownerID) {
-		this.nodeA = nodeA;
-		this.nodeB = nodeB;
+
+	public Road(int ownerID, Edge edge) {
 		this.ownerID = ownerID;
+		this.edge = edge;
 	}
 
 	/* Getters */
-	public Node getNodeA() {
-		return nodeA;
-	}
-
-	public Node getNodeB() {
-		return nodeB;
-	}
-
 	public int getOwner() {
 		return ownerID;
+	}
+	public Edge getEdge() {
+		return edge;
+	}
+
+	//get them from edge as a shortcut? nah I don't think so
+	public Node getNodeA() {
+		return edge.getNodeA();
+	}
+	public Node getNodeB() {
+		return edge.getNodeB();
 	}
 
 }

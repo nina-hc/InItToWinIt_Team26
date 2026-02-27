@@ -41,83 +41,30 @@ public class BuildRoad extends Build {
 		return hasResources && hasRoadsLeft;
 	}
 
-	protected boolean hasValidPlacements(){
+	@Override
+	protected boolean hasValidPlacement(){
+		//if it's not empty, two thumbs up
+		return (!placementValidator.getValidRoadEdges(player).isEmpty());
 	}
 	@Override
 	protected Object generatePlacement() {
-		// To hold all the possible valid placements of the road
-		List<Edge> validPlacements = new ArrayList<>();
-
-		// want to store all the nodes that are connected but not double coount
-		Set<Integer> connectedPlayerNodeIDs = new HashSet<>();
-
-		// looping through player roads
-		for (Road road : player.getPlayerRoads()) {
-			// adding both nodes from the player's roads to the set
-			connectedPlayerNodeIDs.add(road.getNodeA().getNodeID());
-			connectedPlayerNodeIDs.add(road.getNodeB().getNodeID());
-		}
-
-		// Add node IDs from settlements
-		for (Settlement settlement : player.getPlayerSettlements()) {
-			connectedPlayerNodeIDs.add(settlement.getNode().getNodeID());
-		}
-
-		for (City city : player.getPlayerCities()) {
-			connectedPlayerNodeIDs.add(city.getNode().getNodeID());
-		}
-
-		// put the connected nodes to valid placements
-		for (Integer nodeID : connectedPlayerNodeIDs) {
-			List<Integer> adjacentNodeIDs = board.getAdjacentEdges(nodeID);
-
-			// for each loop using the singular id
-			for (Integer adjacentID : adjacentNodeIDs) {
-				// check that the board doesn't have a road between there
-				if (!(board.hasRoad(nodeID, adjacentID))) {
-					// to the node id
-					validPlacements.add(new Edge(nodeID, adjacentID));// this is now a valid placement
-				}
-
-			}
-
-		}
-
-		// no valid placements
-		if (validPlacements.isEmpty()) {
+		/*use the placement validator to get the placements*/
+		List<Edge> validEdges = placementValidator.getValidRoadEdges(player);
+		/*if there are no valid places return null*/
+		if(validEdges.isEmpty()){
 			return null;
 		}
-		// randomize is inclusive so I need to subtract 1
-		int randomizedIndex = randomizer.randomSelection(0, validPlacements.size() - 1);// random index
-
-		return validPlacements.get(randomizedIndex);
-
+		/*select a random index from the valid edges*/
+		int index = randomizer.randomSelection(0, validEdges.size()-1);
+		return validEdges.get(index);
 	}
 
 	// placement needs to be a pair of nodes
 	@Override
 	protected boolean validatePlacement(Object placement) {
-		// casting the node to the
-		Edge edges = (Edge) placement;
-		int nodeToID = edges.getNodeToID();
-		int nodeFromID = edges.getNodeFromID();
-
-		// check if they're adjacent
-		if (!board.isAdjacent(nodeToID, nodeFromID)) {
-			return false;// not adjacent
-
-		}
-
-		if (board.hasRoad(nodeFromID, nodeToID)) {
-			return false;// road already there
-		}
-
-		// check if connected
-		boolean nodeToConnected = isNodeConnectedToPlayer(nodeToID);
-		boolean nodeFromConnected = isNodeConnectedToPlayer(nodeFromID);
-
-		// true based on if either node is connected
-		return (nodeToConnected || nodeFromConnected);
+		//type case edge to placement
+		Edge edge = (Edge) placement;
+		return placementValidator.canBuildRoad(edge, player);
 
 	}
 
@@ -132,19 +79,17 @@ public class BuildRoad extends Build {
 	protected void doBuild(Object placement) {
 		Edge edges = (Edge) placement;
 
-		// didn't like the naming of to and from but now it's inconsistent
-		int nodeToID = edges.getNodeToID();
-		int nodeFromID = edges.getNodeFromID();
-
 		/* Pay for the build */
 		player.getResourceHand().payForRoad(bank);
 
-		/* Create road */
-		// I NEED to get the node objects from board
-		Road newRoad = board.placeRoad(nodeFromID, nodeToID, player.getPlayerID());
+		/*give money back to the bank*/
+		bank.resourceDeposit(ResourceType.BRICK,1);
+		bank.resourceDeposit(ResourceType.LUMBER,1);
 
-		// adding it to the player
-		player.playerAddRoad(newRoad);
+		/* Create road, add it to the player and the edge */
+		Road road = new Road (player.getPlayerID(),edges);
+		edges.placeRoad(road);
+		player.playerAddRoad(road);
 
 	}
 
@@ -155,11 +100,10 @@ public class BuildRoad extends Build {
 	@Override
 	public void printAction(Object placement) {
 		Edge edges = (Edge) placement;
-		int node1ID = edges.getNodeToID();
-		int node2ID = edges.getNodeFromID();
 
-		System.out.printf("[Player " + player.getPlayerID() + "] : [Built a Road between %d and %d]\n", node1ID,
-				node2ID);
+		System.out.printf("[Player " + player.getPlayerID() + "] : [Built a Road between %d and %d]\n",
+				edges.getNodeA().getNodeID(),
+				edges.getNodeB().getNodeID());
 	}
 
 }
