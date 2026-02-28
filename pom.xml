@@ -15,13 +15,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.java.source>21</sonar.java.source>
-
-        <sonar.organization>nina-hc</sonar.organization>
-        <sonar.projectName>2AA4-Catan</sonar.projectName>
-        <sonar.coverage.jacoco.xmlReportPaths>
-            target/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
         <!-- Exclude Papyrus folder and models -->
         <sonar.exclusions>
@@ -36,23 +30,16 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 5, this was standard from what I was but not sure if needed -->
+        <!-- JUnit 5, okay so it was a little confusing in the tutorial between if we use 4 or 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.11.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
-        <sourceDirectory>${basedir}/src</sourceDirectory>
         <plugins>
             <plugin>
                 <!-- compiler -->
@@ -60,6 +47,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
             </plugin>
+
             <!-- JaCoCo code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -72,12 +60,17 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+                    <!-- generate report -->
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <!-- output report -->
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
