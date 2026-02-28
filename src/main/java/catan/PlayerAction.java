@@ -39,54 +39,48 @@ public class PlayerAction {
 	 * each turn
 	 */
 	public void executeTurn() {
-		boolean canBuild = true;
+        //check 7 card rule
+//        ResourceHand hand = player.getResourceHand();
+//        if (hand.totalPlayerCard() >= 7) {
+//            int discardCount = hand.totalPlayerCard() / 2;
+//            hand.discardRandom(discardCount);
+//            System.out.println("Player " + player.getPlayerID() + " discarded " + discardCount + " cards due to 7-card rule.");
+//        }
+
+
+        boolean canBuild = true;
 
 		while (canBuild) {
-			List<Build> possibleActions = chooseActions();
+            List<Build> possibleActions = chooseActions();
 
-			// nothing can be built
-			if (possibleActions.isEmpty()) {
-				canBuild = false;
-				break;
-			}
+            // Add "do nothing" as an option
+            possibleActions.add(null);
 
-			// prioritize builds city > settlement > road
-			Build selected = null;
-			for (Build b : possibleActions) { // pick city first
-				if (b instanceof BuildCity) {
-					selected = b;
-					break;
-				}
-			}
-			if (selected == null) {
-				for (Build b : possibleActions) { // pick settlement
-					if (b instanceof BuildSettlement) {
-						selected = b;
-						break;
-					}
-				}
-			}
-			if (selected == null) {
-				for (Build b : possibleActions) { // pick road last
-					if (b instanceof BuildRoad) {
-						selected = b;
-						break;
-					}
-				}
-			}
+            // nothing can be built or player chooses to skip
+            if (possibleActions.isEmpty()) {
+                canBuild = false;
+                break;
+            }
 
-			// execute selected build
-			if (selected != null) {
-				boolean built = selected.execute(); // attempt to build
-				if (!built) {
-					// could not place the building
-					canBuild = false;
-				}
-			} else {
-				canBuild = false;
-			}
-		}
-	}
+            // randomly select an action
+            int index = randomizer.randomSelection(0, possibleActions.size() - 1);
+            Build selected = possibleActions.get(index);
+
+            if (selected != null) {
+                boolean built = selected.execute(); // attempt to build
+                if (!built) {
+                    canBuild = false;
+                }
+            } else {
+                // Player chose to do nothing
+                canBuild = false;
+                System.out.println("Player " + player.getPlayerID() + " chose to take no action this turn.");
+
+            }
+        }
+
+
+    }
 
 	/**
 	 * determine builds player can afford and place
@@ -99,12 +93,12 @@ public class PlayerAction {
 
 		// city only if player has settlements to upgrade
 		if (hand.canBuyCity() && player.getPlayerCitiesLeft() > 0 && player.getPlayerSettlements().size() > 0) {
-			actions.add(new BuildCity(player, board, randomizer));
+			actions.add(new BuildCity(player, board, randomizer, bank, placementValidator));
 		}
 
 		// settlement if affordable
 		if (hand.canBuySettlement() && player.getPlayerSettlementsLeft() > 0) {
-			actions.add(new BuildSettlement(player, board, randomizer));
+			actions.add(new BuildSettlement(player, board, randomizer, bank, placementValidator));
 		}
 
 		// road if affordable

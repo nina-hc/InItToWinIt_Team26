@@ -38,7 +38,7 @@ public class Demonstrator {
 	public static void main(String[] args) {
 
 		// create game object
-		Game game = new Game(10);
+		Game game = new Game(20);
 
 		// initial placement phase
 		game.initialPlacement();

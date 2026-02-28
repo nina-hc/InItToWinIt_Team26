@@ -41,6 +41,8 @@ public class Game {
             players[i] = new Player(i + 1);
         }
 
+        placementValidator = new PlacementValidator(board);
+
         //connect resource distributor
         distributor = new DistributeResources(bank, players, randomizer, board);
     }
@@ -56,7 +58,7 @@ public class Game {
      * Run the simulation for the number of defined rounds
      */
     public void startSimulation() {
-        TurnManager manager = new TurnManager(players, board, distributor, randomizer);
+        TurnManager manager = new TurnManager(players, board, distributor, randomizer, bank, placementValidator);
 
         Player winner = manager.executeRounds(maxRounds);
 

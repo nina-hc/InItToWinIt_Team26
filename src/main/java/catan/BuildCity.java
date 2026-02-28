@@ -23,9 +23,9 @@ public class BuildCity extends Build {
 	 * @param board      : the game board where build happens
 	 * @param randomizer : is used to randomly select placements
 	 */
-	public BuildCity(Player player, Board board, Randomizer randomizer) {
+	public BuildCity(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 
-		super(player, board, randomizer);
+		super(player, board, randomizer, bank, placementValidator);
 	}
 
 	/**
@@ -73,11 +73,15 @@ public class BuildCity extends Build {
 	@Override
 	protected boolean validatePlacement(Object placement) {
 
-		Settlement settlement = (Settlement) placement;
 
-		return settlement.getOwner() == player.getPlayerID(); // ensure that the player own this settlement
+            return placementValidator.canUpgradeToCity((Settlement) placement, player);
 
-	}
+
+//            Settlement settlement = (Settlement) placement;
+//
+//            return settlement.getOwnerID() == player.getPlayerID(); // ensure that the player own this settlement
+//
+        }
 
 	/**
 	 * Performs the actual upgrade from settlement to city To do this doBuild: 1.
@@ -92,7 +96,7 @@ public class BuildCity extends Build {
 		Settlement oldSettlement = (Settlement) placement;
 		Node node = oldSettlement.getNode();
 
-		player.getResourceHand().payForCity(); // pays required resources
+		player.getResourceHand().payForCity(bank); // pays required resources
 
 		City city = new City(node, player.getPlayerID()); // creates a city on the same node
 

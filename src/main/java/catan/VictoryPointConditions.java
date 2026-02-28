@@ -57,7 +57,7 @@ public class VictoryPointConditions {
 		int vp = 0;
 		for (Settlement settlement : player.getPlayerSettlements()) {
 
-			if (settlement.getOwner() == player.getPlayerID()) {
+			if (settlement.getOwnerID() == player.getPlayerID()) {
 				vp += 1; // each settlement = 1 VP
 			}
 		}
@@ -73,7 +73,7 @@ public class VictoryPointConditions {
 		int vp = 0;
 
 		for (City city : player.getPlayerCities()) {
-			if (city.getOwner() == player.getPlayerID()) {
+			if (city.getOwnerID() == player.getPlayerID()) {
 				vp += 2; // each city = 2 VP
 			}
 		}
