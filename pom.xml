@@ -18,12 +18,7 @@
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
         <!-- Exclude Papyrus folder and models -->
-        <sonar.exclusions>
-            papyrus/,
-            **/*.uml,
-            **/*.notation,
-            **/*.di
-        </sonar.exclusions>
+        <sonar.exclusions>papyrus/**, **/*.uml, **/*.notation, **/*.di </sonar.exclusions>
 
         
         
