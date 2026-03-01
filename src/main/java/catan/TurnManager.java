@@ -28,13 +28,28 @@ public class TurnManager {
 
             for (Player player : players) {
 
-                /*Dice roll */
-                int roll = distributor.executeDistribution();
-                System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
+                if (player.getPlayerID() == 1) { // use .equals for String comparison
+                    HumanTurn humanTurn = new HumanTurn(
+                            player,
+                            board,
+                            randomizer,
+                            bank,
+                            placementValidator,
+                            players
+                    );
+                    humanTurn.executeTurn(); // run the human turn
+                }
 
-                /*Call player actions */
-                PlayerAction action = new PlayerAction(player, board, randomizer, bank, placementValidator);
-                action.executeTurn();
+                else {
+
+                    /*Dice roll */
+                    int roll = distributor.executeDistribution();
+                    System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
+
+                    /*Call player actions */
+                    PlayerAction action = new PlayerAction(player, board, randomizer, bank, placementValidator);
+                    action.executeTurn();
+                }
 
                 // Print Statement of Actions
                 //System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");

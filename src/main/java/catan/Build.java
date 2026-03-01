@@ -104,5 +104,16 @@ public abstract class Build {
 	 * Print statement
 	 */
 	public abstract void printAction(Object placement);
+    // Human version (manual placement)
+    public boolean executeWithPlacement(Object placement) {
 
+        if (!canPlayerBuy()) return false;
+
+        if (!validatePlacement(placement)) return false;
+
+        doBuild(placement);
+        printAction(placement);
+
+        return true;
+    }
 }
