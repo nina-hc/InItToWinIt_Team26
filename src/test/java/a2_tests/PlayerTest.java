@@ -87,8 +87,9 @@ class PlayerTest {
 			addSettlementHelper(nodeID);
 		}
 		//no more to place
+		Node node = board.getNode(41);
 		assertThrows(IllegalStateException.class,
-				() -> {player.playerAddSettlement(new Settlement(board.getNode(41), player.getPlayerID()));});
+				() -> {player.playerAddSettlement(new Settlement(node, player.getPlayerID()));});
 
 	}
 
