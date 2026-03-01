@@ -75,6 +75,9 @@ public class ResourceHand {
 	 * @return the number of resources
 	 */
 	public int getResource(ResourceType type) {
+		if(type == ResourceType.DESERT) {
+			throw new IllegalArgumentException("Error: Resources are not gained from the desert.");
+		}
 		return resources.get(type);
 	}
 

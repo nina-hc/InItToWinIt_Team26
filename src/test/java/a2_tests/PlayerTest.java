@@ -73,12 +73,13 @@ class PlayerTest {
 		Settlement s = new Settlement(node,5);
 		player.playerAddSettlement(s);
 		assertEquals(1,player.getPlayerSettlements().size());
+		assertEquals(4,player.getPlayerSettlementsLeft());
 	}
-	@DisplayName("Testing the Player Building Inventory Decreases After Adding A Settlement")
+	/*@DisplayName("Testing the Player Building Inventory Decreases After Adding A Settlement")
 	@Test
 	void test_settlement_removed_from_player_inventory(){
 		assertEquals(4,player.getPlayerSettlementsLeft());
-	}
+	}*/
 
 	@DisplayName("Basic Adding Road to Player's Inventory Test")
 	@Test
@@ -87,13 +88,14 @@ class PlayerTest {
 		Road road = new Road(5,edge);
 		player.playerAddRoad(road);
 		assertEquals(1,player.getPlayerRoads().size());
+		assertEquals(14,player.getPlayerRoadsLeft());
 
 	}
-	@DisplayName("Testing Road Removed from Player After Adding")
+	/*@DisplayName("Testing Road Removed from Player After Adding")
 	@Test
 	void road_removed_from_player_inventory(){
 		assertEquals(14,player.getPlayerRoadsLeft());
-	}
+	}*/
 
 
 	/*@Test
