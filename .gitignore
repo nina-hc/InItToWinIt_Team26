@@ -2,8 +2,9 @@
 # IDE specific configuration files
 .vscode/
 .idea/
-*.iml/
-Catan.iml
+*.iml
+
+
 # honestly have no clue where that one came from
 InItToWinIt_Team26_en_CA.properties/
 
