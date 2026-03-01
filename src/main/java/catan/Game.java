@@ -18,6 +18,7 @@ public class Game {
     private Randomizer randomizer; //handles random choices
     private DistributeResources distributor; //handles resource distribution after dice rolls
     private int maxRounds; //maximum number of simulation rounds
+	private PlacementValidator placementValidator;
 
     /**
      * Initialize game with 4 players and default maxRounds
@@ -45,7 +46,7 @@ public class Game {
     }
 
     public void initialPlacement(){
-        GameSetupManager setup = new GameSetupManager(board, bank, players, randomizer);
+        GameSetupManager setup = new GameSetupManager(board, bank, players, randomizer,placementValidator);
         setup.executeIntialPlacement();
     }
 

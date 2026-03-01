@@ -96,9 +96,9 @@ public class BuildCity extends Build {
 
 		City city = new City(node, player.getPlayerID()); // creates a city on the same node
 
-		node.placeCity(city); // replaces settlement with city
+		node.upgradeToCity(city); // replaces settlement with city
 
-		player.playerUpgradeToCity(oldSettlement, city); // updates the players resources (removes settlement, adds a
+		player.playerUpgradeToCity(node, city); // updates the players resources (removes settlement, adds a
 															// city)
 
 	}

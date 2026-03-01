@@ -11,21 +11,27 @@ import java.util.List;
  */
 public class PlayerAction {
 
-	private Player player;
-	private Board board;
-	private Randomizer randomizer;
+	private final Player player;
+	private final Board board;
+	private final Randomizer randomizer;
+	private final Bank bank;
+	private final PlacementValidator placementValidator;
 
 	/**
 	 * constructor initializes the player, board, and randomizer
-	 * 
-	 * @param player     player taking the turn
-	 * @param board      catan board
-	 * @param randomizer randomizer for dice or random choices
+	 *
+	 * @param player             player taking the turn
+	 * @param board              catan board
+	 * @param randomizer         randomizer for dice or random choices
+	 * @param bank the game bank
+	 * @param placementValidator placement validatory rules
 	 */
-	public PlayerAction(Player player, Board board, Randomizer randomizer) {
+	public PlayerAction(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 		this.player = player;
 		this.board = board;
 		this.randomizer = randomizer;
+		this.bank = bank;
+		this.placementValidator = placementValidator;
 	}
 
 	/**
@@ -103,7 +109,7 @@ public class PlayerAction {
 
 		// road if affordable
 		if (hand.canBuyRoad() && player.getPlayerRoadsLeft() > 0) {
-			actions.add(new BuildRoad(player, board, randomizer));
+			actions.add(new BuildRoad(player, board, randomizer,bank,placementValidator));
 		}
 
 		return actions;

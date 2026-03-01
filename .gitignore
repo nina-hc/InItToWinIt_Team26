@@ -1,8 +1,20 @@
 /bin/
+# IDE specific configuration files
 .vscode/
 .idea/
-InItToWinIt_Team26_en_CA.properties/
 *.iml/
+Catan.iml
+# honestly have no clue where that one came from
+InItToWinIt_Team26_en_CA.properties/
+
+# compiled output generated
 /out/
-/Catan.iml
 /target/
+
+# eclipse project files
+/.settings/
+/.classpath
+/.project
+/papyrus/.settings/
+/papyrus/.project/
+/papyrus/.classpath/
