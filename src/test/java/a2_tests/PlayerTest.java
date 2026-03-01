@@ -82,13 +82,13 @@ class PlayerTest {
 	@Test
 	void boundaryTest_addSettlement_with_none_left(){
 		//adding max amount of settlements first
-		addSettlementHelper(15);
-		addSettlementHelper(6);
-		addSettlementHelper(0);
-		addSettlementHelper(10);
+		int [] nodeIDs = {15,6,0,10,19};
+		for (int nodeID : nodeIDs){
+			addSettlementHelper(nodeID);
+		}
 		//no more to place
-		assertThrows(IllegalArgumentException.class,
-				() -> {player.playerAddSettlement(new Settlement(board.getNode(19), player.getPlayerID()));});
+		assertThrows(IllegalStateException.class,
+				() -> {player.playerAddSettlement(new Settlement(board.getNode(41), player.getPlayerID()));});
 
 	}
 
@@ -106,9 +106,11 @@ class PlayerTest {
 
 	}
 
+
 	@DisplayName("Boundary Test: Place a Road When None are Left")
 	@Test
 	void boundaryTest_addRoad_with_none_left() {
+		//sample road pairs
 		addRoadHelper(34,13);
 		addRoadHelper(12,3);
 		addRoadHelper(4,5);
@@ -126,11 +128,12 @@ class PlayerTest {
 		addRoadHelper(43,45);
 		//this would've been better with getting all edges but unfortunately I don't think that would be wise without
 		// having it tested first
+		/*Ideally the structural test suites go first so I can use it*/
 
 		//No more roads left, trying to add a 16th
 		Edge edge = board.getEdgeBetweenNodes(41,39);
 		Road road = new Road(player.getPlayerID(),edge);
-		assertThrows(IllegalArgumentException.class, () -> {player.playerAddRoad(road);});
+		assertThrows(IllegalStateException.class, () -> {player.playerAddRoad(road);});
 
 	}
 
@@ -161,49 +164,13 @@ class PlayerTest {
 		int[] nodeIDs = {0,8,11,14};
 		//use helper to make 4 settlements which are upgraded to cities
 		for(int i : nodeIDs){
-			addSettlementHelper(i);
+			addSettlementForAddCityHelper(i);
 		}
 		//out of cities
 		Node node = board.getNode(16);
 		addSettlementHelper(16);
 		assertThrows(IllegalStateException.class, () -> player.playerUpgradeToCity(node,new City(node,1)));
 	}
-
-
-
-
-	@Test
-	void getPlayerRoads() {
-
-	}
-
-	@Test
-	void getPlayerSettlements() {
-	}
-
-	@Test
-	void getPlayerCities() {
-	}
-
-	@Test
-	void getPlayerRoadsLeft() {
-	}
-
-	@Test
-	void getPlayerSettlementsLeft() {
-	}
-
-	@Test
-	void getPlayerCitiesLeft() {
-	}
-
-
-
-	@Test
-	void getResourceHand() {
-	}
-
-
 	/*Helpers*/
 	private void addSettlementHelper(int nodeID){
 		Node node = board.getNode(nodeID);
