@@ -3,6 +3,9 @@ package catan;// --------------------------------------------------------
 // --------------------------------------------------------
 
 /************************************************************/
+
+import java.util.List;
+
 /**
  * 
  * BuildSettlements extends off of the Build abstract and represents the action
@@ -23,8 +26,9 @@ public class BuildSettlement extends Build {
 	 * @param board
 	 * @param randomizer
 	 */
-	public BuildSettlement(Player player, Board board, Randomizer randomizer) {
-		super(player, board, randomizer);
+	public BuildSettlement(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator ) {
+
+        super(player, board, randomizer, bank, placementValidator);
 	}
 
 	/**
@@ -50,12 +54,22 @@ public class BuildSettlement extends Build {
 	@Override
 	protected Object generatePlacement() {
 
-		// generates a random place
-		int nodeID = randomizer.randomSelection(0, 53);
+            // get all valid placements for this player
+            List<Node> validNodes = placementValidator.getValidSettlementPlacements(player, false);
 
-		return board.getNode(nodeID);
+            if (validNodes.isEmpty()) return null; // no valid place
 
-	}
+            // pick random valid node
+            return validNodes.get(randomizer.randomSelection(0, validNodes.size() - 1));
+        }
+
+
+//		// generates a random place
+//		int nodeID = randomizer.randomSelection(0, 53);
+//
+//		return board.getNode(nodeID);
+//
+//	}
 
 	/**
 	 * Validates that the chosen placement is allowed by the game rules
@@ -69,30 +83,35 @@ public class BuildSettlement extends Build {
 
 		Node node = (Node) placement;
 
-		// the node must be empty for the settlement to be placed
-		if (node.isOccupied()) {
-			return false;
-		}
+        //use the placementValidator instead
+        return placementValidator.canPlaceSettlement(node, player, false);
+    }
 
-		// distance rule, check for no adjacent buildings
-		for (int i = 0; i < 54; i++) {
 
-			if (board.isAdjacent(node.getNodeID(), i)) {
-
-				Node neighbor = board.getNode(i);
-
-				if (neighbor.isOccupied()) {
-
-					return false;
-
-				}
-
-			}
-		}
-
-		return true; // If all the checks pass then the placement is valid
-
-	}
+//		// the node must be empty for the settlement to be placed
+//		if (node.isOccupied()) {
+//			return false;
+//		}
+//
+//		// distance rule, check for no adjacent buildings
+//		for (int i = 0; i < 54; i++) {
+//
+//			if (board.isAdjacent(node.getNodeID(), i)) {
+//
+//				Node neighbor = board.getNode(i);
+//
+//				if (neighbor.isOccupied()) {
+//
+//					return false;
+//
+//				}
+//
+//			}
+//		}
+//
+//		return true; // If all the checks pass then the placement is valid
+//
+//	}
 
 	/**
 	 * Executes the build operation . 1. It pays for the required resources 2.
@@ -106,7 +125,7 @@ public class BuildSettlement extends Build {
 
 		Node node = (Node) placement;
 
-		player.getResourceHand().payForSettlement(); // Deducts resources from the player
+		player.getResourceHand().payForSettlement(bank); // Deducts resources from the player
 
 		Settlement settlement = new Settlement(node, player.getPlayerID()); // creates a new settlement object
 

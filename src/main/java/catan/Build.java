@@ -73,7 +73,9 @@ public abstract class Build {
 	 */
 	protected abstract boolean canPlayerBuy();
 
-	protected abstract boolean hasValidPlacement();
+	protected boolean hasValidPlacement() {
+        return true;
+    }
 	/**
 	 * 
 	 * Changed it to object because I realized roads use two nodes so maybe this is
@@ -102,5 +104,16 @@ public abstract class Build {
 	 * Print statement
 	 */
 	public abstract void printAction(Object placement);
+    // Human version (manual placement)
+    public boolean executeWithPlacement(Object placement) {
 
+        if (!canPlayerBuy()) return false;
+
+        if (!validatePlacement(placement)) return false;
+
+        doBuild(placement);
+        printAction(placement);
+
+        return true;
+    }
 }

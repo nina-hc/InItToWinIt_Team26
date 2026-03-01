@@ -44,10 +44,10 @@ public class GameSetupManager {
                 Settlement settlement = initialSettlementPlacement(player);
 
                 //road placement
-                initialRoadPlacement(player);
+                initialRoadPlacement(player, settlement);
 
-                // Give starting resources if settlement exists
-                if (settlement != null) {
+                // Give resources ONLY on second round
+                if (round == 1 && settlement != null) {
                     giveStartingResources(player, settlement);
                 }
             }
@@ -70,9 +70,15 @@ public class GameSetupManager {
             int nodeID = randomizer.randomSelection(0, 53);
             Node node = board.getNode(nodeID);
 
-			if(!placementValidator.canPlaceSettlement(node,player,true)){
-				break;
-			}
+            if (placementValidator.canPlaceSettlement(node, player, true)) {
+                // Create settlement
+                Settlement settlement = new Settlement(node, player.getPlayerID());
+                node.placeSettlement(settlement); // add it to node
+                player.playerAddSettlement(settlement); // track in player
+
+                System.out.println("[Player " + player.getPlayerID() + "]: placed initial settlement at node " + nodeID);
+                return settlement;
+            }
 
             attempts++;
         }
@@ -85,36 +91,26 @@ public class GameSetupManager {
      * Place a starting road connected to the player's settlement.
      * Tries each adjacent node until a valid road is placed.
      */
-    public void initialRoadPlacement(Player player) {
+    public void initialRoadPlacement(Player player, Settlement settlement) {
         int attempts = 0;
         int maxAttempts = 1000;
 
-        while (attempts < maxAttempts) {
-            //find a settlement belonging to this player
-            Settlement playerSettlement = null;
-            for (Settlement s : player.getPlayerSettlements()) {
-                playerSettlement = s;
-                break; //use first (most recent) settlement
-            }
+        int settlementNodeID = settlement.getNode().getNodeID();
+        Node settlementNode = board.getNode(settlementNodeID);
 
-            if (playerSettlement == null) {
+        for (Edge edge : board.getAdjacentEdges(settlementNode)) {
+            Node nodeA = edge.getNodeA();
+            Node nodeB = edge.getNodeB();
+
+            int neighborID = (nodeA.getNodeID() == settlementNodeID) ? nodeB.getNodeID() : nodeA.getNodeID();
+
+            Edge edgeToPlace = board.getEdgeBetweenNodes(settlementNodeID, neighborID);
+            if (edgeToPlace != null && edgeToPlace.getRoad() == null) {
+                Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
+                player.playerAddRoad(road);
+                System.out.println("[Player " + player.getPlayerID() + "]: placed initial road between " + settlementNodeID + " and " + neighborID);
                 return;
             }
-
-            int settlementNodeID = playerSettlement.getNode().getNodeID();
-
-            // Try to place road adjacent to settlement
-            for (int neighborID : board.getAdjacentEdges(settlementNodeID)) {
-                if (!board.hasRoad(settlementNodeID, neighborID)) {
-                    //place road between settlement and neighbor node
-                    Road road = board.placeRoad(settlementNodeID, neighborID, player.getPlayerID());
-                    player.playerAddRoad(road); //track road for player
-                    System.out.println("[Player " + player.getPlayerID() + "]: placed initial road between " + settlementNodeID + " and " + neighborID);
-                    return;
-                }
-            }
-
-            attempts++;
         }
 
         System.out.println("ERROR: Could not place road for Player " + player.getPlayerID());
