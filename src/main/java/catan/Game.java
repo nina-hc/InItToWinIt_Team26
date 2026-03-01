@@ -12,13 +12,13 @@ package catan;
  */
 public class Game {
 
-    private Board board; //The Catan board containing nodes, tiles, and roads
-    private Bank bank; //Bank managing remaining resource cards
-    private Player[] players;  // Array holding all 4 AI players
-    private Randomizer randomizer; //handles random choices
-    private DistributeResources distributor; //handles resource distribution after dice rolls
-    private int maxRounds; //maximum number of simulation rounds
-	private PlacementValidator placementValidator;
+    private final Board board; //The Catan board containing nodes, tiles, and roads
+    private final Bank bank; //Bank managing remaining resource cards
+    private final Player[] players;  // Array holding all 4 AI players
+    private final Randomizer randomizer; //handles random choices
+    private final DistributeResources distributor; //handles resource distribution after dice rolls
+    private final int maxRounds; //maximum number of simulation rounds
+	private final PlacementValidator placementValidator;
 
     /**
      * Initialize game with 4 players and default maxRounds

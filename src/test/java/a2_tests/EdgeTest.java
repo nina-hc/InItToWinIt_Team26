@@ -1,10 +1,8 @@
+package a2_tests;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class EdgeTest {
-	@Test
-	void name() {
-	}
 
 	@Test
 	void getNodeA() {
