@@ -179,15 +179,12 @@ public class Board {
 		};
 
 		List<Edge> edgeList = new ArrayList<>();
-		/*create custom ID for edges (essential is chosen only from the order they go in so not super meaningful)*/
-		int edgeID=0;//again still could cut
-
 		// connecting node to each neighbor
 		for (int i = 0; i < neighbors.length; i++) {
 
 			for (int neighbor : neighbors[i]) {
 				if(i<neighbor){
-					edgeList.add(new Edge(edgeID++,nodes[i],nodes[neighbor]));//maybe pull increment out so its not
+					edgeList.add(new Edge(nodes[i],nodes[neighbor]));//maybe pull increment out so its not
 					// doing too much
 				}
 			}

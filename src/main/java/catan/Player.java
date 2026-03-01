@@ -107,10 +107,10 @@ public class Player {
 	/**
 	 * Records upgrading to a city for a player
 	 * 
-	 * @param targetNodeId the nodID where the city would like to be placed
+	 * @param targetNode the nodID where the city would like to be placed
 	 * @param cityPlaced              the city being placed
 	 */
-	public void playerUpgradeToCity(Node targetNodeId, City cityPlaced) {
+	public void playerUpgradeToCity(Node targetNode, City cityPlaced) {
 		//if the player has no cities left to place
 		if (getPlayerCitiesLeft() <= 0) {
 			throw new IllegalStateException("Error: The player "+playerID+ " has no cities left");
@@ -121,14 +121,14 @@ public class Player {
 		/*search for the settlement on the target nodeID (again, if it exists)*/
 		for (Settlement s : playerSettlements) {
 			//if we get a match, break out of the loop
-			if(s.getNode()==targetNodeId){
+			if(s.getNode()== targetNode){
 				settlementToRemove = s;
 				break;
 			}
 		}
 		/*if after looking it's still null*/
 		if (settlementToRemove == null) {
-			throw new IllegalArgumentException("Error: player "+playerID+" has no settlement at Node "+targetNodeId+
+			throw new IllegalArgumentException("Error: player "+playerID+" has no settlement at Node "+ targetNode +
 					"to upgrade");
 		}
 		/* Otherwise, remove settlement and add city for player */

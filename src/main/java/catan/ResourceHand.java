@@ -89,6 +89,9 @@ public class ResourceHand {
 	 * @return true if they have the amount needed, false otherwise
 	 */
 	public boolean hasResource(ResourceType type, int amount) {
+		if(type == ResourceType.DESERT) {
+			throw new IllegalArgumentException("Error: Resources are not gained from the desert.");
+		}
 		return resources.get(type) >= amount;
 	}
 

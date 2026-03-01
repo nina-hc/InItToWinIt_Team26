@@ -13,10 +13,6 @@ public class EdgeTest {
 	}
 
 	@Test
-	void getEdgeID() {
-	}
-
-	@Test
 	void getRoad() {
 	}
 
