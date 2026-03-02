@@ -1,15 +1,13 @@
 package catan;
 
 public class Edge {
-	private final int edgeID; //maybe?
 	/* Pair of nodes */
 	private final Node nodeA;// starting node
 	private final Node nodeB;// ending node
 	private Road road;//the road stored on the edge or null if empty
 
 
-	public Edge(int edgeID, Node nodeA, Node nodeB) {
-		this.edgeID = edgeID;//again idk about this it would be us assigning so maybe not worth it
+	public Edge(Node nodeA, Node nodeB) {
 		this.nodeA = nodeA;
 		this.nodeB = nodeB;
 
@@ -23,9 +21,6 @@ public class Edge {
 		return nodeB;
 	}
 
-	public int getEdgeID() {
-		return edgeID;
-	}
 
 	public Road getRoad() {
 		return road;
