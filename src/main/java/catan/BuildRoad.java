@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/************************************************************/
+
 /**
  * Extends Build to implement process for building roads
  * 
@@ -41,11 +41,7 @@ public class BuildRoad extends Build {
 		return hasResources && hasRoadsLeft;
 	}
 
-	@Override
-	protected boolean hasValidPlacement(){
-		//if it's not empty, two thumbs up
-		return (!placementValidator.getValidRoadEdges(player).isEmpty());
-	}
+
 	@Override
 	protected Object generatePlacement() {
 		/*use the placement validator to get the placements*/
