@@ -1,0 +1,126 @@
+package catan;
+
+import java.util.List;
+
+/**
+ * 
+ * BuildSettlements extends off of the Build abstract and represents the action
+ * of building a settlement in the game. BuildSettlements checks resources,
+ * generates placement, validates placement, performs the build and prints the
+ * action that was completed.
+ * 
+ * @author Serene Abou Sharaf
+ * February 10, 2026
+ */
+public class BuildSettlement extends Build {
+
+    private Game game;
+
+	/**
+	 * Constructor for BuildSettlement
+	 * 
+	 * @param player
+	 * @param board
+	 * @param randomizer
+	 */
+	public BuildSettlement(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator, game) {
+
+        super(player, board, randomizer, bank, placementValidator);
+        this.game = game;
+	}
+
+	/**
+	 * Check if the player has enough resources and available settlement supply to
+	 * build a settlement
+	 * 
+	 * @return true if the player can afford and has settlements left
+	 */
+	@Override
+	protected boolean canPlayerBuy() {
+
+		// the player must have enough resources and have settlements left to play
+		return player.getResourceHand().canBuySettlement() && player.getPlayerSettlementsLeft() > 0;
+
+	}
+
+
+
+	/**
+	 * Generate a potential placement for the settlement
+	 * 
+	 * @return a Node object representing the chosen node for placement
+	 */
+	// generate a placement
+	@Override
+	protected Object generatePlacement() {
+
+            // get all valid placements for this player
+            List<Node> validNodes = placementValidator.getValidSettlementPlacements(player, false);
+
+            if (validNodes.isEmpty()) return null; // no valid place
+
+            // pick random valid node
+            return validNodes.get(randomizer.randomSelection(0, validNodes.size() - 1));
+        }
+
+
+
+
+	/**
+	 * Validates that the chosen placement is allowed by the game rules
+	 * 
+	 * @param placement : The node where the player wants to place the settlement
+	 * 
+	 * @return true if the placement is valid
+	 */
+	@Override
+    public boolean validatePlacement(Object placement) {
+
+		Node node = (Node) placement;
+
+        //use the placementValidator instead
+        return placementValidator.canPlaceSettlement(node, player, false);
+    }
+
+	/**
+	 * Executes the build operation . 1. It pays for the required resources 2.
+	 * Places a new settlement on the node 3. Adds the settlement to the player's
+	 * list of buildings
+	 * 
+	 * @param placement : The node where the settlement will be placed
+	 */
+	@Override
+	protected void doBuild(Object placement) {
+
+		Node node = (Node) placement;
+
+		player.getResourceHand().payForSettlement(bank); // Deducts resources from the player
+
+		Settlement settlement = new Settlement(node, player.getPlayerID()); // creates a new settlement object
+
+		// places the settlement on the board and adds it to the player's inventory
+		node.placeSettlement(settlement);
+		player.playerAddSettlement(settlement);
+
+	}
+
+    public void build(Object placement) {
+        if (canPlayerBuy() && validatePlacement(placement)) {
+            doBuild(placement);
+        }
+    }
+
+	/**
+	 * Prints a message describing the build action
+	 * 
+	 * @param placement : The node where the settlement was placed
+	 */
+	@Override
+	public void printAction(Object placement) {
+
+		Node node = (Node) placement;
+
+		System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + node.getNodeID());
+	}
+
+}
