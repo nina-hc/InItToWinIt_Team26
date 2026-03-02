@@ -12,12 +12,13 @@ package catan;
  */
 public class Game {
 
-    private Board board; //The Catan board containing nodes, tiles, and roads
-    private Bank bank; //Bank managing remaining resource cards
-    private Player[] players;  // Array holding all 4 AI players
-    private Randomizer randomizer; //handles random choices
-    private DistributeResources distributor; //handles resource distribution after dice rolls
-    private int maxRounds; //maximum number of simulation rounds
+    private final Board board; //The Catan board containing nodes, tiles, and roads
+    private final Bank bank; //Bank managing remaining resource cards
+    private final Player[] players;  // Array holding all 4 AI players
+    private final Randomizer randomizer; //handles random choices
+    private final DistributeResources distributor; //handles resource distribution after dice rolls
+    private final int maxRounds; //maximum number of simulation rounds
+	private final PlacementValidator placementValidator;
 
     /**
      * Initialize game with 4 players and default maxRounds
@@ -40,12 +41,14 @@ public class Game {
             players[i] = new Player(i + 1);
         }
 
+        placementValidator = new PlacementValidator(board);
+
         //connect resource distributor
         distributor = new DistributeResources(bank, players, randomizer, board);
     }
 
     public void initialPlacement(){
-        GameSetupManager setup = new GameSetupManager(board, bank, players, randomizer);
+        GameSetupManager setup = new GameSetupManager(board, bank, players, randomizer,placementValidator);
         setup.executeIntialPlacement();
     }
 
@@ -55,7 +58,7 @@ public class Game {
      * Run the simulation for the number of defined rounds
      */
     public void startSimulation() {
-        TurnManager manager = new TurnManager(players, board, distributor, randomizer);
+        TurnManager manager = new TurnManager(players, board, distributor, randomizer, bank, placementValidator);
 
         Player winner = manager.executeRounds(maxRounds);
 

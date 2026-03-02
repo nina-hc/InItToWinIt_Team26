@@ -1,12 +1,22 @@
-package test.java;
+package a2_tests;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BuildRoadTest {
 
+	@BeforeEach
+	void setUp() {
+	}
+
 	@Test
 	void canPlayerBuy() {
+	}
+
+	@Test
+	void hasValidPlacement() {
 	}
 
 	@Test

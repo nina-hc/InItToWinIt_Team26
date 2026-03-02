@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,15 +15,11 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.organization>nina-hc</sonar.organization>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
         <!-- Exclude Papyrus folder and models -->
-        <sonar.exclusions>
-            papyrus/,
-            **/*.uml,
-            **/*.notation,
-            **/*.di
-        </sonar.exclusions>
+        <sonar.exclusions>papyrus/**, **/*.uml, **/*.notation, **/*.di </sonar.exclusions>
 
         
         
@@ -52,7 +48,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>0.8.11</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -69,6 +65,9 @@
                         </goals>
                         <!-- output report -->
                         <configuration>
+                            <formats>
+                                <format>XML</format>
+                            </formats>
                             <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
                         </configuration>
                     </execution>
