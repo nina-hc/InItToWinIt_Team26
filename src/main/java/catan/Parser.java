@@ -74,11 +74,19 @@ public class Parser {
         //Handle Build Settlement
         Matcher settlement = BUILD_SETTLEMENT.matcher(input);
         if (settlement.matches()) {
-            cmd.type = "Build";
-            cmd.buildType = "settlement";
-            cmd.nodeId = Integer.parseInt(settlement.group(1));
-            cmd.valid = true;
-            return cmd;
+
+            int node = Integer.parseInt(settlement.group(1));
+
+            //validate nodeid range
+            if (node >= 0 && node <= 53) {
+                cmd.type = "Build";
+                cmd.buildType = "settlement";
+                cmd.nodeId = node;
+                cmd.valid = true;
+                return cmd;
+            }
+
+            return Command.invalid();
         }
 
         //Handle Build City
@@ -94,15 +102,24 @@ public class Parser {
         //Handle Build Road
         Matcher road = BUILD_ROAD.matcher(input);
         if (road.matches()) {
-            cmd.type = "Build";
-            cmd.buildType = "road";
-            cmd.fromNodeId = Integer.parseInt(road.group(1));
-            cmd.toNodeId = Integer.parseInt(road.group(2));
-            cmd.valid = true;
-            return cmd;
+            int from = Integer.parseInt(road.group(1));
+            int to = Integer.parseInt(road.group(2));
+
+            //validate nodeID range
+            if (from >= 0 && from <= 53 && to >= 0 && to <= 53) {
+                cmd.type = "Build";
+                cmd.buildType = "road";
+                cmd.fromNodeId = from;
+                cmd.toNodeId = to;
+                cmd.valid = true;
+                return cmd;
+            }
+
+            return Command.invalid();
         }
 
-        //Return invalid command if no pattern matched
+        // No pattern matched
         return Command.invalid();
     }
+
 }
