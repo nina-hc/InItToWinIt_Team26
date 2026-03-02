@@ -75,7 +75,7 @@ public class BuildCity extends Build {
 
 		Settlement settlement = (Settlement) placement;
 
-		return settlement.getOwner() == player.getPlayerID(); // ensure that the player own this settlement
+		return settlement.getOwnerID() == player.getPlayerID(); // ensure that the player own this settlement
 
 	}
 
@@ -103,6 +103,19 @@ public class BuildCity extends Build {
 
 	}
 
+    public void build(Object placement) {
+
+        if (!canPlayerBuy()) {
+            throw new IllegalStateException("Not enough resources");
+        }
+
+        if (!validatePlacement(placement)) {
+            throw new IllegalStateException("Invalid placement");
+        }
+
+        doBuild(placement);
+    }
+
 	/**
 	 * Prints a message describing the build action
 	 *
@@ -113,8 +126,7 @@ public class BuildCity extends Build {
 
 		Settlement settlement = (Settlement) placement;
 
-		System.out.println(
-				"Player " + player.getPlayerID() + " upgraded node " + settlement.getNode().getNodeID() + " to a city");
+		System.out.println("Player " + player.getPlayerID() + " upgraded node " + settlement.getNode().getNodeID() + " to a city");
 
 	}
 

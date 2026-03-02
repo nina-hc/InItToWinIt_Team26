@@ -71,7 +71,7 @@ public class DistributeResources {
 
 			// settlement gives 1 resource
 			if (node.getSettlement() != null) {
-				int ownerID = node.getSettlement().getOwner();
+				int ownerID = node.getSettlement().getOwnerID();
 				Player owner = players[ownerID - 1]; // convert IDs 1-4 to array (0-3)
 
 				int receivedFromBank = bank.transferToPlayer(resource, 1); // transfer resource from bank
@@ -82,7 +82,7 @@ public class DistributeResources {
 
 			// city gives 2 resources
 			if (node.getCity() != null) {
-				int ownerID = node.getCity().getOwner();
+				int ownerID = node.getCity().getOwnerID();
 				Player owner = players[ownerID - 1];
 
 				int receivedFromBank = bank.transferToPlayer(resource, 2);

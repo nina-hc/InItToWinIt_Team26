@@ -126,6 +126,15 @@ public class Player {
 
 	}
 
+
+    public void addVictoryPoints(int amount) {
+        victoryPoints += amount;
+
+        if (victoryPoints < 0) {
+            victoryPoints = 0; //safety guard
+        }
+    }
+
 	/* get playerID */
 	public int getPlayerID() {
 		return playerID;

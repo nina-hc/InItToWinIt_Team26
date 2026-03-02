@@ -14,6 +14,7 @@ public class PlayerAction {
 	private Player player;
 	private Board board;
 	private Randomizer randomizer;
+    private Game game;
 
 	/**
 	 * constructor initializes the player, board, and randomizer
@@ -98,7 +99,7 @@ public class PlayerAction {
 
 		// settlement if affordable
 		if (hand.canBuySettlement() && player.getPlayerSettlementsLeft() > 0) {
-			actions.add(new BuildSettlement(player, board, randomizer));
+			actions.add(new BuildSettlement(player, board, randomizer, game));
 		}
 
 		// road if affordable

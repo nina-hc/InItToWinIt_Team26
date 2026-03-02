@@ -11,10 +11,11 @@ package main.java;// --------------------------------------------------------
  * action that was completed.
  * 
  * @author Serene Abou Sharaf
- * 
- *         February 10, 2026
+ * February 10, 2026
  */
 public class BuildSettlement extends Build {
+
+    private Game game;
 
 	/**
 	 * Constructor for BuildSettlement
@@ -23,8 +24,9 @@ public class BuildSettlement extends Build {
 	 * @param board
 	 * @param randomizer
 	 */
-	public BuildSettlement(Player player, Board board, Randomizer randomizer) {
+	public BuildSettlement(Player player, Board board, Randomizer randomizer, Game game) {
 		super(player, board, randomizer);
+        this.game = game;
 	}
 
 	/**
@@ -65,7 +67,7 @@ public class BuildSettlement extends Build {
 	 * @return true if the placement is valid
 	 */
 	@Override
-	protected boolean validatePlacement(Object placement) {
+    public boolean validatePlacement(Object placement) {
 
 		Node node = (Node) placement;
 
@@ -90,7 +92,28 @@ public class BuildSettlement extends Build {
 			}
 		}
 
-		return true; // If all the checks pass then the placement is valid
+
+
+        //Must connect to player's road
+        boolean connectedToRoad = false;
+        for (Road road : player.getPlayerRoads()) {
+            if (road.getNodeA().getNodeID() == node.getNodeID() || road.getNodeB().getNodeID() == node.getNodeID()) {
+                connectedToRoad = true;
+                break;
+            }
+        }
+
+        if(!game.isSetupPhase()){//checks that this isn't one of the first
+
+            if (!connectedToRoad) {
+                return false;
+            }
+
+        }
+
+
+
+        return true; // If all the checks pass then the placement is valid
 
 	}
 
@@ -115,6 +138,12 @@ public class BuildSettlement extends Build {
 		player.playerAddSettlement(settlement);
 
 	}
+
+    public void build(Object placement) {
+        if (canPlayerBuy() && validatePlacement(placement)) {
+            doBuild(placement);
+        }
+    }
 
 	/**
 	 * Prints a message describing the build action

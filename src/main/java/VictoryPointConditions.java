@@ -28,24 +28,7 @@ public class VictoryPointConditions {
 		this.board = board;
 	}
 
-	/**
-	 * Check if the player has any settlements
-	 *
-	 * @return true if the player has 1 or more settlements, false otherwise
-	 *
-	 */
-	public boolean didPlayerBuildSettlement() {
-		return !player.getPlayerSettlements().isEmpty();
-	}
 
-	/**
-	 * Check if the player has any cities
-	 *
-	 * @return true of the player has 1 or more settlements, false otherwise
-	 */
-	public boolean didPlayerBuildCity() {
-		return !player.getPlayerCities().isEmpty();
-	}
 
 	/**
 	 * Calculate the total victory points from settlements from a player
@@ -54,14 +37,14 @@ public class VictoryPointConditions {
 	 *
 	 */
 	public int calculateSettlementVP() {
-		int vp = 0;
-		for (Settlement settlement : player.getPlayerSettlements()) {
-
-			if (settlement.getOwner() == player.getPlayerID()) {
-				vp += 1; // each settlement = 1 VP
-			}
-		}
-		return vp;
+//		int vp = 0;
+//		for (Settlement settlement : player.getPlayerSettlements()) {
+//
+//			if (settlement.getOwnerID() == player.getPlayerID()) {
+//				vp += 1; // each settlement = 1 VP
+//			}
+//		}
+		return calculateSettlementVP() + calculateCityVP() + getLongestRoad();
 	}
 
 	/**
@@ -73,7 +56,7 @@ public class VictoryPointConditions {
 		int vp = 0;
 
 		for (City city : player.getPlayerCities()) {
-			if (city.getOwner() == player.getPlayerID()) {
+			if (city.getOwnerID() == player.getPlayerID()) {
 				vp += 2; // each city = 2 VP
 			}
 		}
@@ -87,14 +70,16 @@ public class VictoryPointConditions {
 	 *
 	 * @return 2 victory points if the longest road >= 5 segments
 	 */
-	public int calculateLongestRoadVP() {
-		int longestRoad = findLongestRoad();
+	public int getLongestRoad() {
+//		int longestRoad = findLongestRoad();
+//
+//		if (longestRoad >= 5) {
+//			return 2;
+//		} else {
+//			return 0;
+//		}
 
-		if (longestRoad >= 5) {
-			return 2;
-		} else {
-			return 0;
-		}
+        return findLongestRoad();
 
 	}
 
@@ -182,7 +167,7 @@ public class VictoryPointConditions {
 
 		vp += calculateSettlementVP();
 		vp += calculateCityVP();
-		vp += calculateLongestRoadVP();
+		vp += getLongestRoad();
 
 		return vp;
 	}
