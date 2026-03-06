@@ -136,7 +136,4 @@ public class Player {
 		playerCities.add(cityPlaced);
 
 	}
-
-
-
 }
