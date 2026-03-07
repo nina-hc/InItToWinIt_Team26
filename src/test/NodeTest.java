@@ -136,13 +136,13 @@ class NodeTest {
         //create
         Node node = new Node(41);
         //test
-        asserNull(node,getBuilding());  //should start null
+        assertNull(node,getBuilding());  //should start null
         Settlement settlement = new Settlement(node, 1);
         node.placeSettlement(settlement);
 
         //check
         assertNotNull(node.getBuilding());
-        assertEquals(setttlement, node.getBuilding());
+        assertEquals(settlement, node.getBuilding());
     }
 
 

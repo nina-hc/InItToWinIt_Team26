@@ -16,8 +16,8 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(0);
-        Node node2 = board.getNode(5);
+//        Node node1 = board.getNode(0);
+//        Node node2 = board.getNode(5);
         boolean isAdjacent = board.isAdjacent(0, 5);
         //check
         assertTrue(isAdjacent);
@@ -28,8 +28,8 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(1);
-        Node node2 = board.getNode(24);
+//        Node node1 = board.getNode(1);
+//        Node node2 = board.getNode(24);
         boolean isNotAdjacent = board.isAdjacent(1, 24);
         //check
         assertFalse(isNotAdjacent);
@@ -40,8 +40,8 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(1);
-        Node node2 = board.getNode(67);
+//        Node node1 = board.getNode(1);
+//        Node node2 = board.getNode(67);
         board.isAdjacent(1, 67);
     }
 
@@ -50,8 +50,8 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(-1);
-        Node node2 = board.getNode(67);
+//        Node node1 = board.getNode(-1);
+//        Node node2 = board.getNode(67);
         board.isAdjacent(-1, 67);
     }
 
@@ -60,8 +60,8 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(1);
-        Node node2 = board.getNode(1);
+//        Node node1 = board.getNode(1);
+//        Node node2 = board.getNode(1);
         boolean isNotAdjacent = board.isAdjacent(1, 1);
         //check
         assertFalse(isNotAdjacent);
@@ -74,10 +74,11 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node = new Node(1);
-        boolean place = board.placeSettlementOnMat(1, 1);
+        Node node = board.getNode(1);
+        Settlement settlement = new Settlement(node, 1);
+        node.placeSettlement(settlement);
         //check
-        assertTrue(place);
+        assertTrue(node.isOccupied());
     }
 
 
@@ -162,8 +163,6 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(0);
-        Node node2 = board.getNode(5);
         Road road = board.placeRoad(0, 5, 2);
         //check
         assertNotNull(road);
@@ -171,7 +170,7 @@ class BoardTest {
 
         //test and check road
         Edge edge = board.getEdgeBetweenNodes(0, 5);
-        assrtNotNull(edge);
+        assertNotNull(edge);
         assertTrue(edge.hasRoad());
         assertEquals(road, edge.getRoad());
 
@@ -224,7 +223,7 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Edge edge = board.getEdgeBetweenNode(0, 5);
+        Edge edge = board.getEdgeBetweenNodes(0, 5);
         //check
         assertNotNull(edge);
         assertEquals(0, edge.getNodeA(),getNodeID());
@@ -236,7 +235,7 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Edge edge = board.getEdgeBetweenNode(1, 28);
+        Edge edge = board.getEdgeBetweenNodes(1, 28);
         //check
         assertNull(edge);
     }
@@ -248,7 +247,7 @@ class BoardTest {
         Node node = board.getNode(1);
         //test
         List<Edge> adjacentEdges = board.getAdjacentEdges(node);
-        assertEquals(3, adjacentEdges.size())   //3 is number of nodes/adjacdent edges
+        assertEquals(3, adjacentEdges.size());   //3 is number of nodes/adjacdent edges
 
         //node 1 neighbors: 0, 2, 6
         boolean found0 = false;
@@ -260,14 +259,14 @@ class BoardTest {
             int nodeB = edge.getNodeB().getNodeID();
 
             //check that the edges were actually found
-            if ( (nodeA == 1 && nodeB == 0) || (nodeA == 0 && nodeB == 0)) {
+            if ( (nodeA == 1 && nodeB == 0) || (nodeA == 0 && nodeB == 1)) {
                 found0 = true;
             }
             if ( (nodeA == 1 && nodeB == 2) || (nodeA == 2 && nodeB == 1)) {
-                found0 = true;
+                found2 = true;
             }
             if ( (nodeA == 1 && nodeB == 6) || (nodeA == 6 && nodeB == 1)) {
-                found0 = true;
+                found6 = true;
             }
 
             //check
@@ -276,10 +275,6 @@ class BoardTest {
             assertTrue(found6);
         }
     }
-
-
-
-
 
     //=======================================================
     @Test
@@ -297,7 +292,7 @@ class BoardTest {
         assertEquals(BRICK, resource);
     }
 
-    @Test (expected = ArrayIndexOutOFBoundsException.class)
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
     void testGetTileInvalidID() {
         //create
         Board board = new Board();
@@ -314,7 +309,7 @@ class BoardTest {
         Node node = board.getNode(1);
         int nodeID = node.getNodeID();
         //check
-        assertSame(1, nodeID);
+        assertEquals(1, nodeID);
     }
 
     @Test (expected = ArrayIndexOutOfBoundsException.class)
@@ -357,7 +352,7 @@ class BoardTest {
         //test
         Node[] nodes = board.getAllNodes();
         //check
-        assertEquals(54, node.length);
+        assertEquals(54, nodes.length);
     }
 
     @Test

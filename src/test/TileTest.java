@@ -81,7 +81,7 @@ class TileTest {
         //test
         ResourceType resource = tile.getResourceType();
         //check
-        assertEquals(ORE, resource);
+        assertEquals(GRAIN, resource);
     }
 
     //=======================================================
@@ -101,14 +101,14 @@ class TileTest {
 
     //=======================================================
     @Test
-    void testGetHasRpbber() {
+    void testGetHasRobber() {
         //create
         Tile tile = new Tile(1, 11, GRAIN);
         //test
         assertFalse(tile.setHasRobber); //should start false
         tile.setRobber(true);
         //check
-        assertTrue(tile.getHasRobber);  //should be true now
+        assertTrue(tile.getHasRobber());  //should be true now
     }
 
 }

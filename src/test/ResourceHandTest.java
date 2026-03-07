@@ -64,7 +64,7 @@ class ResourceHandTest {
         ResourceHand hand = new ResourceHand();
 
         //test
-        boolean hasZero = hand.hasResources(ResourceType.ORE, 0);
+        boolean hasZero = hand.hasResource(ResourceType.ORE, 0);
         //check
         assertTrue(hasZero);
     }
@@ -347,7 +347,7 @@ class ResourceHandTest {
 
         //check
         assertEqual(2, removed.size()); //check that amount removed is correct amount
-        addertEquals(totalBefore - 2, hand.totalPlayerCard());  //check that remaing cards in playes had is less than what it was before
+        assertEquals(totalBefore - 2, hand.totalPlayerCard());  //check that remaing cards in playes had is less than what it was before
     }
 
     @Test
@@ -361,11 +361,11 @@ class ResourceHandTest {
         hand.addResource(ResourceType.WOOL, 2); //6 cards total
 
         int totatlBefore = hand.totalPlayerCard();
-        List<ResourceType> discarded = hand.discarHalfForSeven();
+        List<ResourceType> discarded = hand.discardHalfForSeven();
 
         //check
-        assertEqual(3, discarded.size());
-        addertEquals(totalBefore - 3, hand.totalPlayerCard());
+        assertEquals(3, discarded.size());
+        assertEquals(totalBefore - 3, hand.totalPlayerCard());
     }
 
     @Test
@@ -379,10 +379,10 @@ class ResourceHandTest {
         hand.addResource(ResourceType.WOOL, 2); //7 cards total
 
         int totatlBefore = hand.totalPlayerCard();
-        List<ResourceType> discarded = hand.discarHalfForSeven();
+        List<ResourceType> discarded = hand.discardHalfForSeven();
 
         //check
         assertEqual(3, discarded.size());
-        addertEquals(totalBefore - 3, hand.totalPlayerCard());
+        assertEquals(totalBefore - 3, hand.totalPlayerCard());
     }
 }

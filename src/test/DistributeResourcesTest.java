@@ -58,7 +58,10 @@ class DistributeResourcesTest {
         DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
 
         //test
-        board.placeSettlementOnMat(2, 1);    //placed on node 2 for player 1
+        Node node =board.getNode(2);
+        Settlement settlement = new Settlement(node, 1); //placed on node 2 for player 1
+        node.placeSettlement(settlement);
+
         int resourcesBefore = players[0].getResourceHand().getResource(LUMBER);
 
         distributeResources.executeDistribution();
@@ -137,14 +140,14 @@ class DistributeResourcesTest {
 
         //test
         board.placeSettlementOnMat(2, 1);
-        board.getTile(0).setHasRobber(true);    //place robber on tile
+        board.getTile(0).setRobber(true);    //place robber on tile
 
-        int resourcesBefore = players[0].getResourceHand().getReosurce(LUMBER);
+        int resourcesBefore = players[0].getResourceHand().getResource(LUMBER);
         distributeResources.executeDistribution();
-        int resourcesAfter = players[0].getResourceHand().getReosurce(LUMBER);
+        int resourcesAfter = players[0].getResourceHand().getResource(LUMBER);
 
         //check
-        assertEquals(resourceBefore, resourcesAfter);
+        assertEquals(resourcesBefore, resourcesAfter);
     }
 
     @Test
@@ -165,6 +168,6 @@ class DistributeResourcesTest {
         int resourcesAfter = players[0].getResourceHand().totalPlayerCard();
 
         //check
-        assertEquals(resourceBefore, resourcesAfter);
+        assertEquals(resourcesBefore, resourcesAfter);
     }
 }
