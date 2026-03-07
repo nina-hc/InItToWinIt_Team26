@@ -48,25 +48,27 @@ class BankTest {
         //test
         int transferredToPlayer = bank.transferToPlayer(BRICK, 1);
         //check
-        assertSame(1, transferredToPlayer);
+        assertEquals(1, transferredToPlayer);
     }
 
+    @Test
     void testTransferToPlayerEdgeNotEnoughResourceInBank() {
         //create
         Bank bank = new Bank();
         //test
         int transferredToPlayer = bank.transferToPlayer(BRICK, 22);
         //check
-        assertSame(19, transferredToPlayer);    //should only give what it has
+        assertEquals(19, transferredToPlayer);    //should only give what it has
     }
 
+    @Test
     void testTransferToPlayerEdgeRequestNumberIsNegative() {
         //create
         Bank bank = new Bank();
         //test
         int transferredToPlayer = bank.transferToPlayer(BRICK, -5);
         //check
-        assertSame(0, transferredToPlayer);    //should only give what it has
+        assertEquals(0, transferredToPlayer);    //should only give what it has
     }
 
 
@@ -79,7 +81,7 @@ class BankTest {
         bank.transferToPlayer(WOOL, 7); //should be 12 in bank
         bank.resourceDeposit(WOOL, 2);  //now there should be 14 in bank
         //check
-        assertSame(14, bank.getResourceAmount(WOOL));
+        assertEquals(14, bank.getResourceAmount(WOOL));
 
     }
 
@@ -90,7 +92,7 @@ class BankTest {
         //test
         bank.resourceDeposit(WOOL, 4);  //by default there should be 12 in the bank alr
         //check
-        assertSame(19, bank.getResourceAmount(WOOL));   //nothing should have went into the bank
+        assertEquals(19, bank.getResourceAmount(WOOL));   //nothing should have went into the bank
     }
 
     @Test
@@ -101,7 +103,7 @@ class BankTest {
         bank.transferToPlayer(WOOL, 7); //should be 12 in bank
         bank.resourceDeposit(WOOL, -2);  //should throw an error
         //check
-        assertSame(12, bank.getResourceAmount(WOOL));   //nothing should have went into the bank
+        assertEquals(12, bank.getResourceAmount(WOOL));   //nothing should have went into the bank
     }
 
 
@@ -113,7 +115,7 @@ class BankTest {
         //test
         int gotResource = bank.getResourceAmount(LUMBER);
         //check
-        assertSame(19, gotResource);
+        assertEquals(19, gotResource);
     }
 
     @Test
@@ -125,7 +127,44 @@ class BankTest {
         bank.resourceDeposit(LUMBER, 2);
         int gotResource = bank.getResourceAmount(LUMBER);
         //check
-        assertSame(12, gotResource);
+        assertEquals(12, gotResource);
     }
+
+    //=======================================================
+    //added these after code has been refactored...
+
+    @Test (expected = NullPointerException.class)
+    void testHasResourcesWithNullResourceType() {
+        //create
+        Bank bank = new Bank();
+        //test
+        bank.hasResources(null, 5);
+    }
+
+    @Test (expected = NullPointerException.class)
+    void testTransferToPlayerWithNullResourceType() {
+        //create
+        Bank bank = new Bank();
+        //test
+        bank.transferToPlayer(null, 5);
+    }
+
+    @Test
+    void testTransferToPlayerMultipleResources() {
+        //create
+        Bank bank = new Bank();
+        //test
+        bank.transferToPlayer(LUMBER, 3);
+        bank.transferToPlayer(BRICK, 2);
+        bank.transferToPlayer(WOOL, 5);
+        //check
+        assertEquals(16, bank.getResourceAmount(LUMBER));
+        assertEquals(17, bank.getResourceAmount(BRICK));
+        assertEquals(14, bank.getResourceAmount(WOOL));
+    }
+
+
+
+
 
 }

@@ -35,28 +35,24 @@ class BoardTest {
         assertFalse(isNotAdjacent);
     }
 
-    @Test
+    @Test (expected = ArrrayIndexOutOfBoundsException)
     void testIsNotAdjacentEdgeOneNonExistingNode() {
         //create
         Board board = new Board();
         //test
         Node node1 = board.getNode(1);
         Node node2 = board.getNode(67);
-        boolean isNotAdjacent = board.isAdjacent(1, 67);
-        //check
-        assertFalse(isNotAdjacent);
+        board.isAdjacent(1, 67);
     }
 
-    @Test
+    @Test (expected = ArrrayIndexOutOfBoundsException)
     void testIsNotAdjacentEdgeTwoNonExistingNode() {
         //create
         Board board = new Board();
         //test
         Node node1 = board.getNode(-1);
         Node node2 = board.getNode(67);
-        boolean isNotAdjacent = board.isAdjacent(-1, 67);
-        //check
-        assertFalse(isNotAdjacent);
+        board.isAdjacent(-1, 67);
     }
 
     @Test
@@ -169,101 +165,120 @@ class BoardTest {
         Node node1 = board.getNode(0);
         Node node2 = board.getNode(5);
         Road road = board.placeRoad(0, 5, 2);
-        boolean hasRoad = board.hasRoad(0, 5);
         //check
-        assertTrue(hasRoad);
+        assertNotNull(road);
+        assertEquals(2, road.getOwnerID());
+
+        //test and check road
+        Edge edge = board.getEdgeBetweenNodes(0, 5);
+        assrtNotNull(edge);
+        assertTrue(edge.hasRoad());
+        assertEquals(road, edge.getRoad());
+
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException)
     void testPlaceRoadNodeArentNeighbors() {
         //create
         Board board = new Board();
         //test
         Node node1 = board.getNode(1);
         Node node2 = board.getNode(27);
-        Road road = board.placeRoad(1, 27, 2);
-        boolean hasRoad = board.hasRoad(1, 27);
-        //check
-        assertFalse(hasRoad);
+        board.placeRoad(1, 27, 2);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException)
     void testPlaceRoadOneNodeDontExist() {
         //create
         Board board = new Board();
         //test
         Node node1 = board.getNode(1);
         Node node2 = board.getNode(67);
-        Road road = board.placeRoad(1, 67, 2);
-        boolean hasRoad = board.hasRoad(1, 67);
-        //check
-        assertFalse(hasRoad);
+        board.placeRoad(1, 67, 2);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException)
     void testPlaceRoadBothNodeDontExist() {
         //create
         Board board = new Board();
         //test
         Node node1 = board.getNode(-11);
         Node node2 = board.getNode(67);
-        Road road = board.placeRoad(-11, 67, 2);
-        boolean hasRoad = board.hasRoad(-11, 67);
-        //check
-        assertFalse(hasRoad);
+        board.placeRoad(-11, 67, 2);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException)
     void testPlaceRoadSameNode() {
         //create
         Board board = new Board();
         //test
         Node node1 = board.getNode(1);
         Node node2 = board.getNode(1);
-        Road road = board.placeRoad(1, 1, 2);
-        boolean hasRoad = board.hasRoad(1, 1);
-        //check
-        assertFalse(hasRoad);
+        board.placeRoad(1, 1, 2);
     }
 
 
     //=======================================================
     @Test
-    void testHasRoad() {
+    void testGetEdgeBetweenNodes() {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(0);
-        Node node2 = board.getNode(5);
-        Road road = board.placeRoad(0, 5, 2);
-        boolean hasRoad = board.hasRoad(0, 5);
+        Edge edge = board.getEdgeBetweenNode(0, 5);
         //check
-        assertTrue(hasRoad);
+        assertNotNull(edge);
+        assertEquals(0, edge.getNodeA(),getNodeID());
+        assertEquals(5, edge.getNodeB(),getNodeID());
     }
 
     @Test
-    void testHasNoRoad() {
+    void testGetEdgeBetweenNodesNotAdjacent() {
         //create
         Board board = new Board();
         //test
-        Node node1 = board.getNode(1);
-        Node node2 = board.getNode(5);
-        boolean hasRoad = board.hasRoad(1, 5);
+        Edge edge = board.getEdgeBetweenNode(1, 28);
         //check
-        assertFalse(hasRoad);
+        assertNull(edge);
     }
 
     @Test
-    void testHasNoRoadNodesArentEvenConnected() {
+    void testGetAdjacentEdges() {
         //create
         Board board = new Board();
+        Node node = board.getNode(1);
         //test
-        Node node1 = board.getNode(1);
-        Node node2 = board.getNode(21);
-        boolean hasRoad = board.hasRoad(1, 21);
-        //check
-        assertFalse(hasRoad);
+        List<Edge> adjacentEdges = board.getAdjacentEdges(node);
+        assertEquals(3, adjacentEdges.size())   //3 is number of nodes/adjacdent edges
+
+        //node 1 neighbors: 0, 2, 6
+        boolean found0 = false;
+        boolean found2 = false;
+        boolean found6 = false;
+
+        for (Edge edge : adjacentEdges) {
+            int nodeA = edge.getNodeA().getNodeID();
+            int nodeB = edge.getNodeB().getNodeID();
+
+            //check that the edges were actually found
+            if ( (nodeA == 1 && nodeB == 0) || (nodeA == 0 && nodeB == 0)) {
+                found0 = true;
+            }
+            if ( (nodeA == 1 && nodeB == 2) || (nodeA == 2 && nodeB == 1)) {
+                found0 = true;
+            }
+            if ( (nodeA == 1 && nodeB == 6) || (nodeA == 6 && nodeB == 1)) {
+                found0 = true;
+            }
+
+            //check
+            assertTrue(found0);
+            assertTrue(found2);
+            assertTrue(found6);
+        }
     }
+
+
+
 
 
     //=======================================================
@@ -282,6 +297,13 @@ class BoardTest {
         assertEquals(BRICK, resource);
     }
 
+    @Test (expected = ArrayIndexOutOFBoundsException.class)
+    void testGetTileInvalidID() {
+        //create
+        Board board = new Board();
+        //test
+        board.getTile(26);
+    }
 
     //=======================================================
     @Test
@@ -289,24 +311,73 @@ class BoardTest {
         //create
         Board board = new Board();
         //test
-        Node node = new Node(1);
-        Node currentNode = board.getNode(1);
+        Node node = board.getNode(1);
+        int nodeID = node.getNodeID();
         //check
-        assertSame(node, currentNode);
+        assertSame(1, nodeID);
     }
 
-
-    //=======================================================
-    @Test
-    void testGetNeighbors() {
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
+    void testGetNodeInvalidID() {
         //create
         Board board = new Board();
         //test
-        List<Integer> neighbors = board.getNeighbors(1);
+        board.getNode(67);
+    }
+
+
+
+    //=======================================================
+    //added cases after the refactor
+
+    @Test
+    void testGetAllEdges() {
+        //create
+        Board board = new Board();
+        //test
+        Edge[] edges = board.getAllEdges(); //the board should have 72 edges.. 54 nodes, 3 edge each, counted twice
+        assertNotNull(edge);
+        assertTrue(edges.length > 0);
+    }
+
+    @Test
+    void testGetAllTiles() {
+        //create
+        Board board = new Board();
+        //test
+        Tile[] tiles = board.getAllTiles();
         //check
-        assertTrue(neighbors.contains(0));
-        assertTrue(neighbors.contains(2));
-        assertTrue(neighbors.contains(6));
+        assertEquals(19, tiles.length);
+    }
+
+    @Test
+    void testGetAllNodes() {
+        //create
+        Board board = new Board();
+        //test
+        Node[] nodes = board.getAllNodes();
+        //check
+        assertEquals(54, node.length);
+    }
+
+    @Test
+    void testGetPlayersAdjacentToTile() {
+        //create
+        Board board = new Board();
+        Player player1 = new Player(1);
+        Player player2 = new Player(2);
+
+        //test
+        //place settlements on nodes adjacent to the tile 0 {0, 1, 2, 3, 4, 5}
+        board.placeSettlementOnMat(0, 1);
+        board.placeSettlementOnMat(3, 2);
+
+        Tile tile = board.getTile(0);
+
+        List<Player> adjacentPlayers = board.getPlayersAdjacentsToTile(tile);
+
+        //check
+        assertEquals(2, adjacentPlayers.size());
     }
 
 

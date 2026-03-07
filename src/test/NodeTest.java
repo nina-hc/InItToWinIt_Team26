@@ -33,20 +33,21 @@ class NodeTest {
         assertFalse(isOccupied);
     }
 
-
     @Test
-    void testIsOccupiedEdgeNodeDoesntExist() {
+    void testIsOccupiedAfterUpgrade() {
         //create
-        Node node = new Node(-1);
+        Node node = new Node(1);
         //test
         Settlement settlement = new Settlement(node, 1);
-
         node.placeSettlement(settlement);
+
+        City city = new City(node, 1);
+        node.upgradeToCity(city);
+
         boolean isOccupied = node.isOccupied();
         //check
-        assertFalse(isOccupied);
+        assertTrue(isOccupied);
     }
-
 
     //=======================================================
     @Test
@@ -60,12 +61,26 @@ class NodeTest {
         boolean isOccupied = node.isOccupied();
         //check
         assertTrue(isOccupied);
+        assertEquals(settlement, node.getBuilding());
+        assertEquals(1, node.getBuilding().getOwnerID());
     }
 
+    @Test (expected = IllegalStatException.class)
+    void testPlaceSettlementOnOccupiedNode() {
+        //create
+        Node node = new Node(1);
+        //test
+        Settlement settlement1 = new Settlement(node, 1);
+        node.placeSettlement(settlement);
+
+        Settlement settlement2 = new Settlement(nde, 2);
+        //check
+        node.placeSettlement(settlement2);  //should throw exception
+    }
 
     //=======================================================
     @Test
-    void testPlaceCityOnSettlement() {
+    void testUpgradeToCity() {
         //create
         Node node = new Node(1);
         //test
@@ -73,48 +88,63 @@ class NodeTest {
         City city = new City(node, 1);
 
         node.placeSettlement(settlement);
-        node.placeCity(city);
+        node.upgradeToCity(city);
         boolean isOccupied = node.isOccupied();
         //check
         assertTrue(isOccupied);
+        assertEquals(city, node.getBuilding());
+        assertEquals(1, node.getBuilding().getOwnerID());
     }
 
-    @Test
-    void testPlaceCityOnEmptyNode() {
+    @Test (expected = IllegalStateException.class)
+    void testUpgradeToCityOnEmptyNode() {
         //create
         Node node = new Node(1);
         //test
         City city = new City(node, 1);
+        node.upgradeToCity(city);
 
-        node.placeCity(city);
-        boolean isOccupied = node.isOccupied();
-        //check
-        assertFalse(isOccupied);
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    void testPlaceCityOnNoNode() {
+    @Test (expected = IllegalStateException.class)
+    void testUpgradeToCityWithWrongOwner() {
         //create
         Node node = new Node(1);
         //test
-        City city = new City(node, 1);
+        Settlement settlement = new Settlement(node, 1);
+        node.placeSettlement(settlement);
 
-        node.placeCity(city);
-        boolean isOccupied = node.isOccupied();
-        //check
-        //assertFalse(isOccupied);
+        City city = new City(node, 2);
+        node.upgradeToCity(city);
     }
 
 
     //=======================================================
     @Test
-    void testGetNode() {
+    void testGetNodeID() {
         //create
-        Board board = new Board();
+        Node node = new Node(41);
         //test
-        Node node = board.getNode(1);
         int nodeID = node.getNodeID();
         //check
-        assertSame(1, nodeID);
+        assertSame(41, nodeID);
     }
+
+    //=======================================================
+    @Test
+    void testGetBuilding() {
+        //create
+        Node node = new Node(41);
+        //test
+        asserNull(node,getBuilding());  //should start null
+        Settlement settlement = new Settlement(node, 1);
+        node.placeSettlement(settlement);
+
+        //check
+        assertNotNull(node.getBuilding());
+        assertEquals(setttlement, node.getBuilding());
+    }
+
+
+
 }

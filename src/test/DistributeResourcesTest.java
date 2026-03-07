@@ -119,4 +119,52 @@ class DistributeResourcesTest {
         //check: before + 1 should = after
         assertEquals(resourcesBefore + 1, resourcesAfter);
     }
+
+    //========================================================
+    //tests added after refactors
+
+    @Test
+    void testExecuteDistributionWithRobberOnTile() {
+        //create
+        Board board = new Board();
+        Bank bank = new Bank();
+        Randomizer randomizer = new FixedRandomizer(7); //can choose a roll value!
+
+        Player[] players = new Player[1];
+        players[0] = new Player(1);
+
+        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
+
+        //test
+        board.placeSettlementOnMat(2, 1);
+        board.getTile(0).setHasRobber(true);    //place robber on tile
+
+        int resourcesBefore = players[0].getResourceHand().getReosurce(LUMBER);
+        distributeResources.executeDistribution();
+        int resourcesAfter = players[0].getResourceHand().getReosurce(LUMBER);
+
+        //check
+        assertEquals(resourceBefore, resourcesAfter);
+    }
+
+    @Test
+    void testExecuteDistributionWitNoOneOnTile() {
+        //create
+        Board board = new Board();
+        Bank bank = new Bank();
+        Randomizer randomizer = new FixedRandomizer(7); //can choose a roll value!
+
+        Player[] players = new Player[1];
+        players[0] = new Player(1);
+
+        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
+
+        //test
+        int resourcesBefore = players[0].getResourceHand().totalPlayerCard();
+        distributeResources.executeDistribution();
+        int resourcesAfter = players[0].getResourceHand().totalPlayerCard();
+
+        //check
+        assertEquals(resourceBefore, resourcesAfter);
+    }
 }

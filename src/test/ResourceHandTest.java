@@ -58,6 +58,16 @@ class ResourceHandTest {
         assertFalse(notEnough);
     }
 
+    @Test
+    void testHasResourcesWithZero() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        boolean hasZero = hand.hasResources(ResourceType.ORE, 0);
+        //check
+        assertTrue(hasZero);
+    }
 
     //=======================================================
     @Test
@@ -146,12 +156,13 @@ class ResourceHandTest {
     @Test
     void testPayForRoad() {
         //create
+        Bank bank = new Bank();
         ResourceHand hand = new ResourceHand();
         //test
         hand.addResource(ResourceType.BRICK, 3);
         hand.addResource(ResourceType.LUMBER, 2);
 
-        hand.payForRoad();
+        hand.payForRoad(bank);
 
         int numBrick = hand.getResource(ResourceType.BRICK);
         int numLumber = hand.getResource(ResourceType.LUMBER);
@@ -166,6 +177,7 @@ class ResourceHandTest {
     @Test
     void testPayForSettlement() {
         //create
+        Bank bank = new Bank();
         ResourceHand hand = new ResourceHand();
         //test
         hand.addResource(ResourceType.BRICK, 1);
@@ -173,7 +185,7 @@ class ResourceHandTest {
         hand.addResource(ResourceType.WOOL, 1);
         hand.addResource(ResourceType.GRAIN, 1);
 
-        hand.payForSettlement();
+        hand.payForSettlement(bank);
 
         int numBrick = hand.getResource(ResourceType.BRICK);
         int numLumber = hand.getResource(ResourceType.LUMBER);
@@ -192,12 +204,13 @@ class ResourceHandTest {
     @Test
     void testPayForCity() {
         //create
+        Bank bank = new Bank();
         ResourceHand hand = new ResourceHand();
         //test
         hand.addResource(ResourceType.ORE, 3);
         hand.addResource(ResourceType.GRAIN, 2);
 
-        hand.payForCity();
+        hand.payForCity(bank);
 
         int numOre = hand.getResource(ResourceType.ORE);
         int numGrain = hand.getResource(ResourceType.GRAIN);
@@ -223,6 +236,13 @@ class ResourceHandTest {
         assertEquals(5, total);
     }
 
+    @Test
+    void testTotalPlayerCardEmpty() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        assertEquals(0, hand.totalPlayerCard());
+    }
 
     //=======================================================
     @Test
@@ -235,7 +255,134 @@ class ResourceHandTest {
 
         String result = hand.toString();
         //check
+        assertTrue(result.contains("Lumber:0"));
         assertTrue(result.contains("Brick:2"));
         assertTrue(result.contains("Wool:1"));
+        assertTrue(result.contains("Grain:0"));
+        assertTrue(result.contains("Ore:0"));
+    }
+
+    //======================================================
+    //added test cases after refactor
+    @Test (expected = IllegalArgumentException.class)
+    void testAddNegativeResources() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, -1);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    void testAddDesertResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.DESERT, 1);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    void testGetDesertResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.getResource(ResourceType.DESERT);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    void testHasDesertResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.hasResource(ResourceType.DESERT, 1);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    void testPayForRoadNotEnoughResources() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);    //not enough lumber
+        //check
+        hand.payForRoad(bank);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    void testPayForSettlementNotEnoughResources() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        hand.addResource(ResourceType.LUMBER, 1);
+        hand.addResource(ResourceType.WOOL, 1);    //not enough grain
+        //check
+        hand.payForSettlement(bank);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    void testPayForCityNotEnoughResources() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.ORE, 3);
+        hand.addResource(ResourceType.GRAIN, 1);    //only 1 grain... not enough
+        //check
+        hand.payForCity(bank);
+    }
+
+    @Test
+    void testRemoveRandomResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        hand.addResource(ResourceType.BRICK, 3);
+        hand.addResource(ResourceType.LUMBER, 3);
+        hand.addResource(ResourceType.WOOL, 3);
+
+        int totatlBefore = hand.totalPlayerCard();
+        List<ResourceType> removed = hand.removeRandomResource(2);
+
+        //check
+        assertEqual(2, removed.size()); //check that amount removed is correct amount
+        addertEquals(totalBefore - 2, hand.totalPlayerCard());  //check that remaing cards in playes had is less than what it was before
+    }
+
+    @Test
+    void testDiscardHalfForSevenEvenNumber() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        hand.addResource(ResourceType.BRICK, 2);
+        hand.addResource(ResourceType.LUMBER, 2);
+        hand.addResource(ResourceType.WOOL, 2); //6 cards total
+
+        int totatlBefore = hand.totalPlayerCard();
+        List<ResourceType> discarded = hand.discarHalfForSeven();
+
+        //check
+        assertEqual(3, discarded.size());
+        addertEquals(totalBefore - 3, hand.totalPlayerCard());
+    }
+
+    @Test
+    void testDiscardHalfForSevenOddNumber() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        hand.addResource(ResourceType.BRICK, 3);
+        hand.addResource(ResourceType.LUMBER, 2);
+        hand.addResource(ResourceType.WOOL, 2); //7 cards total
+
+        int totatlBefore = hand.totalPlayerCard();
+        List<ResourceType> discarded = hand.discarHalfForSeven();
+
+        //check
+        assertEqual(3, discarded.size());
+        addertEquals(totalBefore - 3, hand.totalPlayerCard());
     }
 }
