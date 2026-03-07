@@ -10,18 +10,10 @@ import java.util.Random;
  * then player moves the robber to tileID number
  * then player steals 1 random resource from an opponent who has a settlement or city adjacent to the target terrain hex...
  * if the target hex is adjacent to 2 or more players settlements, then u choose which one you want to steal from
- *
- * needs to be smth preventing users from receiving the resources from that tile when rolled
- * bot players need a way to randomly select who they want to steal from
- * i think the 7 card rule needs to be implemented somewhere else/in else places but i'll write the method here
- *
- * track tile
- * handle stealing logic
- * or it can just be in charge of all the actions that occur/can occur when a 7 is rolled
- *
+
  *
  * class representing the Robber when a 7 is rolled
- * handles moving the robber, stealing resources, and discards half the hand of users with 7 or more cards
+ * handles discarding half the hand of users with 7 or more cards (randomly), moving the robber(randomly), and stealing a resource from a plyer whos on the robbed tile (randomly)
  *
  * @author Synthia Rosenberger
  * @version February 2026, McMaster University
@@ -99,7 +91,7 @@ public class Robber {
         System.out.println("A seven was rolled");
 
         //discard half if there's more than 7 cards in any players hands
-        for (Player player : board.getPlayers()) {  //****change ths
+        for (Player player : board.getPlayers()) {  
             discardHalf(player, bank);
         }
 
