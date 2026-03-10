@@ -8,6 +8,7 @@ public class TurnManager {
     private Randomizer randomizer;
     private Bank bank;
     private PlacementValidator placementValidator;
+    private Robber robber;
 
     public TurnManager(Player[] players, Board board, DistributeResources distributor, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
         this.players = players;
@@ -16,6 +17,7 @@ public class TurnManager {
         this.randomizer = randomizer;
         this.bank = bank;
         this.placementValidator = placementValidator;
+        this.robber = new Robber(board.getTile(16));     //desert tile
     }
 
 
@@ -46,6 +48,9 @@ public class TurnManager {
                     int roll = distributor.executeDistribution();
                     System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
 
+                    if (roll == 7) {
+                        robber.executeSevenRoll(board, bank, players, player);
+                    }
                     /*Call player actions */
                     PlayerAction action = new PlayerAction(player, board, randomizer, bank, placementValidator);
                     action.executeTurn();

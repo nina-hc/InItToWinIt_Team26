@@ -82,11 +82,23 @@ public class Robber {
         }
     }
 
+    public Tile chooseRandomTile(Board board){
 
+        int index = random.nextInt(19);  //0... 18 tiles
+        Tile chosenTile = board.getTile(index);
+
+        //make sure the random tile isnt the same as the previous one
+        while (chosenTile == currentTile) {
+            index = random.nextInt(19);
+            chosenTile = board.getTile(index);
+        }
+
+        return chosenTile;
+    }
 
 
     //maybe should be in a diff class
-    public void executeSevenRoll(Board board, Bank bank, Player currentPlayer, Tile chosenTile) {
+    public void executeSevenRoll(Board board, Bank bank, Player[] players, Player currentPlayer) {
 
         System.out.println("A seven was rolled");
 
@@ -96,6 +108,7 @@ public class Robber {
         }
 
         //move robber to new tile
+        Tile chosenTile = chooseRandomTile(board);
         moveRobber(chosenTile);
         System.out.println("Robber moved");
 
@@ -107,7 +120,7 @@ public class Robber {
         victims.remove(currentPlayer);
 
         if (victims.isEmpty()) {
-            System.out.println("Error: there are no players to steal from");
+            System.out.println("There are no players to steal from on this tile");
             return;
         }
 
