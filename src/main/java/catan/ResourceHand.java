@@ -50,23 +50,97 @@ public class ResourceHand {
 
 	}
 
-	/*for the robber*/
-	public void removeResource(ResourceType type, int amount) {
-		if (amount <= 0) {
-			throw new IllegalArgumentException("Error: Negative values cannot be removed");
-		}
-		if(type == ResourceType.DESERT) {
-			throw new IllegalArgumentException("Error: There are no resources from the desert.");
-		}
-		//otherwise remove the amount
-		int currentAmount = resources.get(type);
-		if(currentAmount < amount) {
-			throw new IllegalArgumentException("Error: you cannot remove more resources than the player has.");
-			//alternatively this could be implemented to remove the max rather than be an error
-		}
-		//subtract the current amount by the amount removed and place that as the new value
-		resources.put(type,(currentAmount - amount));
-	}
+//    /**
+//     * Method to help remove cards from players hand
+//     *
+//     *
+//     * @param type type of resource that's being removed
+//     * @param amount amount of the resource that's being removed
+//     */
+//	public void removeResource(ResourceType type, int amount) {
+//		if (amount <= 0) {
+//			throw new IllegalArgumentException("Error: Negative values cannot be removed");
+//		}
+//		if(type == ResourceType.DESERT) {
+//			throw new IllegalArgumentException("Error: There are no resources from the desert.");
+//		}
+//		//otherwise remove the amount
+//		int currentAmount = resources.get(type);
+//		if(currentAmount < amount) {
+//			throw new IllegalArgumentException("Error: you cannot remove more resources than the player has.");
+//			//alternatively this could be implemented to remove the max rather than be an error
+//		}
+//		//subtract the current amount by the amount removed and place that as the new value
+//		resources.put(type,(currentAmount - amount));
+//	}
+
+    /**
+     * Method to remove random cards from a players hand
+     * Useful when stealing and discarding half a hand on a 7 roll
+     *
+     * @param amount amount of the resource that's being removed
+     */
+    public List<ResourceType> removeRandomResource(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Error: Negative values cannot be removed");
+        }
+
+        List<ResourceType> removedCards = new ArrayList<>();
+        List<ResourceType> resourcesWithCards = new ArrayList<>();
+
+        //make a list of every individual card in hand
+        for (Map.Entry<ResourceType, Integer> entry : resources.entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                resourcesWithCards.add(entry.getKey());
+            }
+        }
+
+        if (amount > resourcesWithCards.size()) {
+            throw new IllegalArgumentException("Error: cannot remove more cards than the player has");
+        }
+
+        Random random = new Random();
+
+        for (int i = 0; i < amount; i++) {
+            int index = random.nextInt(resourcesWithCards.size());
+            ResourceType selected = resourcesWithCards.remove(index);
+            resources.put(selected, resources.get(selected) - 1);
+            removedCards.add(selected);
+        }
+
+        return removedCards;
+    }
+
+
+    /**
+     * method to steal a card from a victims hand and transfer resource into the thief's hand
+     *
+     * @return card/resource that was stolen from the victim
+     */
+    public ResourceType removeCardForSteal() {
+        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
+
+        if (removed.isEmpty()) {
+            return null;
+        }
+
+        return removed.get(0);
+    }
+
+
+    /**
+     * method to remove and discard half of a players hand when they have 7 or more cards and a 7 is rolled
+     *
+     * @return lit of discarded cards
+     */
+    public List<ResourceType> discardHalfForSeven() {
+        int totalCards = totalPlayerCard();
+        int cardsToDiscard = totalCards / 2;    //automatically round down
+
+        List<ResourceType> updatedHand = removeRandomResource(cardsToDiscard);
+        return updatedHand;
+    }
+
 
 	/**
 	 * Getter for a specific resource type

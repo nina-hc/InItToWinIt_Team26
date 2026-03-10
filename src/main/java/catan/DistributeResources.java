@@ -1,5 +1,7 @@
 package catan;
 
+import java.util.List;
+
 /**
  * This class is responsible for distributing resources to players after a dice
  * roll.
@@ -46,7 +48,12 @@ public class DistributeResources {
 		// Loop through all tiles on the board
 		for (int i = 0; i < 19; i++) { // 19 tiles
 			Tile tile = board.getTile(i); // get tile by tileID
-			if (tile.getTileRollNum() == roll && tile.getResourceType() != ResourceType.DESERT) {
+
+            if(tile.getHasRobber()) {
+                continue;
+            }
+
+            if (tile.getTileRollNum() == roll && tile.getResourceType() != ResourceType.DESERT) {
 				distributeFromTile(tile);
 			}
 		}
@@ -65,7 +72,7 @@ public class DistributeResources {
 		ResourceType resource = tile.getResourceType();
 		int[] nodeIDs = tile.getNodeIDs();
 
-		// loop through each node
+        //loop through each node
 		for (int nodeID : nodeIDs) {
 			Node node = board.getNode(nodeID);
 			Building building = node.getBuilding();
@@ -76,8 +83,8 @@ public class DistributeResources {
 
 				int receivedFromBank = building.getResourceMultiplier();
 				if(receivedFromBank >0){
-					owner.getResourceHand().addResource(resource, receivedFromBank);
-
+                    int amountGiven = bank.transferToPlayer(resource, receivedFromBank);
+                    owner.getResourceHand().addResource(resource, amountGiven);
 				}
 			}
 		}

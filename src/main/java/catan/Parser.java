@@ -3,69 +3,93 @@ package catan;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parses raw input strings into Command objects for game actions.
+ * Supports commands: Roll, Go, List, Build (settlement, city, road).
+ * Uses regular expressions to validate and extract parameters.
+ *
+ * @author Marva Hassan
+ */
 public class Parser {
 
-    // Patterns
-    private static final Pattern ROLL =
-            Pattern.compile("^roll$", Pattern.CASE_INSENSITIVE);
+    //Pattern for "roll" command
+    private static final Pattern ROLL = Pattern.compile("^roll$");
 
-    private static final Pattern GO =
-            Pattern.compile("^go$", Pattern.CASE_INSENSITIVE);
+    //Pattern for "go" command
+    private static final Pattern GO = Pattern.compile("^go$");
 
-    private static final Pattern LIST =
-            Pattern.compile("^list$", Pattern.CASE_INSENSITIVE);
+    //Pattern for "list" command
+    private static final Pattern LIST = Pattern.compile("^list$");
 
-    private static final Pattern BUILD_SETTLEMENT =
-            Pattern.compile("^build\\s+settlement\\s+(\\d+)$", Pattern.CASE_INSENSITIVE);
+    //Pattern for "build settlement <nodeId>"
+    private static final Pattern BUILD_SETTLEMENT = Pattern.compile("^build\\s+settlement\\s+(\\d+)$");
 
-    private static final Pattern BUILD_CITY =
-            Pattern.compile("^build\\s+city\\s+(\\d+)$", Pattern.CASE_INSENSITIVE);
+    //Pattern for "build city <nodeId>"
+    private static final Pattern BUILD_CITY = Pattern.compile("^build\\s+city\\s+(\\d+)$");
 
-    private static final Pattern BUILD_ROAD =
-            Pattern.compile("^build\\s+road\\s+(\\d+)\\s*,\\s*(\\d+)$", Pattern.CASE_INSENSITIVE);
+    //Pattern for "build road <fromNodeId>, <toNodeId>"
+    private static final Pattern BUILD_ROAD = Pattern.compile("^build\\s+road\\s+(\\d+)\\s*,\\s*(\\d+)$");
 
+
+    /**
+     * Parses an input string into a Command object.
+     * Cleans the input, matches it against known patterns, and extracts parameters.
+     *
+     * @param input The raw input string from the player
+     * @return A Command object representing the parsed action, or an invalid command if parsing fails
+     */
     public Command parse(String input) {
 
+        //Return invalid command if input is null
         if (input == null) {
             return Command.invalid();
         }
 
-        input = InputCleaner.clean(input);
+        //Clean input string
+        input = InputCleaner.cleaner(input);
 
         Command cmd = new Command();
 
-        // Roll
+        //Handle Roll
         if (ROLL.matcher(input).matches()) {
             cmd.type = "Roll";
             cmd.valid = true;
             return cmd;
         }
 
-        // Go
+        //Handle Go
         if (GO.matcher(input).matches()) {
             cmd.type = "Go";
             cmd.valid = true;
             return cmd;
         }
 
-        // List
+        //Handle List
         if (LIST.matcher(input).matches()) {
             cmd.type = "List";
             cmd.valid = true;
             return cmd;
         }
 
-        // Build settlement
+        //Handle Build Settlement
         Matcher settlement = BUILD_SETTLEMENT.matcher(input);
         if (settlement.matches()) {
-            cmd.type = "Build";
-            cmd.buildType = "settlement";
-            cmd.nodeId = Integer.parseInt(settlement.group(1));
-            cmd.valid = true;
-            return cmd;
+
+            int node = Integer.parseInt(settlement.group(1));
+
+            //validate nodeid range
+            if (node >= 0 && node <= 53) {
+                cmd.type = "Build";
+                cmd.buildType = "settlement";
+                cmd.nodeId = node;
+                cmd.valid = true;
+                return cmd;
+            }
+
+            return Command.invalid();
         }
 
-        // Build city
+        //Handle Build City
         Matcher city = BUILD_CITY.matcher(input);
         if (city.matches()) {
             cmd.type = "Build";
@@ -75,17 +99,27 @@ public class Parser {
             return cmd;
         }
 
-        // Build road
+        //Handle Build Road
         Matcher road = BUILD_ROAD.matcher(input);
         if (road.matches()) {
-            cmd.type = "Build";
-            cmd.buildType = "road";
-            cmd.fromNodeId = Integer.parseInt(road.group(1));
-            cmd.toNodeId = Integer.parseInt(road.group(2));
-            cmd.valid = true;
-            return cmd;
+            int from = Integer.parseInt(road.group(1));
+            int to = Integer.parseInt(road.group(2));
+
+            //validate nodeID range
+            if (from >= 0 && from <= 53 && to >= 0 && to <= 53) {
+                cmd.type = "Build";
+                cmd.buildType = "road";
+                cmd.fromNodeId = from;
+                cmd.toNodeId = to;
+                cmd.valid = true;
+                return cmd;
+            }
+
+            return Command.invalid();
         }
 
+        // No pattern matched
         return Command.invalid();
     }
+
 }
