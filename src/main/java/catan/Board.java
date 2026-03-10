@@ -33,6 +33,8 @@ public class Board {
 	private final Edge[] edges;
 
 
+    private List<Player> players;
+
 	// ================================================================================
 	// METHODS
 	// ================================================================================
@@ -43,6 +45,7 @@ public class Board {
 	public Board() {
 		nodes = new Node[NUMBER_OF_NODES]; // array size of 54 for 54 node objects
 		tiles = new Tile[NUMBER_OF_TILES]; // array size of 19 for 19 tiles
+        players = new ArrayList<>();
 
 		// create node objects and storing it in nodes array
 		for (int i = 0; i < NUMBER_OF_NODES; i++) {
@@ -114,6 +117,39 @@ public class Board {
 
 	}
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Player getPlayerByID(int ownerID) {
+        for(Player player : players) {
+            if (player.getPlayerID() == ownerID) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public List<Player> getPlayersAdjacentToTile(Tile tile) {
+
+        List<Player> adjacentPlayers = new ArrayList<>();
+
+        for(int nodeID : tile.getNodeIDs()) {
+            Node node = getNode(nodeID);
+
+            if(node.isOccupied()) {
+                int ownerID = node.getBuilding().getOwnerID();    //owner of node
+                Player owner = getPlayerByID(ownerID);
+
+                if(owner != null && !adjacentPlayers.contains(owner)) { //check if there's a building on each node and if the owner has alr been added to the list
+                    adjacentPlayers.add(owner);
+                }
+            }
+        }
+        return adjacentPlayers;
+
+    }
+
 	private Edge[] constructEdges(){
 		// **************************************
 		// NODE NEIGHBORS
@@ -179,15 +215,12 @@ public class Board {
 		};
 
 		List<Edge> edgeList = new ArrayList<>();
-		/*create custom ID for edges (essential is chosen only from the order they go in so not super meaningful)*/
-		int edgeID=0;//again still could cut
-
 		// connecting node to each neighbor
 		for (int i = 0; i < neighbors.length; i++) {
 
 			for (int neighbor : neighbors[i]) {
 				if(i<neighbor){
-					edgeList.add(new Edge(edgeID++,nodes[i],nodes[neighbor]));//maybe pull increment out so its not
+					edgeList.add(new Edge(nodes[i],nodes[neighbor]));//maybe pull increment out so its not
 					// doing too much
 				}
 			}

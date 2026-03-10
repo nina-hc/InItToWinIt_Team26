@@ -15,6 +15,7 @@ public class TurnManager {
     private Randomizer randomizer;
     private Bank bank;
     private PlacementValidator placementValidator;
+    private Robber robber;
 
 
     //constructor
@@ -25,6 +26,7 @@ public class TurnManager {
         this.randomizer = randomizer;
         this.bank = bank;
         this.placementValidator = placementValidator;
+        this.robber = new Robber(board.getTile(16));     //desert tile
     }
 
     /**
@@ -54,9 +56,23 @@ public class TurnManager {
                     int roll = distributor.executeDistribution();
                     System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
 
+                    if (roll == 7) {
+                        robber.executeSevenRoll(board, bank, players, player);
+                    }
                     /*Call player actions */
                     PlayerAction action = new PlayerAction(player, board, randomizer, bank, placementValidator);
                     action.executeTurn();
+                }
+
+                // Print Statement of Actions
+                //System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");
+
+                VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+
+                if (vpCheck.checkWinConditions()) {
+                    gameOver = true;
+                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
+                    return player;
                 }
             }
 

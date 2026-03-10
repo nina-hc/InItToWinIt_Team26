@@ -73,9 +73,7 @@ public abstract class Build {
 	 */
 	protected abstract boolean canPlayerBuy();
 
-	protected boolean hasValidPlacement() {
-        return true;
-    }
+
 	/**
 	 * 
 	 * Changed it to object because I realized roads use two nodes so maybe this is

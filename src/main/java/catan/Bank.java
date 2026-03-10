@@ -115,9 +115,17 @@ public class Bank {
 	 */
 	public void resourceDeposit(ResourceType resourceType, int amountDeposit) {
 
+        if (amountDeposit < 0) {
+            throw new IllegalArgumentException("Error: cannot deposit negative amount of resources");
+        }
+
 		int amountOfResource = bankResources.get(resourceType);
 		int amountGiven = amountOfResource + amountDeposit; // increase amount of the resource available in the bank
-		bankResources.put(resourceType, amountGiven);
+
+        if (amountGiven > RESOURCE_CARD_MAX){
+            throw new IllegalArgumentException(("Error: cannot deposit more than 19 cards"));
+        }
+        bankResources.put(resourceType, amountGiven);
 
 	}
 
