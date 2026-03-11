@@ -1,4 +1,4 @@
-package test;
+package a2_tests;
 
 import main.java.Bank;
 import org.junit.jupiter.api.Test;

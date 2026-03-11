@@ -1,5 +1,7 @@
-package catan;
+package a2_tests;
 
+import catan.Command;
+import catan.Parser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

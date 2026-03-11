@@ -1,4 +1,4 @@
-package test;
+package a2_tests;
 
 import main.java.Board;
 import main.java.City;
