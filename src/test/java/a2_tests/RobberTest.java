@@ -1,4 +1,4 @@
-package test;
+package a2_tests;
 
 import catan.*;
 import org.junit.jupiter.api.Test;

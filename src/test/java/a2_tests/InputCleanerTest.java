@@ -1,5 +1,6 @@
-package catan;
+package a2_tests;
 
+import catan.InputCleaner;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
