@@ -102,6 +102,9 @@ public class BuildSettlement extends Build {
 		node.placeSettlement(settlement);
 		player.playerAddSettlement(settlement);
 
+        //export to visualizer
+        StateExporter.exportState(board);
+
 	}
 
     public void build(Object placement) {
