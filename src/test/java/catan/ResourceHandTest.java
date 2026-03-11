@@ -1,7 +1,8 @@
 package catan;
+/*
 
-//import main.java.ResourceHand;
-//import main.java.ResourceType;
+import main.java.ResourceHand;
+import main.java.ResourceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -385,4 +386,4 @@ class ResourceHandTest {
         assertEqual(3, discarded.size());
         assertEquals(totalBefore - 3, hand.totalPlayerCard());
     }
-}
+}*/

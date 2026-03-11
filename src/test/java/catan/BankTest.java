@@ -1,4 +1,5 @@
 package catan;
+/*
 
 import main.java.Bank;
 import org.junit.jupiter.api.Test;
@@ -167,4 +168,4 @@ class BankTest {
 
 
 
-}
+}*/

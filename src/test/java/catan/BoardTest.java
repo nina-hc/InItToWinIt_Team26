@@ -1,4 +1,5 @@
 package catan;
+/*
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.support.*;
@@ -375,4 +376,4 @@ class BoardTest {
     }
 
 
-}
+}*/

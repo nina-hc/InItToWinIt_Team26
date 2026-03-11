@@ -30,22 +30,30 @@ class BuildRoadTest {
 	@Test
 	void test_canPlayerBuy_false(){
 		assertFalse(new BuildRoad(player,board,randomizer,bank,placementValidator).canPlayerBuy());
-
-
-
-
-
-
 	}
 
+	@DisplayName("Testing if a player can buy a road when they are able to")
 	@Test
 	void test_canPlayerBuy_true() {
-
+		add_starter_resources();
+		assertTrue(new BuildRoad(player,board,randomizer,bank,placementValidator).canPlayerBuy());
 	}
 
 
+
+
 	@Test
-	void hasValidPlacement() {
+	void test_ValidPlacement_when_false() {
+		assertFalse(new BuildRoad(player,board,randomizer,bank,placementValidator).validatePlacement(board.getEdgeBetweenNodes(0,5)));
+
+	}
+
+	@Test
+	void test_ValidPlacement_when_true() {
+		add_starter_resources();
+		add_starter_settlement();
+		assertTrue(new BuildRoad(player,board,randomizer,bank,placementValidator).validatePlacement(board.getEdgeBetweenNodes(0,5)));
+
 	}
 
 	@Test

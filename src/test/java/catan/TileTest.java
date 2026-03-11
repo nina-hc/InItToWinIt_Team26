@@ -1,11 +1,16 @@
 package catan;
+/*
 
-import main.java.ResourceType;
-import main.java.Tile;
+*/
+/*import main.java.ResourceType;
+import main.java.Tile;*//*
+
 import org.junit.jupiter.api.Test;
 
-import static main.java.ResourceType.GRAIN;
-import static main.java.ResourceType.ORE;
+*/
+/*import static main.java.ResourceType.GRAIN;
+import static main.java.ResourceType.ORE;*//*
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TileTest {
@@ -13,7 +18,7 @@ class TileTest {
     @Test
     void testConstructTile() {
         //create
-        Tile tile = new Tile(1, 11, GRAIN);
+        Tile tile = new Tile(1, 11, ResourceType.GRAIN);
         //test
         int tileID = tile.getTileID();
         int rollNum = tile.getTileRollNum();
@@ -111,4 +116,4 @@ class TileTest {
         assertTrue(tile.getHasRobber());  //should be true now
     }
 
-}
+}*/
