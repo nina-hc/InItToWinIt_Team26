@@ -73,8 +73,9 @@ public class BuildCity extends Build {
 	@Override
 	protected boolean validatePlacement(Object placement) {
 
+        if (placement == null) return false;
 
-            return placementValidator.canUpgradeToCity((Settlement) placement, player);
+        return placementValidator.canUpgradeToCity((Settlement) placement, player);
 
 
 //            Settlement settlement = (Settlement) placement;

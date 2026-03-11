@@ -10,7 +10,12 @@ import catan.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-
+/**
+ * Unit test cases for the BuildSettlement Class
+ *
+ * @author Serene Abou Sharaf
+ * March 5, 2026
+ */
 public class BuildSettlementTest {
 
     private Board board;
@@ -24,6 +29,8 @@ public class BuildSettlementTest {
         randomizer = new Randomizer();
         bank = new Bank();
         validator = new PlacementValidator(board);
+
+
     }
 
     @Test
@@ -31,11 +38,11 @@ public class BuildSettlementTest {
 
         Player p = new Player(1);
 
-        // Give player settlement resources
-        p.getResourceHand().addResource(ResourceType.LUMBER, 1);
-        p.getResourceHand().addResource(ResourceType.BRICK, 1);
-        p.getResourceHand().addResource(ResourceType.WOOL, 1);
-        p.getResourceHand().addResource(ResourceType.GRAIN, 1);
+        // Withdraw resources from bank to avoid overflow
+        p.getResourceHand().addResource(ResourceType.LUMBER, bank.transferToPlayer(ResourceType.LUMBER, 1));
+        p.getResourceHand().addResource(ResourceType.BRICK, bank.transferToPlayer(ResourceType.BRICK, 1));
+        p.getResourceHand().addResource(ResourceType.WOOL, bank.transferToPlayer(ResourceType.WOOL, 1));
+        p.getResourceHand().addResource(ResourceType.GRAIN, bank.transferToPlayer(ResourceType.GRAIN, 1));
 
         BuildSettlement build = new BuildSettlement(p, board, randomizer, bank, validator);
 
