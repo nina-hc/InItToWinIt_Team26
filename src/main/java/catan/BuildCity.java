@@ -73,8 +73,9 @@ public class BuildCity extends Build {
 	@Override
 	protected boolean validatePlacement(Object placement) {
 
+        if (placement == null) return false;
 
-            return placementValidator.canUpgradeToCity((Settlement) placement, player);
+        return placementValidator.canUpgradeToCity((Settlement) placement, player);
 
 
 //            Settlement settlement = (Settlement) placement;
@@ -107,6 +108,19 @@ public class BuildCity extends Build {
 
 	}
 
+    public void build(Object placement) {
+
+        if (!canPlayerBuy()) {
+            throw new IllegalStateException("Not enough resources");
+        }
+
+        if (!validatePlacement(placement)) {
+            throw new IllegalStateException("Invalid placement");
+        }
+
+        doBuild(placement);
+    }
+
 	/**
 	 * Prints a message describing the build action
 	 *
@@ -117,8 +131,7 @@ public class BuildCity extends Build {
 
 		Settlement settlement = (Settlement) placement;
 
-		System.out.println(
-				"Player " + player.getPlayerID() + " upgraded node " + settlement.getNode().getNodeID() + " to a city");
+		System.out.println("Player " + player.getPlayerID() + " upgraded node " + settlement.getNode().getNodeID() + " to a city");
 
 	}
 

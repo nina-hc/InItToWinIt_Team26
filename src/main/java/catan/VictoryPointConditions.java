@@ -28,15 +28,6 @@ public class VictoryPointConditions {
 		this.board = board;
 	}
 
-	/**
-	 * Check if the player has any settlements
-	 *
-	 * @return true if the player has 1 or more settlements, false otherwise
-	 *
-	 */
-	public boolean didPlayerBuildSettlement() {
-		return !player.getPlayerSettlements().isEmpty();
-	}
 
 	/**
 	 * Check if the player has any cities
@@ -87,14 +78,23 @@ public class VictoryPointConditions {
 	 *
 	 * @return 2 victory points if the longest road >= 5 segments
 	 */
-	public int calculateLongestRoadVP() {
-		int longestRoad = findLongestRoad();
+	public int getLongestRoad() {
+//		int longestRoad = findLongestRoad();
+//
+//		if (longestRoad >= 5) {
+//			return 2;
+//		} else {
+//			return 0;
+//		}
 
-		if (longestRoad >= 5) {
-			return 2;
-		} else {
-			return 0;
-		}
+
+        int longest = findLongestRoad();
+        if (longest >= 5) {
+            return 2; // 2 VP if at least 5 roads
+        }
+        return 0; // otherwise 0 VP
+
+        //return findLongestRoad();
 
 	}
 
@@ -182,7 +182,7 @@ public class VictoryPointConditions {
 
 		vp += calculateSettlementVP();
 		vp += calculateCityVP();
-		vp += calculateLongestRoadVP();
+		vp += getLongestRoad();
 
 		return vp;
 	}
