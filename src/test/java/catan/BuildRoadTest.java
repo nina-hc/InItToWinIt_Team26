@@ -1,12 +1,11 @@
-package a2_tests;
+package catan;
 
-import catan.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static catan.BuildRoad.*;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class BuildRoadTest {
 	private Board board;
@@ -30,7 +29,7 @@ class BuildRoadTest {
 	@DisplayName("Testing if a player can buy a road but they can't")
 	@Test
 	void test_canPlayerBuy_false(){
-		//assertFalse(new BuildRoad(player,board,randomizer,bank,placementValidator).canPlayerBuy());
+		assertFalse(new BuildRoad(player,board,randomizer,bank,placementValidator).canPlayerBuy());
 
 
 
