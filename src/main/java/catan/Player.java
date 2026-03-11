@@ -26,6 +26,7 @@ public class Player {
 	private final List<Settlement> playerSettlements;
 	private final List<City> playerCities;
 
+    private int victoryPoints = 0; // Tracks the player's victory points
 	/**
 	 * Constructor
 	 * 
@@ -137,6 +138,16 @@ public class Player {
 
 	}
 
+    //Add victory points
+    public void addVictoryPoints(int points) {
+        this.victoryPoints += points;
+        if (this.victoryPoints < 0) this.victoryPoints = 0; // prevent negative VP
+    }
+
+    //Get current victory points
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
 
 
 }

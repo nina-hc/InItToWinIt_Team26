@@ -23,10 +23,10 @@ public class BuildSettlement extends Build {
 	 * @param board
 	 * @param randomizer
 	 */
-	public BuildSettlement(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator, game) {
+	public BuildSettlement(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 
         super(player, board, randomizer, bank, placementValidator);
-        this.game = game;
+
 	}
 
 	/**
