@@ -12,20 +12,31 @@ public class ExecuteHumanTurn {
     private PlacementValidator placementValidator;
     private Player[] players;
     private Parser parser;
-    private HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players);
+    private HumanTurn humanTurn;
     private boolean rolled = false;
 
+    public ExecuteHumanTurn(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator validator, Player[] players) {
 
-    public void executeHumanTurn(Game game, Player player) {
+        this.player = player;
+        this.board = board;
+        this.randomizer = randomizer;
+        this.bank = bank;
+        this.placementValidator = validator;
+        this.players = players;
 
-        Scanner scanner = new Scanner(System.in);
-        Parser parser = new Parser();
+        this.parser = new Parser();
+        this.humanTurn = new HumanTurn(player, board, randomizer, bank, validator, players);
+    }
+
+
+    public void executeHumanTurn(Game game, Scanner scanner) {
+
 
         boolean turnActive = true;
 
-        while (turnActive) {
+        while (turnActive && scanner.hasNextLine()) {
 
-            System.out.print("> ");
+            System.out.print("Type in command > ");
             String input = scanner.nextLine();
 
             Command cmd = parser.parse(input);
