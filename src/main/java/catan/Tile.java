@@ -35,6 +35,11 @@ public class Tile {
 	 */
 	private int[] nodeIDs;
 
+    /**
+     * To know if the tile is captured by the robber
+     */
+    private boolean hasRobber;
+
 	// ================================================================================
 	// METHODS
 	// ================================================================================
@@ -52,6 +57,7 @@ public class Tile {
 		this.tileID = tileID;
 		this.tileRollNum = tileRollNum;
 		this.resourceType = resourceType;
+        this.hasRobber = false;
 	}
 
 	/**
@@ -62,6 +68,15 @@ public class Tile {
 	public void setNodes(int[] nodeIDs) {
 		this.nodeIDs = nodeIDs;
 	}
+
+    /**
+     * Method to set robber on tile
+     *
+     * @param hasRobber to place the robber object onto a tile
+     */
+    public void setRobber(boolean hasRobber) {
+        this.hasRobber = hasRobber;
+    }
 
 	/**
 	 * Getter to retrieve Tile ID number
@@ -98,4 +113,13 @@ public class Tile {
 	public int[] getNodeIDs() {
 		return nodeIDs;
 	}
+
+    /**
+     * Getter to retrieve if a tile has the robber
+     *
+     * @return hasRobber
+     */
+    public boolean getHasRobber() { return hasRobber; }
+
+
 }

@@ -1,5 +1,8 @@
 package catan;
-
+/**
+ * Responsible for doing the setup phase of the game
+ * @author Marva Hassan
+ */
 public class GameSetupManager {
 
     private final Board board;

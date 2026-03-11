@@ -1,8 +1,5 @@
-package a2_tests;
+package catan;
 
-import catan.Board;
-import catan.Edge;
-import catan.Node;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

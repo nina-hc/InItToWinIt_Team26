@@ -11,7 +11,10 @@ public class TurnManager {
     private Player longestRoadHolder = null;
     private int longestRoadLength = 0;
 
+    private Robber robber;
 
+
+    //constructor
     public TurnManager(Player[] players, Board board, DistributeResources distributor, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
         this.players = players;
         this.board = board;
@@ -19,9 +22,17 @@ public class TurnManager {
         this.randomizer = randomizer;
         this.bank = bank;
         this.placementValidator = placementValidator;
+        this.robber = new Robber(board.getTile(16));     //desert tile
     }
 
-
+    /**
+     * Executes a full set of rounds for all players up to a maximum number.
+     * Alternates between human and AI players, executes their turns,
+     * rolls dice, and prints the scoreboard after each round.
+     *
+     * @param maxRounds The maximum number of rounds to simulate
+     * @return null (currently does not return a winner)
+     */
     public Player executeRounds(int maxRounds) {
         boolean gameOver = false;
         int roundNumber = 0;
@@ -32,15 +43,8 @@ public class TurnManager {
             for (Player player : players) {
 
                 if (player.getPlayerID() == 1) { // use .equals for String comparison
-                    HumanTurn humanTurn = new HumanTurn(
-                            player,
-                            board,
-                            randomizer,
-                            bank,
-                            placementValidator,
-                            players
-                    );
-                    humanTurn.executeTurn(); // run the human turn
+                    HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players);
+                    humanTurn.executeHumanTurn(); // run the human turn
                 }
 
                 else {
@@ -49,6 +53,9 @@ public class TurnManager {
                     int roll = distributor.executeDistribution();
                     System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
 
+                    if (roll == 7) {
+                        robber.executeSevenRoll(board, bank, players, player);
+                    }
                     /*Call player actions */
                     PlayerAction action = new PlayerAction(player, board, randomizer, bank, placementValidator);
                     action.executeTurn();

@@ -86,6 +86,11 @@ public class Node {
 			throw new IllegalStateException("Error: Node "+ nodeID+ " does contain a settlement. Cities must " +
 					"upgrade settlements.");
 		}
+
+        if(building.getOwnerID() != city.getOwnerID()) {
+            throw new IllegalStateException("Error: cannot upgrade someone else's settlement into a city");
+        }
+
 		this.building = city;
 
 	}
