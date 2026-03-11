@@ -112,6 +112,9 @@ public abstract class Build {
         doBuild(placement);
         printAction(placement);
 
+        //export state to visualizer after build
+        StateExporter.exportState(board);
+
         return true;
     }
 }

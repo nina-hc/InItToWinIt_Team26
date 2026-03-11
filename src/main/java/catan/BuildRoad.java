@@ -79,6 +79,9 @@ public class BuildRoad extends Build {
 		edges.placeRoad(road);
 		player.playerAddRoad(road);
 
+        //export to visualizer
+        StateExporter.exportState(board);
+
 	}
 
 	/**
