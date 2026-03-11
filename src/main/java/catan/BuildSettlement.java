@@ -10,10 +10,11 @@ import java.util.List;
  * action that was completed.
  * 
  * @author Serene Abou Sharaf
- * 
- *         February 10, 2026
+ * February 10, 2026
  */
 public class BuildSettlement extends Build {
+
+    private Game game;
 
 	/**
 	 * Constructor for BuildSettlement
@@ -22,9 +23,10 @@ public class BuildSettlement extends Build {
 	 * @param board
 	 * @param randomizer
 	 */
-	public BuildSettlement(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator ) {
+	public BuildSettlement(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 
         super(player, board, randomizer, bank, placementValidator);
+
 	}
 
 	/**
@@ -72,7 +74,7 @@ public class BuildSettlement extends Build {
 	 * @return true if the placement is valid
 	 */
 	@Override
-	protected boolean validatePlacement(Object placement) {
+    public boolean validatePlacement(Object placement) {
 
 		Node node = (Node) placement;
 
@@ -101,6 +103,12 @@ public class BuildSettlement extends Build {
 		player.playerAddSettlement(settlement);
 
 	}
+
+    public void build(Object placement) {
+        if (canPlayerBuy() && validatePlacement(placement)) {
+            doBuild(placement);
+        }
+    }
 
 	/**
 	 * Prints a message describing the build action

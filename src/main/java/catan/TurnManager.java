@@ -1,12 +1,5 @@
 package catan;
 
-/**
- * Manages the execution of turns for all players in a game.
- * Handles alternating human and AI player turns, rolling dice,
- * executing player actions, and printing the scoreboard.
- *
- * @author Marva Hassan
- */
 public class TurnManager {
 
     private Player[] players;
@@ -15,6 +8,9 @@ public class TurnManager {
     private Randomizer randomizer;
     private Bank bank;
     private PlacementValidator placementValidator;
+    private Player longestRoadHolder = null;
+    private int longestRoadLength = 0;
+
     private Robber robber;
 
 
@@ -45,6 +41,7 @@ public class TurnManager {
             roundNumber++;
 
             for (Player player : players) {
+
                 if (player.getPlayerID() == 1) { // use .equals for String comparison
                     HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players);
                     humanTurn.executeHumanTurn(); // run the human turn
@@ -64,16 +61,28 @@ public class TurnManager {
                     action.executeTurn();
                 }
 
+                //Update Longest Road after player builds
+                updateLongestRoad();
+
+                //Now check win condition
+                if (player.getVictoryPoints() >= 10) {
+                    gameOver = true;
+                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + player.getVictoryPoints() + " VPs!");
+                    return player;
+                }
+
                 // Print Statement of Actions
                 //System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");
 
-                VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+//                VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+//
+//                if (vpCheck.checkWinConditions()) {
+//                    gameOver = true;
+//                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
+//                    return player;
+//                }
 
-                if (vpCheck.checkWinConditions()) {
-                    gameOver = true;
-                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
-                    return player;
-                }
+                //player.getVictoryPoints();
             }
 
             // Print current score board after each round
@@ -84,6 +93,40 @@ public class TurnManager {
 
         return null;
 
+    }
+
+
+    private void updateLongestRoad() {
+
+        Player newHolder = null;
+        int maxLength = 0;
+
+        //Finds the player with the longest road of >=5
+        for (Player player : players) {
+            VictoryPointConditions vp = new VictoryPointConditions(player, board);
+            int length = vp.getLongestRoad();
+
+            if (length >= 5 && length > maxLength) {
+                maxLength = length;
+                newHolder = player;
+            }
+        }
+
+        //If someone beats the current holder
+        if (newHolder != null && newHolder != longestRoadHolder) {
+
+            //Remove 2 VP from previous holder
+            if (longestRoadHolder != null) {
+                longestRoadHolder.addVictoryPoints(-2);
+            }
+
+            //sets the new holder
+            longestRoadHolder = newHolder;
+            longestRoadLength = maxLength;
+
+            //Award 2 VP to new holder
+            newHolder.addVictoryPoints(2);
+        }
     }
 
 
@@ -100,6 +143,9 @@ public class TurnManager {
             System.out.print("Player" + player.getPlayerID() + " = " + vpCheck.calculateVictoryPoints() + " | ");        }
         System.out.println();
     }
+
+
+
 
 
 }

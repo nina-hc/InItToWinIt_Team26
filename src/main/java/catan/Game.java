@@ -20,6 +20,8 @@ public class Game {
     private final int maxRounds; //maximum number of simulation rounds
 	private final PlacementValidator placementValidator;
 
+    private boolean setupPhase = true; //to check if it is still in the setup stage
+
     /**
      * Initialize game with 4 players and default maxRounds
      */
@@ -50,6 +52,16 @@ public class Game {
     public void initialPlacement(){
         GameSetupManager setup = new GameSetupManager(board, bank, players, randomizer,placementValidator);
         setup.executeIntialPlacement();
+        setupPhase = false;   // setup is now finished
+    }
+
+    /**
+     *
+     * @return if it is still in the setup phase or not
+     */
+    public boolean isSetupPhase() {
+
+        return setupPhase;
     }
 
 
