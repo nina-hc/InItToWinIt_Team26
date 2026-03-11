@@ -1,7 +1,7 @@
-package a2_tests;
+package catan;
 
-import main.java.ResourceHand;
-import main.java.ResourceType;
+//import main.java.ResourceHand;
+//import main.java.ResourceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

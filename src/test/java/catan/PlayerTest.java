@@ -1,6 +1,5 @@
-package a2_tests;
+package catan;
 
-import catan.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
