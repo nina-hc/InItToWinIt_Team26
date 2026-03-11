@@ -68,7 +68,7 @@ public class HumanTurn {
 
         while (turnActive) {
 
-            System.out.print("Type in command > ");
+            System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
             String input = scanner.nextLine();
 
             //Parse input into a Command object

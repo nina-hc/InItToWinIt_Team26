@@ -41,10 +41,15 @@ public class Demonstrator {
 		Game game = new Game(20);
 
 		// initial placement phase
-		game.initialPlacement();
+        System.out.println("=== Initial Placement Phase ===");
+        game.initialPlacement();
 
 		// start simulation
-		game.startSimulation();
+        System.out.println("=== Starting Game Simulation ===");
+        game.startSimulation();
+
+        //End of demonstration
+        System.out.println("=== Simulation Finished ===");
 
 	}
 
