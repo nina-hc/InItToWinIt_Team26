@@ -1,12 +1,11 @@
 package catan;
 
-import main.java.*;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.support.Resource;
+import org.junit.platform.commons.support.*;
 
 import java.util.List;
 
-import static main.java.ResourceType.BRICK;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {

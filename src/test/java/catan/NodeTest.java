@@ -1,9 +1,9 @@
 package catan;
 
-import main.java.Board;
+/*import main.java.Board;
 import main.java.City;
 import main.java.Node;
-import main.java.Settlement;
+import main.java.Settlement;*/
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -71,9 +71,9 @@ class NodeTest {
         Node node = new Node(1);
         //test
         Settlement settlement1 = new Settlement(node, 1);
-        node.placeSettlement(settlement);
+        node.placeSettlement(settlement1);
 
-        Settlement settlement2 = new Settlement(nde, 2);
+        Settlement settlement2 = new Settlement(node, 2);
         //check
         node.placeSettlement(settlement2);  //should throw exception
     }
