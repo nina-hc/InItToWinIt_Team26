@@ -74,11 +74,6 @@ public class BuildCity extends Build {
 
         return placementValidator.canUpgradeToCity((Settlement) placement, player);
 
-
-//            Settlement settlement = (Settlement) placement;
-//
-//            return settlement.getOwnerID() == player.getPlayerID(); // ensure that the player own this settlement
-//
         }
 
 	/**
