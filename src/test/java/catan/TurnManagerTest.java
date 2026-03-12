@@ -72,29 +72,6 @@ class TurnManagerTest {
 	}
 
 
-	/*@DisplayName("executeRounds check longest road")
-	@Test
-	void test_executeRounds_longestRoadBonus() {
-		replaceHumanInput(humanTurn(1));
-
-		Player player2 = players[1];
-		int vpBefore = player2.getVictoryPoints();
-		//arbitrary length of roads
-
-		int[][] roadChain = {{25,26},{26,27},{27,28},{28,29},{29,30}};
-		for (int[] pair : roadChain) {
-			Edge edge = board.getEdgeBetweenNodes(pair[0], pair[1]);
-			Road road = new Road(player2.getPlayerID(), edge);
-			edge.placeRoad(road);
-			player2.playerAddRoad(road);
-		}
-
-		turnManager.executeRounds(1);
-
-		// After updateLongestRoad() runs
-		assertEquals(vpBefore+2,player2.getVictoryPoints());
-	}*/
-
 
 	/*-----Helpers-----*/
 
