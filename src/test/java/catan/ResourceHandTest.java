@@ -1,114 +1,114 @@
-//package catan;
-//
-////import main.java.ResourceHand;
-////import main.java.ResourceType;
-//import org.junit.jupiter.api.Test;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//class ResourceHandTest {
-//
-//    @Test
-//    void testAddResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);
-//        int numResource = hand.getResource(ResourceType.BRICK);
-//        //check
-//        assertEquals(1, numResource);
-//    }
-//
-//
-//    //=======================================================
-//    @Test
-//    void testGetResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.ORE, 2);
-//        int numResource = hand.getResource(ResourceType.ORE);
-//        //check
-//        assertEquals(2, numResource);
-//    }
-//
-//    //could maybe add some tests that throw exceptions for tying get -num or more than 19 cards
-//
-//
-//    //=======================================================
-//    @Test
-//    void testHasResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.GRAIN, 2);
-//        boolean hasEnough = hand.hasResource(ResourceType.GRAIN, 2);
-//        //check
-//        assertTrue(hasEnough);
-//    }
-//
-//    @Test
-//    void testHasResourceNotEnough() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.GRAIN, 2);
-//        boolean notEnough = hand.hasResource(ResourceType.GRAIN, 3);
-//        //check
-//        assertFalse(notEnough);
-//    }
-//
-//    @Test
-//    void testHasResourcesWithZero() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//
-//        //test
-//        boolean hasZero = hand.hasResource(ResourceType.ORE, 0);
-//        //check
-//        assertTrue(hasZero);
-//    }
-//
-//    //=======================================================
-//    @Test
-//    void testCanBuyRoad() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);
-//        hand.addResource(ResourceType.LUMBER, 1);
-//        boolean canBuy = hand.canBuyRoad();
-//        //check
-//        assertTrue(canBuy);
-//    }
-//
-//    @Test
-//    void testCantBuyRoad() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);    //should have 0 lumber
-//        boolean canBuy = hand.canBuyRoad();
-//        //check
-//        assertFalse(canBuy);
-//    }
-//
-//    //=======================================================
-//    @Test
-//    void testCanBuySettlement() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);
-//        hand.addResource(ResourceType.LUMBER, 1);
-//        hand.addResource(ResourceType.WOOL, 1);
-//        hand.addResource(ResourceType.GRAIN, 1);
-//
-//        boolean canBuy = hand.canBuySettlement();
-//        //check
-//        assertTrue(canBuy);
-//    }
-//
+package catan;
+
+//import main.java.ResourceHand;
+//import main.java.ResourceType;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ResourceHandTest {
+
+    @Test
+    void testAddResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        int numResource = hand.getResource(ResourceType.BRICK);
+        //check
+        assertEquals(1, numResource);
+    }
+
+
+    //=======================================================
+    @Test
+    void testGetResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.ORE, 2);
+        int numResource = hand.getResource(ResourceType.ORE);
+        //check
+        assertEquals(2, numResource);
+    }
+
+    //could maybe add some tests that throw exceptions for tying get -num or more than 19 cards
+
+
+    //=======================================================
+    @Test
+    void testHasResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.GRAIN, 2);
+        boolean hasEnough = hand.hasResource(ResourceType.GRAIN, 2);
+        //check
+        assertTrue(hasEnough);
+    }
+
+    @Test
+    void testHasResourceNotEnough() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.GRAIN, 2);
+        boolean notEnough = hand.hasResource(ResourceType.GRAIN, 3);
+        //check
+        assertFalse(notEnough);
+    }
+
+    @Test
+    void testHasResourcesWithZero() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        boolean hasZero = hand.hasResource(ResourceType.ORE, 0);
+        //check
+        assertTrue(hasZero);
+    }
+
+    //=======================================================
+    @Test
+    void testCanBuyRoad() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        hand.addResource(ResourceType.LUMBER, 1);
+        boolean canBuy = hand.canBuyRoad();
+        //check
+        assertTrue(canBuy);
+    }
+
+    @Test
+    void testCantBuyRoad() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);    //should have 0 lumber
+        boolean canBuy = hand.canBuyRoad();
+        //check
+        assertFalse(canBuy);
+    }
+
+    //=======================================================
+    @Test
+    void testCanBuySettlement() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        hand.addResource(ResourceType.LUMBER, 1);
+        hand.addResource(ResourceType.WOOL, 1);
+        hand.addResource(ResourceType.GRAIN, 1);
+
+        boolean canBuy = hand.canBuySettlement();
+        //check
+        assertTrue(canBuy);
+    }
+
 //    @Test
 //    void testCantBuySettlement() {
 //        //create
@@ -123,35 +123,35 @@
 //        //check
 //        assertFalse(canBuy);
 //    }
-//
-//
-//    //=======================================================
-//    @Test
-//    void testCanBuyCity() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.ORE, 3);
-//        hand.addResource(ResourceType.GRAIN, 2);
-//
-//        boolean canBuy = hand.canBuyCity();
-//        //check
-//        assertTrue(canBuy);
-//    }
-//
-//    @Test
-//    void testCantBuyCity() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.ORE, 3);
-//        hand.addResource(ResourceType.GRAIN, 1);
-//
-//        boolean canBuy = hand.canBuyCity();
-//        //check
-//        assertFalse(canBuy);
-//    }
-//
+
+
+    //=======================================================
+    @Test
+    void testCanBuyCity() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.ORE, 3);
+        hand.addResource(ResourceType.GRAIN, 2);
+
+        boolean canBuy = hand.canBuyCity();
+        //check
+        assertTrue(canBuy);
+    }
+
+    @Test
+    void testCantBuyCity() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.ORE, 3);
+        hand.addResource(ResourceType.GRAIN, 1);
+
+        boolean canBuy = hand.canBuyCity();
+        //check
+        assertFalse(canBuy);
+    }
+
 //    //=======================================================
 //    @Test
 //    void testPayForRoad() {
@@ -198,8 +198,8 @@
 //        assertEquals(0, numWool);
 //        assertEquals(0, numGrain);
 //    }
-//
-//
+
+
 //    //=======================================================
 //    @Test
 //    void testPayForCity() {
@@ -219,48 +219,48 @@
 //        assertEquals(0, numOre);
 //        assertEquals(0, numGrain);
 //    }
-//
-//
-//    //=======================================================
-//    @Test
-//    void testTotalPlayerCard() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 2);
-//        hand.addResource(ResourceType.WOOL, 1);
-//        hand.addResource(ResourceType.GRAIN, 2);
-//
-//        int total = hand.totalPlayerCard();
-//        //check
-//        assertEquals(5, total);
-//    }
-//
-//    @Test
-//    void testTotalPlayerCardEmpty() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        assertEquals(0, hand.totalPlayerCard());
-//    }
-//
-//    //=======================================================
-//    @Test
-//    void testToString() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 2);
-//        hand.addResource(ResourceType.WOOL, 1);
-//
-//        String result = hand.toString();
-//        //check
-//        assertTrue(result.contains("Lumber:0"));
-//        assertTrue(result.contains("Brick:2"));
-//        assertTrue(result.contains("Wool:1"));
-//        assertTrue(result.contains("Grain:0"));
-//        assertTrue(result.contains("Ore:0"));
-//    }
+
+
+    //=======================================================
+    @Test
+    void testTotalPlayerCard() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 2);
+        hand.addResource(ResourceType.WOOL, 1);
+        hand.addResource(ResourceType.GRAIN, 2);
+
+        int total = hand.totalPlayerCard();
+        //check
+        assertEquals(5, total);
+    }
+
+    @Test
+    void testTotalPlayerCardEmpty() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        assertEquals(0, hand.totalPlayerCard());
+    }
+
+    //=======================================================
+    @Test
+    void testToString() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 2);
+        hand.addResource(ResourceType.WOOL, 1);
+
+        String result = hand.toString();
+        //check
+        assertTrue(result.contains("Lumber:0"));
+        assertTrue(result.contains("Brick:2"));
+        assertTrue(result.contains("Wool:1"));
+        assertTrue(result.contains("Grain:0"));
+        assertTrue(result.contains("Ore:0"));
+    }
 //
 //    //======================================================
 //    //added test cases after refactor
@@ -385,4 +385,4 @@
 //        assertEqual(3, discarded.size());
 //        assertEquals(totalBefore - 3, hand.totalPlayerCard());
 //    }
-//}
+}
