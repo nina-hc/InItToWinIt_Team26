@@ -13,11 +13,11 @@ public class BuildCity extends Build {
 	 * 
 	 * @param player 
 	 * @param board 
-	 * @param randomizer 
+	 * @param ranomizer 
 	 * @param bank 
 	 * @param placementValidator 
 	 */
-	public void BuildCity(Player player, Board board, Randomizer randomizer, Bank bank,
+	public void BuildCity(Player player, Board board, Randomizer ranomizer, Bank bank,
 			PlacementValidator placementValidator) {
 	}
 
@@ -25,7 +25,7 @@ public class BuildCity extends Build {
 	 * 
 	 * @return 
 	 */
-	protected EJavaObject generatePlacement() {
+	protected Node generatePlacement() {
 	}
 
 	/**
@@ -38,9 +38,9 @@ public class BuildCity extends Build {
 
 	/**
 	 * 
-	 * @param placement 
+	 * @param player 
 	 */
-	protected void doBuild(EJavaObject placement) {
+	protected void doBuild(Player player) {
 	}
 
 	/**

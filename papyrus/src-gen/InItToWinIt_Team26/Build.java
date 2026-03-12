@@ -28,7 +28,7 @@ public abstract class Build {
 	/**
 	 * 
 	 */
-	protected PlacementValidator placementValidator;
+	protected PlacementValidator placementyValidator;
 
 	/**
 	 * 
@@ -55,14 +55,13 @@ public abstract class Build {
 	 * 
 	 * @param placement 
 	 */
-	protected void updatePlayerInventory(EJavaObject placement) {
+	protected void doBuild(EJavaObject placement) {
 	}
 
 	/**
 	 * 
-	 * @param placement 
 	 */
-	public void printAction(EJavaObject placement) {
+	public void printAction() {
 	}
 
 	/**

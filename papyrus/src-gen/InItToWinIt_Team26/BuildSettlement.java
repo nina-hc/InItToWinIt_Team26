@@ -53,7 +53,7 @@ public class BuildSettlement extends Build {
 	 * 
 	 * @param placement 
 	 */
-	public void build(EJavaObject placement) {
+	protected void build(EJavaObject placement) {
 	}
 
 	/**

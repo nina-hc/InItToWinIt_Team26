@@ -17,7 +17,7 @@ public class BuildRoad extends Build {
 	 * @param bank 
 	 * @param placementValidator 
 	 */
-	public void BuildRoad(Player player, Board board, Randomizer randomizer, Bank bank,
+	protected void BuildRoad(Player player, Board board, Randomizer randomizer, Bank bank,
 			PlacementValidator placementValidator) {
 	}
 

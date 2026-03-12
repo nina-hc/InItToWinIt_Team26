@@ -28,19 +28,39 @@ public class VictoryPointConditions {
 	 * 
 	 * @return 
 	 */
-	public boolean didPlayerBuildSettlement() {
-	}
-	/**
-	 * 
-	 * @return 
-	 */
 	public boolean didPlayerBuildCity() {
 	}
 	/**
 	 * 
 	 * @return 
 	 */
-	public boolean checkLongestRoad() {
+	public int calculateSettlementVP() {
+	}
+	/**
+	 * 
+	 * @return 
+	 */
+	public int calculateCityVP() {
+	}
+	/**
+	 * 
+	 * @return 
+	 */
+	public int getLongestRoad() {
+	}
+	/**
+	 * 
+	 * @return 
+	 */
+	private int findLongestRoad() {
+	}
+	/**
+	 * 
+	 * @param graph 
+	 * @param current 
+	 * @param visitedEdges 
+	 */
+	private void longestPath(EMap graph, int current, String visitedEdges) {
 	}
 	/**
 	 * 
