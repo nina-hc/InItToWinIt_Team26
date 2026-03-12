@@ -103,6 +103,9 @@ public class BuildCity extends Build {
 		player.playerUpgradeToCity(node, city); // updates the players resources (removes settlement, adds a
 															// city)
 
+        //export to visualizer
+        StateExporter.exportState(board);
+
 	}
 
     public void build(Object placement) {
