@@ -21,6 +21,10 @@ public class Edge {
 	 * 
 	 */
 	private Road road;
+	/**
+	 * 
+	 */
+	public Node node;
 
 	/**
 	 * 

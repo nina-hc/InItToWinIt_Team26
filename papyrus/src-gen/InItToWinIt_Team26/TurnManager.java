@@ -45,6 +45,34 @@ public class TurnManager {
 	 * 
 	 */
 	private Robber robber;
+	/**
+	 * 
+	 */
+	public Player player;
+	/**
+	 * 
+	 */
+	public Board board;
+	/**
+	 * 
+	 */
+	public DistributeResources distributeresources;
+	/**
+	 * 
+	 */
+	public Randomizer randomizer;
+	/**
+	 * 
+	 */
+	public Bank bank;
+	/**
+	 * 
+	 */
+	public PlacementValidator placementvalidator;
+	/**
+	 * 
+	 */
+	public Robber robber;
 
 	/**
 	 * 

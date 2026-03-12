@@ -17,6 +17,10 @@ public class Robber {
 	 * 
 	 */
 	private Randomizer random;
+	/**
+	 * 
+	 */
+	public Tile tile;
 
 	/**
 	 * 

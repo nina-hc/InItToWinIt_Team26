@@ -13,6 +13,10 @@ public class PlacementValidator {
 	 * 
 	 */
 	private Board board;
+	/**
+	 * 
+	 */
+	public Board board;
 
 	/**
 	 * 
