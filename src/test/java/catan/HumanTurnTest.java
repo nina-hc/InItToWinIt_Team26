@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing HumanTurn class
- * Focuses on command enforcement (must roll first) and basic turn execution
+ * Focuses on command enforcement (must roll first) and turn execution
+ * @author Marva Hassan
  */
 class HumanTurnTest {
 
