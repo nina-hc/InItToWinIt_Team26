@@ -11,55 +11,49 @@ package InItToWinIt_Team26;
 public class BuildRoad extends Build {
 	/**
 	 * 
-	 * @param playerResources 
-	 * @param playerRoads 
-	 * @param playerSettlements 
-	 * @param playerCities 
+	 * @param player 
+	 * @param board 
+	 * @param randomizer 
+	 * @param bank 
+	 * @param placementValidator 
 	 */
-	protected void checkPlayer(Player playerResources, Player playerRoads, Player playerSettlements,
-			Player playerCities) {
+	public void BuildRoad(Player player, Board board, Randomizer randomizer, Bank bank,
+			PlacementValidator placementValidator) {
 	}
 
 	/**
 	 * 
-	 * @param random 
-	 * @param nodeID 
-	 */
-	protected void generatePlacement(Randomizer random, Node nodeID) {
-	}
-
-	/**
-	 * 
-	 * @param nodeID 
 	 * @return 
 	 */
-	protected boolean checkPlacement(Node nodeID) {
+	protected boolean canPlayerBuy() {
 	}
 
 	/**
 	 * 
-	 * @param buildMaterials 
+	 * @return 
 	 */
-	protected void updatePlayerInventory(Player buildMaterials) {
+	protected EJavaObject generatePlacement() {
 	}
 
 	/**
 	 * 
+	 * @param placement 
+	 * @return 
 	 */
-	public void printAction() {
+	protected boolean validatePlacement(EJavaObject placement) {
 	}
 
 	/**
 	 * 
-	 * @param nodeID 
+	 * @param placement 
 	 */
-	protected void storeBuildLocation(Node nodeID) {
+	protected void doBuild(EJavaObject placement) {
 	}
 
 	/**
 	 * 
-	 * @param player 
+	 * @param placement 
 	 */
-	public void execute(Player player) {
+	public void printAction(EJavaObject placement) {
 	}
 }

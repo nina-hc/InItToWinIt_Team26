@@ -12,57 +12,84 @@ public abstract class Build {
 	/**
 	 * 
 	 */
-	private Player player;
+	protected Player player;
+	/**
+	 * 
+	 */
+	protected Board board;
+	/**
+	 * 
+	 */
+	protected Randomizer randomizer;
+	/**
+	 * 
+	 */
+	protected Bank bank;
+	/**
+	 * 
+	 */
+	protected PlacementValidator placementValidator;
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public boolean execute() {
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	protected boolean canPlayerBuy() {
+	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	protected EJavaObject generatePlacement() {
+	}
+
+	/**
+	 * 
+	 * @param placement 
+	 */
+	protected void updatePlayerInventory(EJavaObject placement) {
+	}
+
+	/**
+	 * 
+	 * @param placement 
+	 */
+	public void printAction(EJavaObject placement) {
+	}
+
+	/**
+	 * 
+	 * @param placement 
+	 * @return 
+	 */
+	protected boolean validatePlacement(EJavaObject placement) {
+	}
 
 	/**
 	 * 
 	 * @param player 
+	 * @param board 
+	 * @param randomizer 
+	 * @param bank 
+	 * @param placementValidator 
+	 */
+	public void Build(Player player, Board board, Randomizer randomizer, Bank bank,
+			PlacementValidator placementValidator) {
+	}
+
+	/**
+	 * 
+	 * @param placement 
 	 * @return 
 	 */
-	protected boolean checkPlayer(Player player) {
-	}
-
-	/**
-	 * 
-	 * @param random 
-	 * @param nodeID 
-	 * @return 
-	 */
-	protected Node generatePlacement(Randomizer random, Node nodeID) {
-	}
-
-	/**
-	 * 
-	 * @param node 
-	 * @return 
-	 */
-	protected boolean checkPlacement(Node node) {
-	}
-
-	/**
-	 * 
-	 * @param buildMaterials 
-	 */
-	protected void updatePlayerInventory(Player buildMaterials) {
-	}
-
-	/**
-	 * 
-	 */
-	public void printAction() {
-	}
-
-	/**
-	 * 
-	 * @param nodeID 
-	 */
-	protected void storeBuildLocation(Node nodeID) {
-	}
-
-	/**
-	 * 
-	 * @param player 
-	 */
-	public void execute(Player player) {
+	public boolean executeWithPlacement(EJavaObject placement) {
 	}
 }
