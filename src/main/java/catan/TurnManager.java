@@ -71,18 +71,6 @@ public class TurnManager {
                     return player;
                 }
 
-                // Print Statement of Actions
-                //System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");
-
-//                VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
-//
-//                if (vpCheck.checkWinConditions()) {
-//                    gameOver = true;
-//                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
-//                    return player;
-//                }
-
-                //player.getVictoryPoints();
             }
 
             // Print current score board after each round
