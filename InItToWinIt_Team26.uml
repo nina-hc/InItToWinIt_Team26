@@ -618,7 +618,73 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_09SOWAjtEfGcAPb2HsRpDQ" client="_09RnRwjtEfGcAPb2HsRpDQ" supplier="_09RAWgjtEfGcAPb2HsRpDQ"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_09SOWQjtEfGcAPb2HsRpDQ" client="_09RnRwjtEfGcAPb2HsRpDQ" supplier="_09RnTwjtEfGcAPb2HsRpDQ"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_09SOWgjtEfGcAPb2HsRpDQ" client="_09RnTwjtEfGcAPb2HsRpDQ" supplier="_09RnVAjtEfGcAPb2HsRpDQ"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_RdlTgB22EfGRp-zGmFV1_g" name="PlacementValidator"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_RdlTgB22EfGRp-zGmFV1_g" name="PlacementValidator">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XuP8IB29EfGRp-zGmFV1_g" name="board" type="_09RAagjtEfGcAPb2HsRpDQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_he2TgB29EfGRp-zGmFV1_g" name="canPlaceSettlement">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_oSubEB29EfGRp-zGmFV1_g" name="node" type="_09RnIAjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qZtVsB29EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_sYevgB29EfGRp-zGmFV1_g" name="isInitialPlacement">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Xz0twB2_EfGRp-zGmFV1_g" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_69zaIB29EfGRp-zGmFV1_g" name="getValidSettlementPlacements">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_EvnScB2-EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_IugJ4B2-EfGRp-zGmFV1_g" name="initialPlacement">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_ON_RYB2-EfGRp-zGmFV1_g" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_bypwQB2-EfGRp-zGmFV1_g" name="PlacementValidator">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_goePsB2-EfGRp-zGmFV1_g" name="board" type="_09RAagjtEfGcAPb2HsRpDQ"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_nPveoB2-EfGRp-zGmFV1_g" name="canUpgradeToCity">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7QTp8B2-EfGRp-zGmFV1_g" name="settlement" type="_zvVL0B2-EfGRp-zGmFV1_g"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_9wo4sB2-EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_TDxfIB2_EfGRp-zGmFV1_g" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_BMvzMB2_EfGRp-zGmFV1_g" name="canBuildRoad">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_FjqwIB2_EfGRp-zGmFV1_g" name="edge" type="_IE9oMB2_EfGRp-zGmFV1_g"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_LzRtAB2_EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_OyAH8B2_EfGRp-zGmFV1_g" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_a0jT0B2_EfGRp-zGmFV1_g" name="getValidRoadEdges">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_eSjrwB2_EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_g5QoQB2_EfGRp-zGmFV1_g" name="Edge" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_n23TkB2_EfGRp-zGmFV1_g" name="hasConnectingRoads" visibility="private">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_q8r1AB2_EfGRp-zGmFV1_g" name="node" type="_09RnIAjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_tD9qkB2_EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_vBBNIB2_EfGRp-zGmFV1_g" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_yar3oB2_EfGRp-zGmFV1_g" name="isNodeStoringForPlayer" visibility="private">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_2WTYoB2_EfGRp-zGmFV1_g" name="node" type="_09RnIAjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_4VtEkB2_EfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_6MUn8B2_EfGRp-zGmFV1_g" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_-BlpUB2_EfGRp-zGmFV1_g" name="getNodesUsedByPlayer" visibility="private">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_BjseIB3AEfGRp-zGmFV1_g" name="player" type="_09RnegjtEfGcAPb2HsRpDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_D29hQB3AEfGRp-zGmFV1_g" name="Parameter1" type="_09RnIAjtEfGcAPb2HsRpDQ"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zvVL0B2-EfGRp-zGmFV1_g" name="Settlement"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_38w1kB2-EfGRp-zGmFV1_g" name="City"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5Fle0B2-EfGRp-zGmFV1_g" name="Road"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_IE9oMB2_EfGRp-zGmFV1_g" name="Edge"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_09SOWwjtEfGcAPb2HsRpDQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_09SOXAjtEfGcAPb2HsRpDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>

@@ -1015,12 +1015,52 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_Rdo94h22EfGRp-zGmFV1_g" y="15"/>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Rdo94x22EfGRp-zGmFV1_g" type="Class_AttributeCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_XurZ8B29EfGRp-zGmFV1_g" type="Property_ClassAttributeLabel">
+        <element xmi:type="uml:Property" href="InItToWinIt_Team26.uml#_XuP8IB29EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_XurZ8R29EfGRp-zGmFV1_g"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_Rdo95B22EfGRp-zGmFV1_g"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Rdo95R22EfGRp-zGmFV1_g"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Rdo95h22EfGRp-zGmFV1_g"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Rdo95x22EfGRp-zGmFV1_g"/>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Rdo96B22EfGRp-zGmFV1_g" type="Class_OperationCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_by-gYB2-EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_bypwQB2-EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_by-gYR2-EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_hfIAUB29EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_he2TgB29EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_hfIAUR29EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_6-DRwB29EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_69zaIB29EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_6-DRwR29EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_nQCZkB2-EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_nPveoB2-EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_nQCZkR2-EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_BNFKYB2_EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_BMvzMB2_EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BNFKYR2_EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_a02OwB2_EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_a0jT0B2_EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_a02OwR2_EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_n3KOgB2_EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_n23TkB2_EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_n3KOgR2_EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_ya-ykB2_EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_yar3oB2_EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ya-ykR2_EfGRp-zGmFV1_g"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_-B5yYB2_EfGRp-zGmFV1_g" type="Operation_ClassOperationLabel">
+        <element xmi:type="uml:Operation" href="InItToWinIt_Team26.uml#_-BlpUB2_EfGRp-zGmFV1_g"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_-B5yYR2_EfGRp-zGmFV1_g"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_Rdo96R22EfGRp-zGmFV1_g"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Rdo96h22EfGRp-zGmFV1_g"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Rdo96x22EfGRp-zGmFV1_g"/>
@@ -1033,7 +1073,111 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Rdo98R22EfGRp-zGmFV1_g"/>
     </children>
     <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_RdlTgB22EfGRp-zGmFV1_g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RdoW0R22EfGRp-zGmFV1_g" x="1499" y="640"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RdoW0R22EfGRp-zGmFV1_g" x="1380" y="720" width="460" height="240"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_zvYPIB2-EfGRp-zGmFV1_g" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_zvYPIh2-EfGRp-zGmFV1_g" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_zvYPIx2-EfGRp-zGmFV1_g" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_zvYPJB2-EfGRp-zGmFV1_g" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_zvY2MB2-EfGRp-zGmFV1_g" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_zvY2MR2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_zvY2Mh2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_zvY2Mx2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zvY2NB2-EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_zvY2NR2-EfGRp-zGmFV1_g" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_zvY2Nh2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_zvY2Nx2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_zvY2OB2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zvY2OR2-EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_zvY2Oh2-EfGRp-zGmFV1_g" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_zvY2Ox2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_zvY2PB2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_zvY2PR2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zvY2Ph2-EfGRp-zGmFV1_g"/>
+    </children>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_zvVL0B2-EfGRp-zGmFV1_g"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zvYPIR2-EfGRp-zGmFV1_g" x="2019" y="739"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_38zR0B2-EfGRp-zGmFV1_g" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_38zR0h2-EfGRp-zGmFV1_g" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_38zR0x2-EfGRp-zGmFV1_g" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_38zR1B2-EfGRp-zGmFV1_g" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_38zR1R2-EfGRp-zGmFV1_g" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_38zR1h2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_38zR1x2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_38zR2B2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_38zR2R2-EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_38zR2h2-EfGRp-zGmFV1_g" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_38zR2x2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_38zR3B2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_38zR3R2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_38zR3h2-EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_38zR3x2-EfGRp-zGmFV1_g" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_38zR4B2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_38zR4R2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_38zR4h2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_38zR4x2-EfGRp-zGmFV1_g"/>
+    </children>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_38w1kB2-EfGRp-zGmFV1_g"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_38zR0R2-EfGRp-zGmFV1_g" x="2219" y="720"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_5Fms8B2-EfGRp-zGmFV1_g" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_5FnUAB2-EfGRp-zGmFV1_g" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_5FnUAR2-EfGRp-zGmFV1_g" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_5FnUAh2-EfGRp-zGmFV1_g" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_5FnUAx2-EfGRp-zGmFV1_g" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_5FnUBB2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_5FnUBR2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_5FnUBh2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5FnUBx2-EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_5FnUCB2-EfGRp-zGmFV1_g" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_5FnUCR2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_5FnUCh2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_5FnUCx2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5FnUDB2-EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_5FnUDR2-EfGRp-zGmFV1_g" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_5FnUDh2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_5FnUDx2-EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_5FnUEB2-EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5FnUER2-EfGRp-zGmFV1_g"/>
+    </children>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_5Fle0B2-EfGRp-zGmFV1_g"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5Fms8R2-EfGRp-zGmFV1_g" x="2160" y="880"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_IE_dYB2_EfGRp-zGmFV1_g" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_IE_dYh2_EfGRp-zGmFV1_g" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_IE_dYx2_EfGRp-zGmFV1_g" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_IE_dZB2_EfGRp-zGmFV1_g" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_IE_dZR2_EfGRp-zGmFV1_g" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_IE_dZh2_EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_IE_dZx2_EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_IE_daB2_EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IE_daR2_EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_IE_dah2_EfGRp-zGmFV1_g" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_IE_dax2_EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_IE_dbB2_EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_IE_dbR2_EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IE_dbh2_EfGRp-zGmFV1_g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_IFAEcB2_EfGRp-zGmFV1_g" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_IFAEcR2_EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_IFAEch2_EfGRp-zGmFV1_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_IFAEcx2_EfGRp-zGmFV1_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IFAEdB2_EfGRp-zGmFV1_g"/>
+    </children>
+    <element xmi:type="uml:Class" href="InItToWinIt_Team26.uml#_IE9oMB2_EfGRp-zGmFV1_g"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IE_dYR2_EfGRp-zGmFV1_g" x="1959" y="899"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_7KQPQfsiEfCgs_O4J5cQsA" name="diagram_compatibility_version" stringValue="1.4.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_7KQPQvsiEfCgs_O4J5cQsA"/>
