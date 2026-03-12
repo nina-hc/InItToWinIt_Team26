@@ -110,7 +110,7 @@ public class Board {
 		tiles[12].setNodes(new int[] { 39, 17, 15, 14, 37, 38 });
 		tiles[13].setNodes(new int[] { 42, 40, 18, 17, 39, 41 });
 		tiles[14].setNodes(new int[] { 44, 43, 21, 16, 18, 40 });
-		tiles[15].setNodes(new int[] { 47, 45, 46, 19, 21, 43 });
+		tiles[15].setNodes(new int[] { 45, 47, 46, 19, 21, 43 });//switching the order back
 		tiles[16].setNodes(new int[] { 46, 48, 49, 22, 20, 19 });
 		tiles[17].setNodes(new int[] { 49, 50, 51, 52, 23, 22 });
 		tiles[18].setNodes(new int[] { 23, 52, 53, 24, 7, 6 });
