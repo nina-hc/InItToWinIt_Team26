@@ -22,3 +22,5 @@ InItToWinIt_Team26_en_CA.properties/
 
 #drafts not using currently
 /src/main/java/catan/BuildPlacement.java/
+/bin/
+/bin/
