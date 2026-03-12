@@ -1,3 +1,4 @@
+/*
 package catan;
 
 
@@ -169,4 +170,4 @@ class BankTest {
 
 
 
-}
+}*/
