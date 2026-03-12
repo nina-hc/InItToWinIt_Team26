@@ -20,3 +20,8 @@ InItToWinIt_Team26_en_CA.properties/
 /papyrus/.project/
 /papyrus/.classpath/
 
+#tests not finished
+/src/test/java/catan/PlacementValidatorTest.java/
+/visualizer/
+
+
