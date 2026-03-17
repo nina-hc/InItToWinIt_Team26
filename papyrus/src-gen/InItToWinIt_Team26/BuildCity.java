@@ -12,54 +12,55 @@ public class BuildCity extends Build {
 	/**
 	 * 
 	 * @param player 
+	 * @param board 
+	 * @param ranomizer 
+	 * @param bank 
+	 * @param placementValidator 
 	 */
-	public void execute(Player player) {
+	public void BuildCity(Player player, Board board, Randomizer ranomizer, Bank bank,
+			PlacementValidator placementValidator) {
 	}
 
 	/**
 	 * 
-	 * @param random 
-	 * @param nodeID 
 	 * @return 
 	 */
-	protected Node generatePlacement() :
-
-	Node(Randomizer random, Node nodeID) {
+	protected Node generatePlacement() {
 	}
 
 	/**
 	 * 
-	 * @param nodeID 
+	 * @param placement 
 	 * @return 
 	 */
-	protected boolean checkPlacement(Node nodeID) {
+	protected boolean validatePlacement(EJavaObject placement) {
 	}
 
 	/**
 	 * 
 	 * @param player 
 	 */
-	protected void updatePlayerInventory(Player player) {
+	protected void doBuild(Player player) {
 	}
 
 	/**
 	 * 
-	 * @param node 
+	 * @param placement 
 	 */
-	protected void storeBuildLocation(Node node) {
+	protected void build(EJavaObject placement) {
 	}
 
 	/**
 	 * 
+	 * @param placement 
 	 */
-	public void printAction() {
+	public void printAction(EJavaObject placement) {
 	}
 
 	/**
 	 * 
-	 * @param player 
 	 * @return 
 	 */
-	protected boolean checkPlayer(Player player) {
+	protected boolean canPlayerBuy() {
 	}
 }
