@@ -22,5 +22,5 @@ InItToWinIt_Team26_en_CA.properties/
 
 
 **/.venv/**
-
-
+visualizer/scraped_boards/**.png
+visualizer/state.json
