@@ -16,8 +16,9 @@ public class StateExporter {
     }
 
     public static void exportState(Board board) {
+        FileWriter writer = null;
         try {
-            FileWriter writer = new FileWriter("visualizer/state.json");
+            writer = new FileWriter("visualizer/state.json");
             writer.write("{\n");
 
             // =====================
@@ -61,12 +62,20 @@ public class StateExporter {
             }
 
             writer.write("\n  ]\n}");
-            writer.close();
             System.out.println("State exported successfully to visualizer/state.json");
+            writer.close();
 
         } catch (IOException e) {
             System.out.println("ERROR: state export failed");
             e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
