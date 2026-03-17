@@ -185,8 +185,6 @@ class Board:
                 return i
 
     def build_road(self, color, edge):
-        print("ROAD:", edge)
-
         #buildable = self.buildable_edges(color)
         inverted_edge = (edge[1], edge[0])
         #force road placement, skip validity check
