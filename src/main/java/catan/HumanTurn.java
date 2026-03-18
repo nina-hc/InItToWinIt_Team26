@@ -34,6 +34,9 @@ public class HumanTurn {
     //Scanner for reading user input
     private Scanner scanner;
 
+	/*State machine for turn logic*/
+	private TurnStateMachine stateMachine = new TurnStateMachine();
+
     /**
      * Constructs a HumanTurn instance with all required game components.
      *
@@ -44,7 +47,8 @@ public class HumanTurn {
      * @param placementValidator Validates placement of settlements/cities/roads
      * @param players All players in the game
      */
-    public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator, Player[] players) {
+    public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank,
+                     PlacementValidator placementValidator, Player[] players) {
 
         this.player = player;
         this.board = board;
@@ -54,6 +58,7 @@ public class HumanTurn {
         this.players = players;
         this.parser = new Parser();
         this.scanner = new Scanner(System.in);
+
     }
 
     /**
@@ -62,8 +67,28 @@ public class HumanTurn {
      * Enforces that the player must roll before ending the turn.
      */
     public void executeHumanTurn() {
+		while(!stateMachine.isTurnDone()){
+			System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
+			String input = scanner.nextLine();
 
-        boolean turnActive = true;
+			//Parse input into a Command object
+			Command cmd = parser.parse(input);
+
+			if(!cmd.valid){
+				System.out.println("Invalid command");
+				continue;
+			}
+
+			if(stateMachine.isValidOption(cmd.type)){
+				//use execute helper method
+				execute(cmd);
+				//go to next state if applicable
+				stateMachine.goToNextState(cmd.type);
+			}
+
+		}
+
+    /*    boolean turnActive = true;
         boolean rolled = false; //tracks if player rolled this turn
 
         while (turnActive) {
@@ -118,8 +143,25 @@ public class HumanTurn {
             else {
                 System.out.println("Unknown command.");
             }
-        }
+        }*/
     }
+
+
+	private void execute(Command cmd) {
+		switch (cmd.type) {
+			case "Roll":
+				handleRoll();
+				break;
+			case "List":
+				System.out.println(player.getResourceHand());
+				break;
+			case "Build":
+				handleBuild(cmd);
+				break;
+			default:
+				System.out.println("Unknown command.");
+		}
+	}
 
     /**
      * Handles dice rolling for the current player.
