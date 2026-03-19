@@ -1,8 +1,8 @@
 package catan;
 
-public interface RuleEvaluator {
+public interface StrategyEvaluator {
 
-    double evaluate(Game game);
-    void executeStrategy(Game game);
+    double evaluate(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator);
+    void executeStrategy(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator);
 
 }

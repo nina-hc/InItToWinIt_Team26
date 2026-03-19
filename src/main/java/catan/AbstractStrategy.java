@@ -5,7 +5,7 @@ package catan;
  * Provides shared helper methods for checking legal actions.
  * @author Marva Hassan
  */
-public abstract class AbstractBuildStrategy implements StrategyEvaluator {
+public abstract class AbstractStrategy implements StrategyEvaluator {
 
     protected boolean canBuildCity(Player player) {
         return player.getResourceHand().canBuyCity()
@@ -27,9 +27,6 @@ public abstract class AbstractBuildStrategy implements StrategyEvaluator {
 
     /**
      * Returns true if spending for this action leaves the player with fewer than 5 cards.
-     * Assumes your ResourceHand class has a method to count total cards.
-     *
-     * If you do not have getTotalCards(), replace it with your own equivalent method.
      */
     protected boolean leavesFewerThanFiveCards(Player player, int cardsSpent) {
         return player.getResourceHand().totalPlayerCard() - cardsSpent < 5;

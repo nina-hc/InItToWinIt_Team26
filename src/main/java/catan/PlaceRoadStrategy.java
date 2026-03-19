@@ -7,11 +7,11 @@ package catan;
      * Gives immediate value if the player can afford and legally place a road.
      *
      * Value:
-     * - Building a road without earning a VP = 0.5
+     * - Building a road without earning a VP = 0.8
      *
      * @author Marva Hassan
      */
-    public class BuildRoadEvaluator extends AbstractBuildStrategy implements StrategyEvaluator {
+    public class PlaceRoadStrategy extends AbstractStrategy implements StrategyEvaluator {
 
         /**
          * Evaluates the benefit of applying the road-building rule.
@@ -43,8 +43,7 @@ package catan;
          * @param placementValidator validates legal placements
          */
         @Override
-        public void executeStrategy(Player player, Board board, Randomizer randomizer, Bank bank,
-                                    PlacementValidator placementValidator) {
+        public void executeStrategy(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 
 
             if (canBuildRoad(player, placementValidator)) {

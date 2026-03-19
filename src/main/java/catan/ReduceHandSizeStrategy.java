@@ -8,7 +8,7 @@ package catan;
  * This version tries city, then settlement, then road, but only assigns 0.5
  * when the action leaves fewer than 5 total cards.
  */
-public class ReduceHandSizeEvaluator extends AbstractBuildStrategy implements StrategyEvaluator {
+public class ReduceHandSizeStrategy extends AbstractStrategy implements StrategyEvaluator {
     @Override
     public double evaluate(Player player, Board board, Randomizer randomizer,
                            Bank bank, PlacementValidator placementValidator) {

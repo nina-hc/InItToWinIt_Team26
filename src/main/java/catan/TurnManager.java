@@ -51,7 +51,9 @@ public class TurnManager {
 
                     /*Dice roll */
                     int roll = distributor.executeDistribution();
-                    System.out.println("[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
+                    System.out.println("\n[" + roundNumber + "] / [Player " + player.getPlayerID() + "]: Rolled " + roll);
+                    System.out.println("Player " + player.getPlayerID()
+                            + " hand: " + player.getResourceHand());
 
                     if (roll == 7) {
                         robber.executeSevenRoll(board, bank, players, player);
@@ -125,11 +127,11 @@ public class TurnManager {
      * Print current victory points for all players
      */
     public void printScoreBoard(int roundNumber) {
-        System.out.print("[" + roundNumber + "] Scoreboard: ");
+        System.out.print("\n[" + roundNumber + "] Scoreboard: ");
         for (Player player : players) {
             VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
             System.out.print("Player" + player.getPlayerID() + " = " + vpCheck.calculateVictoryPoints() + " | ");        }
-        System.out.println();
+        System.out.println("\n");
     }
 
 
