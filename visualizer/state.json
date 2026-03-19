@@ -1,8 +1,8 @@
 {
   "roads": [
-
+    { "a": 0, "b": 1, "owner": "BLUE" }
   ],
   "buildings": [
-    { "node": 0, "owner": "BLUE", "type": "CITY" }
+    { "node": 0, "owner": "BLUE", "type": "SETTLEMENT" }
   ]
 }

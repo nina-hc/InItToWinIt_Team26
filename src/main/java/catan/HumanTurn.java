@@ -72,7 +72,7 @@ public class HumanTurn {
 			String input = scanner.nextLine();
 
 			//Parse input into a Command object
-			Command cmd = parser.parse(input);
+			InputCommand cmd = parser.parse(input);
 
 			if(!cmd.valid){
 				System.out.println("Invalid command");
@@ -147,7 +147,7 @@ public class HumanTurn {
     }
 
 
-	private void execute(Command cmd) {
+	private void execute(InputCommand cmd) {
 		switch (cmd.type) {
 			case "Roll":
 				handleRoll();
@@ -184,7 +184,7 @@ public class HumanTurn {
      *
      * @param cmd The command containing build type and placement info
      */
-    public void handleBuild(Command cmd) {
+    public void handleBuild(InputCommand cmd) {
 
 
         //Handle settlement build
