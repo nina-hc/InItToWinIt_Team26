@@ -380,7 +380,7 @@ public class Board {
 	public boolean isAdjacent(int nodeAID,int nodeBID) {
 
         //check that nodes are in the node range
-        if (nodeAID < 0 || nodeBID >= NUMBER_OF_NODES || nodeBID < 0 || nodeBID >= NUMBER_OF_NODES) {
+        if (nodeAID < 0 || nodeBID >= NUMBER_OF_NODES || nodeBID < 0 || nodeAID >= NUMBER_OF_NODES) {
             throw new ArrayIndexOutOfBoundsException("Error: Invalid node ID");
         }
 

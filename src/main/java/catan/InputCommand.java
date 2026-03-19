@@ -9,7 +9,7 @@ package catan;
  *  - Build (settlement, city, or road)
  * @author Marva Hassan
  */
-public class Command {
+public class InputCommand {
 
     public String type;        // Roll, Go, List, Build
     public String buildType;   // settlement, city, road
@@ -19,7 +19,7 @@ public class Command {
     public boolean valid;
 
     //constructor
-    public Command() {
+    public InputCommand() {
         this.valid = false;
     }
 
@@ -27,8 +27,8 @@ public class Command {
      * Returns a new invalid Command object.
      * Used when parsing fails or input is incorrect.
      */
-    public static Command invalid() {
-        return new Command();
+    public static InputCommand invalid() {
+        return new InputCommand();
     }
 
 
