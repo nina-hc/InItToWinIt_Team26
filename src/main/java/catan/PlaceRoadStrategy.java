@@ -11,7 +11,7 @@ package catan;
      *
      * @author Marva Hassan
      */
-    public class BuildRoadStrategy implements StrategyEvaluator {
+    public class BuildRoadEvaluator extends AbstractBuildStrategy implements StrategyEvaluator {
 
         /**
          * Evaluates the benefit of applying the road-building rule.
@@ -21,19 +21,13 @@ package catan;
          * @param randomizer randomizer for selecting placements
          * @param bank the game bank
          * @param placementValidator validates legal placements
-         * @return 0.5 if a road can be built, otherwise 0.0
+         * @return 0.8 if a road can be built, otherwise 0.0
          */
         @Override
-        public double evaluate(Player player, Board board, Randomizer randomizer, Bank bank,
-                               PlacementValidator placementValidator) {
+        public double evaluate(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 
-            boolean canBuildRoad =
-                    player.getResourceHand().canBuyRoad()
-                            && player.getPlayerRoadsLeft() > 0
-                            && !placementValidator.getValidRoadEdges(player).isEmpty();
-
-            if (canBuildRoad) {
-                return 0.5;
+            if (canBuildRoad(player, placementValidator)) {
+                return 0.8;
             }
 
             return 0.0;
@@ -52,12 +46,8 @@ package catan;
         public void executeStrategy(Player player, Board board, Randomizer randomizer, Bank bank,
                                     PlacementValidator placementValidator) {
 
-            boolean canBuildRoad =
-                    player.getResourceHand().canBuyRoad()
-                            && player.getPlayerRoadsLeft() > 0
-                            && !placementValidator.getValidRoadEdges(player).isEmpty();
 
-            if (canBuildRoad) {
+            if (canBuildRoad(player, placementValidator)) {
                 BuildRoad buildRoad = new BuildRoad(player, board, randomizer, bank, placementValidator);
                 buildRoad.execute();
             }

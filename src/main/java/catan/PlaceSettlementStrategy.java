@@ -4,7 +4,7 @@ package catan;
  * Rule: build a settlement if possible.
  * Immediate value = 1.0 because it earns a VP.
  */
-public class BuildSettlementStrategy extends AbstractBuildStrategy  {
+public class BuildSettlementEvaluator extends AbstractBuildStrategy implements StrategyEvaluator {
     @Override
     public double evaluate(Player player, Board board, Randomizer randomizer,
                            Bank bank, PlacementValidator placementValidator) {

@@ -4,7 +4,7 @@ package catan;
  * Rule: build a city if possible.
  * Immediate value = 1.0 because it earns a VP.
  */
-public class BuildCityStrategy extends AbstractBuildStrategy {
+public class BuildCityEvaluator extends AbstractBuildStrategy implements StrategyEvaluator {
     @Override
     public double evaluate(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
 
