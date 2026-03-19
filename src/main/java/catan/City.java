@@ -1,16 +1,26 @@
 package catan;
 
 /**
- * Class to represent cities in Catan
+ * Class to represent cities in Catan. City creates city objects that will be placed ont he board by the players.
+ * City objects have a playerID attached to them, victory point multiplier and a resource multiplier
  * 
- * @author Nina Hay Cooper, February 13th 2026
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  */
 public class City implements Building {
-	private Node node;// where its located
-	private int ownerID;// playerID that owns it
+
+    /**
+     * Node that the city is located on
+     */
+    private Node node;
+
+    /**
+     * OwnerID of player that owns the city
+     */
+    private int ownerID;
 
 	/**
-	 * Constructor
+	 * City constructor
 	 * 
 	 * @param node    nodeID for the city
 	 * @param ownerID playerID who owns the city
@@ -19,16 +29,27 @@ public class City implements Building {
 		this.node = node;
 		this.ownerID = ownerID;
 	}
+
 	/* getters */
+
+    /**
+     * Getter to retrieve the owner of the city
+     *
+     * @return ownerID
+     */
 	@Override
 	public int getOwnerID() {
 		return ownerID;
 	}
 
+    /**
+     * Getter to retrieve resource multiplier.
+     * Players with cities will receive two of the resource from the tile it's sitting on
+     *
+     * @return how many resources players receive
+     */
 	@Override
-	public int getResourceMultiplier() {
-		return 2;//double the resources for
-	}
+	public int getResourceMultiplier() { return 2;	}
 
 	@Override
 	public int getVictoryPointValue() {

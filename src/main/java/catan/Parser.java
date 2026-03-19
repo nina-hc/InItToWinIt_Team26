@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  * Uses regular expressions to validate and extract parameters.
  *
  * @author Marva Hassan
+ * @version March 2026, McMaster University
  */
 public class Parser {
 

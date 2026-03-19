@@ -3,7 +3,8 @@ package catan;
 /**
  * Class for settlements
  * 
- * @author Nina Hay Cooper, February 13th 2026
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  */
 public class Settlement implements Building{
 	private final Node node; //node object

@@ -9,7 +9,8 @@ import java.util.*;
  * each player accumulated. This class calculates the total victory points
  * gained from settlements, cities and longest road.
  *
- * @author Serene Abou Sharaf February 10, 2026
+ * @author Serene Abou Sharaf
+ * @version February 2026, McMaster University
  *
  */
 public class VictoryPointConditions {

@@ -8,6 +8,7 @@ package catan;
  *  - List
  *  - Build (settlement, city, or road)
  * @author Marva Hassan
+ * @version March 2026, McMaster University
  */
 public class InputCommand {
 

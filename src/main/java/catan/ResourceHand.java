@@ -7,7 +7,8 @@ import java.util.*;
 /**
  * Class to manage a players resources
  * 
- * @author Nina Hay Cooper February 13th 2026
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  */
 public class ResourceHand {
 
