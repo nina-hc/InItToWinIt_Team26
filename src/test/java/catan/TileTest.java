@@ -36,7 +36,9 @@ class TileTest {
         tile.setNodes(nodes);
         int[] nodeIDs = tile.getNodeIDs();
         //check
-        assertEquals(nodes, nodeIDs);
+        assertNotNull(nodeIDs);
+        assertArrayEquals(nodes, nodeIDs);
+        assertEquals(6, nodeIDs.length);
     }
 
     //=======================================================
@@ -44,6 +46,7 @@ class TileTest {
     void testSetRobber() {
         //create
         Tile tile = new Tile(1, 11, GRAIN);
+        assertFalse(tile.getHasRobber());   //should start false
         //test
         tile.setRobber(true);
         //check
@@ -97,17 +100,5 @@ class TileTest {
         assertArrayEquals(nodes, nodeIDs);
         assertEquals(6, nodeIDs.length);
     }
-
-//    //=======================================================
-//    @Test
-//    void testGetHasRobber() {
-//        //create
-//        Tile tile = new Tile(1, 11, GRAIN);
-//        //test
-//        assertFalse(tile.setHasRobber); //should start false
-//        tile.setRobber(true);
-//        //check
-//        assertTrue(tile.getHasRobber());  //should be true now
-//    }
 
 }
