@@ -67,7 +67,12 @@ public class Node {
 	 * @param settlement object that's being placed on the Node
 	 */
 	public void placeSettlement(Settlement settlement) {
-		if (isOccupied()) {
+
+        if (settlement == null) {
+            throw new IllegalArgumentException("Error: Settlement cannot be null");
+        }
+
+        if (isOccupied()) {
 			throw new IllegalStateException("Error: Node "+nodeID+" is already occupied.");
 		}
 		//Otherwise place settlement in node
@@ -82,7 +87,12 @@ public class Node {
 	 * @param city object that's being placed on the Node
 	 */
 	public void upgradeToCity(City city) {
-		if (!(building instanceof Settlement)) {
+
+        if (city == null) {
+            throw new IllegalArgumentException("Error: City cannot be null");
+        }
+
+        if (!(building instanceof Settlement)) {
 			throw new IllegalStateException("Error: Node "+ nodeID+ " does contain a settlement. Cities must " +
 					"upgrade settlements.");
 		}
