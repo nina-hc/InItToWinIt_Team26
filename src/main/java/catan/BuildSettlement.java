@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class BuildSettlement extends Build {
 
-    private Game game;
+
 
 	/**
 	 * Constructor for BuildSettlement
@@ -74,7 +74,7 @@ public class BuildSettlement extends Build {
 	 * @return true if the placement is valid
 	 */
 	@Override
-    public boolean validatePlacement(Object placement) {
+    protected boolean validatePlacement(Object placement) {
 
 		Node node = (Node) placement;
 
@@ -101,6 +101,9 @@ public class BuildSettlement extends Build {
 		// places the settlement on the board and adds it to the player's inventory
 		node.placeSettlement(settlement);
 		player.playerAddSettlement(settlement);
+
+        //export to visualizer
+        StateExporter.exportState(board);
 
 	}
 

@@ -14,6 +14,7 @@ public class TurnManager {
     private Robber robber;
 
 
+
     //constructor
     public TurnManager(Player[] players, Board board, DistributeResources distributor, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
         this.players = players;
@@ -42,7 +43,7 @@ public class TurnManager {
 
             for (Player player : players) {
 
-                if (player.getPlayerID() == 1) { // use .equals for String comparison
+                if (player.getPlayerID() == 1) { //PLAYER 1 is Human player, Players 2,3,4 are ai simulated
                     HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players);
                     humanTurn.executeHumanTurn(); // run the human turn
                 }
@@ -71,18 +72,6 @@ public class TurnManager {
                     return player;
                 }
 
-                // Print Statement of Actions
-                //System.out.println("[" + roundNumber + "] / Player " + player.getPlayerID() + ": ");
-
-//                VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
-//
-//                if (vpCheck.checkWinConditions()) {
-//                    gameOver = true;
-//                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + vpCheck.calculateVictoryPoints() + " VPs!");
-//                    return player;
-//                }
-
-                //player.getVictoryPoints();
             }
 
             // Print current score board after each round

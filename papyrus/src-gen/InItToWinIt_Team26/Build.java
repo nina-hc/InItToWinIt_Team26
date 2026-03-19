@@ -12,38 +12,50 @@ public abstract class Build {
 	/**
 	 * 
 	 */
-	private Player player;
+	protected Player player;
+	/**
+	 * 
+	 */
+	protected Board board;
+	/**
+	 * 
+	 */
+	protected Randomizer randomizer;
+	/**
+	 * 
+	 */
+	protected Bank bank;
+	/**
+	 * 
+	 */
+	protected PlacementValidator placementyValidator;
 
 	/**
 	 * 
-	 * @param player 
 	 * @return 
 	 */
-	protected boolean checkPlayer(Player player) {
+	public boolean execute() {
 	}
 
 	/**
 	 * 
-	 * @param random 
-	 * @param nodeID 
 	 * @return 
 	 */
-	protected Node generatePlacement(Randomizer random, Node nodeID) {
+	protected boolean canPlayerBuy() {
 	}
 
 	/**
 	 * 
-	 * @param node 
 	 * @return 
 	 */
-	protected boolean checkPlacement(Node node) {
+	protected EJavaObject generatePlacement() {
 	}
 
 	/**
 	 * 
-	 * @param buildMaterials 
+	 * @param placement 
 	 */
-	protected void updatePlayerInventory(Player buildMaterials) {
+	protected void doBuild(EJavaObject placement) {
 	}
 
 	/**
@@ -54,15 +66,29 @@ public abstract class Build {
 
 	/**
 	 * 
-	 * @param nodeID 
+	 * @param placement 
+	 * @return 
 	 */
-	protected void storeBuildLocation(Node nodeID) {
+	protected boolean validatePlacement(EJavaObject placement) {
 	}
 
 	/**
 	 * 
 	 * @param player 
+	 * @param board 
+	 * @param randomizer 
+	 * @param bank 
+	 * @param placementValidator 
 	 */
-	public void execute(Player player) {
+	public void Build(Player player, Board board, Randomizer randomizer, Bank bank,
+			PlacementValidator placementValidator) {
+	}
+
+	/**
+	 * 
+	 * @param placement 
+	 * @return 
+	 */
+	public boolean executeWithPlacement(EJavaObject placement) {
 	}
 }

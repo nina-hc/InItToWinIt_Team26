@@ -34,6 +34,9 @@ public class HumanTurn {
     //Scanner for reading user input
     private Scanner scanner;
 
+	/*State machine for turn logic*/
+	private TurnStateMachine stateMachine = new TurnStateMachine();
+
     /**
      * Constructs a HumanTurn instance with all required game components.
      *
@@ -44,7 +47,8 @@ public class HumanTurn {
      * @param placementValidator Validates placement of settlements/cities/roads
      * @param players All players in the game
      */
-    public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator, Player[] players) {
+    public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank,
+                     PlacementValidator placementValidator, Player[] players) {
 
         this.player = player;
         this.board = board;
@@ -54,6 +58,7 @@ public class HumanTurn {
         this.players = players;
         this.parser = new Parser();
         this.scanner = new Scanner(System.in);
+
     }
 
     /**
@@ -62,13 +67,33 @@ public class HumanTurn {
      * Enforces that the player must roll before ending the turn.
      */
     public void executeHumanTurn() {
+		while(!stateMachine.isTurnDone()){
+			System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
+			String input = scanner.nextLine();
 
-        boolean turnActive = true;
+			//Parse input into a Command object
+			Command cmd = parser.parse(input);
+
+			if(!cmd.valid){
+				System.out.println("Invalid command");
+				continue;
+			}
+
+			if(stateMachine.isValidOption(cmd.type)){
+				//use execute helper method
+				execute(cmd);
+				//go to next state if applicable
+				stateMachine.goToNextState(cmd.type);
+			}
+
+		}
+
+    /*    boolean turnActive = true;
         boolean rolled = false; //tracks if player rolled this turn
 
         while (turnActive) {
 
-            System.out.print("> ");
+            System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
             String input = scanner.nextLine();
 
             //Parse input into a Command object
@@ -118,8 +143,25 @@ public class HumanTurn {
             else {
                 System.out.println("Unknown command.");
             }
-        }
+        }*/
     }
+
+
+	private void execute(Command cmd) {
+		switch (cmd.type) {
+			case "Roll":
+				handleRoll();
+				break;
+			case "List":
+				System.out.println(player.getResourceHand());
+				break;
+			case "Build":
+				handleBuild(cmd);
+				break;
+			default:
+				System.out.println("Unknown command.");
+		}
+	}
 
     /**
      * Handles dice rolling for the current player.
@@ -144,33 +186,112 @@ public class HumanTurn {
      */
     public void handleBuild(Command cmd) {
 
-        Build action = null;
 
         //Handle settlement build
         if ("settlement".equalsIgnoreCase(cmd.buildType)) {
-            action = new BuildSettlement(player, board, randomizer, bank, placementValidator);
-            Node node = board.getNode(cmd.nodeId);
-            if (!action.executeWithPlacement(node)) {
-                System.out.println("Invalid settlement placement.");
+
+            //Check resources first
+            if (!player.getResourceHand().canBuySettlement()) {
+                System.out.println("Not enough resources to build a settlement.");
+                return;
             }
+
+            Node node = board.getNode(cmd.nodeId);
+
+            if (node == null) {
+                System.out.println("Invalid node.");
+                return;
+            }
+
+            if (node.isOccupied()) {
+                System.out.println("Cannot build settlement: node already occupied.");
+                return;
+            }
+
+            if (!placementValidator.canPlaceSettlement(node, player, false)) {
+
+                //Check distance rule
+                for (Edge edge : board.getAdjacentEdges(node)) {
+                    if (edge.getOppositeNode(node).isOccupied()) {
+                        System.out.println("Cannot build settlement: distance rule violated.");
+                        return;
+                    }
+                }
+
+                System.out.println("Cannot build settlement: must connect to your road.");
+                return;
+            }
+
+            Build action = new BuildSettlement(player, board, randomizer, bank, placementValidator);
+            action.executeWithPlacement(node);
+
+            System.out.println("[Player " + player.getPlayerID() + "] built settlement at node " + cmd.nodeId);
         }
 
         //Handle city build
         if ("city".equalsIgnoreCase(cmd.buildType)) {
-            action = new BuildCity(player, board, randomizer, bank, placementValidator);
-            Node node = board.getNode(cmd.nodeId);
-            if (!action.executeWithPlacement(node)) {
-                System.out.println("Invalid city placement.");
+
+            if (!player.getResourceHand().canBuyCity()) {
+                System.out.println("Not enough resources to build a city.");
+                return;
             }
+
+            Node node = board.getNode(cmd.nodeId);
+
+            if (node == null) {
+                System.out.println("Invalid node.");
+                return;
+            }
+
+            if (!node.isOccupied()) {
+                System.out.println("Cannot build city: no settlement exists here.");
+                return;
+            }
+
+            Building building = node.getBuilding();
+
+            if (!(building instanceof Settlement)) {
+                System.out.println("Cannot build city: must upgrade a settlement.");
+                return;
+            }
+
+
+            Build action = new BuildCity(player, board, randomizer, bank, placementValidator);
+            action.executeWithPlacement(node);
+
+            System.out.println("[Player " + player.getPlayerID() + "] upgraded settlement to city at node " + cmd.nodeId);
         }
 
         //Handle road build
         if ("road".equalsIgnoreCase(cmd.buildType)) {
-            action = new BuildRoad(player, board, randomizer, bank, placementValidator);
-            Edge edge = board.getEdgeBetweenNodes(cmd.fromNodeId, cmd.toNodeId);
-            if (!action.executeWithPlacement(edge)) {
-                System.out.println("Invalid road placement.");
+
+            if (!player.getResourceHand().canBuyRoad()) {
+                System.out.println("Not enough resources to build a road.");
+                return;
             }
+
+            Edge edge = board.getEdgeBetweenNodes(cmd.fromNodeId, cmd.toNodeId);
+
+            if (edge == null) {
+                System.out.println("Invalid road: nodes are not connected.");
+                return;
+            }
+
+            if (edge.hasRoad()) {
+                System.out.println("Cannot build road: edge already occupied.");
+                return;
+            }
+
+            if (!placementValidator.canBuildRoad(edge, player)) {
+                System.out.println("Cannot build road: must connect to your road, settlement, or city.");
+                return;
+            }
+
+            Build action = new BuildRoad(player, board, randomizer, bank, placementValidator);
+            action.executeWithPlacement(edge);
+
+            System.out.println("[Player " + player.getPlayerID() + "] built road between "
+                    + cmd.fromNodeId + " and " + cmd.toNodeId);
         }
 
     }

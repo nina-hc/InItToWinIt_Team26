@@ -110,7 +110,7 @@ public class Board {
 		tiles[12].setNodes(new int[] { 39, 17, 15, 14, 37, 38 });
 		tiles[13].setNodes(new int[] { 42, 40, 18, 17, 39, 41 });
 		tiles[14].setNodes(new int[] { 44, 43, 21, 16, 18, 40 });
-		tiles[15].setNodes(new int[] { 45, 47, 46, 19, 21, 43 });
+		tiles[15].setNodes(new int[] { 45, 47, 46, 19, 21, 43 });//switching the order back
 		tiles[16].setNodes(new int[] { 46, 48, 49, 22, 20, 19 });
 		tiles[17].setNodes(new int[] { 49, 50, 51, 52, 23, 22 });
 		tiles[18].setNodes(new int[] { 23, 52, 53, 24, 7, 6 });
@@ -201,11 +201,11 @@ public class Board {
 				{ 42, 44 }, // 40
 				{ 39, 42 }, // 41
 				{ 40, 41 }, // 42
-				{ 44, 45 }, // 43
+				{ 44, 47 }, // 43
 				{ 40, 43 }, // 44
-				{ 43, 47 }, // 45
-				{ 47, 48 }, // 46
-				{ 45, 46 }, // 47
+				{ 47, 46 }, // 45
+				{ 45, 48 }, // 46
+				{ 43, 45 }, // 47
 				{ 46, 49 }, // 48
 				{ 48, 50 }, // 49
 				{ 49, 51 }, // 50
@@ -247,11 +247,22 @@ public class Board {
 	 * @return road object that is placed
 	 */
 	public Road placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
-		/*get the edge that the road will be placed on*/
+
+        //make sure that the nodes are in range
+        if (nodeOneID < 0 || nodeOneID >= NUMBER_OF_NODES || nodeTwoID < 0 || nodeTwoID >= NUMBER_OF_NODES) {
+            throw new IllegalArgumentException("Error: Invalid Node ID");
+        }
+
+        //cannot place a road between the same node..
+        if (nodeOneID == nodeTwoID) {
+            throw new IllegalArgumentException("Error: Cannot place a road between the same node");
+        }
+
+        /*get the edge that the road will be placed on*/
 		Edge edge = getEdgeBetweenNodes(nodeOneID, nodeTwoID);
 
 		//if it's not a valid edge
-		if(edge==null){
+		if(edge == null){
 			throw new IllegalArgumentException("Error: A road cannot be placed between node "+nodeOneID+" and node "+nodeTwoID);
 		}
 
@@ -350,7 +361,18 @@ public class Board {
 	 * @return true if they are adjacent, false otherwise
 	 */
 	public boolean isAdjacent(int nodeAID,int nodeBID) {
-		return getEdgeBetweenNodes(nodeAID,nodeBID) != null;
+
+        //check that nodes are in the node range
+        if (nodeAID < 0 || nodeBID >= NUMBER_OF_NODES || nodeBID < 0 || nodeBID >= NUMBER_OF_NODES) {
+            throw new ArrayIndexOutOfBoundsException("Error: Invalid node ID");
+        }
+
+        //nodes cannot be the same node
+        if (nodeAID == nodeBID) {
+            return false;
+        }
+
+        return getEdgeBetweenNodes(nodeAID,nodeBID) != null;
 	}
 
 }

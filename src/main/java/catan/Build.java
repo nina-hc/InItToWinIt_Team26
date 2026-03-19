@@ -102,6 +102,9 @@ public abstract class Build {
 	 * Print statement
 	 */
 	public abstract void printAction(Object placement);
+
+
+
     // Human version (manual placement)
     public boolean executeWithPlacement(Object placement) {
 
@@ -111,6 +114,9 @@ public abstract class Build {
 
         doBuild(placement);
         printAction(placement);
+
+        //export state to visualizer after build
+        StateExporter.exportState(board);
 
         return true;
     }
