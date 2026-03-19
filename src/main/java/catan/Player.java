@@ -8,9 +8,7 @@ import java.util.List;
  * Class for the player object
  * 
  * @author Nina Hay Cooper
- * 
- *         February 13th 2026
- * 
+ * @version February 2026, McMaster University
  */
 public class Player {
 	private final int playerID;//player ID doesn't change

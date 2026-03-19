@@ -1,8 +1,11 @@
 package catan;
 /**
- * Build Abstract Class to Implement the different build types
+ * The following is the Build Abstract Class. It's used to Implement the different build types.
+ * Build checks if players can afford to buy the building they're trying to build, validates placement,
+ * generated placement and prints the action that was made.
  * 
- * @author Nina Hay Cooper February 13th 2026
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  */
 public abstract class Build {
 	//these fields don't change for the duration of the call

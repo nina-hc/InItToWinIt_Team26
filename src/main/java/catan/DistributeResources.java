@@ -10,6 +10,7 @@ import java.util.List;
  * who have buildings on the nodes of those tiles.
  * 
  * @author Marva Hassan
+ * @version February 2026, McMaster University
  */
 public class DistributeResources {
 

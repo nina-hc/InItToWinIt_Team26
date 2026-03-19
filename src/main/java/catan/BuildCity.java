@@ -7,9 +7,7 @@ package catan;
  * the player, and deduct resources and replace settlement with a city
  *
  * @author Serene Abou Sharaf
- *
- *         February 10, 2026
- *
+ * @version February 2026, McMaster University
  */
 public class BuildCity extends Build {
 
@@ -104,7 +102,7 @@ public class BuildCity extends Build {
 	}
 
     /**
-     * method that allows for builds to happen
+     * Method that allows for builds to happen
      *
      * @param placement building that is being placed
      */

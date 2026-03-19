@@ -8,7 +8,9 @@ package catan;
  *  - Distribute resources at the start and during the game
  *  - Execute player turns in order
  *  - Check for victory conditions
+ *
  * @author Marva Hassan (Revisions done by Nina)
+ * @version February 2026, McMaster University
  */
 public class Game {
 

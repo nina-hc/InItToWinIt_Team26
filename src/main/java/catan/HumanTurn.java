@@ -7,6 +7,7 @@ import java.util.Scanner;
  * and ending the turn. Enforces the rule that a player must roll before ending their turn.
  *
  * @author Marva Hassan
+ * @version March 2026, McMaster University
  */
 public class HumanTurn {
 

@@ -2,18 +2,18 @@ package catan;
 
 import java.util.List;
 
-
-
 /**
- * Extends Build to implement process for building roads
+ * BuildRoad extends off of the Build abstract class and represents the action of building a road in the game.
+ * BuildRoad checks resources, checks for available edges, generates placement, validates placement,
+ * preforms the build and prints the action that was completed.
  * 
  * @author Nina Hay Cooper
- * 
- *         February 13th 2026
+ * @version February 2026, McMaster University
  */
 public class BuildRoad extends Build {
-	/**
-	 * Constructor
+
+    /**
+	 * Constructor for BuildRoad
 	 *
 	 * @param player             Player who is building the road
 	 * @param board              the board game
@@ -25,10 +25,13 @@ public class BuildRoad extends Build {
 
 	}
 
-	/**
-	 * Checking that the player has the resources to buy the road and has roads left
-	 * 
-	 */
+
+    /**
+     * Checking that the player has enough resources to buy a road
+     * Also checks if there are enough roads left to be bought from
+     *
+     * @return true if a road can be bought, false otherwise
+     */
 	@Override
 	protected boolean canPlayerBuy() {
 		boolean hasResources = player.getResourceHand().canBuyRoad();
@@ -38,6 +41,11 @@ public class BuildRoad extends Build {
 	}
 
 
+    /**
+     * Method used to generate a random placement at the beginning of the game
+     *
+     * @return road object
+     */
 	@Override
 	protected Object generatePlacement() {
 		/*use the placement validator to get the placements*/
@@ -51,7 +59,13 @@ public class BuildRoad extends Build {
 		return validEdges.get(index);
 	}
 
-	// placement needs to be a pair of nodes
+
+    /**
+     * Check if a road can be built on the edge
+     *
+     * @param placement the target location for the placement
+     * @return true if it can be built, false if not
+     */
 	@Override
 	protected boolean validatePlacement(Object placement) {
 		//type case edge to placement
@@ -61,12 +75,12 @@ public class BuildRoad extends Build {
 	}
 
 
-	/**
-	 * Do the build operation, this includes: - paying for the build - updating the
-	 * board - updating player info
-	 * 
-	 * 
-	 */
+    /**
+     * Method that preforms the building operation.
+     * This includes paying for the build, updating the board, and updating player info
+     *
+     * @param placement the target location for the placement
+     */
 	@Override
 	protected void doBuild(Object placement) {
 		Edge edges = (Edge) placement;
@@ -84,10 +98,12 @@ public class BuildRoad extends Build {
 
 	}
 
-	/**
-	 * Print Statement
-	 * 
-	 */
+
+    /**
+     * Method in charge of printing the build action that just ocured
+     *
+     * @param placement target placement
+     */
 	@Override
 	public void printAction(Object placement) {
 		Edge edges = (Edge) placement;
