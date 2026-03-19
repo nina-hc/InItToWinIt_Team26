@@ -117,10 +117,21 @@ public class Board {
 
 	}
 
+    /**
+     * getter for players
+     *
+     * @return players
+     */
     public List<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * method to get players by their ID
+     *
+     * @param ownerID playerID
+     * @return playerID
+     */
     public Player getPlayerByID(int ownerID) {
         for(Player player : players) {
             if (player.getPlayerID() == ownerID) {
@@ -130,6 +141,12 @@ public class Board {
         return null;
     }
 
+    /**
+     * method to get players adjacent to a tile
+     *
+     * @param tile tile that you're looking at
+     * @return players that have some sort of building on it
+     */
     public List<Player> getPlayersAdjacentToTile(Tile tile) {
 
         List<Player> adjacentPlayers = new ArrayList<>();
@@ -150,6 +167,11 @@ public class Board {
 
     }
 
+    /**
+     * method to construct edges on the board
+     *
+     * @return edges
+     */
 	private Edge[] constructEdges(){
 		// **************************************
 		// NODE NEIGHBORS
@@ -228,11 +250,6 @@ public class Board {
 		return edgeList.toArray(new Edge[0]);
 	}
 
-	// **************************************
-	// BUILDINGS
-	// **************************************
-
-	//nodes know where the buildings are and the nodes are on the board
 
 	// **************************************
 	// ROADS

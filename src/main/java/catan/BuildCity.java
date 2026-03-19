@@ -103,6 +103,11 @@ public class BuildCity extends Build {
 
 	}
 
+    /**
+     * method that allows for builds to happen
+     *
+     * @param placement building that is being placed
+     */
     public void build(Object placement) {
 
         if (!canPlayerBuy()) {

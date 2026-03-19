@@ -103,9 +103,14 @@ public abstract class Build {
 	 */
 	public abstract void printAction(Object placement);
 
+    
 
-
-    // Human version (manual placement)
+    /**
+     * method for human players, it allows for manual placement
+     * 
+     * @param placement the building that is being placed
+     * @return true or false if the build can happen
+     */
     public boolean executeWithPlacement(Object placement) {
 
         if (!canPlayerBuy()) return false;
