@@ -16,6 +16,17 @@ public class TurnManager {
 
 
     //constructor
+
+    /**
+     * turn manager constructor
+     *
+     * @param players players in the game
+     * @param board the board
+     * @param distributor to distribute resources
+     * @param randomizer the randomizer
+     * @param bank the bank
+     * @param placementValidator to make sure placements are valid
+     */
     public TurnManager(Player[] players, Board board, DistributeResources distributor, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
         this.players = players;
         this.board = board;
@@ -85,6 +96,10 @@ public class TurnManager {
     }
 
 
+    /**
+     * method to update the longest road at the end of each turn
+     *
+     */
     private void updateLongestRoad() {
 
         Player newHolder = null;

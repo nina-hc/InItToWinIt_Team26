@@ -34,6 +34,15 @@ public class Robber {
 
 
     //discard half cards
+
+    /**
+     * method to discard half of players cards.
+     * players cannot have more than 7 cards in their hand when a 7 is rolled,
+     * if their hand exceeds 7 then half of their hand will be dicarded
+     *
+     * @param player player who has too many cards in their hand
+     * @param bank the bank
+     */
     public void discardHalf(Player player, Bank bank) {
         ResourceHand hand = player.getResourceHand();
         int totalCards = hand.totalPlayerCard();
@@ -55,6 +64,12 @@ public class Robber {
 
 
     //move robber
+
+    /**
+     * method to move the robber
+     *
+     * @param chosenTile tile that the robber will be moved to
+     */
     public void moveRobber(Tile chosenTile) {
         currentTile.setRobber(false);   //remove robber from the old tile
         chosenTile.setRobber(true);        //place robber on new tile
@@ -63,6 +78,15 @@ public class Robber {
 
 
     //steal one random card
+
+    /**
+     * method used to steal a card from another player.
+     * when a player rolls a 7, they move the robber onto a tile and will be randomly assignned
+     * a player on the robbed to tile to steal a random resource from
+     *
+     * @param thief player that is stealing
+     * @param victim player that is being stolen from
+     */
     public void stealCard(Player thief, Player victim) {
 
         ResourceHand victimHand = victim.getResourceHand(); //get players hand of cards
@@ -82,6 +106,12 @@ public class Robber {
         }
     }
 
+    /**
+     * method to choose random tile to be robbed
+     *
+     * @param board the board, to choose a random tile
+     * @return random tile to be robbed
+     */
     public Tile chooseRandomTile(Board board){
 
         int index = random.nextInt(19);  //0... 18 tiles
@@ -97,7 +127,17 @@ public class Robber {
     }
 
 
-    //maybe should be in a diff class
+    /**
+     * method use to execute everything that happens when a 7 is rolled
+     * first players with more than 7 cards in their hands will discard half
+     * the robber will be moved to a new tile
+     * then the thief will steal a resource from a victim that has a building on the newly robbed tile
+     *
+     * @param board the board
+     * @param bank the bank
+     * @param players players
+     * @param currentPlayer player who rolled a 7 (can't steal from themeselves)
+     */
     public void executeSevenRoll(Board board, Bank bank, Player[] players, Player currentPlayer) {
 
         System.out.println("A seven was rolled");
