@@ -24,3 +24,7 @@ InItToWinIt_Team26_en_CA.properties/
 **/.venv/**
 visualizer/scraped_boards/**.png
 visualizer/state.json
+
+#drafts
+src/main/java/catan/Observer.java
+src/main/java/catan/Subject.java
