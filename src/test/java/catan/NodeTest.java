@@ -65,18 +65,20 @@ class NodeTest {
         assertEquals(1, node.getBuilding().getOwnerID());
     }
 
-//    @Test (expected = IllegalStatException.class)
-//    void testPlaceSettlementOnOccupiedNode() {
-//        //create
-//        Node node = new Node(1);
-//        //test
-//        Settlement settlement1 = new Settlement(node, 1);
-//        node.placeSettlement(settlement1);
-//
-//        Settlement settlement2 = new Settlement(node, 2);
-//        //check
-//        node.placeSettlement(settlement2);  //should throw exception
-//    }
+    @Test
+    void testPlaceSettlementOnOccupiedNode() {
+        //create
+        Node node = new Node(1);
+        //test
+        Settlement settlement1 = new Settlement(node, 1);
+        node.placeSettlement(settlement1);
+
+        Settlement settlement2 = new Settlement(node, 2);
+        //check
+        assertThrows(IllegalStateException.class, () -> {
+            node.placeSettlement(settlement2);  //should throw exception
+        });
+    }
 
     //=======================================================
     @Test
@@ -96,27 +98,34 @@ class NodeTest {
         assertEquals(1, node.getBuilding().getOwnerID());
     }
 
-//    @Test (expected = IllegalStateException.class)
-//    void testUpgradeToCityOnEmptyNode() {
-//        //create
-//        Node node = new Node(1);
-//        //test
-//        City city = new City(node, 1);
-//        node.upgradeToCity(city);
-//
-//    }
-//
-//    @Test (expected = IllegalStateException.class)
-//    void testUpgradeToCityWithWrongOwner() {
-//        //create
-//        Node node = new Node(1);
-//        //test
-//        Settlement settlement = new Settlement(node, 1);
-//        node.placeSettlement(settlement);
-//
-//        City city = new City(node, 2);
-//        node.upgradeToCity(city);
-//    }
+    @Test
+    void testUpgradeToCityOnEmptyNode() {
+        //create
+        Node node = new Node(1);
+        //test
+        City city = new City(node, 1);
+        //check
+        assertThrows(IllegalStateException.class, () -> {
+                node.upgradeToCity(city);
+        });
+
+    }
+
+    @Test
+    void testUpgradeToCityWithWrongOwner() {
+        //create
+        Node node = new Node(1);
+        //test
+        Settlement settlement = new Settlement(node, 1);
+        node.placeSettlement(settlement);
+        City city = new City(node, 2);  //different owner
+
+        //check
+        assertThrows(IllegalStateException.class, () -> {
+            node.upgradeToCity(city);
+        });
+
+    }
 
 
     //=======================================================
@@ -127,24 +136,21 @@ class NodeTest {
         //test
         int nodeID = node.getNodeID();
         //check
-        assertSame(41, nodeID);
+        assertEquals(41, nodeID);
     }
 
     //=======================================================
-//    @Test
-//    void testGetBuilding() {
-//        //create
-//        Node node = new Node(41);
-//        //test
-//        assertNull(node,getBuilding());  //should start null
-//        Settlement settlement = new Settlement(node, 1);
-//        node.placeSettlement(settlement);
-//
-//        //check
-//        assertNotNull(node.getBuilding());
-//        assertEquals(settlement, node.getBuilding());
-//    }
+    @Test
+    void testGetBuilding() {
+        //create
+        Node node = new Node(41);
+        //test
+        assertNull(node.getBuilding());  //should start null
+        Settlement settlement = new Settlement(node, 1);
+        node.placeSettlement(settlement);
 
-
-
+        //check
+        assertNotNull(node.getBuilding());
+        assertEquals(settlement, node.getBuilding());
+    }
 }

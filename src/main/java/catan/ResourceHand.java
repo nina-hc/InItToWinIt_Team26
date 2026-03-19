@@ -10,6 +10,9 @@ import java.util.*;
  * @author Nina Hay Cooper February 13th 2026
  */
 public class ResourceHand {
+
+	Random random = new Random();
+
 	/**
 	 * Map to store resources Key is the resource type and value is the amount they
 	 * have of the resource
@@ -50,30 +53,6 @@ public class ResourceHand {
 
 	}
 
-//    /**
-//     * Method to help remove cards from players hand
-//     *
-//     *
-//     * @param type type of resource that's being removed
-//     * @param amount amount of the resource that's being removed
-//     */
-//	public void removeResource(ResourceType type, int amount) {
-//		if (amount <= 0) {
-//			throw new IllegalArgumentException("Error: Negative values cannot be removed");
-//		}
-//		if(type == ResourceType.DESERT) {
-//			throw new IllegalArgumentException("Error: There are no resources from the desert.");
-//		}
-//		//otherwise remove the amount
-//		int currentAmount = resources.get(type);
-//		if(currentAmount < amount) {
-//			throw new IllegalArgumentException("Error: you cannot remove more resources than the player has.");
-//			//alternatively this could be implemented to remove the max rather than be an error
-//		}
-//		//subtract the current amount by the amount removed and place that as the new value
-//		resources.put(type,(currentAmount - amount));
-//	}
-
     /**
      * Method to remove random cards from a players hand
      * Useful when stealing and discarding half a hand on a 7 roll
@@ -98,8 +77,6 @@ public class ResourceHand {
         if (amount > resourcesWithCards.size()) {
             throw new IllegalArgumentException("Error: cannot remove more cards than the player has");
         }
-
-        Random random = new Random();
 
         for (int i = 0; i < amount; i++) {
             int index = random.nextInt(resourcesWithCards.size());
@@ -274,9 +251,8 @@ public class ResourceHand {
             throw new IllegalArgumentException("Cannot discard more cards than the player has.");
         }
 
-        Random rand = new Random();
         for (int i = 0; i < count; i++) {
-            int index = rand.nextInt(typesWithCards.size());
+            int index = random.nextInt(typesWithCards.size());
             ResourceType selected = typesWithCards.remove(index); // remove from list
             resources.put(selected, resources.get(selected) - 1); // remove from hand
         }

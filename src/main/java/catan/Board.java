@@ -247,11 +247,22 @@ public class Board {
 	 * @return road object that is placed
 	 */
 	public Road placeRoad(int nodeOneID, int nodeTwoID, int playerID) {
-		/*get the edge that the road will be placed on*/
+
+        //make sure that the nodes are in range
+        if (nodeOneID < 0 || nodeOneID >= NUMBER_OF_NODES || nodeTwoID < 0 || nodeTwoID >= NUMBER_OF_NODES) {
+            throw new IllegalArgumentException("Error: Invalid Node ID");
+        }
+
+        //cannot place a road between the same node..
+        if (nodeOneID == nodeTwoID) {
+            throw new IllegalArgumentException("Error: Cannot place a road between the same node");
+        }
+
+        /*get the edge that the road will be placed on*/
 		Edge edge = getEdgeBetweenNodes(nodeOneID, nodeTwoID);
 
 		//if it's not a valid edge
-		if(edge==null){
+		if(edge == null){
 			throw new IllegalArgumentException("Error: A road cannot be placed between node "+nodeOneID+" and node "+nodeTwoID);
 		}
 
@@ -350,7 +361,18 @@ public class Board {
 	 * @return true if they are adjacent, false otherwise
 	 */
 	public boolean isAdjacent(int nodeAID,int nodeBID) {
-		return getEdgeBetweenNodes(nodeAID,nodeBID) != null;
+
+        //check that nodes are in the node range
+        if (nodeAID < 0 || nodeBID >= NUMBER_OF_NODES || nodeBID < 0 || nodeBID >= NUMBER_OF_NODES) {
+            throw new ArrayIndexOutOfBoundsException("Error: Invalid node ID");
+        }
+
+        //nodes cannot be the same node
+        if (nodeAID == nodeBID) {
+            return false;
+        }
+
+        return getEdgeBetweenNodes(nodeAID,nodeBID) != null;
 	}
 
 }

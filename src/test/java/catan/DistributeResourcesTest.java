@@ -57,98 +57,89 @@ class DistributeResourcesTest {
 
         DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
 
-        //test
-        Node node =board.getNode(2);
-        Settlement settlement = new Settlement(node, 1); //placed on node 2 for player 1
-        node.placeSettlement(settlement);
+        //make sure tile 0 has its nodes
+        board.getTile(0).setNodes(new int[]{0, 1, 2, 3, 4, 5});
 
-        int resourcesBefore = players[0].getResourceHand().getResource(LUMBER);
+        //place settlement on node 2
+        Node node2 = board.getNode(2);
+        Settlement settlement = new Settlement(node2, 1);
+        node2.placeSettlement(settlement);
 
+        int before = players[0].getResourceHand().getResource(LUMBER);
         distributeResources.executeDistribution();
-        int resourcesAfter = players[0].getResourceHand().getResource(LUMBER);
+        int after = players[0].getResourceHand().getResource(LUMBER);
 
-        //check: before + 1 should = after
-        assertEquals(resourcesBefore + 1, resourcesAfter);
+        //check
+        assertEquals(before + 1, after);
     }
 
-//    @Test
-//    void testExecuteDistributionCityGetsTwoResources() {
-//        //create
-//        Board board = new Board();
-//        Bank bank = new Bank();
-//        Randomizer randomizer = new FixedRandomizer(10); //can choose a roll value!
-//        //tile id: 0, roll num: 10, resource: lumber, attached nodes: { 0, 1, 2, 3, 4, 5 }
-//
-//        Player[] players = new Player[1];
-//        players[0] = new Player(1);
-//
-//        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
-//
-//        //test
-//        board.placeSettlementOnMat(0, 1);
-//        board.placeCityOnMat(0, 1);
-//
-//        int resourcesBefore = players[0].getResourceHand().getResource(LUMBER);
-//
-//        distributeResources.executeDistribution();
-//        int resourcesAfter = players[0].getResourceHand().getResource(LUMBER);
-//
-//        //check: before + 2 should = after
-//        assertEquals(resourcesBefore + 2, resourcesAfter);
-//    }
+    @Test
+    void testExecuteDistributionCityGetsTwoResources() {
+        //create
+        Board board = new Board();
+        Bank bank = new Bank();
+        Randomizer randomizer = new FixedRandomizer(10); //can choose a roll value!
+        //tile id: 0, roll num: 10, resource: lumber, attached nodes: { 0, 1, 2, 3, 4, 5 }
+
+        Player[] players = new Player[1];
+        players[0] = new Player(1);
+
+        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
+
+        //make sure tile 0 has its nodes
+        board.getTile(0).setNodes(new int[]{0, 1, 2, 3, 4, 5});
+
+        //place settlement on node 2
+        Node node2 = board.getNode(2);
+        Settlement settlement = new Settlement(node2, 1);
+        node2.placeSettlement(settlement);
+
+        //upgrade to a city
+        City city = new City(node2, 1);
+        node2.upgradeToCity(city);
+
+        int before = players[0].getResourceHand().getResource(LUMBER);
+        distributeResources.executeDistribution();
+        int after = players[0].getResourceHand().getResource(LUMBER);
+
+        //check
+        assertEquals(before + 2, after);
+    }
 
 
-//    //=======================================================
-//    @Test
-//    void testDistributeFromTile() {
-//        //create
-//        Board board = new Board();
-//        Bank bank = new Bank();
-//        Randomizer randomizer = new FixedRandomizer(10); //can choose a roll value!
-//        //tile id: 0, roll num: 10, resource: lumber, attached nodes: { 0, 1, 2, 3, 4, 5 }
-//
-//        Player[] players = new Player[1];
-//        players[0] = new Player(1);
-//
-//        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
-//
-//        //test
-//        board.placeSettlementOnMat(2, 1);    //placed on node 2 for player 1
-//        int resourcesBefore = players[0].getResourceHand().getResource(LUMBER);
-//
-//        distributeResources.executeDistribution();
-//        int resourcesAfter = players[0].getResourceHand().getResource(LUMBER);
-//
-//        //check: before + 1 should = after
-//        assertEquals(resourcesBefore + 1, resourcesAfter);
-//    }
-//
-//    //========================================================
-//    //tests added after refactors
-//
-//    @Test
-//    void testExecuteDistributionWithRobberOnTile() {
-//        //create
-//        Board board = new Board();
-//        Bank bank = new Bank();
-//        Randomizer randomizer = new FixedRandomizer(7); //can choose a roll value!
-//
-//        Player[] players = new Player[1];
-//        players[0] = new Player(1);
-//
-//        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
-//
-//        //test
-//        board.placeSettlementOnMat(2, 1);
-//        board.getTile(0).setRobber(true);    //place robber on tile
-//
-//        int resourcesBefore = players[0].getResourceHand().getResource(LUMBER);
-//        distributeResources.executeDistribution();
-//        int resourcesAfter = players[0].getResourceHand().getResource(LUMBER);
-//
-//        //check
-//        assertEquals(resourcesBefore, resourcesAfter);
-//    }
+    //========================================================
+    //tests added after refactors
+
+    @Test
+    void testExecuteDistributionWithRobberOnTile() {
+        //create
+        Board board = new Board();
+        Bank bank = new Bank();
+        Randomizer randomizer = new FixedRandomizer(7); //can choose a roll value! its 7 for robber
+        Player[] players = new Player[1];
+        players[0] = new Player(1);
+
+        DistributeResources distributeResources = new DistributeResources(bank, players, randomizer, board);
+
+        //make sure tile 0 has its nodes
+        board.getTile(0).setNodes(new int[]{0, 1, 2, 3, 4, 5});
+
+        //place settlement on node 2
+        Node node2 = board.getNode(2);
+        Settlement settlement = new Settlement(node2, 1);
+        node2.placeSettlement(settlement);
+
+        //place robber
+        board.getTile(0).setRobber(true);
+
+        int before = players[0].getResourceHand().getResource(LUMBER);
+        distributeResources.executeDistribution();
+        int after = players[0].getResourceHand().getResource(LUMBER);
+
+        //check
+        assertEquals(before, after);    //should be the same because robber stopped them from collecting
+
+    }
 
     @Test
     void testExecuteDistributionWitNoOneOnTile() {

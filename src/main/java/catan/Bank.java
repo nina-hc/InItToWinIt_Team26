@@ -57,6 +57,14 @@ public class Bank {
 	 */
 	public boolean hasResources(ResourceType resourceType, int amountWithdrawal) {
 
+        if (resourceType == null) {
+            throw new IllegalArgumentException("Error: Resource cannot be null");
+        }
+
+        if (amountWithdrawal < 0) {
+            return false;
+        }
+
 		if (!bankResources.containsKey(resourceType)) { // check if requested resource exists
 			return false;
 		}
@@ -68,7 +76,7 @@ public class Bank {
 			return false;
 
 		} else if (amountWithdrawal > amountOfResource) { // cards in the bank but less than what's being withdrawn
-			return true; // allows distribution to happen
+			return false; // allows distribution to happen
 
 		} else { // if amountWithdrawal <= amountOfResource
 			return true; // allows distribution to happen
@@ -85,9 +93,17 @@ public class Bank {
 	 */
 	public int transferToPlayer(ResourceType resourceType, int amountWithdrawal) {
 
-		if (!hasResources(resourceType, amountWithdrawal)) { // requesting a resource type that does not exist
-			return 0; // no resources given
-		}
+        if (resourceType == null) {
+            throw new NullPointerException("Error: Resource type cannot be null");
+        }
+
+        if (amountWithdrawal < 0) {
+            return 0;   //no resources given
+        }
+
+//        if (!hasResources(resourceType, amountWithdrawal)) { // requesting a resource type that does not exist
+//            return 0; // no resources given
+//        }
 
 		int amountGiven = 0;
 		int amountOfResource = bankResources.get(resourceType); // check how many cards of THIS resource is available in
@@ -115,6 +131,10 @@ public class Bank {
 	 */
 	public void resourceDeposit(ResourceType resourceType, int amountDeposit) {
 
+        if (resourceType == null) {
+            throw new IllegalArgumentException("Error: Resource type cannot be null");
+        }
+
         if (amountDeposit < 0) {
             throw new IllegalArgumentException("Error: cannot deposit negative amount of resources");
         }
@@ -123,8 +143,9 @@ public class Bank {
 		int amountGiven = amountOfResource + amountDeposit; // increase amount of the resource available in the bank
 
         if (amountGiven > RESOURCE_CARD_MAX){
-            throw new IllegalArgumentException(("Error: cannot deposit more than 19 cards"));
+        amountGiven = RESOURCE_CARD_MAX;    //cap the amount given as the max
         }
+
         bankResources.put(resourceType, amountGiven);
 
 	}
