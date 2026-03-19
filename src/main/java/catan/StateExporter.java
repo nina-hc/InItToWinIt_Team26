@@ -81,13 +81,13 @@ public class StateExporter {
 
         } catch (IOException e) {
             System.out.println("ERROR: state export failed");
-            e.printStackTrace();
+            //e.printStackTrace();      this should be uncommented for debugging purposes only
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();    this should be uncommented for debugging purposes only
                 }
             }
         }

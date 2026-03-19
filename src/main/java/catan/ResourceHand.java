@@ -95,12 +95,11 @@ public class ResourceHand {
      * @return card/resource that was stolen from the victim
      */
     public ResourceType removeCardForSteal() {
-        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
-
-        if (removed.isEmpty()) {
+        if (totalPlayerCard() == 0) {
             return null;
         }
 
+        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
         return removed.get(0);
     }
 
