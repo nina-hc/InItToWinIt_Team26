@@ -14,6 +14,7 @@ public class TurnManager {
     private Robber robber;
 
 
+
     //constructor
     public TurnManager(Player[] players, Board board, DistributeResources distributor, Randomizer randomizer, Bank bank, PlacementValidator placementValidator) {
         this.players = players;
