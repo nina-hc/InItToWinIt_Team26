@@ -87,63 +87,6 @@ public class HumanTurn {
 			}
 
 		}
-
-    /*    boolean turnActive = true;
-        boolean rolled = false; //tracks if player rolled this turn
-
-        while (turnActive) {
-
-            System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
-            String input = scanner.nextLine();
-
-            //Parse input into a Command object
-            Command cmd = parser.parse(input);
-
-            //If the command is invalid, notify player
-            if (!cmd.valid) {
-                System.out.println("Invalid command.");
-                continue;
-            }
-
-            //Handle Roll
-            if ("roll".equalsIgnoreCase(cmd.type)) {
-
-                if (rolled) {
-                    System.out.println("You already rolled this turn.");
-                } else {
-                    handleRoll(); //Execute roll logic
-                    rolled = true;
-                }
-            }
-
-            //Handle List
-            else if ("list".equalsIgnoreCase(cmd.type)) {
-                System.out.println(player.getResourceHand());
-            }
-
-            //Handle Build
-            else if ("build".equalsIgnoreCase(cmd.type)) {
-                if (!rolled) {
-                    System.out.println("You must roll before building.");
-                } else {
-                    handleBuild(cmd);
-                }
-            }
-
-            //Handle Go (end turn)
-            else if ("go".equalsIgnoreCase(cmd.type)) {
-                if (!rolled) {
-                    System.out.println("You must roll before ending your turn.");
-                } else {
-                    turnActive = false; //End turn
-                }
-            }
-
-            //Unknown command fallback
-            else {
-                System.out.println("Unknown command.");
-            }
-        }*/
     }
 
 
@@ -157,6 +100,8 @@ public class HumanTurn {
 				break;
 			case "Build":
 				handleBuild(cmd);
+				break;
+			case "Go":
 				break;
 			default:
 				System.out.println("Unknown command.");
