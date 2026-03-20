@@ -15,181 +15,227 @@ import java.util.*;
  */
 public class VictoryPointConditions {
 
-	private Player player; // the current player that is getting their victory points calculated
-	private Board board; // the game board
+    private Player player; // the current player that is getting their victory points calculated
+    private Board board; // the game board
 
-	/**
-	 * Constructor
-	 *
-	 * @param player : the player whose victory points are being tracked
-	 * @param board  : the game board
-	 */
-	public VictoryPointConditions(Player player, Board board) {
-		this.player = player;
-		this.board = board;
-	}
+    //neew variables to track one player who has the longest road
+    private static Player currentLongestRoadHolder = null;
+    private static int currentLongestRoadLength = 0;
 
-
-	/**
-	 * Check if the player has any cities
-	 *
-	 * @return true of the player has 1 or more settlements, false otherwise
-	 */
-	public boolean didPlayerBuildCity() {
-		return !player.getPlayerCities().isEmpty();
-	}
+    /**
+     * Constructor
+     *
+     * @param player : the player whose victory points are being tracked
+     * @param board  : the game board
+     */
+    public VictoryPointConditions(Player player, Board board) {
+        this.player = player;
+        this.board = board;
+    }
 
 
-	/**
-	 * Calculate the total victory points from settlements from a player
-	 *
-	 * @return total victory points from settlements
-	 *
-	 */
-	public int calculateSettlementVP() {
-		int vp = 0;
-		for (Settlement settlement : player.getPlayerSettlements()) {
-
-			if (settlement.getOwnerID() == player.getPlayerID()) {
-				vp += 1; // each settlement = 1 VP
-			}
-		}
-		return vp;
-	}
-
-	/**
-	 * Total VP from cities
-	 *
-	 * @return total victory points from cities
-	 */
-	public int calculateCityVP() {
-		int vp = 0;
-
-		for (City city : player.getPlayerCities()) {
-			if (city.getOwnerID() == player.getPlayerID()) {
-				vp += 2; // each city = 2 VP
-			}
-		}
-		return vp;
-	}
-
-	/**
-	 *
-	 * Calculates the victory points for the player's longest road. A player will
-	 * earn 2 victory points if the longest road has at least 5 connected roads
-	 *
-	 * @return 2 victory points if the longest road >= 5 segments
-	 */
-	public int getLongestRoad() {
+    /**
+     * Check if the player has any cities
+     *
+     * @return true of the player has 1 or more settlements, false otherwise
+     */
+    public boolean didPlayerBuildCity() {
+        return !player.getPlayerCities().isEmpty();
+    }
 
 
-        int longest = findLongestRoad();
+    /**
+     * Calculate the total victory points from settlements from a player
+     *
+     * @return total victory points from settlements
+     *
+     */
+    public int calculateSettlementVP() {
+        int vp = 0;
+        for (Settlement settlement : player.getPlayerSettlements()) {
 
-        if (longest >= 5) {
+            if (settlement.getOwnerID() == player.getPlayerID()) {
+                vp += 1; // each settlement = 1 VP
+            }
+        }
+        return vp;
+    }
+
+    /**
+     * Total VP from cities
+     *
+     * @return total victory points from cities
+     */
+    public int calculateCityVP() {
+        int vp = 0;
+
+        for (City city : player.getPlayerCities()) {
+            if (city.getOwnerID() == player.getPlayerID()) {
+                vp += 2; // each city = 2 VP
+            }
+        }
+        return vp;
+    }
+
+    /**
+     *
+     * Calculates the victory points for the player's longest road. A player will
+     * earn 2 victory points if the longest road has at least 5 connected roads
+     *
+     * @return 2 victory points if the longest road >= 5 segments
+     */
+    public int getLongestRoad() {
+        //only award points if this player is the current holder
+        if (this.player.equals(currentLongestRoadHolder) && getPlayerRoadLength() >= 5) {
             return 2; // 2 VP if at least 5 roads
         }
         return 0; // otherwise 0 VP
+    }
 
+    //new methods for vp debug:
 
+    /**
+     * Gets the road length for this player
+     * Used to determine who has the longest road
+     *
+     * @return number of connected road segments in th player's longest road
+     */
+    public int getPlayerRoadLength() {
+        return findLongestRoad();
+    }
 
-	}
+    /**
+     * Updates the longest road holder based on all players current longest roads
+     * This shoud be called after any road placement
+     *
+     * @param players all players in the game
+     * @param board game board
+     */
+    public static void updateLongestRoad(Player[] players, Board board) {
+        Player newHolder = null;
+        int newMaxLength = 0;
 
-	/**
-	 * Finds the longest road calculation for a player
-	 *
-	 * @return the number of road segments are in the player's longest road
-	 *
-	 */
-	private int findLongestRoad() {
+        //find player with longest road(min 5)
+        for (Player p : players) {
+            VictoryPointConditions vpCheck = new VictoryPointConditions(p, board);
+            int length = vpCheck.getPlayerRoadLength();
 
-		// get all the roads that belong to the player
-		List<Road> roads = player.getPlayerRoads();
+            if(length >= 5 && length > newMaxLength) {
+                newMaxLength = length;
+                newHolder = p;
+            }
+        }
 
-		// if the player has no roads, their longest road is 0
-		if (roads.isEmpty()) {
-			return 0;
-		}
+        //update states
+        currentLongestRoadHolder = newHolder;
+        currentLongestRoadLength = newMaxLength;
+    }
 
-		// Build adjacency map of player's roads
-		Map<Integer, Set<Integer>> graph = new HashMap<>();
+    /**
+     * Getter for the longest road holder
+     *
+     * @return player with the longest road
+     */
+    public static Player getCurrentLongestRoadHolder() {
+        return currentLongestRoadHolder;
+    }
 
-		for (Road road : roads) {
+    /**
+     * Finds the longest road calculation for a player
+     *
+     * @return the number of road segments are in the player's longest road
+     *
+     */
+    private int findLongestRoad() {
 
-			int head = road.getNodeA().getNodeID(); // top of road path
-			int tail = road.getNodeB().getNodeID(); // end of road path
+        // get all the roads that belong to the player
+        List<Road> roads = player.getPlayerRoads();
 
-			// Makes sure each node has a set to store their neighbors
-			graph.putIfAbsent(head, new HashSet<>());
-			graph.putIfAbsent(tail, new HashSet<>());
+        // if the player has no roads, their longest road is 0
+        if (roads.isEmpty()) {
+            return 0;
+        }
 
-			// connects nodes
-			graph.get(head).add(tail);
-			graph.get(tail).add(head);
-		}
+        // Build adjacency map of player's roads
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
 
-		int maxLength = 0; // find the longest path
+        for (Road road : roads) {
 
-		for (int startNode : graph.keySet()) {
-			maxLength = Math.max(maxLength, longestPath(graph, startNode, new HashSet<>()));
-		}
-		return maxLength; // returns the number of connected road segments in the longest road
-	}
+            int head = road.getNodeA().getNodeID(); // top of road path
+            int tail = road.getNodeB().getNodeID(); // end of road path
 
-	/**
-	 * Helper for longest road, it searches each path to find the longest road
-	 *
-	 * @param graph         : is the adjacent map of nodes connected by the player's
-	 *                      road
-	 * @param current       : the node that is currently being examined
-	 * @param visitedEdges: set of edges already used in the current path to prevent
-	 *                      double counting
-	 *
-	 * @return the length of the longest path from the current node
-	 */
-	private int longestPath(Map<Integer, Set<Integer>> graph, int current, Set<String> visitedEdges) {
+            // Makes sure each node has a set to store their neighbors
+            graph.putIfAbsent(head, new HashSet<>());
+            graph.putIfAbsent(tail, new HashSet<>());
 
-		int max = 0;
+            // connects nodes
+            graph.get(head).add(tail);
+            graph.get(tail).add(head);
+        }
 
-		// explores all the neighbors of the current node
-		for (int neighbor : graph.get(current)) {
+        int maxLength = 0; // find the longest path
 
-			String edgeKey = Math.min(current, neighbor) + "-" + Math.max(current, neighbor);
+        for (int startNode : graph.keySet()) {
+            maxLength = Math.max(maxLength, longestPath(graph, startNode, new HashSet<>()));
+        }
+        return maxLength; // returns the number of connected road segments in the longest road
+    }
 
-			// check to see if this edge hasn't been used in the current path
-			if (!visitedEdges.contains(edgeKey)) {
+    /**
+     * Helper for longest road, it searches each path to find the longest road
+     *
+     * @param graph         : is the adjacent map of nodes connected by the player's
+     *                      road
+     * @param current       : the node that is currently being examined
+     * @param visitedEdges: set of edges already used in the current path to prevent
+     *                      double counting
+     *
+     * @return the length of the longest path from the current node
+     */
+    private int longestPath(Map<Integer, Set<Integer>> graph, int current, Set<String> visitedEdges) {
 
-				visitedEdges.add(edgeKey); // marks edge as used
+        int max = 0;
 
-				max = Math.max(max, 1 + longestPath(graph, neighbor, visitedEdges)); // check neighbors
+        // explores all the neighbors of the current node
+        for (int neighbor : graph.get(current)) {
 
-				visitedEdges.remove(edgeKey); // unmark edges from different paths
-			}
-		}
-		return max; // return longest path length
-	}
+            String edgeKey = Math.min(current, neighbor) + "-" + Math.max(current, neighbor);
 
-	/**
-	 * Calculate total victory points for this player
-	 *
-	 * @return total victory points
-	 */
-	public int calculateVictoryPoints() {
-		int vp = 0;
+            // check to see if this edge hasn't been used in the current path
+            if (!visitedEdges.contains(edgeKey)) {
 
-		vp += calculateSettlementVP();
-		vp += calculateCityVP();
-		vp += getLongestRoad();
+                visitedEdges.add(edgeKey); // marks edge as used
 
-		return vp;
-	}
+                max = Math.max(max, 1 + longestPath(graph, neighbor, visitedEdges)); // check neighbors
 
-	/**
-	 * Check if player has won by have 10 or more Victory Points
-	 *
-	 * @return true if the player has 10 or more victory points
-	 */
-	public boolean checkWinConditions() {
-		return calculateVictoryPoints() >= 10;
-	}
+                visitedEdges.remove(edgeKey); // unmark edges from different paths
+            }
+        }
+        return max; // return longest path length
+    }
+
+    /**
+     * Calculate total victory points for this player
+     *
+     * @return total victory points
+     */
+    public int calculateVictoryPoints() {
+        int vp = 0;
+
+        vp += calculateSettlementVP();
+        vp += calculateCityVP();
+        vp += getLongestRoad();
+
+        return vp;
+    }
+
+    /**
+     * Check if player has won by have 10 or more Victory Points
+     *
+     * @return true if the player has 10 or more victory points
+     */
+    public boolean checkWinConditions() {
+        return calculateVictoryPoints() >= 10;
+    }
 
 }

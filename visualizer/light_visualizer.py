@@ -91,7 +91,7 @@ class CatanBoardVisualizer:
         numbers = []
 
         for tile_data in self.map_data["tiles"]:
-            coord = (tile_data["q"], tile_data["s"], tile_data["r"])
+            coord = (-tile_data["r"], -tile_data["q"], -tile_data["s"])
 
             if sum(coord) != 0:
                 raise ValueError(f"Invalid cube coordinate: {coord}. Sum must be 0.")
@@ -134,25 +134,58 @@ class CatanBoardVisualizer:
     def _apply_state_to_board(self, board: Board):
         """Apply roads and buildings from JSON state to the board."""
 
+           #TRYING TO DEBUG
         # For buildings
-        for building_data in self.state_data.get("buildings", []):
-            node_id = building_data["node"]
-            color = self._parse_color(building_data["owner"])
-            building_type = building_data["type"]
+        #for building_data in self.state_data.get("buildings", []):
+            #node_id = building_data["node"]
+            #color = self._parse_color(building_data["owner"])
+            #building_type = building_data["type"]
 
-            if building_type == "SETTLEMENT":
-                board.build_settlement(
-                    color,
-                    node_id,
-                    initial_build_phase=True
-                )
-            elif building_type == "CITY":
+            #if building_type == "SETTLEMENT":
+                #board.build_settlement(
+                    #color,
+                    #node_id,
+                    #initial_build_phase=True
+                #)
+            #elif building_type == "CITY":
                 # Note: build_city assumes a settlement already exists there
                 # For visualization from JSON, we need to build settlement first
-                board.build_settlement(color, node_id, initial_build_phase=True)
-                board.build_city(color, node_id)
-            else:
-                raise ValueError(f"Unknown building type: {building_type}")
+                #board.build_settlement(color, node_id, initial_build_phase=True)
+                #board.build_city(color, node_id)
+            #else:
+                #raise ValueError(f"Unknown building type: {building_type}")
+
+        # For buildings
+        for building_data in self.state_data.get("buildings", []):
+            try:
+                node_id = building_data["node"]
+                color = self._parse_color(building_data["owner"])
+                building_type = building_data["type"]
+
+                if building_type == "SETTLEMENT":
+                    board.build_settlement(
+                        color,
+                        node_id,
+                        initial_build_phase=True
+                    )
+
+                elif building_type == "CITY":
+                    # force settlement first
+                    board.build_settlement(
+                        color,
+                        node_id,
+                        initial_build_phase=True
+                    )
+
+                    # try upgrading to city (ignore failure)
+                    try:
+                        board.build_city(color, node_id)
+                    except:
+                        pass
+
+            except Exception as e:
+                print(f"Skipping invalid building at node {node_id}: {e}")
+
 
         # For roads
         for road_data in self.state_data.get("roads", []):

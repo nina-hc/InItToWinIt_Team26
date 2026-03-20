@@ -51,16 +51,24 @@ public class City implements Building {
 	@Override
 	public int getResourceMultiplier() { return 2;	}
 
+    /**
+     * Getter to retrieve the victory point value for the building type
+     * Cities are worth 2 victory points
+     *
+     * @return 2, for 2 victory points
+     */
 	@Override
 	public int getVictoryPointValue() {
 		return 2;
 	}
 
+    /**
+     * Getter to retrieve the node that the city is being placed on
+     *
+     * @return node
+     */
 	@Override
 	public Node getNode() {
 		return node;
 	}
-
-
-
 }

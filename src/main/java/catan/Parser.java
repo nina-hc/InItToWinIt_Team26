@@ -13,22 +13,34 @@ import java.util.regex.Pattern;
  */
 public class Parser {
 
-    //Pattern for "roll" command
+    /**
+     * Pattern for "roll" command
+     */
     private static final Pattern ROLL = Pattern.compile("^roll$");
 
-    //Pattern for "go" command
+    /**
+     * Pattern for "go" command
+     */
     private static final Pattern GO = Pattern.compile("^go$");
 
-    //Pattern for "list" command
+    /**
+     * Pattern for "list" command
+     */
     private static final Pattern LIST = Pattern.compile("^list$");
 
-    //Pattern for "build settlement <nodeId>"
+    /**
+     * Pattern for "build settlement <nodeId>"
+     */
     private static final Pattern BUILD_SETTLEMENT = Pattern.compile("^build\\s+settlement\\s+(\\d+)$");
 
-    //Pattern for "build city <nodeId>"
+    /**
+     * Pattern for "build city <nodeId>"
+     */
     private static final Pattern BUILD_CITY = Pattern.compile("^build\\s+city\\s+(\\d+)$");
 
-    //Pattern for "build road <fromNodeId>, <toNodeId>"
+    /**
+     * Pattern for "build road <fromNodeId>, <toNodeId>"
+     */
     private static final Pattern BUILD_ROAD = Pattern.compile("^build\\s+road\\s+(\\d+)\\s*,\\s*(\\d+)$");
 
 

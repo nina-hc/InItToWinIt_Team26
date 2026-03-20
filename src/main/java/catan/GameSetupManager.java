@@ -1,6 +1,7 @@
 package catan;
 /**
- * Responsible for doing the setup phase of the game
+ * GameSetupManager is responsible for doing the setup phase of the game.
+ *
  * @author Marva Hassan
  * @version February 2026, McMaster University
  */

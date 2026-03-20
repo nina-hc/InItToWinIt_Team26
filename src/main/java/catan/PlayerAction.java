@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * playerAction handles one full simulated turn for a player tries to build as
+ * PlayerAction handles one full simulated turn for a player tries to build as
  * much as possible in a single turn
  * 
  * @author Marva Hassan
@@ -12,10 +12,29 @@ import java.util.List;
  */
 public class PlayerAction {
 
+    /**
+     * Player that is taking an action
+     */
 	private final Player player;
-	private final Board board;
-	private final Randomizer randomizer;
-	private final Bank bank;
+
+    /**
+     * Game board
+     */
+    private final Board board;
+
+    /**
+     * Randomizer used to generate random moves
+     */
+    private final Randomizer randomizer;
+
+    /**
+     * Bank that's in charge of managing resources
+     */
+    private final Bank bank;
+
+    /**
+     * In charge of determining if placements are valid
+     */
 	private final PlacementValidator placementValidator;
 
 	/**
@@ -36,7 +55,7 @@ public class PlayerAction {
 	}
 
 	/**
-	 * execute one full turn for the player attempts to build as much as possible
+	 * Execute one full turn for the player attempts to build as much as possible
 	 * each turn
 	 */
 	public void executeTurn() {
@@ -84,7 +103,7 @@ public class PlayerAction {
     }
 
 	/**
-	 * determine builds player can afford and place
+	 * Determine builds player can afford and place
 	 * 
 	 * @return list of build actions
 	 */

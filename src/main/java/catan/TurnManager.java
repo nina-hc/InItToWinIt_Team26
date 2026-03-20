@@ -8,8 +8,6 @@ public class TurnManager {
     private Randomizer randomizer;
     private Bank bank;
     private PlacementValidator placementValidator;
-    private Player longestRoadHolder = null;
-    private int longestRoadLength = 0;
 
     private Robber robber;
 
@@ -49,6 +47,9 @@ public class TurnManager {
         boolean gameOver = false;
         int roundNumber = 0;
 
+        //initial update VP at the start of the game
+        VictoryPointConditions.updateLongestRoad(players, board);
+
         while (!gameOver && roundNumber < maxRounds) {
             roundNumber++;
 
@@ -75,13 +76,13 @@ public class TurnManager {
                     action.executeTurn();
                 }
 
-                //Update Longest Road after player builds
-                updateLongestRoad();
+                //Update Longest Road after player action
+                VictoryPointConditions.updateLongestRoad(players, board);
 
                 //Now check win condition
-                if (player.getVictoryPoints() >= 10) {
+                if (player.getVictoryPoints(board) >= 10) {
                     gameOver = true;
-                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + player.getVictoryPoints() + " VPs!");
+                    System.out.println("[Player " + player.getPlayerID() + "]: wins with " + player.getVictoryPoints(board) + " VPs!");
                     return player;
                 }
 
@@ -98,42 +99,43 @@ public class TurnManager {
     }
 
 
-    /**
-     * method to update the longest road at the end of each turn
-     *
-     */
-    private void updateLongestRoad() {
-
-        Player newHolder = null;
-        int maxLength = 0;
-
-        //Finds the player with the longest road of >=5
-        for (Player player : players) {
-            VictoryPointConditions vp = new VictoryPointConditions(player, board);
-            int length = vp.getLongestRoad();
-
-            if (length >= 5 && length > maxLength) {
-                maxLength = length;
-                newHolder = player;
-            }
-        }
-
-        //If someone beats the current holder
-        if (newHolder != null && newHolder != longestRoadHolder) {
-
-            //Remove 2 VP from previous holder
-            if (longestRoadHolder != null) {
-                longestRoadHolder.addVictoryPoints(-2);
-            }
-
-            //sets the new holder
-            longestRoadHolder = newHolder;
-            longestRoadLength = maxLength;
-
-            //Award 2 VP to new holder
-            newHolder.addVictoryPoints(2);
-        }
-    }
+    //DEBUGGING VP
+//    /**
+//     * method to update the longest road at the end of each turn
+//     *
+//     */
+//    private void updateLongestRoad() {
+//
+//        Player newHolder = null;
+//        int maxLength = 0;
+//
+//        //Finds the player with the longest road of >=5
+//        for (Player player : players) {
+//            VictoryPointConditions vp = new VictoryPointConditions(player, board);
+//            int length = vp.getLongestRoad();
+//
+//            if (length >= 5 && length > maxLength) {
+//                maxLength = length;
+//                newHolder = player;
+//            }
+//        }
+//
+//        //If someone beats the current holder
+//        if (newHolder != null && newHolder != longestRoadHolder) {
+//
+//            //Remove 2 VP from previous holder
+//            if (longestRoadHolder != null) {
+//                longestRoadHolder.addVictoryPoints(-2);
+//            }
+//
+//            //sets the new holder
+//            longestRoadHolder = newHolder;
+//            longestRoadLength = maxLength;
+//
+//            //Award 2 VP to new holder
+//            newHolder.addVictoryPoints(2);
+//        }
+//    }
 
 
 
@@ -144,17 +146,27 @@ public class TurnManager {
      */
     public void printScoreBoard(int roundNumber) {
         System.out.print("\n[" + roundNumber + "] Scoreboard: ");
+
         for (Player player : players) {
-            VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
-            System.out.print("Player" + player.getPlayerID() + " = " + vpCheck.calculateVictoryPoints() + " | ");        }
+            int vp = player.getVictoryPoints(board);
+            System.out.print("Player" + player.getPlayerID() + " = " + vp + " | ");
+        }
         System.out.println("\n");
+
+
+
+
+//            //VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
+//            if (vpCheck.calculateVictoryPoints() >= 10) {
+//                System.out.print("Player" + player.getPlayerID() + " = " + vpCheck.calculateVictoryPoints() + " | ");
+//            }
+//        }
+//        System.out.println("\n");
     }
 
-
-
-
-
 }
+
+
 
 
 
