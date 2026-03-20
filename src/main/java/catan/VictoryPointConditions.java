@@ -18,6 +18,10 @@ public class VictoryPointConditions {
 	private Player player; // the current player that is getting their victory points calculated
 	private Board board; // the game board
 
+    //neew variables to track one player who has the longest road
+    private static Player currentLongestRoadHolder = null;
+    private static int currentLongestRoadLength = 0;
+
 	/**
 	 * Constructor
 	 *
@@ -81,18 +85,60 @@ public class VictoryPointConditions {
 	 * @return 2 victory points if the longest road >= 5 segments
 	 */
 	public int getLongestRoad() {
-
-
-        int longest = findLongestRoad();
-
-        if (longest >= 5) {
+        //only award points if this player is the current holder
+        if (this.player.equals(currentLongestRoadHolder) && getPlayerRoadLength() >= 5) {
             return 2; // 2 VP if at least 5 roads
         }
         return 0; // otherwise 0 VP
-
-
-
 	}
+
+    //new methods for vp debug:
+
+    /**
+     * Gets the road length for this player
+     * Used to determine who has the longest road
+     *
+     * @return number of connected road segments in th player's longest road
+     */
+    public int getPlayerRoadLength() {
+        return findLongestRoad();
+    }
+
+    /**
+     * Updates the longest road holder based on all players current longest roads
+     * This shoud be called after any road placement
+     *
+     * @param players all players in the game
+     * @param board game board
+     */
+    public static void updateLongestRoad(Player[] players, Board board) {
+        Player newHolder = null;
+        int newMaxLength = 0;
+
+        //find player with longest road(min 5)
+        for (Player p : players) {
+            VictoryPointConditions vpCheck = new VictoryPointConditions(p, board);
+            int length = vpCheck.getPlayerRoadLength();
+
+            if(length >= 5 && length > newMaxLength) {
+                newMaxLength = length;
+                newHolder = p;
+            }
+        }
+
+        //update states
+        currentLongestRoadHolder = newHolder;
+        currentLongestRoadLength = newMaxLength;
+    }
+
+    /**
+     * Getter for the longest road holder
+     *
+     * @return player with the longest road
+     */
+    public static Player getCurrentLongestRoadHolder() {
+        return currentLongestRoadHolder;
+    }
 
 	/**
 	 * Finds the longest road calculation for a player

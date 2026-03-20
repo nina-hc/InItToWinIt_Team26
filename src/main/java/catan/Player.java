@@ -30,7 +30,8 @@ public class Player {
 	private final List<Settlement> playerSettlements;
 	private final List<City> playerCities;
 
-    private int victoryPoints = 0; // Tracks the player's victory points
+    //DEBUGGING VP
+    //private int victoryPoints = 0; // Tracks the player's victory points
 	/**
 	 * Constructor
 	 * 
@@ -142,16 +143,25 @@ public class Player {
 
 	}
 
-    //Add victory points
-    public void addVictoryPoints(int points) {
-        this.victoryPoints += points;
-        if (this.victoryPoints < 0) this.victoryPoints = 0; // prevent negative VP
+    //DEBUGGING VP
+//    //Add victory points
+//    public void addVictoryPoints(int points) {
+//        this.victoryPoints += points;
+//        if (this.victoryPoints < 0) this.victoryPoints = 0; // prevent negative VP
+//    }
+
+    //DEBUGGING VP
+//    //Get current victory points
+//    public int getVictoryPoints() {
+//        return victoryPoints;
+//    }
+    //IM GOING TO MAKE A DIFF METHOD FOR GETTING VP
+
+    public int getVictoryPoints(Board board) {
+        VictoryPointConditions vpCheck = new VictoryPointConditions(this, board);
+        return vpCheck.calculateVictoryPoints();
     }
 
-    //Get current victory points
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
 
 
     public void removeSettlement(Settlement settlement) {
