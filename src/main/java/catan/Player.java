@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Class for the player object
- * 
+ *
  * @author Nina Hay Cooper
  * @version February 2026, McMaster University
  *
@@ -17,141 +17,151 @@ import java.util.List;
  *
  */
 public class Player {
-	private final int playerID;//player ID doesn't change
-	private final ResourceHand resourceHand;//their resource hand doesn't change
+    private final int playerID;//player ID doesn't change
+    private final ResourceHand resourceHand;//their resource hand doesn't change
 
-	/* Player Build Capacities */
-	private static final int maxRoads = 15;
-	private static final int maxSettlements = 5;
-	private static final int maxCities = 4;
+    /* Player Build Capacities */
+    private static final int maxRoads = 15;
+    private static final int maxSettlements = 5;
+    private static final int maxCities = 4;
 
-	/* Track the Players Builds */
-	private final List<Road> playerRoads;
-	private final List<Settlement> playerSettlements;
-	private final List<City> playerCities;
+    /* Track the Players Builds */
+    private final List<Road> playerRoads;
+    private final List<Settlement> playerSettlements;
+    private final List<City> playerCities;
 
-    private int victoryPoints = 0; // Tracks the player's victory points
-	/**
-	 * Constructor
-	 * 
-	 * @param playerID player ID from game
-	 */
-	public Player(int playerID) {
-		this.playerID = playerID;
-		this.resourceHand = new ResourceHand();
-		this.playerRoads = new ArrayList<>();
-		this.playerSettlements = new ArrayList<>();
-		this.playerCities = new ArrayList<>();
-	}
+    //DEBUGGING VP
+    //private int victoryPoints = 0; // Tracks the player's victory points
+    /**
+     * Constructor
+     *
+     * @param playerID player ID from game
+     */
+    public Player(int playerID) {
+        this.playerID = playerID;
+        this.resourceHand = new ResourceHand();
+        this.playerRoads = new ArrayList<>();
+        this.playerSettlements = new ArrayList<>();
+        this.playerCities = new ArrayList<>();
+    }
 
-	/* Getters for player board buildings */
-	public List<Road> getPlayerRoads() {
-		return playerRoads;
-	}
+    /* Getters for player board buildings */
+    public List<Road> getPlayerRoads() {
+        return playerRoads;
+    }
 
-	public List<Settlement> getPlayerSettlements() {
-		return playerSettlements;
-	}
+    public List<Settlement> getPlayerSettlements() {
+        return playerSettlements;
+    }
 
-	public List<City> getPlayerCities() {
-		return playerCities;
-	}
+    public List<City> getPlayerCities() {
+        return playerCities;
+    }
 
-	/**
-	 * Get the build supplies, buildings not used yet The max - their current number
-	 */
+    /**
+     * Get the build supplies, buildings not used yet The max - their current number
+     */
 
-	public int getPlayerRoadsLeft() {
-		// Need to verify size edge cases for when there's nothing in there
-		return maxRoads - playerRoads.size();// size is the number of elements
-	}
+    public int getPlayerRoadsLeft() {
+        // Need to verify size edge cases for when there's nothing in there
+        return maxRoads - playerRoads.size();// size is the number of elements
+    }
 
-	public int getPlayerSettlementsLeft() {
-		return maxSettlements - playerSettlements.size();
-	}
+    public int getPlayerSettlementsLeft() {
+        return maxSettlements - playerSettlements.size();
+    }
 
-	public int getPlayerCitiesLeft() {
-		return maxCities - playerCities.size();
-	}
+    public int getPlayerCitiesLeft() {
+        return maxCities - playerCities.size();
+    }
 
-	/* get playerID */
-	public int getPlayerID() {
-		return playerID;
-	}
-	/* get player resource hand */
-	public ResourceHand getResourceHand() {
-		return resourceHand;
-	}
+    /* get playerID */
+    public int getPlayerID() {
+        return playerID;
+    }
+    /* get player resource hand */
+    public ResourceHand getResourceHand() {
+        return resourceHand;
+    }
 
-	/*---Adding the builds to the player, not to the board---*/
-	/**
-	 * Add road to player
-	 * 
-	 * @param road road being added
-	 */
-	public void playerAddRoad(Road road) {
-		if (getPlayerRoadsLeft() <= 0) {
-			throw new IllegalStateException("Error: The player "+playerID+ " has no roads left");
-		}
-		playerRoads.add(road);
+    /*---Adding the builds to the player, not to the board---*/
+    /**
+     * Add road to player
+     *
+     * @param road road being added
+     */
+    public void playerAddRoad(Road road) {
+        if (getPlayerRoadsLeft() <= 0) {
+            throw new IllegalStateException("Error: The player "+playerID+ " has no roads left");
+        }
+        playerRoads.add(road);
 
-	}
+    }
 
-	/**
-	 * Add settlement to player
-	 * 
-	 * @param settlement settlement being added
-	 */
-	public void playerAddSettlement(Settlement settlement) {
-		if (getPlayerSettlementsLeft() <= 0) {
-			throw new IllegalStateException("Error: The player "+ playerID+ " has no settlements left");
-		}
-		playerSettlements.add(settlement);
-	}
+    /**
+     * Add settlement to player
+     *
+     * @param settlement settlement being added
+     */
+    public void playerAddSettlement(Settlement settlement) {
+        if (getPlayerSettlementsLeft() <= 0) {
+            throw new IllegalStateException("Error: The player "+ playerID+ " has no settlements left");
+        }
+        playerSettlements.add(settlement);
+    }
 
-	/**
-	 * Records upgrading to a city for a player
-	 * 
-	 * @param targetNode the nodID where the city would like to be placed
-	 * @param cityPlaced              the city being placed
-	 */
-	public void playerUpgradeToCity(Node targetNode, City cityPlaced) {
-		//if the player has no cities left to place
-		if (getPlayerCitiesLeft() <= 0) {
-			throw new IllegalStateException("Error: The player "+playerID+ " has no cities left");
-		}
+    /**
+     * Records upgrading to a city for a player
+     *
+     * @param targetNode the nodID where the city would like to be placed
+     * @param cityPlaced              the city being placed
+     */
+    public void playerUpgradeToCity(Node targetNode, City cityPlaced) {
+        //if the player has no cities left to place
+        if (getPlayerCitiesLeft() <= 0) {
+            throw new IllegalStateException("Error: The player "+playerID+ " has no cities left");
+        }
 		/*initialize variable to store the settlement we want to remove, if it exists. Using the nodeID prevents the
 		weaker object comparing*/
-		Settlement settlementToRemove = null;
-		/*search for the settlement on the target nodeID (again, if it exists)*/
-		for (Settlement s : playerSettlements) {
-			//if we get a match, break out of the loop
-			if(s.getNode()== targetNode){
-				settlementToRemove = s;
-				break;
-			}
-		}
-		/*if after looking it's still null*/
-		if (settlementToRemove == null) {
-			throw new IllegalArgumentException("Error: player "+playerID+" has no settlement at Node "+ targetNode +
-					"to upgrade");
-		}
-		/* Otherwise, remove settlement and add city for player */
-		playerSettlements.remove(settlementToRemove);
-		playerCities.add(cityPlaced);
+        Settlement settlementToRemove = null;
+        /*search for the settlement on the target nodeID (again, if it exists)*/
+        for (Settlement s : playerSettlements) {
+            //if we get a match, break out of the loop
+            if(s.getNode()== targetNode){
+                settlementToRemove = s;
+                break;
+            }
+        }
+        /*if after looking it's still null*/
+        if (settlementToRemove == null) {
+            throw new IllegalArgumentException("Error: player "+playerID+" has no settlement at Node "+ targetNode +
+                    "to upgrade");
+        }
+        /* Otherwise, remove settlement and add city for player */
+        playerSettlements.remove(settlementToRemove);
+        playerCities.add(cityPlaced);
 
-	}
-
-    //Add victory points
-    public void addVictoryPoints(int points) {
-        this.victoryPoints += points;
-        if (this.victoryPoints < 0) this.victoryPoints = 0; // prevent negative VP
     }
 
-    //Get current victory points
-    public int getVictoryPoints() {
-        return victoryPoints;
+    //DEBUGGING VP
+//    //Add victory points
+//    public void addVictoryPoints(int points) {
+//        this.victoryPoints += points;
+//        if (this.victoryPoints < 0) this.victoryPoints = 0; // prevent negative VP
+//    }
+
+    //DEBUGGING VP
+//    //Get current victory points
+//    public int getVictoryPoints() {
+//        return victoryPoints;
+//    }
+    //IM GOING TO MAKE A DIFF METHOD FOR GETTING VP
+
+    public int getVictoryPoints(Board board) {
+        VictoryPointConditions vpCheck = new VictoryPointConditions(this, board);
+        return vpCheck.calculateVictoryPoints();
     }
+
 
 
     public void removeSettlement(Settlement settlement) {
