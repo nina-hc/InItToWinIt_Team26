@@ -6,6 +6,9 @@ package catan;
  *
  * @author Synthia Rosenberger
  * @version February 2026, McMaster University
+ *
+ * implement Command Pattern
+ * @author Serene Abou Sharaf
  */
 public class Node {
 
@@ -104,6 +107,40 @@ public class Node {
 		this.building = city;
 
 	}
+
+    /** Removes the settlement or city from this node */
+    public void removeSettlement() {
+        if (building instanceof Settlement) {
+            building = null;
+        } else {
+            throw new IllegalStateException("No settlement to remove at Node " + nodeID);
+        }
+    }
+
+    /** Removes the city from this node */
+    public void removeCity() {
+        if (building instanceof City) {
+            building = null;
+        } else {
+            throw new IllegalStateException("No city to remove at Node " + nodeID);
+        }
+    }
+
+    /** Returns the settlement on this node, or null if not present */
+    public Settlement getSettlement() {
+        if (building instanceof Settlement) {
+            return (Settlement) building;
+        }
+        return null;
+    }
+
+    /** Returns the city on this node, or null if not present */
+    public City getCity() {
+        if (building instanceof City) {
+            return (City) building;
+        }
+        return null;
+    }
 
 
 }

@@ -131,4 +131,19 @@ public class BuildSettlement extends Build {
 		System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + node.getNodeID());
 	}
 
+
+    @Override
+    protected void undoBuild(Object placement) {
+        Node node = (Node) placement;
+
+        Settlement settlement = node.getSettlement(); // assume you can get it
+        if (settlement != null) {
+            node.removeSettlement();
+            player.removeSettlement(settlement);
+            player.getResourceHand().refundSettlement();
+        }
+
+        StateExporter.exportState(board);
+    }
+
 }

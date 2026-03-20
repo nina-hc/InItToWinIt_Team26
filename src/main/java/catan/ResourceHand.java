@@ -9,6 +9,10 @@ import java.util.*;
  * 
  * @author Nina Hay Cooper
  * @version February 2026, McMaster University
+ * @author Nina Hay Cooper February 13th 2026
+ *
+ * implemented Command Pattern
+ * @author Serene Abou Sharaf
  */
 public class ResourceHand {
 
@@ -269,4 +273,26 @@ public class ResourceHand {
 				resources.get(ResourceType.BRICK), resources.get(ResourceType.WOOL), resources.get(ResourceType.GRAIN),
 				resources.get(ResourceType.ORE));
 	}
+
+
+
+
+    //Refund methods for undo
+
+    public void refundRoad() {
+        addResource(ResourceType.LUMBER, 1);
+        addResource(ResourceType.BRICK, 1);
+    }
+
+    public void refundSettlement() {
+        addResource(ResourceType.LUMBER, 1);
+        addResource(ResourceType.BRICK, 1);
+        addResource(ResourceType.WOOL, 1);
+        addResource(ResourceType.GRAIN, 1);
+    }
+
+    public void refundCity() {
+        addResource(ResourceType.ORE, 3);
+        addResource(ResourceType.GRAIN, 2);
+    }
 }

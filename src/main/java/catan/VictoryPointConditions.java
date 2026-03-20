@@ -39,6 +39,7 @@ public class VictoryPointConditions {
 		return !player.getPlayerCities().isEmpty();
 	}
 
+
 	/**
 	 * Calculate the total victory points from settlements from a player
 	 *
@@ -80,22 +81,16 @@ public class VictoryPointConditions {
 	 * @return 2 victory points if the longest road >= 5 segments
 	 */
 	public int getLongestRoad() {
-//		int longestRoad = findLongestRoad();
-//
-//		if (longestRoad >= 5) {
-//			return 2;
-//		} else {
-//			return 0;
-//		}
 
 
         int longest = findLongestRoad();
+
         if (longest >= 5) {
             return 2; // 2 VP if at least 5 roads
         }
         return 0; // otherwise 0 VP
 
-        //return findLongestRoad();
+
 
 	}
 

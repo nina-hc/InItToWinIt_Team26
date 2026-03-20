@@ -128,4 +128,6 @@ public abstract class Build {
 
         return true;
     }
+
+    protected abstract void undoBuild(Object placement);
 }
