@@ -85,7 +85,11 @@ public class DistributeResources {
 				int receivedFromBank = building.getResourceMultiplier();
 				if(receivedFromBank >0){
                     int amountGiven = bank.transferToPlayer(resource, receivedFromBank);
-                    owner.getResourceHand().addResource(resource, amountGiven);
+
+                    if (amountGiven > 0) {
+                        owner.getResourceHand().addResource(resource, amountGiven);
+                    }
+
 				}
 			}
 		}
