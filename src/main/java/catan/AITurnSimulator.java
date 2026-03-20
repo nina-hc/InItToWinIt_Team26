@@ -7,7 +7,7 @@ package catan;
  *
  * @author Marva Hassan
  */
-public class PlayerAction {
+public class AITurnSimulator {
 
     private final Player player;
     private final Board board;
@@ -18,9 +18,9 @@ public class PlayerAction {
     /**
      * Constructor initializes required game components.
      */
-    public PlayerAction(Player player, Board board,
-                        Randomizer randomizer, Bank bank,
-                        PlacementValidator placementValidator) {
+    public AITurnSimulator(Player player, Board board,
+                           Randomizer randomizer, Bank bank,
+                           PlacementValidator placementValidator) {
 
         this.player = player;
         this.board = board;
@@ -47,7 +47,7 @@ public class PlayerAction {
             StrategyEvaluator bestStrategy =
                     chooser.chooseBestStrategy(player, board, bank, placementValidator);
 
-            System.out.println("Best score found: " + chooser.getBestValue());
+            System.out.println("Best strategy value: " + chooser.getBestValue());
 
             if (bestStrategy == null) {
                 if (!actionTaken) {

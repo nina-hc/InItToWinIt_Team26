@@ -59,7 +59,7 @@ public class TurnManager {
                         robber.executeSevenRoll(board, bank, players, player);
                     }
                     /*Call player actions */
-                    PlayerAction action = new PlayerAction(player, board, randomizer, bank, placementValidator);
+                    AITurnSimulator action = new AITurnSimulator(player, board, randomizer, bank, placementValidator);
                     action.executeTurn();
                 }
 

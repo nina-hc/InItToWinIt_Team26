@@ -2,7 +2,6 @@ package catan;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +18,7 @@ class PlayerActionTest {
     private Player player;
     private Bank bank;
     private PlacementValidator validator;
-    private PlayerAction action;
+    private AITurnSimulator action;
 
     @BeforeEach
     void setUp() {
@@ -29,7 +28,7 @@ class PlayerActionTest {
         validator = new PlacementValidator(board);
 
         // deterministic "randomizer" that always chooses first build
-        action = new PlayerAction(player, board, new Randomizer() {
+        action = new AITurnSimulator(player, board, new Randomizer() {
             @Override
             public int randomSelection(int min, int max) {
                 return 0; // always pick first available build
