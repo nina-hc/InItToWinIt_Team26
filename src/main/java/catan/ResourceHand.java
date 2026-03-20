@@ -237,39 +237,13 @@ public class ResourceHand {
 		return total;
 	}
 
-    /**
-     * Discard a given number of resources at random (for 7-card rule)
-     * @param count number of cards to discard
-     */
-    public void discardRandom(int count) {
-        if (count <= 0) return;
-
-        List<ResourceType> typesWithCards = new ArrayList<>();
-        for (Map.Entry<ResourceType, Integer> entry : resources.entrySet()) {
-            for (int i = 0; i < entry.getValue(); i++) {
-                typesWithCards.add(entry.getKey());
-            }
-        }
-
-        if (count > typesWithCards.size()) {
-            throw new IllegalArgumentException("Cannot discard more cards than the player has.");
-        }
-
-        for (int i = 0; i < count; i++) {
-            int index = random.nextInt(typesWithCards.size());
-            ResourceType selected = typesWithCards.remove(index); // remove from list
-            resources.put(selected, resources.get(selected) - 1); // remove from hand
-        }
-    }
-
-
 
 	/**
 	 * TO String Method
 	 * 
 	 */
 	public String toString() {
-		return String.format("Lumber:%d Brick:%d Wool:%d Grain:%d Ore:%d", resources.get(ResourceType.LUMBER),
+		return String.format("Lumber: %d, Brick: %d, Wool: %d, Grain: %d, Ore: %d", resources.get(ResourceType.LUMBER),
 				resources.get(ResourceType.BRICK), resources.get(ResourceType.WOOL), resources.get(ResourceType.GRAIN),
 				resources.get(ResourceType.ORE));
 	}
