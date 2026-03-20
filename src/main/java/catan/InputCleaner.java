@@ -5,6 +5,7 @@ package catan;
  * Removes extra spaces and converts input to lowercase for parsing.
  *
  * @author Marva Hassan
+ * @version March 2026, McMaster University
  */
 public class InputCleaner {
 

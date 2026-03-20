@@ -8,12 +8,13 @@ import java.util.List;
  * Class for the player object
  * 
  * @author Nina Hay Cooper
- * 
+ * @version February 2026, McMaster University
+ *
  *         February 13th 2026
  *
  * implemented Command Pattern
  * @author Serene Abou Sharaf
- * 
+ *
  */
 public class Player {
 	private final int playerID;//player ID doesn't change

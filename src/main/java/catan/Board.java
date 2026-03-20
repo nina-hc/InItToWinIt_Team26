@@ -30,10 +30,17 @@ public class Board {
 	 */
 	private final Node[] nodes;
 
+    /**
+     * Edges array to hold edge objects
+     */
 	private final Edge[] edges;
 
-
+    /**
+     * Players array to hold player objects
+     */
     private List<Player> players;
+
+
 
 	// ================================================================================
 	// METHODS
@@ -64,8 +71,6 @@ public class Board {
 	 * Node's neighbors, and assigning Nodes to Tiles
 	 */
 	private void constructTiles() {
-
-
 
 		// **************************************
 		// FOR TILES
@@ -117,10 +122,25 @@ public class Board {
 
 	}
 
+    // **************************************
+    //GETTERS
+    // **************************************
+
+    /**
+     * Getter for players
+     *
+     * @return players
+     */
     public List<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Method to get players by their ID
+     *
+     * @param ownerID playerID
+     * @return playerID
+     */
     public Player getPlayerByID(int ownerID) {
         for(Player player : players) {
             if (player.getPlayerID() == ownerID) {
@@ -130,6 +150,12 @@ public class Board {
         return null;
     }
 
+    /**
+     * Method to get players adjacent to a tile
+     *
+     * @param tile tile that you're looking at
+     * @return players that have some sort of building on it
+     */
     public List<Player> getPlayersAdjacentToTile(Tile tile) {
 
         List<Player> adjacentPlayers = new ArrayList<>();
@@ -150,6 +176,112 @@ public class Board {
 
     }
 
+    /**
+     * Getter for Node objects
+     *
+     * @param nodeID ID number to reference Node objects
+     * @return nodeID
+     */
+    public Node getNode(int nodeID) {
+        return nodes[nodeID];
+    }
+
+    /**
+     * To retrieve a Tile object
+     *
+     * @param tileID ID number used to reference Tile objects
+     * @return tile
+     */
+    public Tile getTile(int tileID) {
+        return tiles[tileID];
+    }
+
+    /**
+     * To retrieve edges
+     *
+     * @return board edges
+     */
+    public Edge[] getAllEdges(){
+        return edges;
+    }
+
+    /**
+     * To retrive tiles
+     *
+     * @return tile objects
+     */
+    public Tile[] getAllTiles(){
+        return tiles;
+    }
+
+    /**
+     * To retrieve the nodes
+     *
+     * @return board nodes
+     */
+    public Node[] getAllNodes(){
+        return nodes;
+    }
+
+
+    /**
+     * Gets the adjacent edges, utilizes the edge class to essentially check the shared end points which is what the
+     * matrix did
+     *
+     * @param node the node you are checking adjacency for
+     * @return the edges that are adjacent
+     */
+    public List<Edge> getAdjacentEdges(Node node) {
+        List<Edge> adjacentEdges = new ArrayList<>();
+        for(Edge edge : edges){
+            //if the edge shares a node its adjacent
+            if(edge.sharesNode(node)){
+                adjacentEdges.add(edge);
+            }
+        }
+        return adjacentEdges;
+    }
+
+
+    /**
+     * Gets the edge between two nodes
+     *
+     * @param nodeAID the first node
+     * @param nodeBID the second node
+     * @return the edge if there is one, or null if there is not
+     */
+    public Edge getEdgeBetweenNodes(int nodeAID, int nodeBID) {
+        /*going through the edges to check for a match*/
+        for (Edge edge : edges) {
+            /*getting the two IDs stored in the actual edges*/
+            int nodeOneID = edge.getNodeA().getNodeID();
+            int nodeTwoID = edge.getNodeB().getNodeID();
+
+            /*if the nodeIDs match up to an edge, return the edge*/
+            //one way to match
+            if((nodeOneID == nodeAID)&&(nodeTwoID == nodeBID)){
+                return edge;
+
+            }
+            //second way
+            if((nodeOneID == nodeBID)&&(nodeTwoID == nodeAID)){
+                return edge;
+            }
+        }
+        //otherwise return null
+        return null;
+
+    }
+
+
+    // **************************************
+
+
+    /**
+     * Method to construct edges on the board
+     *
+     * @return edges the constructed edges
+     */
 	private Edge[] constructEdges(){
 		// **************************************
 		// NODE NEIGHBORS
@@ -228,20 +360,12 @@ public class Board {
 		return edgeList.toArray(new Edge[0]);
 	}
 
-	// **************************************
-	// BUILDINGS
-	// **************************************
 
-	//nodes know where the buildings are and the nodes are on the board
-
-	// **************************************
-	// ROADS
-	// **************************************
-
+	// ********ROADS**********
 	/**
-	 * Method used to update the occupancy matrix when a Road is placed
+	 * Method used to place roads
 	 *
-	 * @param nodeOneID
+	 * @param nodeOneID ID number to reference first Node object
 	 * @param nodeTwoID ID number to reference second Node object
 	 * @param playerID  ID number to reference player object
 	 * @return road object that is placed
@@ -272,90 +396,11 @@ public class Board {
 		edge.placeRoad(road);
 		return road;
 	}
-	// **************************************
-	// OTHERS
-	// **************************************
-
-	/**
-	 * Getter for Node objects
-	 *
-	 * @param nodeID ID number to reference Node objects
-	 * @return nodeID
-	 */
-	public Node getNode(int nodeID) {
-		return nodes[nodeID];
-	}
-
-	/**
-	 * To retrieve a Tile object
-	 *
-	 * @param tileID ID number used to reference Tile objects
-	 * @return tile
-	 */
-	public Tile getTile(int tileID) {
-		return tiles[tileID];
-	}
-
-	public Edge[] getAllEdges(){
-		return edges;
-	}
-
-	public Tile[] getAllTiles(){
-		return tiles;
-	}
-
-	public Node[] getAllNodes(){
-		return nodes;
-	}
-	/**
-	 * Gets the adjacent edges, utilizes the edge class to essentially check the shared end points which is what the
-	 * matrix did
-	 * @param node the node you are checking adjacency for
-	 * @return the edges that are adjacent
-	 */
-	public List<Edge> getAdjacentEdges(Node node) {
-		List<Edge> adjacentEdges = new ArrayList<>();
-		for(Edge edge : edges){
-			//if the edge shares a node its adjacent
-			if(edge.sharesNode(node)){
-				adjacentEdges.add(edge);
-			}
-		}
-		return adjacentEdges;
-	}
 
 
 	/**
-	 * Gets the edge between two nodes
-	 * @param nodeAID the first node
-	 * @param nodeBID the second node
-	 * @return the edge if there is one, or null if there is not
-	 */
-	public Edge getEdgeBetweenNodes(int nodeAID, int nodeBID) {
-		/*going through the edges to check for a match*/
-		for (Edge edge : edges) {
-			/*getting the two IDs stored in the actual edges*/
-			int nodeOneID = edge.getNodeA().getNodeID();
-			int nodeTwoID = edge.getNodeB().getNodeID();
-
-			/*if the nodeIDs match up to an edge, return the edge*/
-			//one way to match
-			if((nodeOneID == nodeAID)&&(nodeTwoID == nodeBID)){
-				return edge;
-
-			}
-			//second way
-			if((nodeOneID == nodeBID)&&(nodeTwoID == nodeAID)){
-				return edge;
-			}
-		}
-		//otherwise return null
-		return null;
-
-	}
-
-	/**
-	 * Check if two nodes are adjacent. This is the same functionality as the adjacency matrix
+	 * Check if two nodes are adjacent
+     *
 	 * @param nodeAID one of the nodes being checked
 	 * @param nodeBID the second node being checked
 	 * @return true if they are adjacent, false otherwise

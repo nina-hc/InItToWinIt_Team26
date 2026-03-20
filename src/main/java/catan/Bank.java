@@ -30,7 +30,7 @@ public class Bank {
 	private Map<ResourceType, Integer> bankResources;
 
 	/* the starting pre-defined max amount of cards per resource type*/
-	private static final int RESOURCE_CARD_MAX = 19; //don't love this name but for now
+	private static final int RESOURCE_CARD_MAX = 19;
 
 	/**
 	 * Bank constructor, constructs a Bank and stores 19 cards in each resource
@@ -100,10 +100,6 @@ public class Bank {
         if (amountWithdrawal < 0) {
             return 0;   //no resources given
         }
-
-//        if (!hasResources(resourceType, amountWithdrawal)) { // requesting a resource type that does not exist
-//            return 0; // no resources given
-//        }
 
 		int amountGiven = 0;
 		int amountOfResource = bankResources.get(resourceType); // check how many cards of THIS resource is available in

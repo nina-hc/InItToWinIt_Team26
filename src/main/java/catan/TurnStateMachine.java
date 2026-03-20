@@ -6,6 +6,11 @@ public class TurnStateMachine {
 	/*initialize state to the start state*/
 	private TurnState state = TurnState.START;
 
+    /**
+     * method to check if player input is a valid option happening in the correct order of moves
+     * @param command player input
+     * @return true or false depending if the move is valid
+     */
 	public boolean isValidOption(String command){
 		switch(state){
 			case START:

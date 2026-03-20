@@ -4,6 +4,7 @@ package catan;
  * Class to represent a road
  * 
  * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  */
 public class Road {
 	/* Attributes for Road */

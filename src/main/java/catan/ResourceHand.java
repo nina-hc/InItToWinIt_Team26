@@ -7,6 +7,8 @@ import java.util.*;
 /**
  * Class to manage a players resources
  * 
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  * @author Nina Hay Cooper February 13th 2026
  *
  * implemented Command Pattern
@@ -98,12 +100,11 @@ public class ResourceHand {
      * @return card/resource that was stolen from the victim
      */
     public ResourceType removeCardForSteal() {
-        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
-
-        if (removed.isEmpty()) {
+        if (totalPlayerCard() == 0) {
             return null;
         }
 
+        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
         return removed.get(0);
     }
 

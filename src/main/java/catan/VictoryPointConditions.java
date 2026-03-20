@@ -10,7 +10,7 @@ import java.util.*;
  * gained from settlements, cities and longest road.
  *
  * @author Serene Abou Sharaf
- * February 10, 2026
+ * @version February 2026, McMaster University
  *
  */
 public class VictoryPointConditions {
