@@ -10,7 +10,7 @@ import java.util.List;
  * action that was completed.
  * 
  * @author Serene Abou Sharaf
- * February 10, 2026
+ * @version February 2026, McMaster University
  */
 public class BuildSettlement extends Build {
 
@@ -29,6 +29,7 @@ public class BuildSettlement extends Build {
 
 	}
 
+
 	/**
 	 * Check if the player has enough resources and available settlement supply to
 	 * build a settlement
@@ -44,13 +45,11 @@ public class BuildSettlement extends Build {
 	}
 
 
-
 	/**
 	 * Generate a potential placement for the settlement
 	 * 
 	 * @return a Node object representing the chosen node for placement
 	 */
-	// generate a placement
 	@Override
 	protected Object generatePlacement() {
 
@@ -62,8 +61,6 @@ public class BuildSettlement extends Build {
             // pick random valid node
             return validNodes.get(randomizer.randomSelection(0, validNodes.size() - 1));
         }
-
-
 
 
 	/**
@@ -81,6 +78,7 @@ public class BuildSettlement extends Build {
         //use the placementValidator instead
         return placementValidator.canPlaceSettlement(node, player, false);
     }
+
 
 	/**
 	 * Executes the build operation . 1. It pays for the required resources 2.
@@ -107,11 +105,18 @@ public class BuildSettlement extends Build {
 
 	}
 
+
+    /**
+     * Method that allows for builds to happen
+     *
+     * @param placement building that is being placed
+     */
     public void build(Object placement) {
         if (canPlayerBuy() && validatePlacement(placement)) {
             doBuild(placement);
         }
     }
+
 
 	/**
 	 * Prints a message describing the build action
@@ -125,5 +130,20 @@ public class BuildSettlement extends Build {
 
 		System.out.println("Player " + player.getPlayerID() + " built a settlement at node " + node.getNodeID());
 	}
+
+
+    @Override
+    protected void undoBuild(Object placement) {
+        Node node = (Node) placement;
+
+        Settlement settlement = node.getSettlement(); // assume you can get it
+        if (settlement != null) {
+            node.removeSettlement();
+            player.removeSettlement(settlement);
+            player.getResourceHand().refundSettlement();
+        }
+
+        StateExporter.exportState(board);
+    }
 
 }

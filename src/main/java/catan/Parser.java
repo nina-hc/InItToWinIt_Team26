@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  * Uses regular expressions to validate and extract parameters.
  *
  * @author Marva Hassan
+ * @version March 2026, McMaster University
  */
 public class Parser {
 
@@ -38,17 +39,17 @@ public class Parser {
      * @param input The raw input string from the player
      * @return A Command object representing the parsed action, or an invalid command if parsing fails
      */
-    public Command parse(String input) {
+    public InputCommand parse(String input) {
 
         //Return invalid command if input is null
         if (input == null) {
-            return Command.invalid();
+            return InputCommand.invalid();
         }
 
         //Clean input string
         input = InputCleaner.cleaner(input);
 
-        Command cmd = new Command();
+        InputCommand cmd = new InputCommand();
 
         //Handle Roll
         if (ROLL.matcher(input).matches()) {
@@ -86,7 +87,7 @@ public class Parser {
                 return cmd;
             }
 
-            return Command.invalid();
+            return InputCommand.invalid();
         }
 
         //Handle Build City
@@ -115,11 +116,11 @@ public class Parser {
                 return cmd;
             }
 
-            return Command.invalid();
+            return InputCommand.invalid();
         }
 
         // No pattern matched
-        return Command.invalid();
+        return InputCommand.invalid();
     }
 
 }

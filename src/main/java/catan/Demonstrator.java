@@ -31,7 +31,7 @@ package catan;
  * victory points, OR - A predefined turn limit is reached
  *
  * @author Team 26
- * @version 1.0.0
+ * @version 1.0.0, February 2026, McMaster University
  */
 public class Demonstrator {
 

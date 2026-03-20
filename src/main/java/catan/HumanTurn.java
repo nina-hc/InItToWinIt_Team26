@@ -7,6 +7,10 @@ import java.util.Scanner;
  * and ending the turn. Enforces the rule that a player must roll before ending their turn.
  *
  * @author Marva Hassan
+ * @version March 2026, McMaster University
+ *
+ * implemented Command Design Pattern
+ * @author Serene Abou Sharaf
  */
 public class HumanTurn {
 
@@ -37,6 +41,7 @@ public class HumanTurn {
 	/*State machine for turn logic*/
 	private TurnStateMachine stateMachine = new TurnStateMachine();
 
+    private CommandManager commandManager = new CommandManager();
     /**
      * Constructs a HumanTurn instance with all required game components.
      *
@@ -72,7 +77,27 @@ public class HumanTurn {
 			String input = scanner.nextLine();
 
 			//Parse input into a Command object
-			Command cmd = parser.parse(input);
+			InputCommand cmd = parser.parse(input);
+
+            if ("undo".equalsIgnoreCase(cmd.type)) {
+                if (commandManager.canUndo()) {
+                    commandManager.undo();
+                    System.out.println("Undid last action.");
+                } else {
+                    System.out.println("Nothing to undo.");
+                }
+                continue;
+            }
+
+            if ("redo".equalsIgnoreCase(cmd.type)) {
+                if (commandManager.canRedo()) {
+                    commandManager.redo();
+                    System.out.println("Redid last undone action.");
+                } else {
+                    System.out.println("Nothing to redo.");
+                }
+                continue;
+            }
 
 			if(!cmd.valid){
 				System.out.println("Invalid command");
@@ -90,7 +115,7 @@ public class HumanTurn {
     }
 
 
-	private void execute(Command cmd) {
+	private void execute(InputCommand cmd) {
 		switch (cmd.type) {
 			case "Roll":
 				handleRoll();
@@ -129,7 +154,7 @@ public class HumanTurn {
      *
      * @param cmd The command containing build type and placement info
      */
-    public void handleBuild(Command cmd) {
+    public void handleBuild(InputCommand cmd) {
 
 
         //Handle settlement build
@@ -168,8 +193,9 @@ public class HumanTurn {
             }
 
             Build action = new BuildSettlement(player, board, randomizer, bank, placementValidator);
-            action.executeWithPlacement(node);
-
+            BuildCommand cmdBuild = new BuildCommand(action, node);
+            commandManager.executeCommand(cmdBuild);
+            // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] built settlement at node " + cmd.nodeId);
         }
 
@@ -202,8 +228,10 @@ public class HumanTurn {
 
 
             Build action = new BuildCity(player, board, randomizer, bank, placementValidator);
-            action.executeWithPlacement(node);
+            BuildCommand cmdBuild = new BuildCommand(action, node);
+            commandManager.executeCommand(cmdBuild);
 
+            // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] upgraded settlement to city at node " + cmd.nodeId);
         }
 
@@ -233,10 +261,11 @@ public class HumanTurn {
             }
 
             Build action = new BuildRoad(player, board, randomizer, bank, placementValidator);
-            action.executeWithPlacement(edge);
+            BuildCommand cmdBuild = new BuildCommand(action, edge);
+            commandManager.executeCommand(cmdBuild);
 
-            System.out.println("[Player " + player.getPlayerID() + "] built road between "
-                    + cmd.fromNodeId + " and " + cmd.toNodeId);
+            // print confirmation
+            System.out.println("[Player " + player.getPlayerID() + "] built road between " + cmd.fromNodeId + " and " + cmd.toNodeId);
         }
 
     }
