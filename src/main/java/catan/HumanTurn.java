@@ -7,6 +7,10 @@ import java.util.Scanner;
  * and ending the turn. Enforces the rule that a player must roll before ending their turn.
  *
  * @author Marva Hassan
+ * @version March 2026, McMaster University
+ *
+ * implemented Command Design Pattern
+ * @author Serene Abou Sharaf
  */
 public class HumanTurn {
 
@@ -34,6 +38,10 @@ public class HumanTurn {
     //Scanner for reading user input
     private Scanner scanner;
 
+	/*State machine for turn logic*/
+	private TurnStateMachine stateMachine = new TurnStateMachine();
+
+    private CommandManager commandManager = new CommandManager();
     /**
      * Constructs a HumanTurn instance with all required game components.
      *
@@ -44,7 +52,8 @@ public class HumanTurn {
      * @param placementValidator Validates placement of settlements/cities/roads
      * @param players All players in the game
      */
-    public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank, PlacementValidator placementValidator, Player[] players) {
+    public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank,
+                     PlacementValidator placementValidator, Player[] players) {
 
         this.player = player;
         this.board = board;
@@ -54,6 +63,7 @@ public class HumanTurn {
         this.players = players;
         this.parser = new Parser();
         this.scanner = new Scanner(System.in);
+
     }
 
     /**
@@ -62,64 +72,66 @@ public class HumanTurn {
      * Enforces that the player must roll before ending the turn.
      */
     public void executeHumanTurn() {
+		while(!stateMachine.isTurnDone()){
+			System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
+			String input = scanner.nextLine();
 
-        boolean turnActive = true;
-        boolean rolled = false; //tracks if player rolled this turn
+			//Parse input into a Command object
+			InputCommand cmd = parser.parse(input);
 
-        while (turnActive) {
-
-            System.out.print("[Player " + player.getPlayerID() + "]: Type in command > ");
-            String input = scanner.nextLine();
-
-            //Parse input into a Command object
-            Command cmd = parser.parse(input);
-
-            //If the command is invalid, notify player
-            if (!cmd.valid) {
-                System.out.println("Invalid command.");
+            if ("undo".equalsIgnoreCase(cmd.type)) {
+                if (commandManager.canUndo()) {
+                    commandManager.undo();
+                    System.out.println("Undid last action.");
+                } else {
+                    System.out.println("Nothing to undo.");
+                }
                 continue;
             }
 
-            //Handle Roll
-            if ("roll".equalsIgnoreCase(cmd.type)) {
-
-                if (rolled) {
-                    System.out.println("You already rolled this turn.");
+            if ("redo".equalsIgnoreCase(cmd.type)) {
+                if (commandManager.canRedo()) {
+                    commandManager.redo();
+                    System.out.println("Redid last undone action.");
                 } else {
-                    handleRoll(); //Execute roll logic
-                    rolled = true;
+                    System.out.println("Nothing to redo.");
                 }
+                continue;
             }
 
-            //Handle List
-            else if ("list".equalsIgnoreCase(cmd.type)) {
-                System.out.println(player.getResourceHand());
-            }
+			if(!cmd.valid){
+				System.out.println("Invalid command");
+				continue;
+			}
 
-            //Handle Build
-            else if ("build".equalsIgnoreCase(cmd.type)) {
-                if (!rolled) {
-                    System.out.println("You must roll before building.");
-                } else {
-                    handleBuild(cmd);
-                }
-            }
+			if(stateMachine.isValidOption(cmd.type)){
+				//use execute helper method
+				execute(cmd);
+				//go to next state if applicable
+				stateMachine.goToNextState(cmd.type);
+			}
 
-            //Handle Go (end turn)
-            else if ("go".equalsIgnoreCase(cmd.type)) {
-                if (!rolled) {
-                    System.out.println("You must roll before ending your turn.");
-                } else {
-                    turnActive = false; //End turn
-                }
-            }
-
-            //Unknown command fallback
-            else {
-                System.out.println("Unknown command.");
-            }
-        }
+		}
     }
+
+
+	private void execute(InputCommand cmd) {
+		switch (cmd.type) {
+			case "Roll":
+				handleRoll();
+				break;
+			case "List":
+				System.out.println(player.getResourceHand());
+				break;
+			case "Build":
+				handleBuild(cmd);
+				break;
+			case "Go":
+				break;
+			default:
+				System.out.println("Unknown command.");
+		}
+	}
 
     /**
      * Handles dice rolling for the current player.
@@ -142,7 +154,7 @@ public class HumanTurn {
      *
      * @param cmd The command containing build type and placement info
      */
-    public void handleBuild(Command cmd) {
+    public void handleBuild(InputCommand cmd) {
 
 
         //Handle settlement build
@@ -181,8 +193,9 @@ public class HumanTurn {
             }
 
             Build action = new BuildSettlement(player, board, randomizer, bank, placementValidator);
-            action.executeWithPlacement(node);
-
+            BuildCommand cmdBuild = new BuildCommand(action, node);
+            commandManager.executeCommand(cmdBuild);
+            // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] built settlement at node " + cmd.nodeId);
         }
 
@@ -215,8 +228,10 @@ public class HumanTurn {
 
 
             Build action = new BuildCity(player, board, randomizer, bank, placementValidator);
-            action.executeWithPlacement(node);
+            BuildCommand cmdBuild = new BuildCommand(action, node);
+            commandManager.executeCommand(cmdBuild);
 
+            // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] upgraded settlement to city at node " + cmd.nodeId);
         }
 
@@ -246,10 +261,11 @@ public class HumanTurn {
             }
 
             Build action = new BuildRoad(player, board, randomizer, bank, placementValidator);
-            action.executeWithPlacement(edge);
+            BuildCommand cmdBuild = new BuildCommand(action, edge);
+            commandManager.executeCommand(cmdBuild);
 
-            System.out.println("[Player " + player.getPlayerID() + "] built road between "
-                    + cmd.fromNodeId + " and " + cmd.toNodeId);
+            // print confirmation
+            System.out.println("[Player " + player.getPlayerID() + "] built road between " + cmd.fromNodeId + " and " + cmd.toNodeId);
         }
 
     }

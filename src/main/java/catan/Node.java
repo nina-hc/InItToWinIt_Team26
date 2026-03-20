@@ -6,6 +6,9 @@ package catan;
  *
  * @author Synthia Rosenberger
  * @version February 2026, McMaster University
+ *
+ * implement Command Pattern
+ * @author Serene Abou Sharaf
  */
 public class Node {
 
@@ -67,7 +70,12 @@ public class Node {
 	 * @param settlement object that's being placed on the Node
 	 */
 	public void placeSettlement(Settlement settlement) {
-		if (isOccupied()) {
+
+        if (settlement == null) {
+            throw new IllegalArgumentException("Error: Settlement cannot be null");
+        }
+
+        if (isOccupied()) {
 			throw new IllegalStateException("Error: Node "+nodeID+" is already occupied.");
 		}
 		//Otherwise place settlement in node
@@ -82,7 +90,12 @@ public class Node {
 	 * @param city object that's being placed on the Node
 	 */
 	public void upgradeToCity(City city) {
-		if (!(building instanceof Settlement)) {
+
+        if (city == null) {
+            throw new IllegalArgumentException("Error: City cannot be null");
+        }
+
+        if (!(building instanceof Settlement)) {
 			throw new IllegalStateException("Error: Node "+ nodeID+ " does contain a settlement. Cities must " +
 					"upgrade settlements.");
 		}
@@ -94,6 +107,40 @@ public class Node {
 		this.building = city;
 
 	}
+
+    /** Removes the settlement or city from this node */
+    public void removeSettlement() {
+        if (building instanceof Settlement) {
+            building = null;
+        } else {
+            throw new IllegalStateException("No settlement to remove at Node " + nodeID);
+        }
+    }
+
+    /** Removes the city from this node */
+    public void removeCity() {
+        if (building instanceof City) {
+            building = null;
+        } else {
+            throw new IllegalStateException("No city to remove at Node " + nodeID);
+        }
+    }
+
+    /** Returns the settlement on this node, or null if not present */
+    public Settlement getSettlement() {
+        if (building instanceof Settlement) {
+            return (Settlement) building;
+        }
+        return null;
+    }
+
+    /** Returns the city on this node, or null if not present */
+    public City getCity() {
+        if (building instanceof City) {
+            return (City) building;
+        }
+        return null;
+    }
 
 
 }

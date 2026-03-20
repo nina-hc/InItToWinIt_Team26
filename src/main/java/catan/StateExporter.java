@@ -5,6 +5,13 @@ import java.io.IOException;
 
 public class StateExporter {
 
+    /**
+     * This helper method converts players to a colour
+     * This is necessary for the visualizer
+     *
+     * @param playerID the player ID
+     * @return colour associated with the playerID
+     */
     private static String getColor(int playerID) {
         switch (playerID) {
             case 1: return "BLUE";
@@ -15,9 +22,16 @@ public class StateExporter {
         }
     }
 
+    /**
+     * method to export the state of the board to the visualizer
+     * it updates the state.json file everything something is built
+     *
+     * @param board the board
+     */
     public static void exportState(Board board) {
+        FileWriter writer = null;
         try {
-            FileWriter writer = new FileWriter("visualizer/state.json");
+            writer = new FileWriter("visualizer/state.json");
             writer.write("{\n");
 
             // =====================
@@ -61,90 +75,22 @@ public class StateExporter {
             }
 
             writer.write("\n  ]\n}");
-            writer.close();
+            //this is for debugging
             System.out.println("State exported successfully to visualizer/state.json");
+            writer.close();
 
         } catch (IOException e) {
             System.out.println("ERROR: state export failed");
-            e.printStackTrace();
+            //e.printStackTrace();      this should be uncommented for debugging purposes only
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    //e.printStackTrace();    this should be uncommented for debugging purposes only
+                }
+            }
         }
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import java.io.FileWriter;
-//import java.io.IOException;
-//
-//public class StateExporter {
-//
-//    public static void exportState(Board board) {
-//
-//        try {
-//            FileWriter writer = new FileWriter("visualizer/state.json");
-//
-//            writer.write("{\n");
-//
-//            // Roads
-//            writer.write("  \"roads\": [\n");
-//
-//            boolean first = true;
-//            for (Road r : board.getRoads()) {
-//
-//                if (!first) writer.write(",\n");
-//
-//                writer.write("    { \"a\": " + r.getNodeA() +
-//                        ", \"b\": " + r.getNodeB() +
-//                        ", \"owner\": \"" + r.getOwner() + "\" }");
-//
-//                first = false;
-//            }
-//
-//            writer.write("\n  ],\n");
-//
-//            // Buildings
-//            writer.write("  \"buildings\": [\n");
-//
-//            first = true;
-//            for (Building b : board.getBuildings()) {
-//
-//                if (!first) writer.write(",\n");
-//
-//                String type = b.isCity() ? "CITY" : "SETTLEMENT";
-//
-//                writer.write("    { \"node\": " + b.getNode() +
-//                        ", \"owner\": \"" + b.getOwner() +
-//                        "\", \"type\": \"" + type + "\" }");
-//
-//                first = false;
-//            }
-//
-//            writer.write("\n  ]\n}");
-//
-//            writer.close();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//}

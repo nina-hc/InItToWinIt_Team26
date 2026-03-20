@@ -8,6 +8,7 @@ import java.util.List;
  * much as possible in a single turn
  * 
  * @author Marva Hassan
+ * @version February 2026, McMaster University
  */
 public class PlayerAction {
 

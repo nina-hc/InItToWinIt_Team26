@@ -4,6 +4,8 @@ package catan;
 //import main.java.ResourceType;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResourceHandTest {
@@ -109,20 +111,20 @@ class ResourceHandTest {
         assertTrue(canBuy);
     }
 
-//    @Test
-//    void testCantBuySettlement() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);
-//        hand.addResource(ResourceType.LUMBER, 1);
-//        hand.addResource(ResourceType.WOOL, 1);
-//        hand.addResource(ResourceType.GRAIN, 1);
-//
-//        boolean canBuy = hand.canBuySettlement();
-//        //check
-//        assertFalse(canBuy);
-//    }
+    @Test
+    void testCantBuySettlement() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        hand.addResource(ResourceType.LUMBER, 1);
+        hand.addResource(ResourceType.WOOL, 1);   //mising grain
+
+
+        boolean canBuy = hand.canBuySettlement();
+        //check
+        assertFalse(canBuy);
+    }
 
 
     //=======================================================
@@ -152,73 +154,73 @@ class ResourceHandTest {
         assertFalse(canBuy);
     }
 
-//    //=======================================================
-//    @Test
-//    void testPayForRoad() {
-//        //create
-//        Bank bank = new Bank();
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 3);
-//        hand.addResource(ResourceType.LUMBER, 2);
-//
-//        hand.payForRoad(bank);
-//
-//        int numBrick = hand.getResource(ResourceType.BRICK);
-//        int numLumber = hand.getResource(ResourceType.LUMBER);
-//
-//        //check
-//        assertEquals(2, numBrick);
-//        assertEquals(1, numLumber);
-//    }
-//
-//
-//    //=======================================================
-//    @Test
-//    void testPayForSettlement() {
-//        //create
-//        Bank bank = new Bank();
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);
-//        hand.addResource(ResourceType.LUMBER, 1);
-//        hand.addResource(ResourceType.WOOL, 1);
-//        hand.addResource(ResourceType.GRAIN, 1);
-//
-//        hand.payForSettlement(bank);
-//
-//        int numBrick = hand.getResource(ResourceType.BRICK);
-//        int numLumber = hand.getResource(ResourceType.LUMBER);
-//        int numWool = hand.getResource(ResourceType.WOOL);
-//        int numGrain = hand.getResource(ResourceType.GRAIN);
-//
-//        //check
-//        assertEquals(0, numBrick);
-//        assertEquals(0, numLumber);
-//        assertEquals(0, numWool);
-//        assertEquals(0, numGrain);
-//    }
+    //=======================================================
+    @Test
+    void testPayForRoad() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 3);
+        hand.addResource(ResourceType.LUMBER, 2);
+
+        hand.payForRoad(bank);
+
+        int numBrick = hand.getResource(ResourceType.BRICK);
+        int numLumber = hand.getResource(ResourceType.LUMBER);
+
+        //check
+        assertEquals(2, numBrick);
+        assertEquals(1, numLumber);
+    }
 
 
-//    //=======================================================
-//    @Test
-//    void testPayForCity() {
-//        //create
-//        Bank bank = new Bank();
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.ORE, 3);
-//        hand.addResource(ResourceType.GRAIN, 2);
-//
-//        hand.payForCity(bank);
-//
-//        int numOre = hand.getResource(ResourceType.ORE);
-//        int numGrain = hand.getResource(ResourceType.GRAIN);
-//
-//        //check
-//        assertEquals(0, numOre);
-//        assertEquals(0, numGrain);
-//    }
+    //=======================================================
+    @Test
+    void testPayForSettlement() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        hand.addResource(ResourceType.LUMBER, 1);
+        hand.addResource(ResourceType.WOOL, 1);
+        hand.addResource(ResourceType.GRAIN, 1);
+
+        hand.payForSettlement(bank);
+
+        int numBrick = hand.getResource(ResourceType.BRICK);
+        int numLumber = hand.getResource(ResourceType.LUMBER);
+        int numWool = hand.getResource(ResourceType.WOOL);
+        int numGrain = hand.getResource(ResourceType.GRAIN);
+
+        //check
+        assertEquals(0, numBrick);
+        assertEquals(0, numLumber);
+        assertEquals(0, numWool);
+        assertEquals(0, numGrain);
+    }
+
+
+    //=======================================================
+    @Test
+    void testPayForCity() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.ORE, 3);
+        hand.addResource(ResourceType.GRAIN, 2);
+
+        hand.payForCity(bank);
+
+        int numOre = hand.getResource(ResourceType.ORE);
+        int numGrain = hand.getResource(ResourceType.GRAIN);
+
+        //check
+        assertEquals(0, numOre);
+        assertEquals(0, numGrain);
+    }
 
 
     //=======================================================
@@ -261,128 +263,149 @@ class ResourceHandTest {
         assertTrue(result.contains("Grain:0"));
         assertTrue(result.contains("Ore:0"));
     }
-//
-//    //======================================================
-//    //added test cases after refactor
-//    @Test (expected = IllegalArgumentException.class)
-//    void testAddNegativeResources() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, -1);
-//    }
-//
-//    @Test (expected = IllegalArgumentException.class)
-//    void testAddDesertResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.DESERT, 1);
-//    }
-//
-//    @Test (expected = IllegalArgumentException.class)
-//    void testGetDesertResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.getResource(ResourceType.DESERT);
-//    }
-//
-//    @Test (expected = IllegalArgumentException.class)
-//    void testHasDesertResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.hasResource(ResourceType.DESERT, 1);
-//    }
-//
-//    @Test (expected = IllegalArgumentException.class)
-//    void testPayForRoadNotEnoughResources() {
-//        //create
-//        Bank bank = new Bank();
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);    //not enough lumber
-//        //check
-//        hand.payForRoad(bank);
-//    }
-//
-//    @Test (expected = IllegalArgumentException.class)
-//    void testPayForSettlementNotEnoughResources() {
-//        //create
-//        Bank bank = new Bank();
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.BRICK, 1);
-//        hand.addResource(ResourceType.LUMBER, 1);
-//        hand.addResource(ResourceType.WOOL, 1);    //not enough grain
-//        //check
-//        hand.payForSettlement(bank);
-//    }
-//
-//    @Test (expected = IllegalArgumentException.class)
-//    void testPayForCityNotEnoughResources() {
-//        //create
-//        Bank bank = new Bank();
-//        ResourceHand hand = new ResourceHand();
-//        //test
-//        hand.addResource(ResourceType.ORE, 3);
-//        hand.addResource(ResourceType.GRAIN, 1);    //only 1 grain... not enough
-//        //check
-//        hand.payForCity(bank);
-//    }
-//
-//    @Test
-//    void testRemoveRandomResource() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//
-//        //test
-//        hand.addResource(ResourceType.BRICK, 3);
-//        hand.addResource(ResourceType.LUMBER, 3);
-//        hand.addResource(ResourceType.WOOL, 3);
-//
-//        int totatlBefore = hand.totalPlayerCard();
-//        List<ResourceType> removed = hand.removeRandomResource(2);
-//
-//        //check
-//        assertEqual(2, removed.size()); //check that amount removed is correct amount
-//        assertEquals(totalBefore - 2, hand.totalPlayerCard());  //check that remaing cards in playes had is less than what it was before
-//    }
-//
-//    @Test
-//    void testDiscardHalfForSevenEvenNumber() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//
-//        //test
-//        hand.addResource(ResourceType.BRICK, 2);
-//        hand.addResource(ResourceType.LUMBER, 2);
-//        hand.addResource(ResourceType.WOOL, 2); //6 cards total
-//
-//        int totatlBefore = hand.totalPlayerCard();
-//        List<ResourceType> discarded = hand.discardHalfForSeven();
-//
-//        //check
-//        assertEquals(3, discarded.size());
-//        assertEquals(totalBefore - 3, hand.totalPlayerCard());
-//    }
-//
-//    @Test
-//    void testDiscardHalfForSevenOddNumber() {
-//        //create
-//        ResourceHand hand = new ResourceHand();
-//
-//        //test
-//        hand.addResource(ResourceType.BRICK, 3);
-//        hand.addResource(ResourceType.LUMBER, 2);
-//        hand.addResource(ResourceType.WOOL, 2); //7 cards total
-//
-//        int totatlBefore = hand.totalPlayerCard();
-//        List<ResourceType> discarded = hand.discardHalfForSeven();
-//
-//        //check
-//        assertEqual(3, discarded.size());
-//        assertEquals(totalBefore - 3, hand.totalPlayerCard());
-//    }
+
+    //======================================================
+    //added test cases after refactor
+    @Test
+    void testAddNegativeResources() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.addResource(ResourceType.BRICK, -1);
+        });
+
+    }
+
+    @Test
+    void testAddDesertResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.addResource(ResourceType.DESERT, 1);
+        });
+
+    }
+
+    @Test
+    void testGetDesertResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.getResource(ResourceType.DESERT);
+        });
+
+    }
+
+    @Test
+    void testHasDesertResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+        //test
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.hasResource(ResourceType.DESERT, 1);
+        });
+
+    }
+
+    @Test
+    void testPayForRoadNotEnoughResources() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);    //not enough lumber
+        //check
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.payForRoad(bank);
+        });
+
+    }
+
+    @Test
+    void testPayForSettlementNotEnoughResources() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.BRICK, 1);
+        hand.addResource(ResourceType.LUMBER, 1);
+        hand.addResource(ResourceType.WOOL, 1);    //not enough grain
+        //check
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.payForSettlement(bank);
+        });
+
+    }
+
+    @Test
+    void testPayForCityNotEnoughResources() {
+        //create
+        Bank bank = new Bank();
+        ResourceHand hand = new ResourceHand();
+        //test
+        hand.addResource(ResourceType.ORE, 3);
+        hand.addResource(ResourceType.GRAIN, 1);    //only 1 grain... not enough
+        //check
+        assertThrows(IllegalArgumentException.class, () -> {
+            hand.payForCity(bank);
+        });
+
+    }
+
+    @Test
+    void testRemoveRandomResource() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        hand.addResource(ResourceType.BRICK, 3);
+        hand.addResource(ResourceType.LUMBER, 3);
+        hand.addResource(ResourceType.WOOL, 3);
+
+        int totalBefore = hand.totalPlayerCard();
+        List<ResourceType> removed = hand.removeRandomResource(2);
+
+        //check
+        assertEquals(2, removed.size()); //check that amount removed is correct amount
+        assertEquals(totalBefore - 2, hand.totalPlayerCard());  //check that remaing cards in playes had is less than what it was before
+    }
+
+    @Test
+    void testDiscardHalfForSevenEvenNumber() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        hand.addResource(ResourceType.BRICK, 2);
+        hand.addResource(ResourceType.LUMBER, 2);
+        hand.addResource(ResourceType.WOOL, 2); //6 cards total
+
+        int totalBefore = hand.totalPlayerCard();
+        List<ResourceType> discarded = hand.discardHalfForSeven();
+
+        //check
+        assertEquals(3, discarded.size());
+        assertEquals(totalBefore - 3, hand.totalPlayerCard());
+    }
+
+    @Test
+    void testDiscardHalfForSevenOddNumber() {
+        //create
+        ResourceHand hand = new ResourceHand();
+
+        //test
+        hand.addResource(ResourceType.BRICK, 3);
+        hand.addResource(ResourceType.LUMBER, 2);
+        hand.addResource(ResourceType.WOOL, 2); //7 cards total
+
+        int totalBefore = hand.totalPlayerCard();
+        List<ResourceType> discarded = hand.discardHalfForSeven();
+
+        //check
+        assertEquals(3, discarded.size());
+        assertEquals(totalBefore - 3, hand.totalPlayerCard());
+    }
 }

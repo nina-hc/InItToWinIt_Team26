@@ -7,9 +7,17 @@ import java.util.*;
 /**
  * Class to manage a players resources
  * 
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
  * @author Nina Hay Cooper February 13th 2026
+ *
+ * implemented Command Pattern
+ * @author Serene Abou Sharaf
  */
 public class ResourceHand {
+
+	Random random = new Random();
+
 	/**
 	 * Map to store resources Key is the resource type and value is the amount they
 	 * have of the resource
@@ -50,30 +58,6 @@ public class ResourceHand {
 
 	}
 
-//    /**
-//     * Method to help remove cards from players hand
-//     *
-//     *
-//     * @param type type of resource that's being removed
-//     * @param amount amount of the resource that's being removed
-//     */
-//	public void removeResource(ResourceType type, int amount) {
-//		if (amount <= 0) {
-//			throw new IllegalArgumentException("Error: Negative values cannot be removed");
-//		}
-//		if(type == ResourceType.DESERT) {
-//			throw new IllegalArgumentException("Error: There are no resources from the desert.");
-//		}
-//		//otherwise remove the amount
-//		int currentAmount = resources.get(type);
-//		if(currentAmount < amount) {
-//			throw new IllegalArgumentException("Error: you cannot remove more resources than the player has.");
-//			//alternatively this could be implemented to remove the max rather than be an error
-//		}
-//		//subtract the current amount by the amount removed and place that as the new value
-//		resources.put(type,(currentAmount - amount));
-//	}
-
     /**
      * Method to remove random cards from a players hand
      * Useful when stealing and discarding half a hand on a 7 roll
@@ -99,8 +83,6 @@ public class ResourceHand {
             throw new IllegalArgumentException("Error: cannot remove more cards than the player has");
         }
 
-        Random random = new Random();
-
         for (int i = 0; i < amount; i++) {
             int index = random.nextInt(resourcesWithCards.size());
             ResourceType selected = resourcesWithCards.remove(index);
@@ -118,12 +100,11 @@ public class ResourceHand {
      * @return card/resource that was stolen from the victim
      */
     public ResourceType removeCardForSteal() {
-        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
-
-        if (removed.isEmpty()) {
+        if (totalPlayerCard() == 0) {
             return null;
         }
 
+        List<ResourceType> removed = removeRandomResource(1);  //only removing one since you can only steal one
         return removed.get(0);
     }
 
@@ -274,9 +255,8 @@ public class ResourceHand {
             throw new IllegalArgumentException("Cannot discard more cards than the player has.");
         }
 
-        Random rand = new Random();
         for (int i = 0; i < count; i++) {
-            int index = rand.nextInt(typesWithCards.size());
+            int index = random.nextInt(typesWithCards.size());
             ResourceType selected = typesWithCards.remove(index); // remove from list
             resources.put(selected, resources.get(selected) - 1); // remove from hand
         }
@@ -293,4 +273,26 @@ public class ResourceHand {
 				resources.get(ResourceType.BRICK), resources.get(ResourceType.WOOL), resources.get(ResourceType.GRAIN),
 				resources.get(ResourceType.ORE));
 	}
+
+
+
+
+    //Refund methods for undo
+
+    public void refundRoad() {
+        addResource(ResourceType.LUMBER, 1);
+        addResource(ResourceType.BRICK, 1);
+    }
+
+    public void refundSettlement() {
+        addResource(ResourceType.LUMBER, 1);
+        addResource(ResourceType.BRICK, 1);
+        addResource(ResourceType.WOOL, 1);
+        addResource(ResourceType.GRAIN, 1);
+    }
+
+    public void refundCity() {
+        addResource(ResourceType.ORE, 3);
+        addResource(ResourceType.GRAIN, 2);
+    }
 }

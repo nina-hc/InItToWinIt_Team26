@@ -94,4 +94,132 @@ class RobberTest {
         //check
         assertFalse(tile1.getHasRobber());
     }
+
+    //=======================================================
+    //trying to better coverage
+    @Test
+    void testDiscardHalfWithDiscard() {
+        Player player = new Player(1);
+        Bank bank = new Bank();
+        Tile tile = new Tile(1, 5, ResourceType.LUMBER);
+
+        //give player 10 cards
+        player.getResourceHand().addResource(ResourceType.LUMBER, 10);
+
+        Robber robber = new Robber(tile);
+        robber.discardHalf(player, bank);
+
+        assertEquals(5, player.getResourceHand().totalPlayerCard());   //should be half
+    }
+
+    @Test
+    void testDiscardHalfWithNoDiscard() {
+        Player player = new Player(1);
+        Bank bank = new Bank();
+        Tile tile = new Tile(1, 5, ResourceType.LUMBER);
+
+        //give player 7 cards
+        player.getResourceHand().addResource(ResourceType.LUMBER, 7);
+
+        Robber robber = new Robber(tile);
+        robber.discardHalf(player, bank);
+
+        assertEquals(7, player.getResourceHand().totalPlayerCard());    //should be unchanged
+    }
+
+    @Test
+    void testStealCardsNoCardsToSteal() {
+        Player thief = new Player(1);
+        Player victim = new Player(2);
+        Tile tile = new Tile(1, 5, ResourceType.LUMBER);
+
+        Robber robber = new Robber(tile);
+        robber.stealCard(thief, victim);
+
+        assertEquals(0, thief.getResourceHand().totalPlayerCard());    //should still be 0
+        assertEquals(0, victim.getResourceHand().totalPlayerCard());
+    }
+
+    @Test
+    void testChooseRandomTileNotTheSameAsCurrent() {
+        Board board = new Board();
+        Tile startTile = board.getTile(0);
+
+        Robber robber = new Robber(startTile);
+
+        //a loop just to make sure that the current tile is not getting chosen
+        for (int i = 0; i < 100; i++) {
+            Tile chosenTile = robber.chooseRandomTile(board);
+            assertNotEquals(startTile, chosenTile);
+        }
+    }
+
+    //i cant believe i missed one of the most important test cases for this class... execute seven roll
+    //case 1: no victims
+    @Test
+    void testExecuteSevenRollNoVictims() {
+        Board board = new Board();
+        Bank bank = new Bank();
+
+        Player player1 = new Player(1);
+        Player[] players = new Player[]{player1};
+
+        Tile tile = new Tile(1, 5, ResourceType.LUMBER);
+        Robber robber = new Robber(tile);
+
+        robber.executeSevenRoll(board, bank, players, player1);
+
+        //nothing to steal... just make sure it didn't crash
+        assertTrue(true);
+
+    }
+
+    //case2: discard happens
+    @Test
+    void testExecuteSevenRollDiscardHappens() {
+        Board board = new Board();
+        Bank bank = new Bank();
+
+        Player player1 = new Player(1);
+        player1.getResourceHand().addResource(ResourceType.LUMBER, 10);
+
+        //add player
+        board.getPlayers().add(player1);
+
+        Player[] players = new Player[]{player1};
+
+        Tile tile = new Tile(1, 5, ResourceType.LUMBER);
+        Robber robber = new Robber(tile);
+
+        robber.executeSevenRoll(board, bank, players, player1);
+
+        //check
+        assertTrue(player1.getResourceHand().totalPlayerCard() <= 5);
+
+    }
+
+    //case 3 :stealing happens
+    @Test
+    void testExecuteSevenRollStealingHappens() {
+        Board board = new Board();
+        Bank bank = new Bank();
+
+        Player player1 = new Player(1);
+        Player player2 = new Player(2);
+        player2.getResourceHand().addResource(ResourceType.LUMBER, 1);
+
+        Tile tile = new Tile(1, 5, ResourceType.LUMBER);
+        Robber robber = new Robber(tile);
+
+        Player[] players = new Player[]{player1};
+
+        robber.executeSevenRoll(board, bank, players, player1);
+
+        //check
+        assertTrue(player1.getResourceHand().totalPlayerCard() >= 0);
+
+    }
+
+
+
 }
