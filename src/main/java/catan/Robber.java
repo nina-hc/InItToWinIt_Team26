@@ -143,7 +143,7 @@ public class Robber {
         System.out.println("A seven was rolled");
 
         //discard half if there's more than 7 cards in any players hands
-        for (Player player : board.getPlayers()) {  
+        for (Player player : players) {
             discardHalf(player, bank);
         }
 
@@ -154,10 +154,20 @@ public class Robber {
 
 
         //find players connected to robbed tile
-        List<Player> victims = board.getPlayersAdjacentToTile(chosenTile);
-
-        //remove current player... thief cant steal from themselves
-        victims.remove(currentPlayer);
+        List<Player> victims = new ArrayList<>();
+		for (int nodeID : chosenTile.getNodeIDs()){
+			Node node = board.getNode(nodeID);
+			if(node.isOccupied()){
+				//owner of node
+				int ownerID = node.getBuilding().getOwnerID();
+				for(Player p: players){
+					//check if there's a building on each node and if the owner has alr been added to the list
+					if(p.getPlayerID() == ownerID && p!=currentPlayer && !victims.contains(p)){
+						victims.add(p);
+					}
+				}
+			}
+		}
 
         if (victims.isEmpty()) {
             System.out.println("There are no players to steal from on this tile");
