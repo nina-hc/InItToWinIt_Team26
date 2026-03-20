@@ -9,7 +9,6 @@ public class TurnStateMachine {
 	public boolean isValidOption(String command){
 		switch(state){
 			case START:
-				//double check with marva if it's a capital at the start or all lowercase
 				if("Roll".equals(command)){
 					return true;
 				}
@@ -51,7 +50,7 @@ public class TurnStateMachine {
 					return TurnState.END;
 				}
 				return TurnState.ROLLED;
-			/*Ask group consensus for what should be the default*/
+
 			default:
 				throw new IllegalArgumentException("Error: Unknown state"+ currentState);
 		}
