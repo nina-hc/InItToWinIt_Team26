@@ -29,7 +29,9 @@ public class Bank {
 	 */
 	private Map<ResourceType, Integer> bankResources;
 
-	/* the starting pre-defined max amount of cards per resource type*/
+    /**
+     * The starting pre-defined max amount of cards per resource type
+     */
 	private static final int RESOURCE_CARD_MAX = 19;
 
 	/**

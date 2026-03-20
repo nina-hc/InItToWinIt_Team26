@@ -4,14 +4,19 @@ import java.util.Random;
 
 /**
  * Randomizes a roll of two six-sided dice
+ *
+ *  @author Marva Hassan
+ *  @version February 2026, McMaster University
  */
 public class Randomizer {
 
-	// random object used for generating numbers
+    /**
+     * Random object used for generating numbers
+     */
 	private Random random;
 
 	/**
-	 * constructor initializes the random object
+	 * Constructor initializes the random object
 	 */
 	public Randomizer() {
 
@@ -19,7 +24,7 @@ public class Randomizer {
 	}
 
 	/**
-	 * roll two six-sided dice and return the sum
+	 * Roll two six-sided dice and return the sum
 	 * 
 	 * @return total of two dice (2-12)
 	 */
@@ -30,7 +35,7 @@ public class Randomizer {
 	}
 
 	/**
-	 * return a random integer in an inclusive range
+	 * Return a random integer in an inclusive range
 	 * 
 	 * @param min lower bound (inclusive)
 	 * @param max upper bound (inclusive)
@@ -41,4 +46,4 @@ public class Randomizer {
 		return random.nextInt(max - min + 1) + min;
 	}
 
-}// Randomizer
+}

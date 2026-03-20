@@ -14,15 +14,45 @@ package catan;
  */
 public class Game {
 
-    private final Board board; //The Catan board containing nodes, tiles, and roads
-    private final Bank bank; //Bank managing remaining resource cards
-    private final Player[] players;  // Array holding all 4 AI players
-    private final Randomizer randomizer; //handles random choices
-    private final DistributeResources distributor; //handles resource distribution after dice rolls
-    private final int maxRounds; //maximum number of simulation rounds
-	private final PlacementValidator placementValidator;
+    /**
+     * Game board, contains node, tiles and roads
+     */
+    private final Board board;
 
-    private boolean setupPhase = true; //to check if it is still in the setup stage
+    /**
+     * The bank, contains and manages remaining resource cards
+     */
+    private final Bank bank;
+
+    /**
+     * Player array holding all the players in the game
+     */
+    private final Player[] players;
+
+    /**
+     * The randomizer, handles random choices
+     */
+    private final Randomizer randomizer;
+
+    /**
+     * In charge of resource distribution after the dice is rolled
+     */
+    private final DistributeResources distributor;
+
+    /**
+     * The maximum number of simulation rounds
+     */
+    private final int maxRounds;
+
+    /**
+     * In charge of validating placements
+     */
+    private final PlacementValidator placementValidator;
+
+    /**
+     * To check if the game is still in the setup stage
+     */
+    private boolean setupPhase = true;
 
     /**
      * Initialize game with 4 players and default maxRounds
@@ -58,8 +88,9 @@ public class Game {
     }
 
     /**
+     * Method to check if the game is still in its setup stage
      *
-     * @return if it is still in the setup phase or not
+     * @return true if it is still in the setup phase, false if not
      */
     public boolean isSetupPhase() {
 
@@ -81,8 +112,5 @@ public class Game {
             System.out.println("Simulation ended without winner.");
         }
     }
-
-
-
 
 }

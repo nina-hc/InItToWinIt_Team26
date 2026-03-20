@@ -14,10 +14,25 @@ import java.util.List;
  */
 public class DistributeResources {
 
-	private Board board; // The game board (contains tiles and nodes)
-	private Bank bank; // The bank (stores available resources)
-	private Player[] players; // All players in the game
-	private Randomizer randomizer; // Used to roll the dice
+    /**
+     * Game board, contains tiles and nodes
+     */
+	private Board board;
+
+    /**
+     * The bank, stores available resources
+     */
+    private Bank bank;
+
+    /**
+     * List for all the players in the game
+     */
+    private Player[] players;
+
+    /**
+     * Randomizer, represents a dice
+     */
+	private Randomizer randomizer;
 
 	/**
 	 * Constructor initializes required game components

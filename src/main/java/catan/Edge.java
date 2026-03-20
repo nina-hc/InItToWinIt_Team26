@@ -1,5 +1,11 @@
 package catan;
 
+/**
+ * Edge class, the
+ *
+ * @author Nina Hay Cooper
+ * @version February 2026, McMaster University
+ */
 public class Edge {
 	/* Pair of nodes */
 	private final Node nodeA;// starting node

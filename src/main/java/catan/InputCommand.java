@@ -7,19 +7,48 @@ package catan;
  *  - Go
  *  - List
  *  - Build (settlement, city, or road)
+ *
  * @author Marva Hassan
  * @version March 2026, McMaster University
  */
 public class InputCommand {
 
-    public String type;        // Roll, Go, List, Build
-    public String buildType;   // settlement, city, road
+    /**
+     * Move that the human player wants to take
+     * Includes: Roll, Go, List, Build
+     */
+    public String type;
+
+    /**
+     * Types of building
+     * Includes: Settlement, City, Road
+     */
+    public String buildType;
+
+    /**
+     * Node ID for building cities and settlements
+     */
     public int nodeId;
+
+    /**
+     * First node for building roads
+     */
     public int fromNodeId;
+
+    /**
+     * Second node for building roads
+     */
     public int toNodeId;
+
+    /**
+     * True for a valid command, false otherwise
+     */
     public boolean valid;
 
-    //constructor
+
+    /**
+     * InputCommand constructor
+     */
     public InputCommand() {
         this.valid = false;
     }
