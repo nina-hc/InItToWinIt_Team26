@@ -69,4 +69,13 @@ public class Edge {
 	public boolean isAdjacentTo(Edge otherEdge){
 		return (sharesNode(otherEdge.getNodeA()) || sharesNode(otherEdge.getNodeB()));
 	}
+
+
+    public void removeRoad() {
+        if (road != null) {
+            road = null;
+        } else {
+            throw new IllegalStateException("No road to remove on this edge");
+        }
+    }
 }

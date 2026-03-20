@@ -10,6 +10,9 @@ import java.util.List;
  * @author Nina Hay Cooper
  * 
  *         February 13th 2026
+ *
+ * implemented Command Pattern
+ * @author Serene Abou Sharaf
  * 
  */
 public class Player {
@@ -147,6 +150,35 @@ public class Player {
     //Get current victory points
     public int getVictoryPoints() {
         return victoryPoints;
+    }
+
+
+    public void removeSettlement(Settlement settlement) {
+        if (!playerSettlements.remove(settlement)) {
+            throw new IllegalStateException("Player " + playerID + " does not have that settlement");
+        }
+    }
+
+    public void removeRoadAt(Edge edge) {
+        Road targetRoad = null;
+        for (Road r : playerRoads) {
+            if (r.getEdge() == edge) {
+                targetRoad = r;
+                break;
+            }
+        }
+        if (targetRoad != null) {
+            playerRoads.remove(targetRoad);
+        } else {
+            throw new IllegalStateException("Player " + playerID + " does not have a road on that edge");
+        }
+    }
+
+    public void playerUndoCityUpgrade(City city, Settlement oldSettlement) {
+        if (!playerCities.remove(city)) {
+            throw new IllegalStateException("Player " + playerID + " does not have that city");
+        }
+        playerSettlements.add(oldSettlement);
     }
 
 

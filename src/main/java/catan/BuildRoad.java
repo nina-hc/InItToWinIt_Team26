@@ -97,4 +97,22 @@ public class BuildRoad extends Build {
 				edges.getNodeB().getNodeID());
 	}
 
+
+    @Override
+    protected void undoBuild(Object placement) {
+        Edge edge = (Edge) placement;
+
+        //remove road from board
+        edge.removeRoad();
+
+        //remove road from player
+        player.removeRoadAt(edge);
+
+        // refund resources
+        player.getResourceHand().refundRoad();
+
+        //export to visualizer
+        StateExporter.exportState(board);
+    }
+
 }

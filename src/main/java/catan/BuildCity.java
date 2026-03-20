@@ -13,6 +13,12 @@ package catan;
  */
 public class BuildCity extends Build {
 
+    /**
+     * Stores the settlement being upgraded for undo purposes
+     */
+    private Settlement previousSettlement;
+
+
 	/**
 	 * Constructor for BuildCity
 	 *
@@ -89,6 +95,9 @@ public class BuildCity extends Build {
 		Settlement oldSettlement = (Settlement) placement;
 		Node node = oldSettlement.getNode();
 
+
+        previousSettlement = oldSettlement; // store old settlement for undo
+
 		player.getResourceHand().payForCity(bank); // pays required resources
 
 		City city = new City(node, player.getPlayerID()); // creates a city on the same node
@@ -102,6 +111,21 @@ public class BuildCity extends Build {
         StateExporter.exportState(board);
 
 	}
+
+    @Override
+    protected void undoBuild(Object placement) {
+        Node node = ((Settlement) placement).getNode();
+
+        City city = node.getCity();
+        if (city != null) {
+            node.removeCity();
+            node.placeSettlement(previousSettlement);
+            player.playerUndoCityUpgrade(city, previousSettlement);
+            player.getResourceHand().refundCity();
+        }
+
+        StateExporter.exportState(board);
+    }
 
     public void build(Object placement) {
 
