@@ -4,7 +4,8 @@ public class CardConstraint implements Constraint{
 	private static final int CARD_LIMIT = 7;
 
 	@Override
-	public boolean isApplicable(Player player, Board board, Bank bank, PlacementValidator placementValidator) {
+	public boolean isApplicable(Player player,Player[] players, Board board, Bank bank,
+	                            PlacementValidator placementValidator) {
 		boolean exceedsCardLimit = player.getResourceHand().totalPlayerCard() > CARD_LIMIT;
 
 		boolean canSpendCards =
@@ -15,7 +16,7 @@ public class CardConstraint implements Constraint{
 	}
 
 	@Override
-	public void resolveConstraint(Player player, Board board, Bank bank, Randomizer randomizer, PlacementValidator placementValidator) {
+	public void resolveConstraint(Player player, Player[] players, Board board, Bank bank, Randomizer randomizer, PlacementValidator placementValidator) {
 		if(BuildCheckHelper.canBuildCity(player)){
 			new BuildCity(player, board, randomizer, bank, placementValidator).execute();
 			return;
