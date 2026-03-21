@@ -171,12 +171,6 @@ public class HumanTurn {
         //Handle settlement build
         if ("settlement".equalsIgnoreCase(cmd.buildType)) {
 
-            //Check resources first
-            if (!player.getResourceHand().canBuySettlement()) {
-                System.out.println("Not enough resources to build a settlement.");
-                return;
-            }
-
             Node node = board.getNode(cmd.nodeId);
 
             if (node == null) {
@@ -184,28 +178,16 @@ public class HumanTurn {
                 return;
             }
 
-            if (node.isOccupied()) {
-                System.out.println("Cannot build settlement: node already occupied.");
-                return;
-            }
-
-            if (!placementValidator.canPlaceSettlement(node, player, false)) {
-
-                //Check distance rule
-                for (Edge edge : board.getAdjacentEdges(node)) {
-                    if (edge.getOppositeNode(node).isOccupied()) {
-                        System.out.println("Cannot build settlement: distance rule violated.");
-                        return;
-                    }
-                }
-
-                System.out.println("Cannot build settlement: must connect to your road.");
-                return;
-            }
-
             Build action = new BuildSettlement(player, board, randomizer, bank, placementValidator);
             BuildCommand cmdBuild = new BuildCommand(action, node);
-            commandManager.executeCommand(cmdBuild);
+
+            try {
+                commandManager.executeCommand(cmdBuild);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+
             // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] built settlement at node " + cmd.nodeId);
         }
@@ -213,11 +195,6 @@ public class HumanTurn {
         //Handle city build
         if ("city".equalsIgnoreCase(cmd.buildType)) {
 
-            if (!player.getResourceHand().canBuyCity()) {
-                System.out.println("Not enough resources to build a city.");
-                return;
-            }
-
             Node node = board.getNode(cmd.nodeId);
 
             if (node == null) {
@@ -225,22 +202,21 @@ public class HumanTurn {
                 return;
             }
 
-            if (!node.isOccupied()) {
-                System.out.println("Cannot build city: no settlement exists here.");
+            if (!(node.getBuilding() instanceof Settlement)) {
+                System.out.println("Must upgrade a settlement.");
                 return;
             }
 
-            Building building = node.getBuilding();
-
-            if (!(building instanceof Settlement)) {
-                System.out.println("Cannot build city: must upgrade a settlement.");
-                return;
-            }
-
+            Settlement settlement = (Settlement) node.getBuilding();
 
             Build action = new BuildCity(player, board, randomizer, bank, placementValidator);
-            BuildCommand cmdBuild = new BuildCommand(action, node);
-            commandManager.executeCommand(cmdBuild);
+            BuildCommand cmdBuild = new BuildCommand(action, settlement);
+
+            try {
+                commandManager.executeCommand(cmdBuild);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
             // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] upgraded settlement to city at node " + cmd.nodeId);
@@ -249,31 +225,22 @@ public class HumanTurn {
         //Handle road build
         if ("road".equalsIgnoreCase(cmd.buildType)) {
 
-            if (!player.getResourceHand().canBuyRoad()) {
-                System.out.println("Not enough resources to build a road.");
-                return;
-            }
-
             Edge edge = board.getEdgeBetweenNodes(cmd.fromNodeId, cmd.toNodeId);
 
             if (edge == null) {
-                System.out.println("Invalid road: nodes are not connected.");
-                return;
-            }
-
-            if (edge.hasRoad()) {
-                System.out.println("Cannot build road: edge already occupied.");
-                return;
-            }
-
-            if (!placementValidator.canBuildRoad(edge, player)) {
-                System.out.println("Cannot build road: must connect to your road, settlement, or city.");
+                System.out.println("Invalid road.");
                 return;
             }
 
             Build action = new BuildRoad(player, board, randomizer, bank, placementValidator);
             BuildCommand cmdBuild = new BuildCommand(action, edge);
-            commandManager.executeCommand(cmdBuild);
+
+            try {
+                commandManager.executeCommand(cmdBuild);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
 
             // print confirmation
             System.out.println("[Player " + player.getPlayerID() + "] built road between " + cmd.fromNodeId + " and " + cmd.toNodeId);
