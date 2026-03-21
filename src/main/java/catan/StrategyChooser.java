@@ -20,8 +20,12 @@ public class StrategyChooser {
 
     public StrategyChooser(Randomizer randomizer, Player[] players) {
         this.randomizer = randomizer;
+<<<<<<< HEAD
 		this.players = players;
         this.bestValue = -1.0;//initialized to a invalid value that's a safe starting point
+=======
+        this.strategies = new ArrayList<>();
+>>>>>>> 925a609a74f672e2a2140902677040a9fbecd01f
 
 	    //constraints
 	    constraints = new ArrayList<>();
