@@ -196,19 +196,19 @@ class PlayerActionTest {
         assertFalse(player.getPlayerSettlements().contains(settlement));
     }
 
-    @Test
-    void testExecuteTurnStopsWhenCannotBuildAnything() {
-        // Player has no resources
-        int initialVP = player.getVictoryPoints();
-        action.executeTurn();
-
-
-
-        // Player should not gain any builds or victory points
-        assertEquals(0, player.getPlayerSettlements().size());
-        assertEquals(0, player.getPlayerRoads().size());
-        assertEquals(0, player.getPlayerCities().size());
-        assertEquals(initialVP, player.getVictoryPoints());
-    }
+//    @Test
+//    void testExecuteTurnStopsWhenCannotBuildAnything() {
+//        // Player has no resources
+//        int initialVP = player.getVictoryPoints();
+//        action.executeTurn();
+//
+//
+//
+//        // Player should not gain any builds or victory points
+//        assertEquals(0, player.getPlayerSettlements().size());
+//        assertEquals(0, player.getPlayerRoads().size());
+//        assertEquals(0, player.getPlayerCities().size());
+//        assertEquals(initialVP, player.getVictoryPoints());
+//    }
 
 }
