@@ -17,7 +17,6 @@ public class StrategyChooser {
     public StrategyChooser(Randomizer randomizer) {
         this.randomizer = randomizer;
         this.strategies = new ArrayList<>();
-        this.bestValue = bestValue;
 
         strategies.add(new PlaceCityStrategy());
         strategies.add(new PlaceSettlementStrategy());
