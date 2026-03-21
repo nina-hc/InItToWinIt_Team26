@@ -12,6 +12,7 @@ import java.util.List;
 public class AITurnSimulator {
 
     private final Player player;
+	private final Player[] players;
     private final Board board;
     private final Randomizer randomizer;
     private final Bank bank;
@@ -20,11 +21,12 @@ public class AITurnSimulator {
     /**
      * Constructor initializes required game components.
      */
-    public AITurnSimulator(Player player, Board board,
+    public AITurnSimulator(Player player,Player[] players,Board board,
                            Randomizer randomizer, Bank bank,
                            PlacementValidator placementValidator) {
 
         this.player = player;
+		this.players = players;
         this.board = board;
         this.randomizer = randomizer;
         this.bank = bank;
@@ -38,7 +40,7 @@ public class AITurnSimulator {
     public void executeTurn() {
 
 
-        StrategyChooser chooser = new StrategyChooser(randomizer);
+        StrategyChooser chooser = new StrategyChooser(randomizer,players);
 
         System.out.println("---- TESTING STRATEGY CHOOSER FOR PLAYER "
                 + player.getPlayerID() + " ----");
