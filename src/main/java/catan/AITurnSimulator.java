@@ -47,10 +47,6 @@ public class AITurnSimulator {
 
         boolean actionTaken = false;
 
-        if (handleConstraints()) {
-            return; //stop normal strategy flow
-        }
-
         while (true) {
 
             StrategyEvaluator bestStrategy =
