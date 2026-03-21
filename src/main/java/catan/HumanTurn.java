@@ -42,18 +42,24 @@ public class HumanTurn {
 	private TurnStateMachine stateMachine = new TurnStateMachine();
 
     private CommandManager commandManager = new CommandManager();
+
+	private Robber robber;
+
+	private DistributeResources distributeResources;
     /**
      * Constructs a HumanTurn instance with all required game components.
      *
-     * @param player The player taking the turn
-     * @param board The game board
-     * @param randomizer Randomizer for dice rolls
-     * @param bank The bank for resources
-     * @param placementValidator Validates placement of settlements/cities/roads
-     * @param players All players in the game
+     * @param player              The player taking the turn
+     * @param board               The game board
+     * @param randomizer          Randomizer for dice rolls
+     * @param bank                The bank for resources
+     * @param placementValidator  Validates placement of settlements/cities/roads
+     * @param players             All players in the game
+     * @param robber              the robber
+     * @param distributeResources distribute resources methods
      */
     public HumanTurn(Player player, Board board, Randomizer randomizer, Bank bank,
-                     PlacementValidator placementValidator, Player[] players) {
+                     PlacementValidator placementValidator, Player[] players,Robber robber, DistributeResources distributeResources) {
 
         this.player = player;
         this.board = board;
@@ -63,6 +69,8 @@ public class HumanTurn {
         this.players = players;
         this.parser = new Parser();
         this.scanner = new Scanner(System.in);
+		this.robber=robber;
+		this.distributeResources=distributeResources;
 
     }
 
@@ -122,6 +130,7 @@ public class HumanTurn {
 				break;
 			case "List":
 				System.out.println(player.getResourceHand());
+				System.out.println(player.getVictoryPoints(board));
 				break;
 			case "Build":
 				handleBuild(cmd);
@@ -139,11 +148,13 @@ public class HumanTurn {
      */
     public void handleRoll() {
 
-        //Create a resource distributor
-        DistributeResources distribute = new DistributeResources(bank, players, randomizer, board);
-
         //Execute distribution and get roll value
-        int roll = distribute.executeDistribution();
+        int roll = distributeResources.executeDistribution();
+
+		/*account for the robber*/
+	    if(roll == 7){
+			robber.executeSevenRoll(board,bank,players,player);
+	    }
 
         //Display the roll result
         System.out.println("Rolled: " + roll);

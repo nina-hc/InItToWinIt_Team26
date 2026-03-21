@@ -106,7 +106,7 @@ public class VictoryPointConditions {
 
     /**
      * Updates the longest road holder based on all players current longest roads
-     * This shoud be called after any road placement
+     * This should be called after any road placement
      *
      * @param players all players in the game
      * @param board game board

@@ -257,11 +257,11 @@ class ResourceHandTest {
 
         String result = hand.toString();
         //check
-        assertTrue(result.contains("Lumber:0"));
-        assertTrue(result.contains("Brick:2"));
-        assertTrue(result.contains("Wool:1"));
-        assertTrue(result.contains("Grain:0"));
-        assertTrue(result.contains("Ore:0"));
+        assertTrue(result.contains("Lumber: 0"));
+        assertTrue(result.contains("Brick: 2"));
+        assertTrue(result.contains("Wool: 1"));
+        assertTrue(result.contains("Grain: 0"));
+        assertTrue(result.contains("Ore: 0"));
     }
 
     //======================================================

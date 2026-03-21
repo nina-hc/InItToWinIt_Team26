@@ -143,20 +143,6 @@ public class Player {
 
     }
 
-    //DEBUGGING VP
-//    //Add victory points
-//    public void addVictoryPoints(int points) {
-//        this.victoryPoints += points;
-//        if (this.victoryPoints < 0) this.victoryPoints = 0; // prevent negative VP
-//    }
-
-    //DEBUGGING VP
-//    //Get current victory points
-//    public int getVictoryPoints() {
-//        return victoryPoints;
-//    }
-    //IM GOING TO MAKE A DIFF METHOD FOR GETTING VP
-
     public int getVictoryPoints(Board board) {
         VictoryPointConditions vpCheck = new VictoryPointConditions(this, board);
         return vpCheck.calculateVictoryPoints();

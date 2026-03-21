@@ -22,6 +22,8 @@ class HumanTurnTest {
     private Bank bank;
     private PlacementValidator validator;
     private Player[] players;
+	private Robber robber;
+	private DistributeResources distributeResources;
 
     @BeforeEach
     void setup() {
@@ -31,6 +33,8 @@ class HumanTurnTest {
         bank = new Bank();
         validator = new PlacementValidator(board);
         players = new Player[]{player};
+		distributeResources = new DistributeResources(bank,players,randomizer,board);
+		robber= new Robber(board.getTile(16));
     }
 
     /**
@@ -43,7 +47,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 
@@ -60,7 +64,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 
@@ -77,7 +81,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 
@@ -94,7 +98,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 
@@ -111,7 +115,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 
@@ -128,7 +132,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 
@@ -145,7 +149,7 @@ class HumanTurnTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players);
+        HumanTurn turn = new HumanTurn(player, board, randomizer, bank, validator, players,robber,distributeResources);
 
         turn.executeHumanTurn();
 

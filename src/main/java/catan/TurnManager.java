@@ -56,7 +56,8 @@ public class TurnManager {
             for (Player player : players) {
 
                 if (player.getPlayerID() == 1) { //PLAYER 1 is Human player, Players 2,3,4 are ai simulated
-                    HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players);
+                    HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players,
+		                    robber, distributor);
                     humanTurn.executeHumanTurn(); // run the human turn
                 }
 
@@ -72,7 +73,8 @@ public class TurnManager {
                         robber.executeSevenRoll(board, bank, players, player);
                     }
                     /*Call player actions */
-                    AITurnSimulator action = new AITurnSimulator(player, board, randomizer, bank, placementValidator);
+                    AITurnSimulator action = new AITurnSimulator(player,players, board, randomizer, bank,
+		                    placementValidator);
                     action.executeTurn();
                 }
 
@@ -99,48 +101,6 @@ public class TurnManager {
     }
 
 
-    //DEBUGGING VP
-//    /**
-//     * method to update the longest road at the end of each turn
-//     *
-//     */
-//    private void updateLongestRoad() {
-//
-//        Player newHolder = null;
-//        int maxLength = 0;
-//
-//        //Finds the player with the longest road of >=5
-//        for (Player player : players) {
-//            VictoryPointConditions vp = new VictoryPointConditions(player, board);
-//            int length = vp.getLongestRoad();
-//
-//            if (length >= 5 && length > maxLength) {
-//                maxLength = length;
-//                newHolder = player;
-//            }
-//        }
-//
-//        //If someone beats the current holder
-//        if (newHolder != null && newHolder != longestRoadHolder) {
-//
-//            //Remove 2 VP from previous holder
-//            if (longestRoadHolder != null) {
-//                longestRoadHolder.addVictoryPoints(-2);
-//            }
-//
-//            //sets the new holder
-//            longestRoadHolder = newHolder;
-//            longestRoadLength = maxLength;
-//
-//            //Award 2 VP to new holder
-//            newHolder.addVictoryPoints(2);
-//        }
-//    }
-
-
-
-
-
     /**
      * Print current victory points for all players
      */
@@ -154,14 +114,6 @@ public class TurnManager {
         System.out.println("\n");
 
 
-
-
-//            //VictoryPointConditions vpCheck = new VictoryPointConditions(player, board);
-//            if (vpCheck.calculateVictoryPoints() >= 10) {
-//                System.out.print("Player" + player.getPlayerID() + " = " + vpCheck.calculateVictoryPoints() + " | ");
-//            }
-//        }
-//        System.out.println("\n");
     }
 
 }

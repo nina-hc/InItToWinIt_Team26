@@ -98,7 +98,7 @@ public class DistributeResources {
 				Player owner = players[ownerID - 1]; // convert IDs 1-4 to array (0-3)
 
 				int receivedFromBank = building.getResourceMultiplier();
-				if(receivedFromBank >0){
+				if(receivedFromBank > 0){
                     int amountGiven = bank.transferToPlayer(resource, receivedFromBank);
 
                     if (amountGiven > 0) {

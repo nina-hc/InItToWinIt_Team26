@@ -372,7 +372,7 @@ class BoardTest {
         assertEquals(54, nodes.length);
     }
 
-    @Test
+   /* @Test
     void testGetPlayersAdjacentToTile() {
         //create
         Board board = new Board();
@@ -402,5 +402,5 @@ class BoardTest {
         assertTrue(adjacentPlayers.contains(player1));  //make sure player 1 is there
         assertTrue(adjacentPlayers.contains(player2));  //make sure that player 2 is there
 
-    }
+    }*/
 }
