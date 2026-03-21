@@ -8,21 +8,15 @@ package catan;
 public abstract class AbstractStrategy implements StrategyEvaluator {
 
     protected boolean canBuildCity(Player player) {
-        return player.getResourceHand().canBuyCity()
-                && player.getPlayerCitiesLeft() > 0
-                && !player.getPlayerSettlements().isEmpty();
+        return BuildCheckHelper.canBuildCity(player);
     }
 
     protected boolean canBuildSettlement(Player player, PlacementValidator placementValidator) {
-        return player.getResourceHand().canBuySettlement()
-                && player.getPlayerSettlementsLeft() > 0
-                && !placementValidator.getValidSettlementPlacements(player, false).isEmpty();
+        return BuildCheckHelper.canBuildSettlement(player, placementValidator);
     }
 
     protected boolean canBuildRoad(Player player, PlacementValidator placementValidator) {
-        return player.getResourceHand().canBuyRoad()
-                && player.getPlayerRoadsLeft() > 0
-                && !placementValidator.getValidRoadEdges(player).isEmpty();
+        return BuildCheckHelper.canBuildRoad(player, placementValidator);
     }
 
     /**
