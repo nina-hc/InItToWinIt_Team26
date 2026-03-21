@@ -116,9 +116,13 @@ public abstract class Build {
      */
     public boolean executeWithPlacement(Object placement) {
 
-        if (!canPlayerBuy()) return false;
+        if (!canPlayerBuy()) {
+            throw new IllegalStateException("Not enough resources.");
+        }
 
-        if (!validatePlacement(placement)) return false;
+        if (!validatePlacement(placement)) {
+            throw new IllegalStateException("Invalid placement.");
+        }
 
         doBuild(placement);
         printAction(placement);

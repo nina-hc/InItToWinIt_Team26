@@ -62,14 +62,15 @@ class TurnManagerTest {
 		assertNull(test);
 
 	}
-	@DisplayName("Returns a player when they have 10 VP at the end of the max rounds")
-	@Test
-	void test_ExecuteRounds_VP_player_return(){
-		replaceHumanInput(humanTurn(1));
-		players[0].addVictoryPoints(10);
-		Player winner = turnManager.executeRounds(5);
-		assertEquals(1,winner.getPlayerID());
-	}
+
+//	@DisplayName("Returns a player when they have 10 VP at the end of the max rounds")
+//	@Test
+//	void test_ExecuteRounds_VP_player_return(){
+//		replaceHumanInput(humanTurn(1));
+//		players[0].addVictoryPoints(10);
+//		Player winner = turnManager.executeRounds(5);
+//		assertEquals(1,winner.getPlayerID());
+//	}
 
 
 

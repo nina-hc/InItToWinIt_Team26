@@ -17,13 +17,12 @@ public class BuildCommand implements Command{
 
     @Override
     public void execute() {
-        action.doBuild(placement); // call your BuildX doBuild
-        action.printAction(placement);
+        action.executeWithPlacement(placement);
     }
 
     @Override
     public void undo() {
-        action.undoBuild(placement); // call your BuildX undoBuild
+        action.undoBuild(placement);
     }
 
 }

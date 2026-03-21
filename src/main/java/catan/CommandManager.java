@@ -39,7 +39,7 @@ public class CommandManager {
             undoStack.push(cmd); // put it back on undo stack
         }
         else {
-            System.out.println("Nothing to undo.");
+            System.out.println("Nothing to redo.");
         }
     }
 
