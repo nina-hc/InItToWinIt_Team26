@@ -33,6 +33,8 @@ class HumanTurnTest {
         bank = new Bank();
         validator = new PlacementValidator(board);
         players = new Player[]{player};
+		distributeResources = new DistributeResources(bank,players,randomizer,board);
+		robber= new Robber(board.getTile(16));
     }
 
     /**
