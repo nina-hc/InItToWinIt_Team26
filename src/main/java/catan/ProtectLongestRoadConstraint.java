@@ -32,7 +32,7 @@ public class ProtectLongestRoadConstraint implements Constraint{
 			}
 			int opponentPlayerRoadLength = new VictoryPointConditions(opponents,board).getPlayerRoadLength();
 			//checking for the other players being one away
-			if(opponentPlayerRoadLength <= (currentPlayersRoadLength +1 )){
+			if(opponentPlayerRoadLength >= (currentPlayersRoadLength - 1 )){
 				return true;
 			}
 		}

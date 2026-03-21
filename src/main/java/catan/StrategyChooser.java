@@ -9,6 +9,7 @@ import java.util.List;
  * @author Marva Hassan
  * Constraint Implementation done by,
  * @author Nina Hay Cooper
+ * @author Serene Abou Sharaf
  */
 public class StrategyChooser {
 
@@ -28,7 +29,9 @@ public class StrategyChooser {
 	    //constraints
 	    constraints = new ArrayList<>();
 		constraints.add(new CardConstraint());
-		constraints.add(new ProtectLongestRoadConstraint());
+        constraints.add(new RoadDistanceConstraint());
+        constraints.add(new ProtectLongestRoadConstraint());
+
 
 	    //benefit value strategies
 	    this.strategies = new ArrayList<>();
