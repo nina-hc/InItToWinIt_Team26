@@ -8,6 +8,7 @@ import java.util.List;
  * beneficial actions remain.
  *
  * @author Marva Hassan
+ * @author Serene Abou Sharaf
  */
 public class AITurnSimulator {
 
