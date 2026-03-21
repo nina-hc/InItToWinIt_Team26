@@ -45,8 +45,8 @@ public class AITurnSimulator {
 
         boolean actionTaken = false;
 
-        if (handleConstraints()) {
-            return; //stop normal strategy flow
+        while (handleConstraints()) {
+            // keep resolving constraints
         }
 
         while (true) {
@@ -79,12 +79,9 @@ public class AITurnSimulator {
         if (player.getResourceHand().totalPlayerCard() > 7) {
             System.out.println("Constraint: Too many cards → must spend");
 
-            if (tryBuildRoad()) return true;
-            if (tryBuildSettlement()) return true;
-            if (tryBuildCity()) return true;
-
-            return true; // even if nothing built, constraint handled
+            return tryBuildRoad() || tryBuildSettlement() || tryBuildCity();
         }
+
 
         //Road segments within distance <= 2
         if (shouldConnectRoadSegments()) {
@@ -166,12 +163,30 @@ public class AITurnSimulator {
                 Node a2 = r2.getEdge().getNodeA();
                 Node b2 = r2.getEdge().getNodeB();
 
-                boolean connected =
-                        a1 == a2 || a1 == b2 || b1 == a2 || b1 == b2;
-
-                if (!connected) {
-                    return true; // found disconnected segments
+                // check if within 2 edges (shared OR neighbor of neighbor)
+                if (isWithinTwo(a1, a2) || isWithinTwo(a1, b2) ||
+                        isWithinTwo(b1, a2) || isWithinTwo(b1, b2)) {
+                    return true;
                 }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isWithinTwo(Node n1, Node n2) {
+
+        // direct neighbor
+        if (board.isAdjacent(n1.getNodeID(), n2.getNodeID())) {
+            return true;
+        }
+
+        // neighbor of neighbor
+        for (Edge e : board.getAdjacentEdges(n1)) {
+            Node mid = e.getOppositeNode(n1);
+
+            if (board.isAdjacent(mid.getNodeID(), n2.getNodeID())) {
+                return true;
             }
         }
 
