@@ -17,7 +17,7 @@ public class StrategyChooser {
     public StrategyChooser(Randomizer randomizer) {
         this.randomizer = randomizer;
         this.strategies = new ArrayList<>();
-        this.bestValue = bestValue;
+        this.bestValue = -1.0;//initialized to a invalid value that's a safe starting point
 
         strategies.add(new PlaceCityStrategy());
         strategies.add(new PlaceSettlementStrategy());

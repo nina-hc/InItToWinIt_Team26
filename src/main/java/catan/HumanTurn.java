@@ -70,6 +70,7 @@ public class HumanTurn {
         this.parser = new Parser();
         this.scanner = new Scanner(System.in);
 		this.robber=robber;
+		this.distributeResources=distributeResources;
 
     }
 

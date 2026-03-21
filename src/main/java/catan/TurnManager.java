@@ -56,7 +56,8 @@ public class TurnManager {
             for (Player player : players) {
 
                 if (player.getPlayerID() == 1) { //PLAYER 1 is Human player, Players 2,3,4 are ai simulated
-                    HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players);
+                    HumanTurn humanTurn = new HumanTurn(player, board, randomizer, bank, placementValidator, players,
+		                    robber, distributor);
                     humanTurn.executeHumanTurn(); // run the human turn
                 }
 
